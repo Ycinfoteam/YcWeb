@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- xml与注解混合配置 -->
+	<context:component-scan base-package="com.yc" />
+	
+	<!-- 数据库联接文件 db.properties spring的容器启动时，会以留的方式读取这个db.properties的配置信息 -->
+	<context:property-placeholder location="classpath*:db.properties" />
+
+	<!-- 使用DBCP配置数据库联接 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- 创建mybatis的sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<!-- 加入mybatis的一些属性配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4j</prop>
+			</props>
+		</property>
+		
+		<!-- 别名包的配置 -->
+		<property name="typeAliasesPackage" value="com.yc.bean"></property>
+		<!-- mybatis映射文件 -->
+		<property name="mapperLocations" value="classpath:com/yc/mapper/*.xml"></property>
+	</bean>
+	
+	<!-- 事务管理器mybatis -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+    	<!-- spring只支持方法级的增强，所以这里配置哪些方法要加入增强 -->
+    	<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="retrieve*" read-only="true"/>
+			<tx:method name="*" read-only="false"/>
+    	</tx:attributes>
+    </tx:advice>
+	
+	<!-- 切面配置 -->
+	<aop:config>
+		<aop:pointcut id="abc" expression="execution(* com.yc.biz.impl.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="abc"/>
+	</aop:config>
+
+</beans>
+
+
+
