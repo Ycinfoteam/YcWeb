@@ -39,5 +39,12 @@
 		<!-- 写/ 的话，所有的请求都会被spring mvc的分发器拦截到，所以最好对静态资源单独处理，在spring配置文件中配置 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-  
+  	<!-- <servlet-mapping>
+  		<servlet-name>default</servlet-name>
+  		<url-pattern>*.png</url-pattern>
+  	</servlet-mapping> -->
+  	
+  	<welcome-file-list>
+    	<welcome-file>welcome.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
