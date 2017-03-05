@@ -107,8 +107,8 @@ li{
 			</div>
 		</div>
 		
-    <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
-    </div>
+  <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
+    </div>  -->
 
 
 </body>
@@ -120,11 +120,11 @@ li{
 <script type="text/javascript" src="backjs/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript">
-$('.menu a').click(function(){
+/*$('.menu a').click(function(){
 	var href=$(this).attr('href')
 	$('#jiazai').panel('refresh',href);
 	return false;
-});
+});*/
 
 
 $(function(){
@@ -138,7 +138,7 @@ $(document).ready(
 				children : [ {
 					text : "管理员操作",
 					attributes : {
-						url : "yyyback/sys/admins/admin.jsp"
+						url : "toadmin"
 					}
 				}/* , {
 					text : "日志管理",
@@ -183,12 +183,12 @@ $(document).ready(
 				children : [ {
 					text : "公司新闻",
 					attributes : {
-						url : "companynews.jsp"
+						url : "tocompanynews"
 					}
 				}, {
 					text : "行业新闻",
 					attributes : {
-						url : "inews.jsp"
+						url : "toinews"
 					}
 				} ]
 			} ];
@@ -227,12 +227,12 @@ $(document).ready(
 				children : [ {
 					text : "招聘信息",
 					attributes : {
-						url : "yyyback/applyseekjobs/job.jsp"
+						url : "tojob"
 					}
 				} , {
 					text : "应聘信息",
 					attributes : {
-						url : "yyyback/applyseekjobs/apply.jsp"
+						url : "toapply"
 					}
 				}  ]
 			} ];

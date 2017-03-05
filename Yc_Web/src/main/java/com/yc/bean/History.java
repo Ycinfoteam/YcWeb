@@ -3,7 +3,7 @@ package com.yc.bean;
 import java.io.Serializable;
 import java.sql.Time;
 
-public class history implements Serializable {
+public class History implements Serializable {
 
 	/**
 	 * 

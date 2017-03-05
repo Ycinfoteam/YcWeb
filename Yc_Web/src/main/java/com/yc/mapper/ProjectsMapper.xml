@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.ProjectsMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectProjects" parameterType="Projects" resultMap="Projects">
+	select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertProjects" parameterType="Projects" >
+	insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(#{p_name},#{p_pic},#{p_developer},#{p_time},#{p_adddr});
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteProjects" parameterType="Projects" >
+	delete projects where p_name=#{p_name} 
+	</delete>
+	
+	</mapper>
