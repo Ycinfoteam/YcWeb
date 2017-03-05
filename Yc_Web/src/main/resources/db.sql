@@ -111,7 +111,8 @@ create table activities(
 	ac_illus varchar(5000),	 	 
 	ac_pic varchar(5000)		
 )
-
+select ac_id,ac_time,ac_illus,ac_pic from activities
+insert into activities(ac_time,ac_illus,ac_pic) values(now(),'这个活动很棒','lai')
 --课程体系表
 create table coursys(
 	cs_id integer primary key auto_increment,

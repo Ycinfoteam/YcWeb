@@ -1,17 +1,17 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 
 public class Technology implements Serializable {
 
 	private static final long serialVersionUID = 603893310276065924L;
 	private Integer te_id;
 	private String te_name;    //发表人
-	private Time te_time;      //时间
+	private Date te_time;      //时间
 	private String te_content;  //内容
 	private Integer te_click;   //浏览次数
-	private String te_books;    //标题
+	private String te_title;    //标题
 	public Integer getTe_id() {
 		return te_id;
 	}
@@ -24,10 +24,11 @@ public class Technology implements Serializable {
 	public void setTe_name(String te_name) {
 		this.te_name = te_name;
 	}
-	public Time getTe_time() {
+	
+	public Date getTe_time() {
 		return te_time;
 	}
-	public void setTe_time(Time te_time) {
+	public void setTe_time(Date te_time) {
 		this.te_time = te_time;
 	}
 	public String getTe_content() {
@@ -42,12 +43,18 @@ public class Technology implements Serializable {
 	public void setTe_click(Integer te_click) {
 		this.te_click = te_click;
 	}
-	public String getTe_books() {
-		return te_books;
+	public String getTe_title() {
+		return te_title;
 	}
-	public void setTe_books(String te_books) {
-		this.te_books = te_books;
+	public void setTe_title(String te_title) {
+		this.te_title = te_title;
 	}
+	@Override
+	public String toString() {
+		return "Technology [te_id=" + te_id + ", te_name=" + te_name + ", te_time=" + te_time + ", te_content="
+				+ te_content + ", te_click=" + te_click + ", te_title=" + te_title + "]";
+	}
+	
 	
 	
 }
