@@ -18,6 +18,27 @@ public class IndexController {
 	public String toindex(){
 		return "jsp/about";
 	}
+	@RequestMapping(value="/toinews")
+	public String 	toinews(){
+		return "backjsp/news/inews";
+	}
+	@RequestMapping(value="/tocompanynews")
+	public String tocompanynew(){
+		return "backjsp/news/companynews";
+	}
 	
-
+	@RequestMapping(value="/toadmin")
+	public String toadmin(){
+		return "backjsp/sys/admins/admin";
+	}
+	
+	@RequestMapping(value="/tojob")
+	public String tojob(){
+		return "backjsp/applyseekjobs/job";
+	}
+	
+	@RequestMapping(value="/toapply")
+	public String toapply(){
+		return "backjsp/applyseekjobs/apply";
+	}
 }
