@@ -1,6 +1,5 @@
 package com.yc.dao;
 
-public class BaseDao {
-
+public interface BaseDao {
 
 }
