@@ -66,7 +66,7 @@ li{
 				<div id="tt5" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			<div title="资质荣誉">
+			<div title="学员项目">
 				<div id="tt6" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -216,9 +216,9 @@ $(document).ready(
 			} ];
 			
 			var treeData6 = [ {
-				text : "资质荣誉",
+				text : "学员项目",
 				attributes : {
-					url : "yyyback/honor/honor.jsp"
+					url : "toprojects"
 				}
 			} ];
 			

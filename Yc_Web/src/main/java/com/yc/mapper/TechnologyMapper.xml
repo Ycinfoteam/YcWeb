@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.TechnologyMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectTechnology" parameterType="Technology" resultType="Technology">
+	select te_id,te_name,te_time,te_content,te_click,te_title from technology where 1=1 
+ 	<choose>
+ 	<when test="te_name!=null" >
+ 	and te_name=#{te_name} 
+ 	</when>
+ 	<when test="te_title!=null">
+ 	 and te_title=#{te_title}
+ 	</when>
+ 	<when test="te_content!=null">
+ 	 and te_content like concat('%',#{te_content},'%')
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertTechnology" parameterType="Technology" >
+	insert into technology(te_name,te_time,te_content,te_click,te_title) values(#{te_name},#{te_time},#{te_content},#{te_click},#{te_title});
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteTechnology" parameterType="Technology" >
+	delete from technology 
+	<choose>
+ 	<when test="te_name!=null" >
+ 	where te_name=#{te_name} 
+ 	</when>
+ 	<when test="te_title!=null">
+	 where te_title=#{te_title} 
+ 	</when>
+ 	<when test="te_time!=null">
+	 where te_time=#{te_time} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</delete>
+ 	
+ 	<!-- 修改 -->
+ 	<update id="updateTechnology" parameterType="Technology">
+ 	update technology set te_title=#{te_title}
+ 	 <if test="te_time!=null">
+ 	,te_time=#{te_time	}
+ 	</if>
+ 	 <if test="te_click!=null">
+ 	,te_click=#{te_click}
+ 	</if>
+ 	 <if test="te_content!=null">
+ 	,te_content=#{te_content}
+ 	</if>
+ 	<if test="te_name!=null">
+ 	,te_name=#{te_name}
+ 	</if>
+ 	 where te_id=#{te_id}
+ 	</update>
+	</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.ActivitiesMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectActivities" parameterType="Activities" resultType="Activities">
+	select ac_id,ac_time,ac_illus,ac_pic from activities where 1=1
+ 	<choose>
+ 	<when test="ac_time!=null" >
+ 	and ac_time=#{ac_time} 
+ 	</when>
+ 	<when test="ac_id!=null">
+	 and ac_id=#{ac_id} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertActivities" parameterType="Activities" >
+	insert into activities(ac_time,ac_illus,ac_pic) values(#{ac_time},#{ac_illus},#{ac_pic})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteActivities" parameterType="Activities" >
+	delete from Activities
+	<choose>
+ 	<when test="ac_id!=null" >
+ 	where ac_id=#{ac_id} 
+ 	</when>
+ 	<when test="ac_time!=null">
+	 where ac_time=#{ac_time} 
+ 	</when>
+ 	<when test="ac_pic!=null">
+	 where ac_pic=#{ac_pic} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</delete>
+ 	
+ 	<!-- 修改 -->
+ 	<update id="updateActivities" parameterType="Activities">
+ 	update activities set ac_illus=#{ac_illus}
+ 	 <if test="ac_pic!=null">
+ 	,ac_pic=#{ac_pic}
+ 	</if>
+ 	 <if test="ac_time!=null">
+ 	,ac_time=#{ac_time}
+ 	</if>
+ 	 where ac_id=#{ac_id}
+ 	</update>
+	</mapper>
