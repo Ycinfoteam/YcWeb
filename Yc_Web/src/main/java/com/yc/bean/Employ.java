@@ -2,6 +2,7 @@ package com.yc.bean;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
 
 /**
  * 招聘表
@@ -14,7 +15,7 @@ public class Employ implements Serializable {
 	private static final long serialVersionUID = 339502828447332803L;
 	private Integer e_id;
 	private String e_position; // 职位
-	private Time e_validtime; // 有效时间
+	private Date e_validtime; // 有效时间
 	private Integer e_amount; // 招聘人数
 	private Number e_salary; // 工资待遇
 	private String e_detail; // 详细说明
@@ -36,11 +37,11 @@ public class Employ implements Serializable {
 		this.e_position = e_position;
 	}
 
-	public Time getE_validtime() {
+	public Date getE_validtime() {
 		return e_validtime;
 	}
 
-	public void setE_validtime(Time e_validtime) {
+	public void setE_validtime(Date e_validtime) {
 		this.e_validtime = e_validtime;
 	}
 
