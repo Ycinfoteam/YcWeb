@@ -17,7 +17,7 @@ public class Employ implements Serializable {
 	private String e_position; // 职位
 	private Date e_validtime; // 有效时间
 	private Integer e_amount; // 招聘人数
-	private Number e_salary; // 工资待遇
+	private double e_salary; // 工资待遇
 	private String e_detail; // 详细说明
 	private String e_addr; // 简历投递地址
 
@@ -53,11 +53,11 @@ public class Employ implements Serializable {
 		this.e_amount = e_amount;
 	}
 
-	public Number getE_salary() {
+	public double getE_salary() {
 		return e_salary;
 	}
 
-	public void setE_salary(Number e_salary) {
+	public void setE_salary(double e_salary) {
 		this.e_salary = e_salary;
 	}
 
