@@ -1,7 +1,7 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class News implements Serializable {
 
@@ -42,8 +42,8 @@ public class News implements Serializable {
 	public Timestamp getN_time() {
 		return n_time;
 	}
-	public void setN_time(Timestamp n_time) {
-		this.n_time = n_time;
+	public void setN_time(java.sql.Timestamp timestamp) {
+		this.n_time = timestamp;
 	}
 	public Integer getN_sort() {
 		return n_sort;

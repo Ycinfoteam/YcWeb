@@ -65,7 +65,7 @@
 		<aop:pointcut id="abc" expression="execution(* com.yc.biz.impl.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="abc"/>
 	</aop:config>
-
+	
 </beans>
 
 

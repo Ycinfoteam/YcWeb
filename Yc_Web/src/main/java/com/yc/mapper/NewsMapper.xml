@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.NewsMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+	
+	<!-- 查询所有新闻 -->
+	<select id="selectAll" resultType="News">
+		select n_id,n_title,n_content,n_click,n_time,n_sort,n_reportor from news
+	</select>
+	
+	<!-- 根据id查询新闻 -->
+	<select id="selectByNid" resultType="News" parameterType="News">
+		select n_id,n_title,n_content,n_click,n_time,n_sort,n_reportor from news where n_id=#{n_id}
+	</select>
+	<!-- 添加一条新闻 -->
+	<insert id="addOneNew" parameterType="News"  useGeneratedKeys="true" keyProperty="n_id">
+		insert into news(n_title,n_content,n_click,n_time,n_sort,n_reportor) values(#{n_title},#{n_content},#{n_click},#{n_time},#{n_sort},#{n_reportor})
+	</insert>
+	<!-- 修改一条新闻 -->
+	<update id="updateOneNew" parameterType="News">
+		update news set n_title=#{n_title},n_content=#{n_content},n_sort=#{n_sort} where n_id=#{n_id}
+	</update>
+	<!-- 删除一条新闻 -->
+	<delete id="deleteOneNew" parameterType="News">
+		delete from news where n_id=#{n_id}
+	</delete>
+	<!-- 删除多条新闻 
+	<delete id="deleteMoreNew" parameterType="java.util.List">
+		delete from news where n_id in
+		<foreach collection="list" index="index",item="item" open="(" separator=","close=")">
+			#{item}
+		</foreach>
+	</delete>-->
+</mapper>

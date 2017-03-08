@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.CoursysMapper">
+
+	<!-- 查询课程体系 -->
+	<select id="selectCoursys" parameterType="Coursys" resultType="Coursys">
+		select cs_id,cs_name,cs_pic,cs_version,cs_text from coursys where 1=1
+		<choose>
+			<when test="cs_id>0">
+				and cs_id=#{cs_id}
+			</when>
+			<when test="cs_name!=null">
+				and cs_name=#{cs_name}
+			</when>
+			<when test="cs_version!=null">
+				and cs_version=#{cs_version}
+			</when>
+			<otherwise>
+
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 添加一个课程体系 -->
+	<insert id="addOneCoursys" parameterType="Coursys" useGeneratedKeys="true" keyProperty="cs_id">
+		insert into coursys(cs_name,cs_pic,cs_version,cs_text) values(#{cs_name},#{cs_pic},#{cs_version},#{cs_text})
+	</insert>
+	<!-- 修改一个课程体系 -->
+	<update id="updateOneCoursys" parameterType="Coursys">
+		update coursys set cs_name=#{cs_name},cs_pic=#{cs_pic},cs_version=#{cs_version},cs_text=#{cs_text} where cs_id=#{cs_id}
+	</update>
+	<!-- 删除一条课程体系 -->
+	<delete id="deleteCoursys" parameterType="Coursys">
+		delete from coursys where cs_id=#{cs_id}
+	</delete>
+</mapper>
