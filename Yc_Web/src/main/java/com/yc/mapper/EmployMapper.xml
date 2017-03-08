@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.EmployMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+	
+	<!-- 根据条件职位 -->
+	<select id="findEmploy"  parameterType="Employ" resultType="Employ">
+		select e_id,e_position,e_validtime,e_amount,e_salary,e_detail,e_addr from employ 
+		<trim prefix="where" suffixOverrides="and">
+			<if test="e_position!=null">
+				e_position=#{e_position } and
+			</if>
+			<if test="e_validtime!=null">
+				e_validtime=#{e_validtime } and
+			</if>
+			<if test="e_amount!=null">
+				e_amount>=#{e_amount } and
+			</if>
+			<if test="e_salary!=0">
+				e_salary>=#{e_salary } and
+			</if>
+		</trim>
+	</select>
+	
+	<!-- 插入招聘信息 -->
+	<insert id="addEmploy" parameterType="Employ" useGeneratedKeys="true" keyProperty="e_id">
+		insert into employ (e_position,e_validtime,e_amount,e_salary,e_detail,e_addr)
+		values (#{e_position},#{e_validtime},#{e_amount},#{e_salary},#{e_detail},#{e_addr})
+	</insert>
+	
+	<!-- 删除招聘信息 -->
+	<delete id="deleteEmploy" parameterType="Employ" >
+		delete from employ where e_id=#{e_id }
+	</delete>
+	
+	<!-- 修改招聘信息 -->
+	<update id="updateEmploy" parameterType="Employ">
+		update employ
+		<trim prefix="set" suffixOverrides=",">
+			<if test="e_position!=null">
+				e_position=#{e_position },
+			</if>
+			<if test="e_validtime!=null">
+				e_validtime=#{e_validtime },
+			</if>
+			<if test="e_amount!=null">
+				e_amount=#{e_amount },
+			</if>
+			<if test="e_salary!=0">
+				e_salary=#{e_salary },
+			</if>
+			<if test="e_detail!=null">
+				e_detail=#{e_detail },
+			</if>
+			<if test="e_addr!=null">
+				e_addr=#{e_addr },
+			</if>
+		</trim>
+		<where>
+			<if test="e_id!=null">
+				e_id=#{e_id}
+			</if>
+		</where>
+	</update>
+
+
+
+</mapper>

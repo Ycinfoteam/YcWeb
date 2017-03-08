@@ -2,6 +2,7 @@ package com.yc.bean;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
 
 public class Projects implements Serializable {
 
@@ -10,7 +11,7 @@ public class Projects implements Serializable {
 	private String p_name;     //项目名
 	private String p_pic;      //项目图片
 	private String p_developer;	 //开发者
-	private Time p_time;		//开发时间
+	private Date p_time;		//开发时间
 	private String p_addr;     //项目发布地址 
 	
 	public Integer getP_id() {
@@ -37,10 +38,11 @@ public class Projects implements Serializable {
 	public void setP_developer(String p_developer) {
 		this.p_developer = p_developer;
 	}
-	public Time getP_time() {
+
+	public Date getP_time() {
 		return p_time;
 	}
-	public void setP_time(Time p_time) {
+	public void setP_time(Date p_time) {
 		this.p_time = p_time;
 	}
 	public String getP_addr() {
@@ -49,5 +51,11 @@ public class Projects implements Serializable {
 	public void setP_addr(String p_addr) {
 		this.p_addr = p_addr;
 	}
+	@Override
+	public String toString() {
+		return "Projects [p_id=" + p_id + ", p_name=" + p_name + ", p_pic=" + p_pic + ", p_developer=" + p_developer
+				+ ", p_time=" + p_time + ", p_addr=" + p_addr + "]";
+	}
+	
 	
 }

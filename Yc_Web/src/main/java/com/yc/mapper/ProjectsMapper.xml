@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.ProjectsMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectProjects" parameterType="Projects" resultType="Projects">
+	select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1
+ 	<choose>
+ 	<when test="p_name!=null" >
+ 	and p_name=#{p_name} 
+ 	</when>
+ 	<when test="p_time!=null">
+	 and p_time=#{p_time} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertProjects" parameterType="Projects" >
+	insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(#{p_name},#{p_pic},#{p_developer},#{p_time},#{p_addr});
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteProjects" parameterType="Projects" >
+	delete from projects 
+	<choose>
+ 	<when test="p_name!=null" >
+ 	where p_name=#{p_name} 
+ 	</when>
+ 	<when test="p_time!=null">
+	 where p_time=#{p_time} 
+ 	</when>
+ 	<when test="p_developer!=null">
+	 where p_developer=#{p_developer} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</delete>
+ 	
+ 	<!-- 修改 -->
+ 	<update id="updateProjects" parameterType="Projects">
+ 	update projects set p_name=#{p_name}
+ 	 <if test="p_pic!=null">
+ 	,p_pic=#{p_pic}
+ 	</if>
+ 	 <if test="p_developer!=null">
+ 	,p_developer=#{p_developer}
+ 	</if>
+ 	 <if test="p_time!=null">
+ 	,p_time=#{p_time}
+ 	</if>
+ 	<if test="p_addr!=null">
+ 	,p_addr=#{p_addr}
+ 	</if>
+ 	 where p_id=#{p_id}
+ 	</update>
+	</mapper>

@@ -15,10 +15,10 @@
 
 	<!-- xml与注解混合配置 -->
 	<context:component-scan base-package="com.yc" />
-	
+	 
 	<!-- 数据库联接文件 db.properties spring的容器启动时，会以留的方式读取这个db.properties的配置信息 -->
 	<context:property-placeholder location="classpath*:db.properties" />
-
+ 
 	<!-- 使用DBCP配置数据库联接 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -61,7 +61,7 @@
     </tx:advice>
 	
 	<!-- 切面配置 -->
-	<aop:config>
+	<aop:config> 
 		<aop:pointcut id="abc" expression="execution(* com.yc.biz.impl.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="abc"/>
 	</aop:config>
