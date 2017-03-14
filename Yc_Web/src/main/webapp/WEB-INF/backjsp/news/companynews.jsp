@@ -3,6 +3,19 @@
 
 <!-- zx's companyUI -->
 <table id="companynewsdg"></table>
+<div id="companynewsdlg" class="easyui-dialog"
+	style="width: 1070px; height: 480px; padding: 10px 20px;display:none" closed="true"
+	buttons="#fooddlg-buttons">
+	<form id="companynewsfm" method="post" novalidate>
+		<div class="fitem">
+			<label> 新闻标题: </label> 
+			<input id="companynews_title" name="title" class="easyui-textbox" style="width:300px" required="true">
+		</div>
+		<div class="fitem">
+			<label> 新闻详情: </label>
+		</div>
+	</form>
+</div>
 <script type="text/javascript">
 $('#companynewsdg').edatagrid({
 	url : 'news_list', //查询时加载的URL
@@ -66,7 +79,7 @@ $('#companynewsdg').edatagrid({
 			}
 		},
 	}, {
-		field : 'detail',
+		field : 'n_content',
 		title : '更多信息',
 
 	}, {
@@ -113,7 +126,6 @@ $('#companynewsdg').edatagrid({
 				text : '选定一行即可点击编写公司新闻更多详细信息',
 				iconCls : 'icon-add',
 				handler : function() {
-
 					var row = $('#companynewsdg')
 							.datagrid('getSelected');
 					if (row) {
@@ -123,9 +135,7 @@ $('#companynewsdg').edatagrid({
 						$('#id').val(row.nid);
 						companynews_editor
 								.setData(row.detail);
-
 					}
-
 				}
 			},
 			'-',

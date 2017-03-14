@@ -105,7 +105,7 @@ li{
 			<!-- </br>
 			您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
-		</div>
+	</div>
 		
   <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
     </div>  -->
@@ -209,9 +209,9 @@ $(document).ready(
 			} ];
 			
 			var treeData5 = [ {
-				text : "合作案例",
+				text : "课程体系",
 				attributes : {
-					url : "yyyback/cooperation/cooperation.jsp"
+					url : "tocoursys"
 				}
 			} ];
 			

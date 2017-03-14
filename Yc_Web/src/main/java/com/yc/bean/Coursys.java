@@ -1,16 +1,33 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Coursys implements Serializable {
 
 	private static final long serialVersionUID = -7346238853185557362L;
 	private Integer cs_id;
 	private String cs_name;     //方向名
-	private String cs_pic;      //图片说明
+	private String cs_pic="";      //图片说明
 	private String cs_version;  //版本
 	private String cs_text;     //文字说明
+	private Integer cs_status;	//状态（1显示，0不显示）
+	private List<MultipartFile> picUrl;//对应界面上的            	<input name="pdfsUrl" type="file">
 	
+	public List<MultipartFile> getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(List<MultipartFile> picUrl) {
+		this.picUrl = picUrl;
+	}
+	public Integer getCs_status() {
+		return cs_status;
+	}
+	public void setCs_status(Integer cs_status) {
+		this.cs_status = cs_status;
+	}
 	public Integer getCs_id() {
 		return cs_id;
 	}

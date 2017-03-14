@@ -41,16 +41,22 @@ public class NewsController {
 	//添加新闻
 	@RequestMapping(value="/news_addNews.action")
 	public @ResponseBody String addNews(){
+		logger.info("add one new......");
+
 		return "";
 	}
 	//修改新闻
 	@RequestMapping(value="/news_updateNews.action")
 	public @ResponseBody String updateNews(){
+		logger.info("update one new......");
+
 		return "";
 	}
 	//删除新闻
 	@RequestMapping(value="/news_deleteNews.action")
 	public @ResponseBody String deleteNews(){
+		logger.info("delete one new......");
+
 		return "";
 	}
 }

@@ -34,14 +34,9 @@ create table news(
 	n_sort integer,  	     
 	n_reportor varchar(300)  
 )
+--增加一个新闻状态字段(0,1)
+alter table news add n_status int 
 
---增加一个新闻类型字段
-alter table news add n_type int 
---增加一个新闻类型表
-create table newsType(
-	nt_id integer primary key auto_increment,
-	nt_name varchar(20)
-)
 
 
 --就业详情表 --照片  --学员名字 --学员薪资   --就业时间 --所在公司 --毕业学校  --专业  
@@ -128,6 +123,8 @@ create table coursys(
 	cs_version varchar(500),     --版本
 	cs_text varchar(5000)		 --文字说明
 )
+--增加一个状态字段(0,1)
+alter table coursys add cs_status int 
 
 --招聘表
 create table employ(

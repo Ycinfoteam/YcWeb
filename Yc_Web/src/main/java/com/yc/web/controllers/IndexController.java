@@ -48,4 +48,9 @@ public class IndexController {
 	public String toprojects(){
 		return "backjsp/projects/projects";
 	}
+	//去课程体系管理
+	@RequestMapping(value="/tocoursys")
+	public String tocoursys(){
+		return "backjsp/coursys/coursys";
+	}
 }

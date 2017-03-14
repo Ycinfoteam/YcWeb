@@ -14,7 +14,14 @@ public class News implements Serializable {
 	private Timestamp n_time;	//创建时间
 	private Integer n_sort;     //排序
 	private String n_reportor;  //发布者 
+	private Integer n_status;	//新闻状态
 	
+	public Integer getN_status() {
+		return n_status;
+	}
+	public void setN_status(Integer n_status) {
+		this.n_status = n_status;
+	}
 	public Integer getN_id() {
 		return n_id;
 	}
