@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.StudentsMapper">
+
+	<!-- 查询学生信息 -->
+	<select id="selectStudents" parameterType="Students" resultType="Students">
+		select s_id,s_name,s_tel,s_direction from students where 1=1	
+		<choose>
+			<when test="s_id!=null">
+				and s_id=#{s_id}
+			</when>
+			<when test="s_name!=null">
+				and s_name=#{s_name}
+			</when>
+			<when test="s_direction!=null">
+				and s_direction=#{s_direction}
+			</when>
+			<otherwise>
+	
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 添加一条学生信息 -->
+	<insert id="addOneStudent" parameterType="Students" useGeneratedKeys="true" keyProperty="s_id">
+		insert into students(s_name,s_tel,s_direction) values(#{s_name},#{s_tel},#{s_direction})
+	</insert>
+	<!-- 删除一条学生信息 -->
+	<delete id="deleteOneStudent" parameterType="Students">
+		delete from students where s_id=#{s_id}
+	</delete>
+	<!-- 修改一条学生信息 -->
+	<update id="updateOneStudent" parameterType="Students">
+		update students set s_name=#{s_name},s_tel=#{s_tel},s_direction=#{s_direction} where s_id=#{s_id}
+	</update>
+</mapper>

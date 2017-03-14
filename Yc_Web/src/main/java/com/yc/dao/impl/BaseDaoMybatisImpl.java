@@ -85,5 +85,4 @@ public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseD
 		return super.getSqlSession().selectList(getMapperId(t,sqlId),t);
 	}
 	
-	
 }
