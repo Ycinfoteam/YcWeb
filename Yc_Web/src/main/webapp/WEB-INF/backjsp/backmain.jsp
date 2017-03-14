@@ -70,12 +70,17 @@ li{
 				<div id="tt6" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			<div title="人才招聘">
+			<div title="关于公司">
 				<div id="tt7" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			 <div title="留言管理">     <!--   7.26前台去掉的模块 -->
+			<div title="人才招聘">
 				<div id="tt8" class="easyui-tree"
+					data-options="animate:true,dnd:true"></div>
+			</div>
+			
+			 <div title="留言管理">     <!--   7.26前台去掉的模块 -->
+				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
 			<!-- <div title="浏览统计">
@@ -83,11 +88,11 @@ li{
 					data-options="animate:true,dnd:true"></div>
 			</div> -->
 			<div title="友情链接">
-				<div id="tt11" class="easyui-tree"
+				<div id="tt10" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
 			<div title="模块管理">
-				<div id="tt10" class="easyui-tree"
+				<div id="tt11" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
 			<div title="系统还原">
@@ -209,9 +214,9 @@ $(document).ready(
 			} ];
 			
 			var treeData5 = [ {
-				text : "合作案例",
+				text : "课程介绍",
 				attributes : {
-					url : "yyyback/cooperation/cooperation.jsp"
+					url : ""
 				}
 			} ];
 			
@@ -221,8 +226,21 @@ $(document).ready(
 					url : "toprojects"
 				}
 			} ];
-			
-			var treeData7 = [ {
+			var treeData7= [ {
+				text : "关于",
+				children : [ {
+					text : "关于公司介绍",
+					attributes : {
+						url : ""
+					}
+				} , {
+					text : "公司活动介绍",
+					attributes : {
+						url : "toactivities"
+					}
+				}  ]
+			} ];
+			var treeData8= [ {
 				text : "人才招聘",
 				children : [ {
 					text : "招聘信息",
@@ -237,7 +255,7 @@ $(document).ready(
 				}  ]
 			} ];
 			
-			 var treeData8 = [ {  /*  7.26去掉留言模块 */
+			 var treeData9 = [ {  /*  7.26去掉留言模块 */
 				text : "留言管理",
 				attributes : {
 					url : "yyyback/message/message.jsp"
@@ -249,14 +267,14 @@ $(document).ready(
 					url : "yyyback/count/view.jsp"
 				}
 			} ];  */
-			var treeData11 = [ {
+			var treeData10 = [ {
 				text : "友情链接",
 				attributes : {
 					url : "yyyback/friendlink/friendlink.jsp"
 				}
 			} ];
 			//css
-			var treeData10 = [ {
+			var treeData11 = [ {
 				text : "前台管理",
 				children : [ {
 					text : "样式管理",

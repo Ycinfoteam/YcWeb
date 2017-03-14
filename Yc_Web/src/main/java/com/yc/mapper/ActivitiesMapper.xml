@@ -8,7 +8,7 @@
 			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
  	<!-- 查询 -->
  	<select id="selectActivities" parameterType="Activities" resultType="Activities">
-	select ac_id,ac_time,ac_illus,ac_pic from activities where 1=1
+	select ac_id,date_format(ac_time,'%Y-%m-%d') ac_time,ac_illus,ac_pic from activities where 1=1
  	<choose>
  	<when test="ac_time!=null" >
  	and ac_time=#{ac_time} 

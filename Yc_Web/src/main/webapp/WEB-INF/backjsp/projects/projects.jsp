@@ -1,7 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+	String path=request.getContextPath();
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath %>">
 <script src="backjs/ckeditor.js"></script>
-<link rel="stylesheet" type="text/css" href="backcss/easyui.css">
+ <link type="text/css" rel="stylesheet" href="backcss/icon.css"/>
+<!--第二步：引入easyui皮肤样式 themes/default/easyui.css    images文件夹拷贝-->
+<link type="text/css" rel="stylesheet" href="backcss/easyui.css"/>
 <style type="text/css">
 #fm {
 	margin: 0;
@@ -29,16 +35,13 @@
 	width: 160px;
 }
 </style>
-
-
-
-<table id="honordg">
+   
+   <table id="projectdg">
 </table>
 <div id="honordlg" class="easyui-dialog"
-	style="width: 1070px; height: 480px; padding: 10px 20px" closed="true"
-	buttons="#fooddlg-buttons">
+	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#fooddlg-buttons">
 	<div class="ftitle">
-		添加新学员项目
+		
 	</div>
 	<form id="honorfm" method="post" enctype="multipart/form-data" novalidate>
 		<div class="fitem">
@@ -57,7 +60,7 @@
 			<label>
 				开发时间:
 			</label>
-			<input name="p_time" class="easyui-datebox" data-options="formatter:myformatter.parser:myparser"></input>
+			<input name="p_time" class="easyui-textbox"></input>
 		
 			</div>
 			<div class="fitem">
@@ -72,56 +75,42 @@
 			</label>
 			<input name="p_pic" type="file" />
 		</div>
-		
-	</form>
+	</form> 
 </div>
-<div id="fooddlg-buttons">
-	<a href="javascript:void(0)" class="easyui-linkbutton c6"
-		iconCls="icon-ok" onclick="saveHonor()" style="width: 90px">Save</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
+<div id="fooddlg-buttons"  style=" display:none;">
+	<a  class="easyui-linkbutton c6"
+		 iconCls="icon-ok"  onclick="saveHonor()"
+		style="width: 90px">Save</a>
+	<a class="easyui-linkbutton"
 		iconCls="icon-cancel" onclick="javascript:$('#honordlg').dialog('close')"
 		style="width: 90px">Cancel</a>
 </div>
+<script type="text/javascript" src="backjs/jquery.edatagrid.js"></script>
+<script type="text/javascript" src="backjs/jquery.form.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 
 <script type="text/javascript">
-	function myformatter(date){
-		var y=date.getFullYear();
-		var m=date.getMonth()+1;
-		var d=date.getDate();
-		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
-	}
-	function myparser(S){
-		if(!s)return new Date();
-		var ss=(s.split('-'));
-		var y=parseInt(ss[0],10);
-		var m=parseInt(ss[1],10);
-		var d=parseInt(ss[2],10);
-		if(!isNaN(y)&&!isNaN(m)&&!isNaN(d)){
-			return new Date(y,m-1,d);
-		}else{
-			return new Date();
-		}
-	}
+	
 	var datagrid;
 	var rowEditor=undefined;	//用于存放当前要编辑的行
 	$(function(){
-	   datagrid=$('#honordg').edatagrid({
-        	url: "info_list.action?type=资质荣誉",	//查询时加载的URL
-            saveUrl: "info_addInfo.action?type=资质荣誉",
-            updateUrl: "info_updateInfo.action?type=资质荣誉", 
-            destroyUrl: "info_deleteInfo.action?type=资质荣誉",
-            
+	   datagrid=$('#projectdg').edatagrid({
+		  	url: "projects",	//查询时加载的URL
+            saveUrl: "projects_add",
+            updateUrl: "projects_update", 
+            destroyUrl: "projects_delete",
+            loadMsg:'正在加载项目信息...',
         	pagination:true,	//显示分页
         	pageSize:5,		//默认分页的条数
         	pageList:[5,10,15,20,25,30,35,40,45,50],	//可选分页条数
         	fitColumns:true,	//自适应列
         	fit:true,	//自动补全
-        	title:"资质荣誉管理",
+        	title:"学员项目管理",
         	iconCls:"icon-save",//图标
-        	idField:"iid",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
+        	idField:"p_id",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
         	rownumbers:"true",	//显示行号
         	nowrap:"true",	//不换行显示
-        	sortName:"createtime",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
+        	sortName:"p_id",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
         	sortOrder:"asc",	//排序方式
         	//以上的四种增删改查操作，只要失败，都会回掉这个onError
         	onError:function(a,b){
@@ -130,14 +119,14 @@
         	striped:true,
         	columns:[[
         	{
-           	 	field:'iid',
+           	 	field:'p_id',
            	 	title:'编号',
            	 	width:100,
            	 	align:'center',
            	 	
            	 },{
-           	 	field:'title',
-           	 	title:'荣誉标题',
+           	 	field:'p_name',
+           	 	title:'项目名',
            	 	width:100,
            	 	align:'center',
            	 	editor:{
@@ -148,10 +137,54 @@
            		},
            	 	
            	 },{
-           	 	field:'picture',
-           	 	title:'缩略图',
+           	 	field:'p_pic',
+           	 	title:'项目图片',
            	 	width:100,
            	 	align:'center',
+           	 formatter : function(value, row, index) {
+ 				if(value!=null && value!=''){
+ 					value=value.replace(",","");
+ 					value=value.substring(22);
+ 					return '<img src="../'+value+'" width="100px" height="100px" />';
+ 				}else{
+ 					return '无图片';
+ 				}
+ 				}},
+           	 {
+           	 	field:'p_developer',
+           	 	title:'开发者',
+           	 	width:100,
+           	 	align:'center',
+           	 editor:{
+        	 		type:'validatebox',
+        	 		options:{
+        	 			required:true,
+        	 		}
+        		},
+           	 },{
+            	 	field:'p_time',
+               	 	title:'开发时间',
+               	 	width:100,
+               	 	align:'center',
+               	editor:{
+         	 		type:'datebox',
+         	 		options:{
+         	 			required:true,
+         	 		}
+         		},
+            	 },	
+               	 	
+            {
+         	 	field:'p_addr',
+           	 	title:'项目发布地址',
+           	 	width:100,
+           	 	align:'center',
+           	 editor:{
+        	 		type:'validatebox',
+        	 		options:{
+        	 			required:true,
+        	 		}
+        		},
            	 }/* ,{
            	 	field:'state',
            	 	title:'是否显示',
@@ -180,28 +213,34 @@
 	         toolbar: [{
 	         	text:"增加",
 				iconCls: 'icon-add',
-				handler : function() {  
-                    $('#honordlg').dialog('open').dialog('setTitle','新增荣誉');
-            		$('#honorfm').form('clear');
-                }  
+				handler : function() {$('#honordlg').dialog({
+					title:'添加学员项目',
+					width : 400,
+					height : 550,
+					closed : false,
+					cache : false,
+					modal:true
+						}
+				);$('#honorfm').form('clear');
+				}
 			},'-',{
 				text:"删除",
 				iconCls: 'icon-remove',
 				handler: function(){
-					$('#honordg').edatagrid('destroyRow');
-					//$('#dg').edatagrid('loadData')
+					$('#projectdg').edatagrid('destroyRow');
+					$('#dg').edatagrid('loadData')
 				}
 			},'-',{
 				text:"保存",
 				iconCls: 'icon-save',
 				handler: function(){
-					$('#honordg').edatagrid('saveRow')
+					$('#projectdg').edatagrid('saveRow')
 				}
 			},'-',{
 				text:"取消编辑",
 				iconCls: 'icon-undo',
 				handler: function(){
-					$('#honordg').edatagrid('cancelRow')
+					$('#projectdg').edatagrid('cancelRow')
 				}
 			}]
 			
@@ -210,19 +249,24 @@
     	
     });
     
-    function saveHonor(){
+	  function saveHonor(){
+		//有错误
 		$("#honorfm").ajaxSubmit({
-			type : "post",
-			url : "info_addInfo.action?type=资质荣誉",
-			success : function(data1) {
-				var dataObj=eval("("+data1+")");
-				if(  dataObj.code==1){	
-					$.messager.alert('Info','添加成功'); 
+				type : "POST",
+				url : "projects_add",
+				contentType : "application/x-www-form-urlencoded",
+				success : function(data1) {
+					if(  data1==1){	
+						$.messager.alert('Info','添加成功'); 
+					}
+				
 				}
-			}
-		});
-		$('#honordg').edatagrid('load');
+			});
 		$('#honordlg').dialog('close');
-	}
-	
+			$('#projectdg').edatagrid('load');
+			
+		}
+	  $('input[name="p_time"]').datebox({
+			required:true
+		});
 </script>
