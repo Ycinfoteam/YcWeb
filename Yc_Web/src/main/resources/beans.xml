@@ -50,7 +50,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
-    <tx:advice id="txAdvice" transaction-manager="txManager">
+    <tx:advice id="txAdvice" transaction-manager="txManager"> 
     	<!-- spring只支持方法级的增强，所以这里配置哪些方法要加入增强 -->
     	<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
