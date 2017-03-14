@@ -8,7 +8,7 @@ public class Technology implements Serializable {
 	private static final long serialVersionUID = 603893310276065924L;
 	private Integer te_id;
 	private String te_name;    //发表人
-	private Date te_time;      //时间
+	private String te_time;      //时间
 	private String te_content;  //内容
 	private Integer te_click;   //浏览次数
 	private String te_title;    //标题
@@ -25,10 +25,10 @@ public class Technology implements Serializable {
 		this.te_name = te_name;
 	}
 	
-	public Date getTe_time() {
+	public String getTe_time() {
 		return te_time;
 	}
-	public void setTe_time(Date te_time) {
+	public void setTe_time(String te_time) {
 		this.te_time = te_time;
 	}
 	public String getTe_content() {

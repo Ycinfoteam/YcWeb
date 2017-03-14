@@ -9,7 +9,7 @@ public class IndexController {
 	//去后台主页
 	@RequestMapping(value="/tobackmain")
 	public String tobackmain(){
-		System.out.println( "进来了" );
+		
 		return "backjsp/backmain";
 		
 	}
@@ -52,5 +52,10 @@ public class IndexController {
 	@RequestMapping(value="/tocoursys")
 	public String tocoursys(){
 		return "backjsp/coursys/coursys";
+	}
+	//去公司活动
+	@RequestMapping(value="/toactivities")
+	public String toactivities(){
+		return "backjsp/activities/activities";
 	}
 }

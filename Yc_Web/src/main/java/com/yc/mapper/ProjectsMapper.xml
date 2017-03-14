@@ -8,7 +8,7 @@
 			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
  	<!-- 查询 -->
  	<select id="selectProjects" parameterType="Projects" resultType="Projects">
-	select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1
+	<![CDATA[select p_id,p_name,p_pic,p_developer,date_format(p_time,'%Y-%m-%d') p_time,p_addr from projects where 1=1]]>
  	<choose>
  	<when test="p_name!=null" >
  	and p_name=#{p_name} 
@@ -18,6 +18,7 @@
  	</when>
 	<otherwise></otherwise>
  	</choose>
+	<!-- order by p_id asc limit ${start},${end}  --> 
  	</select>
 	
  	<!-- 添加-->
@@ -27,7 +28,7 @@
 
 	<!-- 删除 -->
 	<delete id="deleteProjects" parameterType="Projects" >
-	delete from projects 
+	delete from projects where p_id=#{p_id} 
 	<choose>
  	<when test="p_name!=null" >
  	where p_name=#{p_name} 
