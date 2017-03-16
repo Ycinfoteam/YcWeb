@@ -25,7 +25,7 @@
 	
  	<!-- 添加-->
 	<insert id="insertTechnology" parameterType="Technology" >
-	insert into technology(te_name,te_time,te_content,te_click,te_title) values(#{te_name},#{te_time},#{te_content},#{te_click},#{te_title});
+	insert into technology(te_name,te_time,te_content,te_click,te_title) values(#{te_name},curdate(),#{te_content},#{te_click},#{te_title});
 	</insert>
 
 	<!-- 删除 -->

@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-	// 去后台主页
-	@RequestMapping(value = "/tobackmain")
-	public String tobackmain() {
+
+	//去后台主页
+	@RequestMapping(value="/tobackmain")
+	public String tobackmain(){
 		return "backjsp/backmain";
 
 	}
@@ -47,10 +48,15 @@ public class IndexController {
 	public String toapply() {
 		return "backjsp/applyseekjobs/apply";
 	}
-
-	// 去学员项目
-	@RequestMapping(value = "/toprojects")
-	public String toprojects() {
+	
+	//去学员项目
+	@RequestMapping(value="/toprojects")
+	public String toprojects(){
 		return "backjsp/projects/projects";
+	}
+	//去公司活动
+	@RequestMapping(value="/toactivities")
+	public String toactivities(){
+		return "backjsp/activities/activities";
 	}
 }

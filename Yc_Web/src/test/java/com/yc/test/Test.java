@@ -39,20 +39,20 @@ public class Test extends TestCase {
 	}
 ///////学生项目表	
 	//添加学生项目
-	public void testProadd() throws SQLException{
+	/*public void testProadd() throws SQLException{
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		ProjectsBiz bab=(ProjectsBiz) ac.getBean("projectsBizImpl");
 		Projects ba=new Projects();
-		ba.setP_name("sss");
+		ba.setP_name("仓库管理系统");
 		Date date=new Date();
 		date.setTime(date.getTime());
 		ba.setP_pic("");
 		ba.setP_time(date);
-		ba.setP_developer("xxxx");
+		ba.setP_developer("钟霞");
 		ba.setP_addr("衡阳");
 		bab.add(ba);
 	}
-	
+	*/
 	//删除学生项目
 	public void testProdelete() throws SQLException{
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
@@ -62,7 +62,7 @@ public class Test extends TestCase {
 		bab.delete(ba);
 	}
 	//修改技术支持
-		public void testProupdate() throws SQLException{
+	/*	public void testProupdate() throws SQLException{
 			ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 			ProjectsBiz bab=(ProjectsBiz) ac.getBean("projectsBizImpl");
 			Projects ba=new Projects();
@@ -73,7 +73,7 @@ public class Test extends TestCase {
 			ba.setP_time(date);
 			bab.update(ba);
 		}
-
+*/
 		//查询学生项目
 		public void testProselect() throws SQLException{
 			ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
@@ -93,7 +93,7 @@ public class Test extends TestCase {
 				}
 //////技术支持
 	//添加技术支持
-	public void testTechadd() throws SQLException{
+	/*public void testTechadd() throws SQLException{
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		TechnologyBiz bab=(TechnologyBiz) ac.getBean("technologyBizImpl");
 		Technology ba=new Technology();
@@ -105,7 +105,7 @@ public class Test extends TestCase {
 		ba.setTe_content("hahahah");
 		ba.setTe_title("钟霞");
 		bab.add(ba);
-	}
+	}*/
 		
 	//删除技术支持
 	public void testTechdelete() throws SQLException{
@@ -117,7 +117,7 @@ public class Test extends TestCase {
 	}
 	
 	//修改技术支持
-	public void testTechupdate() throws SQLException{
+/*	public void testTechupdate() throws SQLException{
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		TechnologyBiz bab=(TechnologyBiz) ac.getBean("technologyBizImpl");
 		Technology ba=new Technology();
@@ -127,7 +127,7 @@ public class Test extends TestCase {
 		date.setTime(date.getTime());
 		ba.setTe_time(date);
 		bab.update(ba);
-	}
+	}*/
 	//查询技术支持
 	public void testTechselect() throws SQLException{
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
@@ -138,17 +138,17 @@ public class Test extends TestCase {
 	}
 ////////公司活动
 	//添加公司活动
-		public void testActadd() throws SQLException{
+	/*	public void testActadd() throws SQLException{
 			ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 			ActivitiesBiz bab=(ActivitiesBiz) ac.getBean("activitiesBizImpl");
 			Activities ba=new 	Activities();
-			ba.setAc_illus("好活动");
+			ba.setAc_illus("活动");
 			Date date=new Date();
 			date.setTime(date.getTime());
 			ba.setAc_time(date);;
 			ba.setAc_pic("");
 			bab.add(ba);
-		}
+		}*/
 			
 		//删除技术支持
 		public void testActdelete() throws SQLException{
@@ -160,7 +160,7 @@ public class Test extends TestCase {
 		}
 		
 		//修改技术支持
-		public void testActupdate() throws SQLException{
+		/*public void testActupdate() throws SQLException{
 			ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 			ActivitiesBiz bab=(ActivitiesBiz) ac.getBean("activitiesBizImpl");
 			Activities ba=new 	Activities();
@@ -170,7 +170,7 @@ public class Test extends TestCase {
 			ba.setAc_time(date);
 			ba.setAc_illus("hao");
 			bab.update(ba);
-		}
+		}*/
 		//查询技术支持
 		public void testActselect() throws SQLException{
 			ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
