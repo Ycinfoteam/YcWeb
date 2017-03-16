@@ -6,9 +6,28 @@
 
 	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
 	
+	<!-- 查询记录数 -->
+	<select id="findCount" parameterType="Employ" resultType="java.lang.Double">
+		select count(*) from employ
+		<trim prefix="where" suffixOverrides="and">
+			<if test="e_position!=null">
+				e_position=#{e_position } and
+			</if>
+			<if test="e_validtime!=null">
+				e_validtime=#{e_validtime } and
+			</if>
+			<if test="e_amount!=null">
+				e_amount>=#{e_amount } and
+			</if>
+			<if test="e_salary!=0 and e_salary!=null">
+				e_salary>=#{e_salary } and
+			</if>
+		</trim>
+	</select>
+	
 	<!-- 根据条件职位 -->
 	<select id="findEmploy"  parameterType="Employ" resultType="Employ">
-		select e_id,e_position,e_validtime,e_amount,e_salary,e_detail,e_addr from employ 
+		select e_id,e_position,date_format(e_validtime,'%Y-%m-%d') e_validtime,e_amount,e_salary,e_detail,e_addr from employ 
 		<trim prefix="where" suffixOverrides="and">
 			<if test="e_position!=null">
 				e_position=#{e_position } and
@@ -23,6 +42,9 @@
 				e_salary>=#{e_salary } and
 			</if>
 		</trim>
+			<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+			</if>
 	</select>
 	
 	<!-- 插入招聘信息 -->

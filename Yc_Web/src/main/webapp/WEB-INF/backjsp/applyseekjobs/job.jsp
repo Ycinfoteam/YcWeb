@@ -1,6 +1,5 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
- <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
- 
 <style type="text/css">
 #fm {
 	margin: 0;
@@ -27,12 +26,18 @@
 .fitem input {
 	width: 160px;
 }
+
+.fitem textarea{
+	font-size: 14px;
+	width: 160px;
+	height:70px;
+}
+
 </style>
 
+    
+<table id="show_job"></table>
 
-
-<table id="jobdg">
-</table>
 <div id="jobdlg" class="easyui-dialog"
 	style="width: 600px; height: 480px; padding: 10px 20px" closed="true"
 	buttons="#fooddlg-buttons">
@@ -44,32 +49,38 @@
 			<label>
 				招聘职位:
 			</label>
-			<input name="position" class="easyui-textbox" required="true">
+			<input name="e_position" class="easyui-textbox" required="true">
 		</div>
 		<div class="fitem">
 			<label>
 				结束日期:
 			</label>
-			<input name="validtime" class="easyui-textbox" required="true">
+			<input name="e_validtime" type="text" class="easyui-datebox" required="true">
 		</div>
 		<div class="fitem">
 			<label>
 				招聘人数:
 			</label>
-			<input name="amount" class="easyui-textbox" required="true">
+			<input name="e_amount" class="easyui-textbox" required="true">
 		</div>
 		<div class="fitem">
 			<label>
 				工资待遇:
 			</label>
-			<input name="salary" class="easyui-textbox" required="true">
+			<input name="e_salary" class="easyui-textbox" required="true">
 		</div>
 		
 		<div class="fitem">
 			<label>
-				招聘详细
+				招聘详细:
 			</label>
-			<textarea id="add_jobs_detail" ></textarea>
+			<textarea id="e_detail" name="e_detail" ></textarea>
+		</div>
+		<div class="fitem">
+			<label>
+				招聘地址:
+			</label>
+			<textarea id="e_addr" name="e_addr" ></textarea>
 		</div>
 	</form>
 </div>
@@ -81,215 +92,193 @@
 		style="width: 90px">取消</a>
 </div>
 
+
 <script type="text/javascript">
-	
-	var datagrid;
-	var rowEditor=undefined;	//用于存放当前要编辑的行
-	$(function(){
-	   datagrid=$('#jobdg').edatagrid({
-        	url: 'yyyback/job_list.action',	//查询时加载的URL
-            saveUrl: 'yyyback/job_add.action',
-            updateUrl: 'yyyback/job_update.action', 
-            destroyUrl: 'yyyback/job_delete.action',
-            
-        	pagination:true,	//显示分页
-        	pageSize:5,			//默认分页的条数 
-        	pageList:[5,10,15,20],	//可选分页条数
-        	fitColumns:true,	//自适应列
-        	/* fit:true,	//自动补全 */
-        	title:"招聘信息管理",
-        	iconCls:"icon-save",//图标
-        	idField:"jid",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
-        	rownumbers:"true",	//显示行号
-        	nowrap:"true",	//不换行显示
-        	sortName:"position",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
-        	sortOrder:"asc",	//排序方式
-        	striped:true,
-        	columns:[[
-        	{
-           	 	field:'jid',
-           	 	title:'编号',
-           	 	width:100,
-           	 	align:'center',
-           	 	
-           	 },{
-           	 	field:'position',
-           	 	title:'招聘职位',
-           	 	width:100,
-           	 	align:'center',
-           	 	editor:{
-           	 		type:'validatebox',
-           	 		options:{
-           	 			required:true,
-           	 		}
-           		 }
-           	 },{
-           	 	field:'validtime',
-           	 	title:'结束时间',
-           	 	width:100,
-           	 	align:'center',
-           	 	editor:{
-           	 		type:'datebox',
-           	 		options:{
-           	 			required:true,
-           	 		}
-           	 	},
-           	 },{
-           	 	field:'amount',
-           	 	title:'招聘人数',
-           	 	width:100,
-           	 	align:'center',
-           	 	editor:{
-           	 		type:'validatebox',
-           	 		options:{
-           	 			required:true,
-           	 		}
-           		 }
-           	  } ,{
-           	 	field:'salary',
-           	 	title:'工资待遇',
-           	 	width:100,
-           	 	align:'center',
-           	 	editor:{
-           	 		type:'validatebox',
-           	 		options:{
-           	 			required:true,
-           	 		}
-           		 }
-           	  }
-           	 
-           	 ]],
-           	 	//加载进入标题栏以右键显示
-           	 	 onHeaderContextMenu: function(e, field){
-					e.preventDefault();
-					if (!jobmenu){
-						createColumnMenu();
-					}
-					jobmenu.menu('show', {
-						left:e.pageX,
-						top:e.pageY
-					});
-				},
-           	 
-           	 //定义按钮
-	         toolbar: [{
+
+var datagrid;
+var rowEditor=undefined;	//用于存放当前要编辑的行
+$(function(){
+   datagrid=$('#show_job').edatagrid({
+    	url: 'findAllEmployInfo',	//查询时加载的URL
+    	saveUrl:'updateEmployInfo', 
+        updateUrl: 'updateEmployInfo',  
+        destroyUrl: 'deleteEmployInfo',
+    	pagination:true,	//显示分页
+    	pageSize:2,		//默认分页的条数
+    	pageList:[2,4,6],	//可选分页条数
+    	fitColumns:true,	//自适应列
+    	fit:true,	//自动补全
+    	title:"招聘信息管理", 
+    	iconCls:"icon-save",//图标
+    	idField:"e_id",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
+    	rownumbers:"true",	//显示行号
+    	nowrap:"true",	//不换行显示
+    	sortName:"e_id",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
+    	sortOrder:"desc",	//排序方式
+    	//以上的四种增删改查操作，只要失败，都会回掉这个onError
+    	onError:function(a,b){
+    		$.messager.alert("错误","操作失败");
+    	},
+    	striped:true,
+    	columns:[[
+    	{
+       	 	field:'e_id',
+       	 	title:'编号',
+       	 	width:50,
+       	 	align:'center',
+       	 	
+       	 },{
+       	 	field:'e_position',
+       	 	title:'应聘职位',
+       	 	width:50,
+       	 	align:'center',
+       	 	editor:{
+		 		type:'validatebox',
+	 			options:{
+	 				required:true,
+	 			}
+ 	  		}
+       	 },{
+       	 	field:'e_amount',
+       	 	title:'招聘人数',
+       	 	width:50,
+       	 	align:'center',
+       	 	editor:{
+		 		type:'validatebox',
+	 			options:{
+	 				required:true,
+	 			}
+ 	  		} 	
+        },{
+       	 	field:'e_validtime',
+       	 	title:'有效时间',
+       	 	width:50,
+       	 	align:'center',
+       	 	editor:{
+		 		type:'datebox',
+	 			options:{
+	 				required:true,
+	 			}
+ 	  		}
+       	 },{
+       	 	field:'e_salary',
+       	 	title:'工资待遇',
+       	 	width:50,
+       	 	align:'center',
+       	 	editor:{
+		 		type:'validatebox',
+	 			options:{
+	 				required:true,
+	 			}
+ 	  		}
+       	 },{
+       	 	field:'e_detail',
+       	 	title:'详情',
+       	 	width:100,
+       	 	align:'center',
+       	 	editor:{
+		 		type:'validatebox',
+	 			options:{
+	 				required:true,
+	 			}
+ 	  		}
+       	  } ,{
+       	 	field:'e_addr',
+       	 	title:'投递地址',
+       	 	width:50,
+       	 	align:'center',
+       		editor:{
+		 		type:'validatebox',
+	 			options:{
+	 				required:true,
+	 			}
+    	  	}
+       	  }
+       	 ]],
+       	 
+       	 //定义按钮 
+        toolbar: [{
 	         	text:"增加",
 				iconCls: 'icon-add',
 				handler : function() {  
                     $('#jobdlg').dialog('open').dialog('setTitle','新增案例');
             		$('#jobfm').form('clear');
-            		
                 }  
 			},'-',{
 				text:"删除",
 				iconCls: 'icon-remove',
 				handler: function(){
-					$('#jobdg').edatagrid('destroyRow');
+					$('#show_job').edatagrid('destroyRow');
+					
+					//TODO:   删除后及时刷新
+					
+					/* $.ajax({
+						url:"deleteEmployInfo",
+						type:"post",
+						dataType:"json", 
+						data:{
+							'e_id':e_id},
+						success:function(data){
+							if(data==1){
+								$.messager.alert('确认','添加成功','info');
+								$('#jobdlg').dialog('close');
+								$('#show_job').edatagrid('reload');
+							}else{
+								$.messager.alert('确认','添加失败','error');
+								$('#jobdlg').dialog('close');
+							}
+						}
+					}); */
+					
 				}
 			},'-',{
 				text:"保存",
 				iconCls: 'icon-save',
 				handler: function(){
-					$('#jobdg').edatagrid('saveRow')
+					$('#show_job').edatagrid('saveRow');
 				}
 			},'-',{
 				text:"取消编辑",
 				iconCls: 'icon-undo',
 				handler: function(){
-					$('#jobdg').edatagrid('cancelRow')
+					$('#show_job').edatagrid('cancelRow');
 				}
 			}]
-			
-    	});
-    	CKEDITOR.replace('add_jobs_detail');
-    });
-    
-    function saveJobs(){
-    	var val = CKEDITOR.instances.add_jobs_detail.getData();
-    	
-		$("#jobfm").ajaxSubmit({
-			type : "post",
-			data:{'detail': val},
-			url : "yyyback/job_add.action",
-			dataType:"json",
-			success : function(data) {
-				/* var dataObj=eval("("+data+")");
-				if(  data.code==1){	
-					$.messager.alert('Info','添加招聘信息成功'); 
-				} */
-				data=parseInt(data);
-				if(data>0){
-					$.messager.alert('Info','添加招聘信息成功'); 
-				}else{
-					$.messager.alert('Info','添加招聘信息失败'); 
-				}
+	});
+});
+
+function saveJobs(){
+	
+	var e_position=$('input[name="e_position"]').val();
+	var e_validtime=$('input[name="e_validtime"]').val();
+	var e_amount=$('input[name="e_amount"]').val();
+	var e_salary=$('input[name="e_salary"]').val();
+	var e_detail=$('textarea[name="e_detail"]').val();
+	var e_addr=$('textarea[name="e_addr"]').val();
+	
+	$.ajax({
+		url:"addEmployInfo",
+		type:"post",
+		dataType:"json", 
+		data:{
+			e_position:e_position,
+			e_validtime:e_validtime,
+			e_amount:e_amount,
+			e_salary:e_salary,
+			e_detail:e_detail,
+			e_addr:e_addr},
+		success:function(data){
+			if(data==1){
+				$.messager.alert('确认','添加成功','info');
+				$('#jobdlg').dialog('close');
+				$('#show_job').edatagrid('reload');
+			}else{
+				$.messager.alert('确认','添加失败','error');
+				$('#jobdlg').dialog('close');
 			}
-		});
-	    $('#jobdg').edatagrid('load');
-		$('#jobdlg').dialog('close');
-	}
+		}
+	});
 	
-	
-	//显示右键弹出框的信息
-	/* var jobmenu;
-		function createColumnMenu(){
-			jobmenu = $('<div/>').appendTo('body');
-			jobmenu.menu({
-				onClick: function(item){
-					if (item.iconCls == 'icon-ok'){
-						$('#jobdg').datagrid(showall(), item.name);
-						jobmenu.menu('setIcon', {
-							target: item.target,
-							iconCls: 'icon-ok'
-						});
-					} else if(item.iconCls == 'icon-none'){
-						$('#jobdg').datagrid(shownone(), item.name);
-						jobmenu.menu('setIcon', {
-							target: item.target,
-							iconCls: 'icon-none'
-						});
-					}else if(item.iconCls == 'icon-cansee'){
-						$('#jobdg').datagrid(showcansee(), item.name);
-						jobmenu.menu('setIcon', {
-							target: item.target,
-							iconCls: 'icon-cansee'
-						});
-					}
-				}
-			});
-				jobmenu.menu('appendItem', {
-					text: "显示所有信息",
-					name: "显示",
-					iconCls: 'icon-ok'
-				});
-				jobmenu.menu('appendItem', {
-					text: "显示的招聘信息",
-					name: "显示",
-					iconCls: 'icon-cansee'
-				});
-				jobmenu.menu('appendItem', {
-					text: "显示所有不显示的招聘",
-					name: "显示",
-					iconCls: 'icon-none'
-				});
-				
-		}
-		function showcansee(){
-				 $('#jobdg').edatagrid('load',{
-					type:1,
-				}); 
-		}
-		function shownone(){
-				 $('#jobdg').edatagrid('load',{
-					type:0,
-				}); 	
-		}
-		function showall(){
-				 $('#jobdg').edatagrid('load',{
-					type:null,
-				}); 
-		} */
-		//右键弹出框结束
+}
 
 </script>
- 

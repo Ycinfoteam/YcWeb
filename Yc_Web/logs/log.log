@@ -1,192 +1,40 @@
-2017-03-05 14:16:06  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cf7fd0: startup date [Sun Mar 05 14:16:06 CST 2017]; root of context hierarchy
-2017-03-05 14:16:06  [ main:130 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 14:16:07  [ main:1301 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:00:32  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@8ebb5a: startup date [Sun Mar 05 15:00:32 CST 2017]; root of context hierarchy
-2017-03-05 15:00:32  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:00:33  [ main:769 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:00:52  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cf5006: startup date [Sun Mar 05 15:00:52 CST 2017]; root of context hierarchy
-2017-03-05 15:00:52  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:00:53  [ main:681 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:01:33  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ae4f8b: startup date [Sun Mar 05 15:01:33 CST 2017]; root of context hierarchy
-2017-03-05 15:01:33  [ main:61 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:01:34  [ main:565 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:01:35  [ main:2138 ] - [ DEBUG ]  ==>  Preparing: insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(?,?,?,?,?); 
-2017-03-05 15:02:05  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cf5006: startup date [Sun Mar 05 15:02:05 CST 2017]; root of context hierarchy
-2017-03-05 15:02:05  [ main:74 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:02:06  [ main:580 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:02:07  [ main:1805 ] - [ DEBUG ]  ==>  Preparing: insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(?,?,?,?,?); 
-2017-03-05 15:02:07  [ main:1843 ] - [ DEBUG ]  ==> Parameters: sss(String), (String), xxxx(String), 2017-03-05 15:02:07.034(Timestamp), 衡阳(String)
-2017-03-05 15:02:07  [ main:2031 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 15:11:29  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e8614a: startup date [Sun Mar 05 15:11:29 CST 2017]; root of context hierarchy
-2017-03-05 15:11:29  [ main:193 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:11:30  [ main:900 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:11:31  [ main:2240 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 15:11:31  [ main:2253 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 
-2017-03-05 15:11:31  [ main:2291 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 15:11:31  [ main:2411 ] - [ DEBUG ]  <==      Total: 2
-2017-03-05 15:12:00  [ main:1 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2026f3: startup date [Sun Mar 05 15:12:00 CST 2017]; root of context hierarchy
-2017-03-05 15:12:00  [ main:70 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:12:00  [ main:726 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:12:02  [ main:2190 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 15:12:02  [ main:2207 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 
-2017-03-05 15:12:02  [ main:2255 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 15:12:02  [ main:2328 ] - [ DEBUG ]  <==      Total: 2
-2017-03-05 15:14:05  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd20b6: startup date [Sun Mar 05 15:14:05 CST 2017]; root of context hierarchy
-2017-03-05 15:14:05  [ main:57 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:14:06  [ main:573 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:14:07  [ main:1874 ] - [ DEBUG ]  ==>  Preparing: delete projects where p_name=? 
-2017-03-05 15:14:07  [ main:1908 ] - [ DEBUG ]  ==> Parameters: 网易云音乐(String)
-2017-03-05 15:14:07  [ main:1958 ] - [ INFO ]  Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
-2017-03-05 15:14:07  [ main:1999 ] - [ INFO ]  SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
-2017-03-05 15:14:33  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd20b6: startup date [Sun Mar 05 15:14:33 CST 2017]; root of context hierarchy
-2017-03-05 15:14:33  [ main:56 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:14:34  [ main:559 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:14:35  [ main:1846 ] - [ DEBUG ]  ==>  Preparing: delete from projects where p_name=? 
-2017-03-05 15:14:35  [ main:1882 ] - [ DEBUG ]  ==> Parameters: 网易云音乐(String)
-2017-03-05 15:14:35  [ main:1949 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 15:14:42  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd20b6: startup date [Sun Mar 05 15:14:42 CST 2017]; root of context hierarchy
-2017-03-05 15:14:42  [ main:62 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 15:14:42  [ main:552 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 15:14:44  [ main:1850 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 15:14:44  [ main:1864 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 
-2017-03-05 15:14:44  [ main:1911 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 15:14:44  [ main:1992 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 16:27:10  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@193537d: startup date [Sun Mar 05 16:27:10 CST 2017]; root of context hierarchy
-2017-03-05 16:27:10  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:27:10  [ main:785 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:27:12  [ main:2378 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.TechnologyMapper]: 0.0
-2017-03-05 16:27:12  [ main:2391 ] - [ DEBUG ]  ==>  Preparing: select te_id,te_name,te_time,te_content,te_click,te_title from technology where 1=1 
-2017-03-05 16:27:12  [ main:2431 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 16:27:12  [ main:2600 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 16:27:27  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d12a6: startup date [Sun Mar 05 16:27:27 CST 2017]; root of context hierarchy
-2017-03-05 16:27:27  [ main:59 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:27:27  [ main:587 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:27:28  [ main:1800 ] - [ DEBUG ]  ==>  Preparing: insert into technology(te_name,te_time,te_content,te_click,te_title) values(?,?,?,?,?); 
-2017-03-05 16:27:29  [ main:1838 ] - [ DEBUG ]  ==> Parameters: sss(String), 2017-03-05 16:27:28.597(Timestamp), hahahah(String), 3(Integer), 钟霞(String)
-2017-03-05 16:27:29  [ main:1854 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 16:27:35  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d12a6: startup date [Sun Mar 05 16:27:35 CST 2017]; root of context hierarchy
-2017-03-05 16:27:35  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:27:36  [ main:568 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:27:37  [ main:1845 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.TechnologyMapper]: 0.0
-2017-03-05 16:27:37  [ main:1859 ] - [ DEBUG ]  ==>  Preparing: select te_id,te_name,te_time,te_content,te_click,te_title from technology where 1=1 
-2017-03-05 16:27:37  [ main:1895 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 16:27:37  [ main:1916 ] - [ DEBUG ]  <==      Total: 2
-2017-03-05 16:28:34  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@14e3d95: startup date [Sun Mar 05 16:28:34 CST 2017]; root of context hierarchy
-2017-03-05 16:28:34  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:28:34  [ main:531 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:28:36  [ main:2052 ] - [ DEBUG ]  ==>  Preparing: delete from technology where te_title=? 
-2017-03-05 16:28:36  [ main:2092 ] - [ DEBUG ]  ==> Parameters: 钟霞(String)
-2017-03-05 16:28:36  [ main:2093 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 16:28:45  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@193537d: startup date [Sun Mar 05 16:28:45 CST 2017]; root of context hierarchy
-2017-03-05 16:28:45  [ main:57 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:28:45  [ main:599 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:28:47  [ main:1818 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.TechnologyMapper]: 0.0
-2017-03-05 16:28:47  [ main:1832 ] - [ DEBUG ]  ==>  Preparing: select te_id,te_name,te_time,te_content,te_click,te_title from technology where 1=1 
-2017-03-05 16:28:47  [ main:1873 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 16:28:47  [ main:1895 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 16:29:54  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ad186f: startup date [Sun Mar 05 16:29:54 CST 2017]; root of context hierarchy
-2017-03-05 16:29:54  [ main:57 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:29:54  [ main:599 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:29:56  [ main:1958 ] - [ DEBUG ]  ==>  Preparing: update technology set te_title=? where te_id=? 
-2017-03-05 16:29:56  [ main:1996 ] - [ DEBUG ]  ==> Parameters: 钟霞(String), 1(Integer)
-2017-03-05 16:29:56  [ main:2314 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 16:30:04  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@710087: startup date [Sun Mar 05 16:30:04 CST 2017]; root of context hierarchy
-2017-03-05 16:30:04  [ main:54 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:30:04  [ main:570 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:30:05  [ main:1827 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.TechnologyMapper]: 0.0
-2017-03-05 16:30:05  [ main:1844 ] - [ DEBUG ]  ==>  Preparing: select te_id,te_name,te_time,te_content,te_click,te_title from technology where 1=1 
-2017-03-05 16:30:05  [ main:1880 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 16:30:05  [ main:1902 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 16:30:47  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@11f56a3: startup date [Sun Mar 05 16:30:47 CST 2017]; root of context hierarchy
-2017-03-05 16:30:47  [ main:295 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:30:48  [ main:774 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:30:49  [ main:2059 ] - [ DEBUG ]  ==>  Preparing: update technology set te_title=? ,te_time=? where te_id=? 
-2017-03-05 16:30:49  [ main:2109 ] - [ DEBUG ]  ==> Parameters: 从开始到现在(String), 2017-03-05 16:30:49.005(Timestamp), 1(Integer)
-2017-03-05 16:30:49  [ main:2195 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 16:41:26  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@373e38: startup date [Sun Mar 05 16:41:26 CST 2017]; root of context hierarchy
-2017-03-05 16:41:26  [ main:104 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:41:26  [ main:662 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:41:29  [ main:3667 ] - [ DEBUG ]  ==>  Preparing: update projects set p_name=? ,p_time=? where p_id=? 
-2017-03-05 16:41:29  [ main:3702 ] - [ DEBUG ]  ==> Parameters: null, 2017-03-05 16:41:27.66(Timestamp), 1(Integer)
-2017-03-05 16:41:29  [ main:3818 ] - [ DEBUG ]  <==    Updates: 0
-2017-03-05 16:42:01  [ main:1 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@168f248: startup date [Sun Mar 05 16:42:01 CST 2017]; root of context hierarchy
-2017-03-05 16:42:01  [ main:59 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:42:01  [ main:557 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:42:02  [ main:1834 ] - [ DEBUG ]  ==>  Preparing: update projects set p_name=? ,p_time=? where p_id=? 
-2017-03-05 16:42:02  [ main:1871 ] - [ DEBUG ]  ==> Parameters: xixi(String), 2017-03-05 16:42:02.462(Timestamp), 1(Integer)
-2017-03-05 16:42:02  [ main:1872 ] - [ DEBUG ]  <==    Updates: 0
-2017-03-05 16:42:19  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@fa88fb: startup date [Sun Mar 05 16:42:19 CST 2017]; root of context hierarchy
-2017-03-05 16:42:19  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:42:19  [ main:611 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:42:21  [ main:2007 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 16:42:21  [ main:2027 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 
-2017-03-05 16:42:21  [ main:2072 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 16:42:21  [ main:2093 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 16:42:33  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d5f9b9: startup date [Sun Mar 05 16:42:33 CST 2017]; root of context hierarchy
-2017-03-05 16:42:33  [ main:91 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:42:34  [ main:793 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:42:36  [ main:2328 ] - [ DEBUG ]  ==>  Preparing: update projects set p_name=? ,p_time=? where p_id=? 
-2017-03-05 16:42:36  [ main:2376 ] - [ DEBUG ]  ==> Parameters: xixi(String), 2017-03-05 16:42:35.492(Timestamp), 2(Integer)
-2017-03-05 16:42:36  [ main:2420 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 16:58:42  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1882ea9: startup date [Sun Mar 05 16:58:42 CST 2017]; root of context hierarchy
-2017-03-05 16:58:43  [ main:62 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:58:43  [ main:556 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:59:23  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@e8f27e: startup date [Sun Mar 05 16:59:23 CST 2017]; root of context hierarchy
-2017-03-05 16:59:23  [ main:58 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 16:59:23  [ main:602 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 16:59:25  [ main:1821 ] - [ DEBUG ]  ==>  Preparing: insert into activities(ac_time,ac_illus,ac_pic) values(?,?,?) 
-2017-03-05 16:59:25  [ main:1856 ] - [ DEBUG ]  ==> Parameters: 2017-03-05 16:59:24.614(Timestamp), 好活动(String), (String)
-2017-03-05 16:59:25  [ main:2051 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 17:00:20  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d5149: startup date [Sun Mar 05 17:00:20 CST 2017]; root of context hierarchy
-2017-03-05 17:00:20  [ main:59 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:00:21  [ main:546 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:00:22  [ main:1818 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ActivitiesMapper]: 0.0
-2017-03-05 17:00:22  [ main:1831 ] - [ DEBUG ]  ==>  Preparing: select ac_id,ac_time,ac_illus,ac_pic from activities where 1=1 
-2017-03-05 17:00:22  [ main:1862 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 17:00:22  [ main:1881 ] - [ DEBUG ]  <==      Total: 2
-2017-03-05 17:01:28  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d5149: startup date [Sun Mar 05 17:01:28 CST 2017]; root of context hierarchy
-2017-03-05 17:01:28  [ main:55 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:01:28  [ main:524 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:01:30  [ main:1941 ] - [ DEBUG ]  ==>  Preparing: update activities set ac_illus=? ,ac_time=? where ac_id=? 
-2017-03-05 17:01:30  [ main:1975 ] - [ DEBUG ]  ==> Parameters: hao(String), 2017-03-05 17:01:29.954(Timestamp), 2(Integer)
-2017-03-05 17:01:30  [ main:2063 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 17:01:41  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@116880a: startup date [Sun Mar 05 17:01:41 CST 2017]; root of context hierarchy
-2017-03-05 17:01:41  [ main:55 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:01:42  [ main:557 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:01:43  [ main:1914 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ActivitiesMapper]: 0.0
-2017-03-05 17:01:43  [ main:1927 ] - [ DEBUG ]  ==>  Preparing: select ac_id,ac_time,ac_illus,ac_pic from activities where 1=1 
-2017-03-05 17:01:43  [ main:1965 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 17:01:43  [ main:1984 ] - [ DEBUG ]  <==      Total: 2
-2017-03-05 17:02:01  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@116880a: startup date [Sun Mar 05 17:02:01 CST 2017]; root of context hierarchy
-2017-03-05 17:02:01  [ main:61 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:02:01  [ main:547 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:02:03  [ main:1842 ] - [ DEBUG ]  ==>  Preparing: delete from Activities where ac_id=? 
-2017-03-05 17:02:03  [ main:1876 ] - [ DEBUG ]  ==> Parameters: 2(Integer)
-2017-03-05 17:02:03  [ main:1877 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 17:14:14  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@116880a: startup date [Sun Mar 05 17:14:14 CST 2017]; root of context hierarchy
-2017-03-05 17:14:14  [ main:56 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:14:15  [ main:547 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:14:16  [ main:1821 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 17:14:16  [ main:1837 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 
-2017-03-05 17:14:16  [ main:1873 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-05 17:14:16  [ main:1893 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 17:15:23  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18f73cb: startup date [Sun Mar 05 17:15:23 CST 2017]; root of context hierarchy
-2017-03-05 17:15:23  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:15:23  [ main:559 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:15:25  [ main:1876 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 17:15:25  [ main:1889 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 and p_name=? 
-2017-03-05 17:15:25  [ main:1927 ] - [ DEBUG ]  ==> Parameters: xixi(String)
-2017-03-05 17:15:25  [ main:2010 ] - [ DEBUG ]  <==      Total: 1
-2017-03-05 17:16:23  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1b4d679: startup date [Sun Mar 05 17:16:23 CST 2017]; root of context hierarchy
-2017-03-05 17:16:23  [ main:54 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:16:24  [ main:555 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:16:25  [ main:1804 ] - [ DEBUG ]  ==>  Preparing: insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(?,?,?,?,?); 
-2017-03-05 17:16:25  [ main:1838 ] - [ DEBUG ]  ==> Parameters: sss(String), (String), xxxx(String), 2017-03-05 17:16:25.127(Timestamp), 衡阳(String)
-2017-03-05 17:16:25  [ main:1839 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-05 17:16:32  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1b4d679: startup date [Sun Mar 05 17:16:32 CST 2017]; root of context hierarchy
-2017-03-05 17:16:32  [ main:56 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-05 17:16:32  [ main:564 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-05 17:16:34  [ main:1833 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ProjectsMapper]: 0.0
-2017-03-05 17:16:34  [ main:1848 ] - [ DEBUG ]  ==>  Preparing: select p_id,p_name,p_pic,p_developer,p_time,p_addr from projects where 1=1 and p_name=? 
-2017-03-05 17:16:34  [ main:1881 ] - [ DEBUG ]  ==> Parameters: xixi(String)
-2017-03-05 17:16:34  [ main:1905 ] - [ DEBUG ]  <==      Total: 1
+2017-03-16 15:01:18  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6e7127: startup date [Thu Mar 16 15:01:18 CST 2017]; root of context hierarchy
+2017-03-16 15:01:18  [ main:107 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:01:20  [ main:1493 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:01:23  [ main:4273 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ApplyJobMapper]: 0.0
+2017-03-16 15:01:23  [ main:4294 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_tel,a_email,a_orientation,a_detail,date_format(a_time ,'%Y-%m-%d') a_time,a_status from applyjob 
+2017-03-16 15:01:23  [ main:4321 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-16 15:01:23  [ main:4375 ] - [ DEBUG ]  <==      Total: 4
+2017-03-16 15:04:20  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d5c653: startup date [Thu Mar 16 15:04:20 CST 2017]; root of context hierarchy
+2017-03-16 15:04:20  [ main:50 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:04:20  [ main:557 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:04:21  [ main:1752 ] - [ DEBUG ]  ==>  Preparing: insert into applyjob (a_name,a_tel,a_email,a_orientation,a_detail,a_time) values (?,?,?,?,?,?) 
+2017-03-16 15:04:21  [ main:1778 ] - [ DEBUG ]  ==> Parameters: haha(String), 18181818348(String), jdsfjka@163.com(String), 大数据分析(String), 团队意识好(String), 2017-1-4(String)
+2017-03-16 15:04:21  [ main:1779 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-16 15:04:27  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d5c653: startup date [Thu Mar 16 15:04:27 CST 2017]; root of context hierarchy
+2017-03-16 15:04:27  [ main:49 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:04:27  [ main:495 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:04:29  [ main:1788 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ApplyJobMapper]: 0.0
+2017-03-16 15:04:29  [ main:1799 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_tel,a_email,a_orientation,a_detail,date_format(a_time ,'%Y-%m-%d') a_time,a_status from applyjob 
+2017-03-16 15:04:29  [ main:1824 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-16 15:04:29  [ main:1845 ] - [ DEBUG ]  <==      Total: 5
+2017-03-16 15:05:29  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@11799e7: startup date [Thu Mar 16 15:05:29 CST 2017]; root of context hierarchy
+2017-03-16 15:05:29  [ main:54 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:05:29  [ main:547 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:05:31  [ main:1790 ] - [ DEBUG ]  ==>  Preparing: update applyjob set a_status=? 
+2017-03-16 15:05:31  [ main:1819 ] - [ DEBUG ]  ==> Parameters: 1(Integer)
+2017-03-16 15:05:31  [ main:1821 ] - [ DEBUG ]  <==    Updates: 5
+2017-03-16 15:05:37  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@11799e7: startup date [Thu Mar 16 15:05:37 CST 2017]; root of context hierarchy
+2017-03-16 15:05:37  [ main:53 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:05:38  [ main:541 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:05:39  [ main:1941 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ApplyJobMapper]: 0.0
+2017-03-16 15:05:39  [ main:1951 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_tel,a_email,a_orientation,a_detail,date_format(a_time ,'%Y-%m-%d') a_time,a_status from applyjob 
+2017-03-16 15:05:39  [ main:1977 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-16 15:05:39  [ main:1999 ] - [ DEBUG ]  <==      Total: 5
+2017-03-16 15:12:19  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4cdac8: startup date [Thu Mar 16 15:12:19 CST 2017]; root of context hierarchy
+2017-03-16 15:12:19  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-16 15:12:20  [ main:647 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-16 15:12:21  [ main:1796 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.ApplyJobMapper]: 0.0
+2017-03-16 15:12:21  [ main:1811 ] - [ DEBUG ]  ==>  Preparing: select count(*) from applyjob 
+2017-03-16 15:12:21  [ main:1838 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-16 15:12:21  [ main:1852 ] - [ DEBUG ]  <==      Total: 1
