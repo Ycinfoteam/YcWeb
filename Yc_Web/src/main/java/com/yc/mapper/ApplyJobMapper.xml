@@ -17,7 +17,7 @@
 				a_status=#{a_status } and
 			</if>
 			<if test="a_time!=null">
-				a_time=#{a_time } and
+				a_time>#{a_time } and
 			</if>
 		</trim>
 	</select>
@@ -33,7 +33,7 @@
 				a_status=#{a_status } and
 			</if>
 			<if test="a_time!=null">
-				a_time=#{a_time } and
+				a_time>#{a_time } and
 			</if>
 		</trim>
 			<if test="start!=null and offset!=null">

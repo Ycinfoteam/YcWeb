@@ -53,22 +53,4 @@ public class EmployBizImpl implements EmployBiz {
 		return count;
 	}
 
-	@Override
-	public int judgeStart(Integer page,Integer rows) {
-		if(page!=null && page!=null){
-			int start=(page-1)*rows;
-			return start;
-		}
-		return 0;
-	}
-
-	@Override
-	public int judgeOffset(Integer rows) {
-		if(rows!=null){
-			int offset=rows;
-			return offset;
-		}
-		return 2;
-	}
-
 }

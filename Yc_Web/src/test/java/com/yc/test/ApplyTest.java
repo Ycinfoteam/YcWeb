@@ -29,11 +29,11 @@ public class ApplyTest extends TestCase {
 		ApplyJobBiz applyJobBiz=(ApplyJobBiz) ac.getBean("applyJobBizImpl");
 		ApplyJob applyJob =new ApplyJob();
 		applyJob.setA_name("haha");
-		applyJob.setA_orientation("大数据分析");
-		applyJob.setA_tel("18181818348");
-		applyJob.setA_email("jdsfjka@163.com");
+		applyJob.setA_orientation("嵌入式工程师");
+		applyJob.setA_tel("18541818348");
+		applyJob.setA_email("gggg@163.com");
 		applyJob.setA_detail("团队意识好");
-		applyJob.setA_time("2017-1-4"); 
+		applyJob.setA_time("2017-6-6"); 
 		applyJobBiz.addApply(applyJob);
 	}
 	

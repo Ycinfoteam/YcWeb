@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.yc.bean.Employ;
 import com.yc.biz.EmployBiz;
 import com.yc.util.JsonModel;
+import com.yc.util.PageUtil;
 
 @Controller
 public class EmployController {
@@ -34,8 +35,8 @@ public class EmployController {
 		log.info("findAllEmployInfo called...");
 
 		//处理分页
-		int start=this.employBiz.judgeStart(page, rows);
-		int offset=this.employBiz.judgeOffset(rows);
+		int start=PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
 		
 		Employ employ =new Employ();
 		employ.setStart(start);

@@ -1,5 +1,7 @@
 package com.yc.web.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.ApplyJob;
 import com.yc.biz.ApplyJobBiz;
+import com.yc.util.DateFormatUtil;
 import com.yc.util.JsonModel;
+import com.yc.util.PageUtil;
 
 @Controller
 public class ApplyJobController {
@@ -34,10 +38,12 @@ public class ApplyJobController {
 		log.info("findAllApply called ...."); 
 		
 		//处理分页
-		int start =this.applyJobBiz.judgeStart(page, rows);
-		int offset=this.applyJobBiz.judgeOffset(rows);
+		int start =PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
+		//处理时间
+		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
 		
-		//ApplyJob applyJob =new ApplyJob();
+		applyJob.setA_time(date); 
 		applyJob.setStart(start);
 		applyJob.setOffset(offset);
 		List<ApplyJob> list=this.applyJobBiz.findApply(applyJob);

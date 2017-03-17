@@ -23,10 +23,4 @@ public interface ApplyJobBiz {
 	//查询记录总数
 	public int findCount(ApplyJob applyJob);
 	
-	//分页工具 page
-	public int judgeStart(Integer page,Integer rows);
-	
-	//分页工具 rows
-	public int judgeOffset(Integer rows);
-	
 }

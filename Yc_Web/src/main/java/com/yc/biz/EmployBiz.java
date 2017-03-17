@@ -26,10 +26,4 @@ public interface EmployBiz {
 	//查询记录总数
 	public int findCount(Employ employ);
 	
-	//分页工具 page
-	public int judgeStart(Integer page,Integer rows);
-	
-	//分页工具 rows
-	public int judgeOffset(Integer rows);
-	
 }
