@@ -103,8 +103,12 @@ ul,li{
 			welcome
 			<!-- </br>
 			您好：XXX。现在是北京时间XXXX。</br> -->
-		</div>
-		</div>
+			</div>
+	</div>
+		
+  <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
+    </div>  -->
+
 	</div>
 </body>
 
@@ -115,6 +119,8 @@ ul,li{
 <!--第五步 引入语言包 -->
 <script type="text/javascript" src="backjs/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script src="backjs/jquery.edatagrid.js"></script>
+<script src="backjs/jquery.form.js"></script>
 <script type="text/javascript" src="backjs/jquery.edatagrid.js"></script>
 <script type="text/javascript" src="backjs/jquery.form.js"></script> 
 
@@ -179,11 +185,6 @@ $(document).ready(
 					attributes : {
 						url : "tocompanynews"
 					}
-				}, {
-					text : "行业新闻",
-					attributes : {
-						url : "toinews"
-					}
 				} ]
 			} ];
 			
@@ -203,9 +204,9 @@ $(document).ready(
 			} ];
 			
 			var treeData5 = [ {
-				text : "课程介绍",
+				text : "课程体系",
 				attributes : {
-					url : ""
+					url : "tocoursys",
 				}
 			} ];
 			
@@ -225,7 +226,7 @@ $(document).ready(
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities"
+						url : ""
 					}
 				}  ]
 			} ];

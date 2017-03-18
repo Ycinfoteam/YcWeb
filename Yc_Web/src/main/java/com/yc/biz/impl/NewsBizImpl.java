@@ -23,7 +23,9 @@ public class NewsBizImpl implements NewsBiz {
 		return newsList;
 	}
 	@Override
-	public void deleteNewsById(News news) {
+	public void deleteNewsById(int n_id) {
+		News news=new News();
+		news.setN_id(n_id);
 		this.baseDao.delete(news, "deleteOneNew");
 	}
 	@Override

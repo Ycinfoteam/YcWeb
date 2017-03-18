@@ -10,7 +10,7 @@ public interface NewsBiz {
 	//根据新闻编号查询新闻
 	public List<News> selectNewsById(News news);
 	//删除新闻
-	public void deleteNewsById(News news);
+	public void deleteNewsById(int cs_id);
 	//添加新闻
 	public void addNews(News news);
 	//修改新闻

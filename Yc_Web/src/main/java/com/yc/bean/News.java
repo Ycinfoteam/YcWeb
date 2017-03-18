@@ -11,10 +11,24 @@ public class News implements Serializable {
 	private String n_title;    //标题
 	private String n_content;   //内容
 	private Integer n_click;    //点击次数
-	private Timestamp n_time;	//创建时间
+	private String n_time;	//创建时间
 	private Integer n_sort;     //排序
 	private String n_reportor;  //发布者 
+	private Integer n_status;	//新闻状态
 	
+	
+	public String getN_time() {
+		return n_time;
+	}
+	public void setN_time(String n_time) {
+		this.n_time = n_time;
+	}
+	public Integer getN_status() {
+		return n_status;
+	}
+	public void setN_status(Integer n_status) {
+		this.n_status = n_status;
+	}
 	public Integer getN_id() {
 		return n_id;
 	}
@@ -38,12 +52,6 @@ public class News implements Serializable {
 	}
 	public void setN_click(Integer n_click) {
 		this.n_click = n_click;
-	}
-	public Timestamp getN_time() {
-		return n_time;
-	}
-	public void setN_time(java.sql.Timestamp timestamp) {
-		this.n_time = timestamp;
 	}
 	public Integer getN_sort() {
 		return n_sort;

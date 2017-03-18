@@ -15,4 +15,6 @@ public interface CoursysBiz {
 	public void addCoursys(Coursys csys);
 	//修改课程体系
 	public void updateCoursys(Coursys csys);
+	//用于判断增删改操作是否成功
+	public boolean judge(String type,Coursys csys);
 }

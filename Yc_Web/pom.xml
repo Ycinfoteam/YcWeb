@@ -56,7 +56,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+ 
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -100,28 +100,54 @@
 		</dependency>
 
 		<!-- 解析文件上传的Http协议，spring MVC利用fileupload组件解析完数据后， 将上传的文件存到一个Multipartfile对象中 -->
+		<!-- 百度富文本编辑器所需jar包 -->	
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 99fa280fcbeb7343c030d109c31af83b36937e89
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
 			<version>2.3</version>
 		</dependency>
+		
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.3</version>
+		    <groupId>com.baidu</groupId>
+		    <artifactId>ueditor</artifactId>
+		    <version>1.1.2</version>
+		</dependency> 
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20160212</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<!-- 使用responseBody需要引入依赖的jar解决浏览器406-->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
 		</dependency>
 
 

@@ -47,5 +47,25 @@ public class CoursysBizImpl implements CoursysBiz {
 	public void updateCoursys(Coursys csys) {
 		this.baseDao.update(csys, "updateOneCoursys");
 	}
+	@Override
+	public boolean judge(String type,Coursys csys) {
+		if(type.equalsIgnoreCase("add")){
+			List<Coursys> csyslist=this.baseDao.findAll(csys, "judge");
+			if(csyslist!=null){
+				return true;
+			}
+			return false;
+		}else if(type.equalsIgnoreCase("delete")){
+			List<Coursys> csyslist=this.baseDao.findAll(csys, "judge");
+			if(csyslist!=null){
+				return false;
+			}
+			return true;
+		}else if(type.equalsIgnoreCase("update")){
+			
+			return false;
+		}
+		return false;
+	}
 
 }

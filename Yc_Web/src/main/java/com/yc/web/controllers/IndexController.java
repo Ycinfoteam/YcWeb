@@ -10,7 +10,6 @@ public class IndexController {
 	@RequestMapping(value="/tobackmain")
 	public String tobackmain(){
 		return "backjsp/backmain";
-
 	}
 
 	// 去前台主页
@@ -54,11 +53,16 @@ public class IndexController {
 	public String tojobtype() {
 		return "backjsp/applyseekjobs/jobtype";
 	}
-	
+
 	//去学员项目
 	@RequestMapping(value="/toprojects")
 	public String toprojects(){
 		return "backjsp/projects/projects";
+	}
+	//去课程体系管理
+	@RequestMapping(value="/tocoursys")
+	public String tocoursys(){
+		return "backjsp/coursys/coursys";
 	}
 	//去公司活动
 	@RequestMapping(value="/toactivities")
