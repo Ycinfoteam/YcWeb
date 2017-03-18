@@ -32,23 +32,36 @@
 </style>
        <table id="acdg">
 </table>
+<div id=updateacp class="easyui-dialog" style=" display:none;" closed="true" buttons="#acpiclg-buttons">
+<form id="acpicfm" method="post" enctype="multipart/form-data" novalidate>
+       <div class="fitem">	
+        <label>重新上传图片:</label>	
+        	<input name="ac_pic" type="file" />
+        	</div>
+			<div class="fitem">
+			<label></label>
+        	  <p id="buttons">
+        </p>
+     </div>
+</form>
+</div>
 <div id="aclg" class="easyui-dialog"
-	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#fooddlg-buttons">
+	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#activities-buttons">
 	<div class="ftitle">
 		
 	</div>
 	<form id="acfm" method="post" enctype="multipart/form-data" novalidate>
 		<div class="fitem">
 			<label>
-				活动时间:
-			</label>
-			<input name="ac_time" class="easyui-textbox" required="true"></input>
-			</div>
-			<div class="fitem">
-			<label>
 				活动说明:
 			</label>
 			<input name="ac_illus" class="easyui-textbox" required="true"></input>
+			</div>
+		<div class="fitem">
+			<label>
+				活动时间:
+			</label>
+			<input name="ac_time" class="easyui-textbox" required="true"></input>
 			</div>
 			<div class="fitem">
 			<label>
@@ -58,12 +71,22 @@
 		</div>
 	</form> 
 </div>
-<div id="fooddlg-buttons"  style=" display:none;">
+
+<div id="acpiclg-buttons"  style=" display:none;">
 	<a  class="easyui-linkbutton c6"
-		iconCls="icon-ok" onclick="saveHonor()" style="width: 90px">Save</a>
+		 iconCls="icon-ok"  onclick="updateactivites()"
+		style="width: 90px">Save</a>
+	<a class="easyui-linkbutton"
+		iconCls="icon-cancel" onclick="javascript:$('#updateacp').dialog('close')"
+		style="width: 90px">Cancel</a>
+</div>
+<div id="activities-buttons"  style=" display:none;">
+	<a  class="easyui-linkbutton c6"
+		iconCls="icon-ok" onclick="saveactivities()" style="width: 90px">Save</a>
 	<a  class="easyui-linkbutton"
 		iconCls="icon-cancel" onclick="javascript:$('#aclg').dialog('close')"
 		style="width: 90px">Cancel</a>
+		</div>
 <script type="text/javascript" src="backjs/jquery.edatagrid.js"></script>
 <script type="text/javascript" src="backjs/jquery.form.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
@@ -75,7 +98,7 @@
 	   datagrid=$('#acdg').edatagrid({
 		  	url: "activities",	//查询时加载的URL
             saveUrl: "activities_add",
-            updateUrl: "activities_update", 
+            updateactivitesUrl: "activities_update", 
             destroyUrl: "activities_delete",
             loadMsg:'正在加载活动信息...',
         	pagination:true,	//显示分页
@@ -101,19 +124,7 @@
            	 	title:'编号',
            	 	width:100,
            	 	align:'center',
-           	 	
-           	 },{
-           	 	field:'ac_time',
-           	 	title:'活动时间',
-           	 	width:100,
-           	 	align:'center',
-           	 	editor:{
-           	 		type:'datebox',
-           	 		options:{
-           	 			required:true,
-           	 		}
-           		},
-           	 	
+           	 	hidden:'true'
            	 },{
            	 	field:'ac_illus',
            	 	title:'活动说明',
@@ -126,19 +137,43 @@
         	 		}
         		},
            	 },{
+            	 	field:'ac_time',
+               	 	title:'活动时间',
+               	 	width:100,
+               	 	align:'center',
+               	 	editor:{
+               	 		type:'datebox',
+               	 		options:{
+               	 			required:true,
+               	 		}
+               		},
+               	 	
+               	 },{
            	 	field:'ac_pic',
            	 	title:'活动图片',
            	 	width:100,
            	 	align:'center',
            	 formatter : function(value, row, index) {
-  				if(value!=null && value!=''){
-  					value=value.replace(",","");
-  					value=value.substring(22);
-  					return '<img src="../'+value+'" width="100px" height="100px" />';
-  				}else{
-  					return '无图片';
-  				}
-  				}},
+           		if(value!=null && value!=''){
+ 					/*value=value.replace(",","");
+ 					value=value.substring(22);
+ 					alert(value);
+ 					return '<img src="../'+value+'" width="100px" height="100px" />';
+ 					*/
+ 					value=value.replace(",","");
+               		return '<a href="'+value+'">查看图片</a>';
+ 				}else{
+ 					return '无图片';
+ 				}
+ 				}},{
+               	 	field:'cx',
+               	 	title:'操作',
+               	 	width:100,
+               	 	align:'center',
+               	 formatter : function(value, row, index) {
+               		return '<a href="javascript:updateactivitespic('+row.p_id+')">修改图片</a>';
+     				}},
+       	
            	 ]],
            	 
            	 //定义按钮
@@ -180,8 +215,47 @@
     	
     	
     });
-    
-	  function saveHonor(){
+
+	function updateactivitespic(id){
+		$('#updateacp').dialog({
+			title:'修改项目图片',
+			width : 250,
+			height : 200,
+			closed : false,
+			cache : false,
+			queryParams : {
+				p_id : id
+			}
+				}
+		);
+	}
+	function updateactivites(){
+		var options=$('#updateacp').dialog('options');
+		var ac_id=options.queryParams.ac_id;
+		if(undefined==ac_id){
+			$.messager.alert('提示','未选中信息');
+		return;
+		}
+		$("#acpicfm").ajaxSubmit({
+			type : "POST",
+			url : "updateacpic",
+			contentType : "application/x-www-form-urlencoded",
+			data:{ac_id:ac_id},
+			dataType:"json",
+			success : function(data1) {
+				if(  data1==1){	
+					$.messager.alert('Info','添加成功'); 
+				}
+			},error:function(data1){
+				if(data1==0){
+				$.messager.alert('Info','添加失败'); 
+			}
+		}
+		});
+	$('#updatesacp').dialog('close');
+	$('#acdg').dialog('reload');
+	}
+	  function saveactivities(){
 			$("#acfm").ajaxSubmit({
 				type : "post",
 				url : "activities_add",

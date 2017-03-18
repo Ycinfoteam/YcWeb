@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.HistoryMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectHistory" parameterType="History" resultType="History">
+ 	<![CDATA[select h_id,date_format(h_createtime,'%Y-%m-%d')h_createtime,h_content,h_creator,h_reg from history where 1=1]]>
+ 	<choose>
+ 		<when test="h_id!=null">
+	 and h_id=#{h_id} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+	<!-- order by p_id asc limit ${start},${end}  --> 
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertHistory" parameterType="History" >
+insert into history(h_createtime,h_content,h_creator,h_reg) values(#{h_createtime},#{h_content},#{h_creator},#{h_reg})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteHistory" parameterType="History" >
+delete from history where h_id=#{h_id}
+ 	</delete>
+ 	
+ 	<!-- 修改 -->
+ 	<update id="updateHistory" parameterType="History">
+ 	update history set h_id=#{h_id}
+ 	<if test="h_createtime!=null">
+ 	,h_createtime=#{h_createtime}
+ 	</if>
+ 	 <if test="h_content!=null">
+ 	,h_content=#{h_content}
+ 	</if>
+ 	 <if test="h_creator!=null">
+ 	,h_creator=#{h_creator}
+ 	</if>
+ 	 <if test="h_reg!=null">
+ 	,h_reg=#{h_reg}
+ 	</if>
+ 	 where h_id=#{h_id}
+ 	</update>
+	</mapper>

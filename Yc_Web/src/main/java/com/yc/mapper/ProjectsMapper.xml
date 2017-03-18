@@ -16,6 +16,9 @@
  	<when test="p_time!=null">
 	 and p_time=#{p_time} 
  	</when>
+ 		<when test="p_id!=null">
+	 and p_id=#{p_id} 
+ 	</when>
 	<otherwise></otherwise>
  	</choose>
 	<!-- order by p_id asc limit ${start},${end}  --> 
@@ -31,13 +34,13 @@
 	delete from projects where p_id=#{p_id} 
 	<choose>
  	<when test="p_name!=null" >
- 	where p_name=#{p_name} 
+ 	and p_name=#{p_name} 
  	</when>
  	<when test="p_time!=null">
-	 where p_time=#{p_time} 
+	 and p_time=#{p_time} 
  	</when>
  	<when test="p_developer!=null">
-	 where p_developer=#{p_developer} 
+	 and p_developer=#{p_developer} 
  	</when>
 	<otherwise></otherwise>
  	</choose>
@@ -45,7 +48,10 @@
  	
  	<!-- 修改 -->
  	<update id="updateProjects" parameterType="Projects">
- 	update projects set p_name=#{p_name}
+ 	update projects set p_id=#{p_id}
+ 	<if test="p_name!=null">
+ 	,p_name=#{p_name}
+ 	</if>
  	 <if test="p_pic!=null">
  	,p_pic=#{p_pic}
  	</if>

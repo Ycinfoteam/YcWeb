@@ -10,13 +10,29 @@ public class Aboutyc implements Serializable {
 	private String a_title;
 	private String a_reptor;
 	private String a_source;
-	private Time a_time;
+	private String a_time;
 	private String a_content;
-	private Integer a_tel;
-	private Integer a_qq;
+	private String a_tel;
+	private String a_qq;
 	private String a_address;
 	private Integer a_code;
 	private String a_copr;
+
+	public String getA_tel() {
+		return a_tel;
+	}
+
+	public void setA_tel(String a_tel) {
+		this.a_tel = a_tel;
+	}
+
+	public String getA_qq() {
+		return a_qq;
+	}
+
+	public void setA_qq(String a_qq) {
+		this.a_qq = a_qq;
+	}
 
 	public Integer getA_id() {
 		return a_id;
@@ -50,11 +66,12 @@ public class Aboutyc implements Serializable {
 		this.a_source = a_source;
 	}
 
-	public Time getA_time() {
+
+	public String getA_time() {
 		return a_time;
 	}
 
-	public void setA_time(Time a_time) {
+	public void setA_time(String a_time) {
 		this.a_time = a_time;
 	}
 
@@ -66,21 +83,7 @@ public class Aboutyc implements Serializable {
 		this.a_content = a_content;
 	}
 
-	public Integer getA_tel() {
-		return a_tel;
-	}
 
-	public void setA_tel(Integer a_tel) {
-		this.a_tel = a_tel;
-	}
-
-	public Integer getA_qq() {
-		return a_qq;
-	}
-
-	public void setA_qq(Integer a_qq) {
-		this.a_qq = a_qq;
-	}
 
 	public String getA_address() {
 		return a_address;
