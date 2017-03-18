@@ -52,9 +52,8 @@ public class EmployController {
 	}
 	
 	@RequestMapping(value="addEmployInfo")
-	public @ResponseBody int addEmployInfo(HttpServletResponse response,@ModelAttribute Employ employ){
+	public @ResponseBody int addEmployInfo(@ModelAttribute Employ employ){
 		log.info("addEmployInfo called...");
-		System.out.println(employ.toString()); 
 		this.employBiz.addEmploy(employ);
 		return 1;
 	}
@@ -62,7 +61,6 @@ public class EmployController {
 	@RequestMapping(value="/deleteEmployInfo")
 	public @ResponseBody int deleteEmployInfo(@RequestParam int id){
 		log.info("deleteEmployInfo called... ");
-		System.out.println(id);
 		Employ employ =new Employ();
 		employ.setE_id(id);
 		this.employBiz.deleteEmploy(employ);

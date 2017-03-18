@@ -37,16 +37,22 @@ public class IndexController {
 		return "backjsp/sys/admins/admin";
 	}
 
-	// 去人才招聘后台
+	// 去人才招聘后台 应聘信息
 	@RequestMapping(value = "/tojob")
 	public String tojob() {
 		return "backjsp/applyseekjobs/job";
 	}
 	
-	// 去人才招聘后台
+	// 去人才招聘后台  招聘信息
 	@RequestMapping(value = "/toapply")
 	public String toapply() {
 		return "backjsp/applyseekjobs/apply";
+	}
+	
+	// 去人才招聘后台  方向信息
+	@RequestMapping(value = "/tojobtype")
+	public String tojobtype() {
+		return "backjsp/applyseekjobs/jobtype";
 	}
 	
 	//去学员项目

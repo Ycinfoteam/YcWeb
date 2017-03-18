@@ -232,6 +232,11 @@ $(document).ready(
 			var treeData8= [ {
 				text : "人才招聘",
 				children : [{
+					text : "方向信息",
+					attributes : {
+						url : "tojobtype"
+					}
+				},{
 					text : "招聘信息",
 					attributes : {
 						url : "tojob"

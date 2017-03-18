@@ -1,6 +1,5 @@
 package com.yc.web.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +58,6 @@ public class ApplyJobController {
 	@RequestMapping(value="updateApply")
 	public @ResponseBody int updateApply ( @RequestParam(value="a_id[]") List<Integer> a_id){
 		log.info("updateApply called...");
-		System.out.println(a_id);
 		for(int id:a_id){
 			ApplyJob applyJob =new ApplyJob();
 			applyJob.setA_id(id);
@@ -67,6 +65,5 @@ public class ApplyJobController {
 		}
 		return 1;
 	}
-	
 	
 }

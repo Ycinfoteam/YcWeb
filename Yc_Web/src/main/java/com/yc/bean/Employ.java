@@ -22,22 +22,6 @@ public class Employ implements Serializable {
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
 
-	public Integer getStart() {
-		return start;
-	}
-
-	public void setStart(Integer start) {
-		this.start = start;
-	}
-
-	public Integer getOffset() {
-		return offset;
-	}
-
-	public void setOffset(Integer offset) {
-		this.offset = offset;
-	}
-
 	public Integer getE_id() {
 		return e_id;
 	}
@@ -92,6 +76,22 @@ public class Employ implements Serializable {
 
 	public void setE_addr(String e_addr) {
 		this.e_addr = e_addr;
+	}
+
+	public Integer getStart() {
+		return start;
+	}
+
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
 	}
 
 	@Override
