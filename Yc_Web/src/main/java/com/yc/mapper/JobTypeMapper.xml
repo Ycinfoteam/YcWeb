@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.JobTypeMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+
+	<select id="findCount" parameterType="JobType" resultType="java.lang.Double">
+		select count(*) from jobtype
+	</select>
+
+	<select id="findJobType" parameterType="JobType" resultType="JobType">
+		select * from jobtype
+		<if test="start!=null and offset!=null">
+			limit #{start},#{offset}
+		</if>
+	</select>
+
+	<insert id="addJobType" parameterType="JobType">
+		insert into jobtype
+		(j_name) values(#{j_name})
+	</insert>
+
+	<delete id="deleteJobType" parameterType="JobType">
+		delete from jobtype where j_id=#{j_id }
+	</delete>
+
+
+
+</mapper>

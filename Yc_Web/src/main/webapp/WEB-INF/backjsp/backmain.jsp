@@ -30,8 +30,6 @@ ul,li{
 </style>
 
 </head>
-
-
 <body class="easyui-layout">
 
 	<div data-options="region:'north'" style="height:120px;">
@@ -42,12 +40,13 @@ ul,li{
 
     <div data-options="region:'west',title:'菜单项'" style="width:180px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
-			<div title="系统管理" style="overflow:auto;padding:10px;">
+			<div title="系统管理" style="overflow:auto;">
 				<div id="tt1" class="easyui-tree"
 					data-options="animate:true,dnd:true">
 					</div>
 			</div>
-			<div title="数据字典" data-options="selected:true">
+
+			<div title="数据字典"data-options="selected:true">
 				<div id="tt2" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -98,22 +97,22 @@ ul,li{
 			</div>
 		</div>
         </div>
-    <div data-options="region:'center'">
+    <div data-options="region:'center'" >
     
-    <div id="tabs" class="easyui-tabs"
-			data-options="fit:true,border:false">
-			<div title="首页">
+    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
+		<div title="首页">
 			welcome
 			<!-- </br>
 			您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
-		</div>
+	</div>
 		
   <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
     </div>  -->
 
-
+	</div>
 </body>
+
 <!--第三步 引入jquery代码 必须在easyui之前-->
 <script type="text/javascript" src="backjs/jquery.min.js"></script>
 <!--第四步  引入easyui-->
@@ -121,12 +120,12 @@ ul,li{
 <!--第五步 引入语言包 -->
 <script type="text/javascript" src="backjs/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script src="backjs/jquery.edatagrid.js"></script>
+<script src="backjs/jquery.form.js"></script>
+<script type="text/javascript" src="backjs/jquery.edatagrid.js"></script>
+<script type="text/javascript" src="backjs/jquery.form.js"></script> 
+
 <script type="text/javascript">
-/*$('.menu a').click(function(){
-	var href=$(this).attr('href')
-	$('#jiazai').panel('refresh',href);
-	return false;
-});*/
 
 
 $(function(){
@@ -187,11 +186,6 @@ $(document).ready(
 					attributes : {
 						url : "tocompanynews"
 					}
-				}, {
-					text : "行业新闻",
-					attributes : {
-						url : "toinews"
-					}
 				} ]
 			} ];
 			
@@ -211,9 +205,9 @@ $(document).ready(
 			} ];
 			
 			var treeData5 = [ {
-				text : "课程介绍",
+				text : "课程体系",
 				attributes : {
-					url : ""
+					url : "tocoursys",
 				}
 			} ];
 			
@@ -238,7 +232,7 @@ $(document).ready(
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities"
+						url : ""
 					}
 				} ,{
 					text : "公司历史介绍",
@@ -249,17 +243,22 @@ $(document).ready(
 			} ];
 			var treeData8= [ {
 				text : "人才招聘",
-				children : [ {
+				children : [{
+					text : "方向信息",
+					attributes : {
+						url : "tojobtype"
+					}
+				},{
 					text : "招聘信息",
 					attributes : {
 						url : "tojob"
 					}
-				} , {
+				},{
 					text : "应聘信息",
 					attributes : {
 						url : "toapply"
 					}
-				}  ]
+				}]
 			} ];
 			
 			 var treeData9 = [ {  /*  7.26去掉留言模块 */
