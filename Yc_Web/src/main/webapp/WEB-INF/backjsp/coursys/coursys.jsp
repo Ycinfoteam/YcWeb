@@ -21,7 +21,7 @@
 		</div>
 		<div>
 		<label>文字说明：</label>
-		<textarea id="cs_text" name="cs_text" class="easyui-textbox" style="width:600px;height:300px" required="true"></textarea>
+		<textarea id="cs_text" name="cs_text" class="easyui-textbox" style="width:300px;height:100px" required="true"></textarea>
 		</div>
 	</form>
 	<div id="fooddlg-buttons">
@@ -36,7 +36,7 @@
 <script type="text/javascript">
 $('#coursysinfo').edatagrid({
 		url : 'coursys_selectAll', //查询时加载的URL
-		saveUrl : 'coursys_add',
+		//saveUrl : 'coursys_add',
 		updateUrl : 'coursys_update',
 		destroyUrl : 'coursys_delete',
 
@@ -52,13 +52,17 @@ $('#coursysinfo').edatagrid({
 		nowrap : "true", //不换行显示
 		sortName : "sort", //排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
 		sortOrder : "desc", //排序方式
-
+		singleSelect:false,
 		//以上的四种增删改查操作，只要失败，都会回掉这个onError
 		onError : function(a, b) {
 			$.messager.alert("错误", "操作失败");
 		},
-		striped : true,//用于隔行变色
+		striped : true,//设置为true将交替显示行背景
 		columns : [ [ {
+			field : 'ck',
+			checkbox : true,
+			title:'全选'
+		},{
 			field : 'cs_id',
 			title : '课程体系编号',
 			width : 100,
@@ -95,6 +99,7 @@ $('#coursysinfo').edatagrid({
 				if(value!=null && value!=''){
 					value=value.replace(",","");
 					value=value.substring(22);
+					console.info(value);
 					return '<img src="../'+value+'" width="100px" height="100px" />';
 				}else{
 					return '无图片';
@@ -182,18 +187,12 @@ function saveCoursysInfo(){
 		url : "coursys_add",
 		dataType:"json",
 		success : function(data) {
-			alert(12);
-			//alert(data.get(0));
+			alert(data);
 			if(data==1){
 				$.messager.alert('成功提示', '添加成功！');
 			}
-		},
-		error:function(data,status,e){
-			//alert(data.get(0));
-			$.messager.alert('错误提示', '新课程添加失败！');
 		}
 	});
-	alert(7);
 	$('#addcsinfo').dialog('close');
 	$('#coursysinfo').edatagrid('reload');
 }

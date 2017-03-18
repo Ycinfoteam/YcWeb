@@ -9,9 +9,7 @@ public class IndexController {
 	//去后台主页
 	@RequestMapping(value="/tobackmain")
 	public String tobackmain(){
-		
 		return "backjsp/backmain";
-		
 	}
 	//去前台主页
 	@RequestMapping(value="/toindex")

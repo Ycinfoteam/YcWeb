@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -84,9 +85,15 @@ public class CoursysController {
 	}
 	//修改一掉课程体系信息
 	@RequestMapping(value="/coursys_update")
-	public @ResponseBody String updateOneCoursys(){
+	public void updateOneCoursys(Coursys csys,HttpServletResponse response) throws IOException{
 		logger.info("update one coursys......");
-
-		return null;
+		System.out.println("name："+csys.getCs_name());
+		try {
+			this.coursysBiz.updateCoursys(csys);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getWriter().print(0);
+		}
+		response.getWriter().print(1);
 	}
 }

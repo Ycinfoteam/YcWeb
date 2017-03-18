@@ -8,16 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 查询所有新闻 -->
 	<select id="selectAll" resultType="News">
-		select n_id,n_title,n_content,n_click,n_time,n_sort,n_reportor,n_status from news
+		select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news
 	</select>
 	
 	<!-- 根据id查询新闻 -->
 	<select id="selectByNid" resultType="News" parameterType="News">
-		select n_id,n_title,n_content,n_click,n_time,n_sort,n_reportor,n_status from news where n_id=#{n_id}
+		select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news where n_id=#{n_id}
 	</select>
 	<!-- 添加一条新闻 -->
 	<insert id="addOneNew" parameterType="News"  useGeneratedKeys="true" keyProperty="n_id">
-		insert into news(n_title,n_content,n_click,n_time,n_sort,n_reportor,n_status) values(#{n_title},#{n_content},#{n_click},#{n_time},#{n_sort},#{n_reportor},#{n_status})
+		insert into news(n_title,n_content,n_click,n_time,n_sort,n_reportor,n_status) values(#{n_title},#{n_content},#{n_click},curdate(),#{n_sort},#{n_reportor},#{n_status})
 	</insert>
 	<!-- 修改一条新闻 -->
 	<update id="updateOneNew" parameterType="News">

@@ -124,6 +124,8 @@ li{
 <!--第五步 引入语言包 -->
 <script type="text/javascript" src="backjs/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script src="backjs/jquery.edatagrid.js"></script>
+<script src="backjs/jquery.form.js"></script>
 <script type="text/javascript">
 /*$('.menu a').click(function(){
 	var href=$(this).attr('href')
@@ -190,11 +192,6 @@ $(document).ready(
 					attributes : {
 						url : "tocompanynews"
 					}
-				}, {
-					text : "行业新闻",
-					attributes : {
-						url : "toinews"
-					}
 				} ]
 			} ];
 			
@@ -214,17 +211,9 @@ $(document).ready(
 			} ];
 			
 			var treeData5 = [ {
-<<<<<<< HEAD
 				text : "课程体系",
-=======
-				text : "课程介绍",
->>>>>>> branch 'master' of ssh://git@github.com/Ycinfoteam/YcWeb.git
 				attributes : {
-<<<<<<< HEAD
-					url : "tocoursys"
-=======
-					url : ""
->>>>>>> branch 'master' of ssh://git@github.com/Ycinfoteam/YcWeb.git
+					url : "tocoursys",
 				}
 			} ];
 			
@@ -244,7 +233,7 @@ $(document).ready(
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities"
+						url : ""
 					}
 				}  ]
 			} ];
