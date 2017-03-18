@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.ApplyJobMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+	
+	<!-- 查询记录数 -->
+	<select id="findCount" parameterType="ApplyJob" resultType="java.lang.Double">
+		select count(*) from applyjob
+		<trim prefix="where" suffixOverrides="and">
+			<if test="a_orientation!=null">
+				a_orientation=#{a_orientation } and
+			</if>
+			<if test="a_status!=null">
+				a_status=#{a_status } and
+			</if>
+			<if test="a_time!=null">
+				a_time>#{a_time } and
+			</if>
+		</trim>
+	</select>
+	
+	<!-- 根据条件职位 -->
+	<select id="findApply"  parameterType="ApplyJob" resultType="ApplyJob">
+		select a_id,a_name,a_tel,a_email,a_orientation,a_detail,date_format(a_time ,'%Y-%m-%d') a_time,a_status from applyjob 
+		<trim prefix="where" suffixOverrides="and">
+			<if test="a_orientation!=null">
+				a_orientation=#{a_orientation } and
+			</if>
+			<if test="a_status!=null">
+				a_status=#{a_status } and
+			</if>
+			<if test="a_time!=null">
+				a_time>#{a_time } and
+			</if>
+		</trim>
+			<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+			</if>
+	</select>
+	
+	<!-- 插入应聘信息 -->
+	<insert id="addApply" parameterType="ApplyJob" useGeneratedKeys="true" keyProperty="a_id">
+		insert into applyjob (a_name,a_tel,a_email,a_orientation,a_detail,a_time)
+		values (#{a_name},#{a_tel},#{a_email},#{a_orientation},#{a_detail},#{a_time})
+	</insert>
+	
+	<!-- 修改招聘信息 -->
+	<update id="updateApply" parameterType="ApplyJob">
+		update applyjob set a_status=1
+		<where>
+			<if test="a_id!=null">
+				a_id=#{a_id}
+			</if>
+		</where>
+	</update>
+
+
+
+</mapper>

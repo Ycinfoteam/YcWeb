@@ -1,8 +1,6 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
 
 /**
  * 招聘表
@@ -15,11 +13,30 @@ public class Employ implements Serializable {
 	private static final long serialVersionUID = 339502828447332803L;
 	private Integer e_id;
 	private String e_position; // 职位
-	private Date e_validtime; // 有效时间
+	private String e_validtime; // 有效时间
 	private Integer e_amount; // 招聘人数
 	private double e_salary; // 工资待遇
 	private String e_detail; // 详细说明
 	private String e_addr; // 简历投递地址
+
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+
+	public Integer getStart() {
+		return start;
+	}
+
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 
 	public Integer getE_id() {
 		return e_id;
@@ -37,11 +54,11 @@ public class Employ implements Serializable {
 		this.e_position = e_position;
 	}
 
-	public Date getE_validtime() {
+	public String getE_validtime() {
 		return e_validtime;
 	}
 
-	public void setE_validtime(Date e_validtime) {
+	public void setE_validtime(String e_validtime) {
 		this.e_validtime = e_validtime;
 	}
 

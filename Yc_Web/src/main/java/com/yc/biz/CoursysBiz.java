@@ -3,7 +3,6 @@ package com.yc.biz;
 import java.util.List;
 
 import com.yc.bean.Coursys;
-import com.yc.bean.News;
 
 public interface CoursysBiz {
 	//查询所有的课程体系

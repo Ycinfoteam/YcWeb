@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
          http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
 
  
 	<!-- 以后的项目写入多个配置文件，好处是simple-config.xml中配置springmvc的配置 beans.xml中配置dao,biz,切面，事务 -->

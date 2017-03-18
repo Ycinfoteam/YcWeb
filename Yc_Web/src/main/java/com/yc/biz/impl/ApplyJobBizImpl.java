@@ -8,48 +8,42 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.bean.Employ;
-import com.yc.biz.EmployBiz;
+import com.yc.bean.ApplyJob;
+import com.yc.biz.ApplyJobBiz;
 import com.yc.dao.BaseDao;
 
 @Service
 @Transactional(readOnly = true)
-public class EmployBizImpl implements EmployBiz {
+public class ApplyJobBizImpl implements ApplyJobBiz {
 
 	private BaseDao baseDao;
-	
+
 	@Resource(name="baseDaoMybatisImpl")
 	public void setBaseDao(BaseDao baseDao) {
 		this.baseDao = baseDao;
 	}
 
 	@Override
-	public List<Employ> findEmploy(Employ employ) {
-		List<Employ> list=this.baseDao.findAll(employ, "findEmploy");
+	public List<ApplyJob> findApply(ApplyJob applyJob) {
+		List<ApplyJob> list=this.baseDao.findAll(applyJob, "findApply");
 		return list;
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void addEmploy(Employ employ) {
-		this.baseDao.add(employ, "addEmploy");
+	public void addApply(ApplyJob applyJob) {
+		this.baseDao.add(applyJob, "addApply");
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void updateEmploy(Employ employ) {
-		this.baseDao.update(employ, "updateEmploy");
+	public void updateApply(ApplyJob applyJob) {
+		this.baseDao.update(applyJob, "updateApply");
 	}
 
 	@Override
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void deleteEmploy(Employ employ) {
-		this.baseDao.update(employ, "deleteEmploy");
-	}
-
-	@Override
-	public int findCount(Employ employ) {
-		int count=(int) this.baseDao.fundFunc(employ, "findCount");
+	public int findCount(ApplyJob applyJob) {
+		int count=(int) this.baseDao.fundFunc(applyJob, "findCount");
 		return count;
 	}
 

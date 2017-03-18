@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.yc.bean.Employ;
 
-//招聘业务层
+/**
+ * 招聘业务层
+ * @author S3
+ *
+ */
 public interface EmployBiz {
 
 	//查询招聘信息
@@ -18,5 +22,8 @@ public interface EmployBiz {
 	
 	//删除招聘信息
 	public void deleteEmploy(Employ employ);
+	
+	//查询记录总数
+	public int findCount(Employ employ);
 	
 }

@@ -19,7 +19,7 @@ public class EmployTest extends TestCase {
 		Employ employ =new Employ();
 		employ.setE_position("大数据工程师");
 		Date date=new Date();
-		employ.setE_validtime(date);
+		//employ.setE_validtime(date);
 		employ.setE_amount(20);
 		employ.setE_salary(8000);
 		employ.setE_addr("衡阳市珠晖区");
@@ -63,12 +63,19 @@ public class EmployTest extends TestCase {
 		employ.setE_id(2);
 		employ.setE_position("大数据工程师");
 		Date date=new Date();
-		employ.setE_validtime(date);
+		//employ.setE_validtime(date);
 		employ.setE_amount(20);
 		employ.setE_salary(8000);
 		employ.setE_addr("长沙市");
 		employ.setE_detail("福利好"); 
 		e.updateEmploy(employ);
+	}
+	
+	public void testfindCount(){
+		ApplicationContext ac =new ClassPathXmlApplicationContext("beans.xml");
+		EmployBiz e=(EmployBiz) ac.getBean("employBizImpl");
+		Employ employ =new Employ();
+		System.out.println(e.findCount(employ)); 
 	}
 	
 }
