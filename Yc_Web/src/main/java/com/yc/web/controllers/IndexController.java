@@ -65,14 +65,32 @@ public class IndexController {
 	public String toprojects(){
 		return "backjsp/projects/projects";
 	}
+
+	//去学员就业
+	@RequestMapping(value="/tojobdetails")
+	public String toemploy(){
+		return "backjsp/projects/jobdetails";
+	}
 	//去课程体系管理
 	@RequestMapping(value="/tocoursys")
 	public String tocoursys(){
 		return "backjsp/coursys/coursys";
+
 	}
 	//去公司活动
 	@RequestMapping(value="/toactivities")
 	public String toactivities(){
 		return "backjsp/activities/activities";
+	}
+	
+	//去公司介绍
+	@RequestMapping(value="/tocompany")
+	public String tocompany(){
+		return "backjsp/activities/company";
+	}
+	//去公司历史
+	@RequestMapping(value="/tohistory")
+	public String tohistory(){
+		return "backjsp/activities/history";
 	}
 }

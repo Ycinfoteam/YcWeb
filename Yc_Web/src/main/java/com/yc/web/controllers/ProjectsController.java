@@ -33,19 +33,10 @@ public class ProjectsController {
 	private ProjectsBiz projectsBiz;
 	private static final Log logger=LogFactory.getLog(ProjectsController.class);
 	@Resource(name="projectsBizImpl")
-	public void SetBookBiz(ProjectsBiz projectsBiz){
+	public void SetProjectsBiz(ProjectsBiz projectsBiz){
 		this.projectsBiz = projectsBiz;
 	}
-	//查看学员项目
-	/*@RequestMapping(value="/projects")
-	public String toprojects(){
-		logger.info("查看学员项目");
-		List<Projects>projects=this.projectsBiz.findall();
-		Gson gson=new Gson();
-		return gson.toJson(projects);
-	}*/
-	//分页
-
+	//查看所有学员项目
 	// produces = {"application/json;charset=UTF-8"} 设置http协议响应头，解决编码问题
 	@RequestMapping(value="/projects",produces = {"application/json;charset=UTF-8"})
 	public void toprojects(HttpServletResponse response) throws IOException{
@@ -55,6 +46,33 @@ public class ProjectsController {
 		response.setContentType("text/html; charset=utf-8");
 		response.getWriter().print(gson.toJson(projects));
 	}
+	
+	//根据p_id 修改图片
+	//修改学员项目
+		@RequestMapping(value="/updatepropic")
+		public void editpic(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
+			logger.info("Updateprojectpic called.....");
+			String p_pic="";
+			Projects projects=new Projects();
+			projects.setP_picUrl(file);
+			String id=request.getParameter("p_id");
+			projects.setP_id(Integer.parseInt(id));
+			
+			Map<String,UploadFile> map=UploadFileUtil.uploadFile(request, projects.getP_picUrl(), picRootName);
+			for(Entry<String,UploadFile> entry:map.entrySet()){
+				UploadFile uploadFile=entry.getValue();
+				p_pic+=uploadFile.getNewFileUrl()+",";
+			}
+			projects.setP_pic(p_pic);
+			try {
+				this.projectsBiz.update(projects);
+			} catch (Exception e) {
+				response.getWriter().print(0);		
+
+			}
+
+			response.getWriter().print(1);		
+			}
 	private String picRootName="uploadpic";
 	//添加学员项目
 	@RequestMapping(value="/projects_add",method=RequestMethod.POST)
@@ -88,12 +106,15 @@ public class ProjectsController {
 
 	//修改学员项目
 	@RequestMapping(value="/projects_update")
-	public String projectslist(Projects projects){
+	public void projectslist(HttpServletRequest request,Projects projects,HttpServletResponse response) throws IOException{
 		logger.info("Updateprojects called.....");
-		System.out.println(projects.getP_name()+projects.getP_time());
-		this.projectsBiz.update(projects);
-		return "redirect:/projects";
-	}
+		try {
+			this.projectsBiz.update(projects);
+		} catch (Exception e) {
+			response.getWriter().print("error");		
+		}
+		response.getWriter().print("success");
+		}
 	//删除学员项目
 	@RequestMapping(value="/projects_delete")
 	public String tobook(@RequestParam int id){

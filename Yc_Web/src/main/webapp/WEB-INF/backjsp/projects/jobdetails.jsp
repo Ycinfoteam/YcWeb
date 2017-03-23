@@ -39,13 +39,13 @@
 }
 </style>
    
-   <table id="projectdg">
+   <table id="jobdetailsdg">
 </table>
-<div id=uploadFiles class="easyui-dialog" style=" display:none;" closed="true" buttons="#piclg-buttons">
-<form id="picfm" method="post" enctype="multipart/form-data" novalidate>
+<div id=updateFiles class="easyui-dialog" style=" display:none;" closed="true" buttons="#ppiclg-buttons">
+<form id="jdpicfm" method="post" enctype="multipart/form-data" novalidate>
        <div class="fitem">	
         <label>重新上传图片:</label>	
-        	<input name="p_pic" type="file" />
+        	<input name="jd_pic" type="file" />
         	</div>
 			<div class="fitem">
 			<label></label>
@@ -54,59 +54,71 @@
      </div>
 </form>
 </div>
-<div id="honordlg" class="easyui-dialog"
-	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#projects-buttons">
+<div id="joblg" class="easyui-dialog"
+	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#fooddlg-buttons">
 	<div class="ftitle">
 		
 	</div>
-	<form id="honorfm" method="post" enctype="multipart/form-data" novalidate>
+	<form id="jobfm" method="post" enctype="multipart/form-data" novalidate>
 		<div class="fitem">
 			<label>
-				项目名:
+				学员名字:
 			</label>
-			<input name="p_name" class="easyui-textbox" required="true"></input>
+			<input name="jd_name" class="easyui-textbox" required="true"></input>
 			</div>
 			<div class="fitem">
 			<label>
-				开发者:
+				学员薪资:
 			</label>
-			<input name="p_developer" class="easyui-textbox" required="true"></input>
+			<input name="jd_salary" class="easyui-textbox" required="true"></input>
 			</div>
 			<div class="fitem">
 			<label>
-				开发时间:
+				就业时间:
 			</label>
-			<input name="p_time" class="easyui-textbox"></input>
+			<input name="jd_emptime" class="easyui-textbox"></input>
 		
 			</div>
 			<div class="fitem">
 			<label>
-				项目发布地址:
+				所在公司:
 			</label>
-			<input name="p_addr" class="easyui-textbox" required="true"></input>
+			<input name="jd_company" class="easyui-textbox" required="true"></input>
 		</div>
 		<div class="fitem">
 			<label>
-				项目图片:
+				毕业学校:
 			</label>
-			<input name="p_pic" type="file"  required="true" />
+			<input name="jd_school" class="easyui-textbox" required="true"></input>
+		</div>
+		<div class="fitem">
+			<label>
+				专业:
+			</label>
+			<input name="jd_profession" class="easyui-textbox" required="true"></input>
+		</div>
+		<div class="fitem">
+			<label>
+				照片:
+			</label>
+			<input name="jd_pic" type="file" />
 		</div>
 	</form> 
 </div>
-<div id="piclg-buttons"  style=" display:none;">
+<div id="ppiclg-buttons"  style=" display:none;">
 	<a  class="easyui-linkbutton c6"
 		 iconCls="icon-ok"  onclick="update()"
 		style="width: 90px">Save</a>
 	<a class="easyui-linkbutton"
-		iconCls="icon-cancel" onclick="javascript:$('#uploadFiles').dialog('close')"
+		iconCls="icon-cancel" onclick="javascript:$('#updateFiles').dialog('close')"
 		style="width: 90px">Cancel</a>
 </div>
-<div id="projects-buttons"  style=" display:none;">
+<div id="fooddlg-buttons"  style=" display:none;">
 	<a  class="easyui-linkbutton c6"
-		 iconCls="icon-ok"  onclick="saveprojects()"
+		 iconCls="icon-ok"  onclick="saveHonor()"
 		style="width: 90px">Save</a>
 	<a class="easyui-linkbutton"
-		iconCls="icon-cancel" onclick="javascript:$('#honordlg').dialog('close')"
+		iconCls="icon-cancel" onclick="javascript:$('#joblg').dialog('close')"
 		style="width: 90px">Cancel</a>
 </div>
 <script type="text/javascript" src="backjs/jquery.edatagrid.js"></script>
@@ -118,23 +130,23 @@
 	var datagrid;
 	var rowEditor=undefined;	//用于存放当前要编辑的行
 	$(function(){
-	   datagrid=$('#projectdg').edatagrid({
-		  	url: "projects",	//查询时加载的URL
-            saveUrl: "projects_add",
-            updateUrl: "projects_update", 
-            destroyUrl: "projects_delete",
-            loadMsg:'正在加载项目信息...',
+	   datagrid=$('#jobdetailsdg').edatagrid({
+		  	url: "jobdetails",	//查询时加载的URL
+            saveUrl: "jobdetails_add",
+            updateUrl: "jobdetails_update", 
+            destroyUrl: "jobdetails_delete",
+            loadMsg:'正在加载信息...',
         	pagination:true,	//显示分页
         	pageSize:5,		//默认分页的条数
         	pageList:[5,10,15,20,25,30,35,40,45,50],	//可选分页条数
         	fitColumns:true,	//自适应列
         	fit:true,	//自动补全
-        	title:"学员项目管理",
+        	title:"学员就业管理",
         	iconCls:"icon-save",//图标
-        	idField:"p_id",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
+        	idField:"jd_id",	//标识，会记录我们选中的一行的id，不一定是id，通常都是主键
         	rownumbers:"true",	//显示行号
         	nowrap:"true",	//不换行显示
-        	sortName:"p_id",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
+        	sortName:"jd_id",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
         	sortOrder:"desc",	//排序方式
         	//以上的四种增删改查操作，只要失败，都会回掉这个onError
         	onError:function(a,b){
@@ -143,18 +155,16 @@
         	striped:true,
         	columns:[[
 		{
-	 	field:'p_id',
-	 	title:'项目名',
-	 	width:100,
-	 	align:'center',
-   	 	hidden:'true'
+ 				field:'jd_id',
+ 				title:'项目名',
+ 				width:100,
+ 				align:'center',
+           	 	hidden:'true'
 
-		
-	 	
-	 },        
+ 				}, 
         	{
-           	 	field:'p_name',
-           	 	title:'项目名',
+           	 	field:'jd_name',
+           	 	title:'学员名字',
            	 	width:100,
            	 	align:'center',
            	 	editor:{
@@ -166,8 +176,8 @@
            	 	
            	 },
            	 {
-           	 	field:'p_developer',
-           	 	title:'开发者',
+           	 	field:'jd_salary',
+           	 	title:'学员薪资',
            	 	width:100,
            	 	align:'center',
            	 editor:{
@@ -176,13 +186,37 @@
     	 			required:true,
     	 		}
         		},
-           	 },{
-            	 	field:'p_time',
-               	 	title:'开发时间',
+           	 },
+           	 {
+            	 	field:'jd_emptime',
+            	 	title:'就业时间',
+            	 	width:100,
+            	 	align:'center',
+            	 editor:{
+            		type:'datebox',
+     	 		options:{
+     	 			required:true,
+     	 		}
+         		},
+            	 },
+            	 {
+                	 	field:'jd_company',
+                	 	title:'所在公司',
+                	 	width:100,
+                	 	align:'center',
+                	 editor:{
+                		type:'validatebox',
+         	 		options:{
+         	 			required:true,
+         	 		}
+             		},
+                	 },{
+            	 	field:'jd_school',
+               	 	title:'毕业学校',
                	 	width:100,
                	 	align:'center',
                	editor:{
-         	 		type:'datebox',
+         	 		type:'validatebox',
          	 		options:{
          	 			required:true,
          	 		}
@@ -190,8 +224,8 @@
             	 },	
                	 	
             {
-         	 	field:'p_addr',
-           	 	title:'项目发布地址',
+         	 	field:'jd_profession',
+           	 	title:'专业',
            	 	width:100,
            	 	align:'center',
            	 editor:{
@@ -202,8 +236,8 @@
         		},
             },
             {
-               	 	field:'p_pic',
-               	 	title:'项目图片',
+               	 	field:'jd_pic',
+               	 	title:'照片',
                	 	width:100,
                	 	align:'center',
                	 formatter : function(value, row, index) {
@@ -216,7 +250,7 @@
      					*/
      					value=value.replace(",","");
                    		return '<a href="'+value+'">查看图片</a>';
-     				}else{
+     					}else{
      					return '无图片';
      				}
      				}},
@@ -226,16 +260,16 @@
                    	 	width:100,
                    	 	align:'center',
                    	 formatter : function(value, row, index) {
-                   		return '<a href="javascript:updatepic('+row.p_id+')">修改图片</a>';
+                   		return '<a href="javascript:updatepic('+row.jd_id+')">修改图片</a>';
          				}},
            	
            	 ]],
            	 
-           	 //定义按钮 如果没有选择图片应该给予提示
+           	 //定义按钮
 	         toolbar: [{
 	         	text:"增加",
 				iconCls: 'icon-add',
-				handler : function() {$('#honordlg').dialog({
+				handler : function() {$('#joblg').dialog({
 					title:'添加学员项目',
 					width : 400,
 					height : 550,
@@ -243,26 +277,27 @@
 					cache : false,
 					modal:true
 						}
-				);$('#honorfm').form('clear');
+				);$('#jobfm').form('clear');
+
 				}
 			},'-',{
 				text:"删除",
 				iconCls: 'icon-remove',
 				handler: function(){
-					$('#projectdg').edatagrid('destroyRow');
+					$('#jobdetailsdg').edatagrid('destroyRow');
 					$('#dg').edatagrid('loadData')
 				}
 			},'-',{
 				text:"保存",
 				iconCls: 'icon-save',
 				handler: function(){
-					$('#projectdg').edatagrid('saveRow')
+					$('#jobdetailsdg').edatagrid('saveRow')
 				}
 			},'-',{
 				text:"取消编辑",
 				iconCls: 'icon-undo',
 				handler: function(){
-					$('#projectdg').edatagrid('cancelRow')
+					$('#jobdetailsdg').edatagrid('cancelRow')
 				}
 			}]
 			
@@ -271,10 +306,10 @@
     	
     });
 
-	  function saveprojects(){
-		$("#honorfm").ajaxSubmit({
+	  function saveHonor(){
+		$("#jobfm").ajaxSubmit({
 				type : "POST",
-				url : "projects_add",
+				url : "jobdetails_add",
 				contentType : "application/x-www-form-urlencoded",
 				dataType:"json",
 				success : function(data1) {
@@ -284,55 +319,53 @@
 				
 				}
 			});
-		$('#projectdg').edatagrid('load');
-		$('#honordlg').dialog('close');
+		$('#jobdetailsdg').edatagrid('load');
+		$('#joblg').dialog('close');
 			
 		}
 		
 		function updatepic(id){
-			$('#uploadFiles').dialog({
+			$('#updateFiles').dialog({
 				title:'修改项目图片',
 				width : 250,
 				height : 200,
 				closed : false,
 				cache : false,
 				queryParams : {
-					p_id : id
+					jd_id : id
 				}
 					}
 			);
 		}
 		function update(){
-			var options=$('#uploadFiles').dialog('options');
-			var p_id=options.queryParams.p_id;
-			if(undefined==p_id){
+			var options=$('#updateFiles').dialog('options');
+			var jd_id=options.queryParams.jd_id;
+			if(undefined==jd_id){
 				$.messager.alert('提示','未选中信息');
 			return;
 			}
-			$("#picfm").ajaxSubmit({
+			$("#jdpicfm").ajaxSubmit({
 				type : "POST",
-				url : "updatepropic",
+				url : "updatejdpic",
 				contentType : "application/x-www-form-urlencoded",
-				data:{p_id:p_id},
+				data:{jd_id:jd_id},
 				dataType:"json",
 				success : function(data1) {
 					if(  data1==1){	
 						$.messager.alert('Info','添加成功'); 
 					}
 				},error:function(data1){
-					if(data1==0){
+					
 					$.messager.alert('Info','添加失败'); 
-				}
+				
 			}
 			});
-		$('#uploadFiles').dialog('close');
-		$('#projectdg').edatagrid('reload');
+		$('#updateFiles').dialog('close');
+		$('#jobdetailsdg').edatagrid('reload');
 		}
 		
-		function findbypic(id){
-			alert(1);
-			}
-	  $('input[name="p_time"]').datebox({
+		
+	  $('input[name="jd_emptime"]').datebox({
 			required:true
 		});
 </script>

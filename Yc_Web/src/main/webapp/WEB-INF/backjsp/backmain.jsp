@@ -32,19 +32,20 @@ ul,li{
 </head>
 <body class="easyui-layout">
 
-	<div data-options="region:'north'" style="height:150px;">
-		<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
-		<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
+	<div data-options="region:'north'" style="height:120px;">
+<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
+	<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
 源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心</hl>
 	</div>
 
-    <div data-options="region:'west',title:'菜单项'" style="width:200px;">
+    <div data-options="region:'west',title:'菜单项'" style="width:180px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
 			<div title="系统管理" style="overflow:auto;">
 				<div id="tt1" class="easyui-tree"
 					data-options="animate:true,dnd:true">
 					</div>
 			</div>
+
 			<div title="数据字典"data-options="selected:true">
 				<div id="tt2" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
@@ -215,20 +216,30 @@ $(document).ready(
 				attributes : {
 					url : "toprojects"
 				}
-			} ];
+			},{text : "学员就业",
+			attributes : {
+				url : "tojobdetails"
+			}
+		}
+			];
 			var treeData7= [ {
 				text : "关于",
 				children : [ {
 					text : "关于公司介绍",
 					attributes : {
-						url : ""
+						url : "tocompany"
 					}
 				} , {
 					text : "公司活动介绍",
 					attributes : {
 						url : ""
 					}
-				}  ]
+				} ,{
+					text : "公司历史介绍",
+					attributes : {
+						url : "tohistory"
+					}
+				} ]
 			} ];
 			var treeData8= [ {
 				text : "人才招聘",

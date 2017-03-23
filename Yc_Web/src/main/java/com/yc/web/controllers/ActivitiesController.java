@@ -32,7 +32,7 @@ public class ActivitiesController {
 	private ActivitiesBiz activitiesBiz;
 	private static final Log logger=LogFactory.getLog(ActivitiesController.class);
 	@Resource(name="activitiesBizImpl")
-	public void SetBookBiz(ActivitiesBiz activitiesBiz){
+	public void SetActivitiesBiz(ActivitiesBiz activitiesBiz){
 		this.activitiesBiz = activitiesBiz;
 	}
 	//查看公司活动
@@ -80,6 +80,35 @@ public class ActivitiesController {
 		this.activitiesBiz.update(activities);
 		return "redirect:/activities";
 	}
+	//修改学员项目图片
+	@RequestMapping(value="/updateacpic")
+	public void editpic(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
+		logger.info("Updateprojectpic called.....");
+		String ac_pic="";
+		Activities activities=new Activities();
+		activities.setAc_picUrl(file);
+		String id=request.getParameter("ac_id");
+		activities.setAc_id(Integer.parseInt(id));
+		if(file!=null){
+		Map<String,UploadFile> map=UploadFileUtil.uploadFile(request, activities.getAc_picUrl(), picRootName);
+		for(Entry<String,UploadFile> entry:map.entrySet()){
+			UploadFile uploadFile=entry.getValue();
+			ac_pic+=uploadFile.getNewFileUrl()+",";
+		}
+		}
+		activities.setAc_pic(ac_pic);
+		
+		try {
+			this.activitiesBiz.update(activities);
+		} catch (Exception e) {
+			response.getWriter().print(0);		
+
+		}
+
+		response.getWriter().print(1);		
+		}
+	
+	
 	//删除学员项目
 	@RequestMapping(value="/activities_delete")
 	public String tobook(@RequestParam int id){
