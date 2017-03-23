@@ -1,4 +1,4 @@
-package com.yc.util;
+package com.yc.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

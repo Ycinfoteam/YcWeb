@@ -13,15 +13,15 @@
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
-    <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
+    <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="../css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
     <!--[if gte IE 8]>
     <link rel="stylesheet" href="css/styleforie.css">
     <![endif]-->
 
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-    <script src="js/teacher.js" type="text/javascript"></script>
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="/js/teacher.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">

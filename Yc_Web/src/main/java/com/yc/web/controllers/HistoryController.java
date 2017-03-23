@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.yc.bean.History;
-import com.yc.bean.JobType;
-import com.yc.bean.Projects;
 import com.yc.biz.HistoryBiz;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 
 @Controller
 public class HistoryController {

@@ -58,14 +58,14 @@
 		novalidate>
 		<div class="fitem">
 			<label> 项目名: </label> <input name="p_name" class="easyui-textbox"
-				required="true"></input>
+				required="true" validType="nameRex"></input>
 		</div>
 		<div class="fitem">
 			<label> 开发者: </label> <input name="p_developer"
-				class="easyui-textbox" required="true"></input>
+				class="easyui-textbox" required="true" validType="teacherRex"></input>
 		</div>
 		<div class="fitem">
-			<label> 开发时间: </label> <input name="p_time" class="easyui-textbox"></input>
+			<label> 开发时间: </label> <input name="p_time" class="easyui-databox"></input>
 
 		</div>
 		<div class="fitem">
@@ -348,7 +348,26 @@
 			$.messager.alert('提示', '请选择一个图片文件，再点击修改');
 			return;
 		}*/
-		$("#picfm").ajaxSubmit({
+		
+		$("#picfm").form({
+			url:"updatepropic",
+			success:function(data){
+				alert(data);
+				if(data==1){
+					$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+				}else{
+					$.messager.alert('错误提示', '添加失败！');
+				}
+				$('#uploadFiles').dialog('close');
+				$("#picfm").form('clear');
+				$('#projectdg').edatagrid('load');
+			}
+		},'json');
+		function saveCoursysInfo(){
+			$("#picfm").submit();
+		}
+	}
+		/*$("#picfm").ajaxSubmit({
 			type : "POST",
 			url : "updatepropic",
 			contentType : "application/x-www-form-urlencoded",
@@ -372,7 +391,7 @@
 		$('#uploadFiles').dialog('close');
 		$('#projectdg').edatagrid('reload');
 	}
-
+		*/
 	$('input[name="p_time"]').datebox({
 		required : true
 	});
@@ -380,7 +399,7 @@
 	
 	
 	//自定义表单验证规则
-/*	$.extend($.fn.validatebox.defaults.rules, {   
+	$.extend($.fn.validatebox.defaults.rules, {   
 		nameRex: {   
 	        validator: function(value, param){  
 	        	var reg=/^[\u4E00-\u9FA5A0-9a-zA-Z]{1,10}$/;//只允许英文，数字，中文的组合
@@ -398,8 +417,8 @@
 	        	}
 	        },   
 	        message: '请输入最多带两位小数的数字！' 
-	    },
-	    teacherRex:{
+	    }
+	   /* teacherRex:{
 	    	validator: function(value, param){  
 	        	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，中文的组合
 	        	if(reg.test(value)){
@@ -407,6 +426,6 @@
 	        	}
 	        },   
 	        message: '请输入英文或中文的教师姓名！' 
-	    }
-	});*/  
+	    }*/ 
+	}); 
 </script>

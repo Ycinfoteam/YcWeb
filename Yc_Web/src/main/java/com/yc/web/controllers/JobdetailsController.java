@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,10 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.yc.bean.Jobdetails;
-import com.yc.bean.Projects;
 import com.yc.biz.JobdetailsBiz;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
 

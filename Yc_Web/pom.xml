@@ -13,7 +13,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> 
 
 		<!-- 日志包 -->
 		<dependency>
@@ -119,10 +119,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.baidu</groupId>
+			<groupId>com.baidu.ueditor</groupId>
 			<artifactId>ueditor</artifactId>
 			<version>1.1.2</version>
-		</dependency>
+		</dependency> 
+		 
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
@@ -135,19 +136,34 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
 		</dependency>
+		
 		<!-- 使用responseBody需要引入依赖的jar解决浏览器406 -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-
-
+		
+		<!-- sdk短信包1-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>sdk</artifactId>
+			<version>20160607</version>
+		</dependency>
+		
+		<!-- sdk短信包2-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>sdksource</artifactId>
+			<version>20160607</version>
+		</dependency> 
+  
 	</dependencies>
 	<build>
 		<finalName>Yc_Web</finalName>

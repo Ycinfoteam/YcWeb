@@ -2,8 +2,6 @@ package com.yc.web.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,10 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.yc.bean.Activities;
-import com.yc.bean.Projects;
 import com.yc.biz.ActivitiesBiz;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
 
@@ -134,5 +131,5 @@ public class ActivitiesController {
 		activities.setAc_id(id);
 		this.activitiesBiz.delete(activities);
 		return "redirect:/activities";
-		}
+	}
 }

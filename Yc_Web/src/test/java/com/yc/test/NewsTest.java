@@ -31,7 +31,7 @@ public class NewsTest {
 		news.setN_content("说两句好听的");
 		news.setN_reportor("admin");
 		news.setN_sort(1);
-		news.setN_time(new Timestamp(getCurrentTime()));
+		//news.setN_time(new Timestamp(getCurrentTime()));
 		news.setN_title("23333");
 		nb.addNews(news);
 	}*/
@@ -69,7 +69,7 @@ public class NewsTest {
 		news.setN_content("说两");
 		news.setN_reportor("admin");
 		news.setN_sort(1);
-		news.setN_time(new Timestamp(getCurrentTime()));
+		//news.setN_time(new Timestamp(getCurrentTime()));
 		news.setN_title("8888");
 		// TODO : 如果这里只设置了要改的字段，则其它字段会被修改成默认值，即string 会变成NULL
 		nb.updateNews(news);

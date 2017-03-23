@@ -1,12 +1,9 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Activities implements Serializable {
@@ -54,14 +51,7 @@ public class Activities implements Serializable {
 	public void setAc_id(Integer ac_id) {
 		this.ac_id = ac_id;
 	}
-	/*@DateTimeFormat(pattern="yyyy-MM-dd")
-	public Date getAc_time() {
-		return ac_time;
-	}
-	public void setAc_time(Date ac_time) {
-		this.ac_time = ac_time;
-	}
-	*/
+
 	public String getAc_illus() {
 		return ac_illus;
 	}

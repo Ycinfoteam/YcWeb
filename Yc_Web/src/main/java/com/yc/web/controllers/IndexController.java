@@ -53,6 +53,12 @@ public class IndexController {
 	public String tojobtype() {
 		return "backjsp/applyseekjobs/jobtype";
 	}
+	
+	// 去人才招聘后台  方向信息
+	@RequestMapping(value = "/toadministrator")
+	public String toadministrator() {
+		return "backjsp/applyseekjobs/administrator";
+	}
 
 	//去学员项目
 	@RequestMapping(value="/toprojects")
