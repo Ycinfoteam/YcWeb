@@ -1,7 +1,9 @@
 package com.yc.web.controllers;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.taobao.api.ApiException;
 import com.yc.bean.ApplyJob;
 import com.yc.biz.ApplyJobBiz;
-import com.yc.util.DateFormatUtil;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.DateFormatUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.MessageUtil;
+import com.yc.utils.PageUtil;
+import com.yc.utils.PropertiesUtil;
 
 @Controller
 public class ApplyJobController {
@@ -40,9 +45,11 @@ public class ApplyJobController {
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
 		//处理时间
-		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
+		//String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
 		
-		applyJob.setA_time(date); 
+		//TODO:设置过期时间
+		
+		//applyJob.setA_time(date); 
 		applyJob.setStart(start);
 		applyJob.setOffset(offset);
 		List<ApplyJob> list=this.applyJobBiz.findApply(applyJob);
@@ -55,7 +62,7 @@ public class ApplyJobController {
 		return gson.toJson(model);
 	} 
 	
-	@RequestMapping(value="updateApply")
+	@RequestMapping(value="/updateApply")
 	public @ResponseBody int updateApply ( @RequestParam(value="a_id[]") List<Integer> a_id){
 		log.info("updateApply called...");
 		for(int id:a_id){
@@ -64,6 +71,23 @@ public class ApplyJobController {
 			this.applyJobBiz.updateApply(applyJob);
 		}
 		return 1;
+	}
+	
+	@RequestMapping(value="/addApply")
+	public String addApply(@ModelAttribute ApplyJob applyJob){
+		log.info("addApply called...");
+		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
+		applyJob.setA_time(date);
+		this.applyJobBiz.addApply(applyJob); 
+		try {
+			Map<String,String> map=PropertiesUtil.readProperties("admin.properties");
+			MessageUtil.sendMessageToAdmin(map.get("name"), map.get("tel"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ApiException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/jsp/success.jsp";
 	}
 	
 }

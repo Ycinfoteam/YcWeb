@@ -55,21 +55,9 @@
 <div id="main">
     <div id="main_L">
         <a href=""><img src="../images/topAd.jpg"/></a>
-        <div class="main_L_d">
-            <form id="jobform" action="../addApply" method="post">
-            	<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-            	<input  name="a_name" type="text"/><br/>
-            	<label>应聘职位:</label>
-            	<select id="findAllJobType">
-            	</select><br/>
-            	<label>联系方式:</label>
-            	<input  name="a_tel" type="text" /><br/>
-            	<label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</label>
-            	<input name="a_email" type="text" /><br/>
-            	<label>个人简介:</label>
-            	<textarea name="a_detail" cols="20" rows="15"></textarea><br/>
-            	<input id="submit" type="submit" value="提交申请"/>
-            </form>
+        <div class="main_L_d" style="height:300px;">
+            <p style="margin-left:240px;margin-top:130px;color:red;font-size:30px;">应聘申请成功！</p>
+            <a href="index.jsp" style="padding-left:300px;">返回首页</a>
         </div>
     </div>
     <div id="main_R">

@@ -80,7 +80,6 @@ $(function(){
 			formatter:function(value,row,index){				
 					return row;
 			}
-
 		 },{
        	 	field:'a_id',
        	 	title:'ID',

@@ -88,5 +88,5 @@ public class ActivitiesController {
 		activities.setAc_id(id);
 		this.activitiesBiz.delete(activities);
 		return "redirect:/activities";
-		}
+	}
 }

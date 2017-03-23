@@ -1,12 +1,9 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Activities implements Serializable {

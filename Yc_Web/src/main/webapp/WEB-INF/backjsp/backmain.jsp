@@ -247,6 +247,11 @@ $(document).ready(
 					attributes : {
 						url : "toapply"
 					}
+				},{
+					text : "行政人员信息",
+					attributes : {
+						url : "toadministrator"
+					}
 				}]
 			} ];
 			

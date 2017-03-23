@@ -1,6 +1,104 @@
-2017-03-17 10:46:03  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5a8a7e: startup date [Fri Mar 17 10:46:03 CST 2017]; root of context hierarchy
-2017-03-17 10:46:03  [ main:46 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-17 10:46:04  [ main:637 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-17 10:46:05  [ main:1940 ] - [ DEBUG ]  ==>  Preparing: insert into applyjob (a_name,a_tel,a_email,a_orientation,a_detail,a_time) values (?,?,?,?,?,?) 
-2017-03-17 10:46:05  [ main:1968 ] - [ DEBUG ]  ==> Parameters: haha(String), 18541818348(String), gggg@163.com(String), 嵌入式工程师(String), 团队意识好(String), 2017-6-6(String)
-2017-03-17 10:46:05  [ main:2122 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:36:22  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17577f9: startup date [Tue Mar 21 20:36:22 CST 2017]; root of context hierarchy
+2017-03-21 20:36:23  [ main:121 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:36:24  [ main:1461 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:36:25  [ main:2636 ] - [ WARN ]  Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activitiesBizImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'baseDaoMybatisImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [beans.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\gitstudy\YcWeb\Yc_Web\target\classes\com\yc\mapper\ApplyJobMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalArgumentException: Caches collection already contains value for com.yc.mapper.ApplyJobMapper
+2017-03-21 20:37:13  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17577f9: startup date [Tue Mar 21 20:37:13 CST 2017]; root of context hierarchy
+2017-03-21 20:37:13  [ main:49 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:37:13  [ main:717 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:38:17  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17577f9: startup date [Tue Mar 21 20:38:17 CST 2017]; root of context hierarchy
+2017-03-21 20:38:17  [ main:53 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:38:18  [ main:554 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:38:19  [ main:1995 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,#a_pwd) 
+2017-03-21 20:38:19  [ main:2025 ] - [ DEBUG ]  ==> Parameters: 张三(String)
+2017-03-21 20:38:19  [ main:2151 ] - [ INFO ]  Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-03-21 20:38:19  [ main:2229 ] - [ INFO ]  SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-03-21 20:38:43  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17577f9: startup date [Tue Mar 21 20:38:43 CST 2017]; root of context hierarchy
+2017-03-21 20:38:43  [ main:53 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:38:44  [ main:546 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:38:45  [ main:1841 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:39:56  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17577f9: startup date [Tue Mar 21 20:39:56 CST 2017]; root of context hierarchy
+2017-03-21 20:39:56  [ main:55 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:39:57  [ main:548 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:39:58  [ main:1953 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:39:58  [ main:1987 ] - [ DEBUG ]  ==> Parameters: 张三(String), 123456(String)
+2017-03-21 20:39:58  [ main:1995 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:42:03  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4cdac8: startup date [Tue Mar 21 20:42:03 CST 2017]; root of context hierarchy
+2017-03-21 20:42:03  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:42:04  [ main:745 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:42:05  [ main:2070 ] - [ DEBUG ]  ==>  Preparing: update admin set a_pwd=? 
+2017-03-21 20:42:05  [ main:2095 ] - [ DEBUG ]  ==> Parameters: 6789(String)
+2017-03-21 20:42:06  [ main:2191 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:43:45  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:43:45 CST 2017]; root of context hierarchy
+2017-03-21 20:43:45  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:43:46  [ main:750 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:46:43  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:46:43 CST 2017]; root of context hierarchy
+2017-03-21 20:46:43  [ main:51 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:46:44  [ main:770 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:46:45  [ main:2103 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.AdminMapper]: 0.0
+2017-03-21 20:46:45  [ main:2112 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_pwd from admin order by a_id desc 
+2017-03-21 20:46:45  [ main:2138 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-21 20:46:45  [ main:2159 ] - [ DEBUG ]  <==      Total: 1
+2017-03-21 20:47:15  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:47:15 CST 2017]; root of context hierarchy
+2017-03-21 20:47:15  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:47:15  [ main:544 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:47:17  [ main:2031 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.AdminMapper]: 0.0
+2017-03-21 20:47:17  [ main:2044 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_pwd from admin order by a_id desc 
+2017-03-21 20:47:17  [ main:2076 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-21 20:47:17  [ main:2097 ] - [ DEBUG ]  <==      Total: 1
+2017-03-21 20:47:39  [ main:1 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:47:39 CST 2017]; root of context hierarchy
+2017-03-21 20:47:39  [ main:49 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:47:39  [ main:533 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:47:41  [ main:1842 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.AdminMapper]: 0.0
+2017-03-21 20:47:41  [ main:1853 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_pwd from admin order by a_id desc 
+2017-03-21 20:47:41  [ main:1884 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-21 20:47:41  [ main:1904 ] - [ DEBUG ]  <==      Total: 1
+2017-03-21 20:47:50  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6dcfde: startup date [Tue Mar 21 20:47:50 CST 2017]; root of context hierarchy
+2017-03-21 20:47:50  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:47:50  [ main:561 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:47:52  [ main:1891 ] - [ DEBUG ]  ==>  Preparing: delete from admin where a_id=? 
+2017-03-21 20:47:52  [ main:1925 ] - [ DEBUG ]  ==> Parameters: 1(Integer)
+2017-03-21 20:47:52  [ main:1943 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:47:57  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:47:57 CST 2017]; root of context hierarchy
+2017-03-21 20:47:57  [ main:50 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:47:57  [ main:523 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:47:58  [ main:1832 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.AdminMapper]: 0.0
+2017-03-21 20:47:58  [ main:1842 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_pwd from admin order by a_id desc 
+2017-03-21 20:47:58  [ main:1868 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-21 20:47:58  [ main:1887 ] - [ DEBUG ]  <==      Total: 0
+2017-03-21 20:48:06  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:48:06 CST 2017]; root of context hierarchy
+2017-03-21 20:48:06  [ main:53 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:48:07  [ main:551 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:48:08  [ main:1835 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:48:08  [ main:1862 ] - [ DEBUG ]  ==> Parameters: 张三(String), 123456(String)
+2017-03-21 20:48:08  [ main:1863 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:48:22  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:48:22 CST 2017]; root of context hierarchy
+2017-03-21 20:48:22  [ main:50 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:48:23  [ main:538 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:48:24  [ main:1817 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:48:24  [ main:1843 ] - [ DEBUG ]  ==> Parameters: 李四(String), 2222(String)
+2017-03-21 20:48:24  [ main:1844 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:48:38  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:48:38 CST 2017]; root of context hierarchy
+2017-03-21 20:48:38  [ main:54 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:48:38  [ main:542 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:48:39  [ main:1825 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:48:39  [ main:1851 ] - [ DEBUG ]  ==> Parameters: 王五(String), 444(String)
+2017-03-21 20:48:39  [ main:1852 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:48:54  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:48:54 CST 2017]; root of context hierarchy
+2017-03-21 20:48:54  [ main:56 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:48:55  [ main:551 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:48:56  [ main:1860 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:48:56  [ main:1886 ] - [ DEBUG ]  ==> Parameters: 赵六(String), 555(String)
+2017-03-21 20:48:56  [ main:1887 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:49:09  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:49:09 CST 2017]; root of context hierarchy
+2017-03-21 20:49:09  [ main:50 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:49:10  [ main:779 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:49:11  [ main:2084 ] - [ DEBUG ]  ==>  Preparing: insert into admin(a_name,a_pwd) values(?,?) 
+2017-03-21 20:49:11  [ main:2118 ] - [ DEBUG ]  ==> Parameters: 田七(String), 666(String)
+2017-03-21 20:49:11  [ main:2119 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-21 20:49:17  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12833ff: startup date [Tue Mar 21 20:49:17 CST 2017]; root of context hierarchy
+2017-03-21 20:49:17  [ main:54 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-21 20:49:17  [ main:555 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-21 20:49:19  [ main:1904 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.AdminMapper]: 0.0
+2017-03-21 20:49:19  [ main:1914 ] - [ DEBUG ]  ==>  Preparing: select a_id,a_name,a_pwd from admin order by a_id desc 
+2017-03-21 20:49:19  [ main:1943 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-21 20:49:19  [ main:1964 ] - [ DEBUG ]  <==      Total: 5
