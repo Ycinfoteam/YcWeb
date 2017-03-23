@@ -17,6 +17,21 @@ public class Activities implements Serializable {
 	private String ac_illus;	//说明
 	private String ac_pic;     //图片（多图）
 	private List<MultipartFile> ac_picUrl;//对应界面上的<input type="file" name="pdfsUrl"/>
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public List<String> getac_picStringList(){
 		List<String>list=new ArrayList<String>();
 		if(ac_pic!=null&&ac_pic.length()>0){

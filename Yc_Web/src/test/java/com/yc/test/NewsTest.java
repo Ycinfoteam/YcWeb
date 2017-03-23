@@ -22,8 +22,8 @@ public class NewsTest {
 		Date d=new Date();
 		return d.getTime();
 	}
-	@Test
-	public void testAddNews() {//测试添加新闻方法ok
+	
+	/*public void testAddNews() {//测试添加新闻方法ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		NewsBiz nb=(NewsBiz) ac.getBean("newsBizImpl");
 		News news=new News();
@@ -34,7 +34,7 @@ public class NewsTest {
 		news.setN_time(new Timestamp(getCurrentTime()));
 		news.setN_title("23333");
 		nb.addNews(news);
-	}
+	}*/
 	@Test
 	public void testSelectAllNews(){//测试查询所有新闻方法ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
@@ -51,15 +51,15 @@ public class NewsTest {
 		List<News> newsList=nb.selectNewsById(news);
 		System.out.println(newsList);
 	}
-	@Test
+	/*@Test
 	public void testDeleteNewsById(){//测试根据新闻编号删除新闻ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		NewsBiz nb=(NewsBiz) ac.getBean("newsBizImpl");
 		News news=new News();
 		news.setN_id(1);
 		nb.deleteNewsById(news);
-	}
-	@Test
+	}*/
+	/*@Test
 	public void testUpdateNews(){//测试更新一条新闻数据ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		NewsBiz nb=(NewsBiz) ac.getBean("newsBizImpl");
@@ -73,5 +73,5 @@ public class NewsTest {
 		news.setN_title("8888");
 		// TODO : 如果这里只设置了要改的字段，则其它字段会被修改成默认值，即string 会变成NULL
 		nb.updateNews(news);
-	}
+	}*/
 }

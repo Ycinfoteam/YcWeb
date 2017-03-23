@@ -77,19 +77,10 @@ public class Test extends TestCase {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		ProjectsBiz bab = (ProjectsBiz) ac.getBean("projectsBizImpl");
 		Projects ba = new Projects();
-		List<Projects> list = bab.findall();
+		List<Projects> list = bab.findall(ba);
 		System.out.println(list);
 	}
 
-	// 根据条件查询学生项目
-	public void testProselectby() throws SQLException {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-		ProjectsBiz bab = (ProjectsBiz) ac.getBean("projectsBizImpl");
-		Projects ba = new Projects();
-		ba.setP_name("xixi");
-		List<Projects> list = bab.findby(ba);
-		System.out.println(list);
-	}
 	////// 技术支持
 	// 添加技术支持
 	/*
@@ -161,7 +152,7 @@ public class Test extends TestCase {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		ActivitiesBiz bab = (ActivitiesBiz) ac.getBean("activitiesBizImpl");
 		Activities ba = new Activities();
-		List<Activities> list = bab.findall();
+		List<Activities> list = bab.findall(ba);
 		System.out.println(list);
 	}
 
@@ -255,7 +246,7 @@ public class Test extends TestCase {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		HistoryBiz bab = (HistoryBiz) ac.getBean("historyBizImpl");
 		History ba = new History();
-		List<History> list = bab.findall();
+		List<History> list = bab.findall(ba);
 		System.out.println(list);
 	}
 

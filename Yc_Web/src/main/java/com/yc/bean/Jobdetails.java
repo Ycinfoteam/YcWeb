@@ -23,7 +23,25 @@ public class Jobdetails implements Serializable {
 	private String jd_school; // 毕业学校
 	private String jd_profession; // 专业
 	List<MultipartFile> jd_picUrl=null;
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
 	
+	public Integer getStart() {
+		return start;
+	}
+
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
+
 	public List<MultipartFile> getJd_picUrl() {
 		return jd_picUrl;
 	}
@@ -106,6 +124,8 @@ public class Jobdetails implements Serializable {
 				+ ", jd_emptime=" + jd_emptime + ", jd_company=" + jd_company + ", jd_school=" + jd_school
 				+ ", jd_profession=" + jd_profession + ", jd_picUrl=" + jd_picUrl + "]";
 	}
+
+	
 
 	
 

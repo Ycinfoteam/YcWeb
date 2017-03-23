@@ -2,9 +2,6 @@ package com.yc.web.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,15 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.yc.bean.Projects;
 import com.yc.biz.ProjectsBiz;
+import com.yc.util.JsonModel;
+import com.yc.util.PageUtil;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
 
@@ -39,17 +39,26 @@ public class ProjectsController {
 	//查看所有学员项目
 	// produces = {"application/json;charset=UTF-8"} 设置http协议响应头，解决编码问题
 	@RequestMapping(value="/projects",produces = {"application/json;charset=UTF-8"})
-	public void toprojects(HttpServletResponse response) throws IOException{
+	public void toprojects(@ModelAttribute Projects projects,HttpServletResponse response,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
 		logger.info("selectprojects called...");
-		List<Projects>projects=this.projectsBiz.findall();
+		//处理分页
+		int start =PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
+		projects.setStart(start);
+		projects.setOffset(offset);
+		List<Projects>project=this.projectsBiz.findall(projects);
+		int total =this.projectsBiz.findCount(projects);
+		JsonModel model=new JsonModel();
+		model.setRows(project);
+		model.setTotal(total);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
-		response.getWriter().print(gson.toJson(projects));
+		response.getWriter().print(gson.toJson(model));
 	}
 	
 	//根据p_id 修改图片
 	//修改学员项目
-		@RequestMapping(value="/updatepropic")
+		@RequestMapping(value="/updatepropic",produces = {"application/json;charset=UTF-8"})
 		public void editpic(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
 			logger.info("Updateprojectpic called.....");
 			String p_pic="";
@@ -75,8 +84,8 @@ public class ProjectsController {
 			}
 	private String picRootName="uploadpic";
 	//添加学员项目
-	@RequestMapping(value="/projects_add",method=RequestMethod.POST)
-	public void projectsadd(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
+	@RequestMapping(value="/projects_add",method=RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody void projectsadd(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
 		logger.info("addprojects called....");
 		String p_pic="";
 		Projects projects = new Projects();
@@ -111,9 +120,9 @@ public class ProjectsController {
 		try {
 			this.projectsBiz.update(projects);
 		} catch (Exception e) {
-			response.getWriter().print("error");		
+			response.getWriter().print(0);		
 		}
-		response.getWriter().print("success");
+		response.getWriter().print(1);
 		}
 	//删除学员项目
 	@RequestMapping(value="/projects_delete")

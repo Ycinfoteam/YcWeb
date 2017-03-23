@@ -50,44 +50,20 @@ ul,li{
 				<div id="tt2" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			 <div title="新闻管理">
+			 <div title="内容管理">
 				<div id="tt3" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> 
-			<div title="师资管理">
-				<div id="tt4" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="课程管理">
-				<div id="tt5" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="学员项目">
-				<div id="tt6" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="关于公司">
-				<div id="tt7" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="人才招聘">
-				<div id="tt8" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			
-			 <div title="留言管理">     <!--   7.26前台去掉的模块 -->
-				<div id="tt9" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
+		
 			<!-- <div title="浏览统计">
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> -->
-			<div title="友情链接">
+			<div title="模块管理">
 				<div id="tt10" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			<div title="模块管理">
+			<div title="日志报表">
 				<div id="tt11" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -180,51 +156,28 @@ $(document).ready(
 			} ];
 			
 			var treeData3 = [ {
-				text : "新闻管理",
+				text : "内容管理",
 				children : [ {
-					text : "公司新闻",
+					text : "课程体系",
 					attributes : {
-						url : "tocompanynews"
+						url : "tocoursys",
 					}
-				} ]
-			} ];
-			
-			var treeData4 = [ {
-				text : "产品管理",
-				children : [ {
-					text : "类别管理",
+				} ,{
+					text : "教师管理",
 					attributes : {
-						url : "yyyback/product/producttype.jsp"
+						url : "toteacher"
 					}
-				}, {
-					text : "产品管理",
+				},{
+					text : "学员项目",
 					attributes : {
-						url : "yyyback/product/products.jsp"
+						url : "toprojects"
 					}
-				} ]
-			} ];
-			
-			var treeData5 = [ {
-				text : "课程体系",
+				},{text : "学员就业",
 				attributes : {
-					url : "tocoursys",
+					url : "tojobdetails"
 				}
-			} ];
-			
-			var treeData6 = [ {
-				text : "学员项目",
-				attributes : {
-					url : "toprojects"
-				}
-			},{text : "学员就业",
-			attributes : {
-				url : "tojobdetails"
 			}
-		}
-			];
-			var treeData7= [ {
-				text : "关于",
-				children : [ {
+				,{
 					text : "关于公司介绍",
 					attributes : {
 						url : "tocompany"
@@ -232,18 +185,19 @@ $(document).ready(
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : ""
+						url : "toactivities"
 					}
 				} ,{
 					text : "公司历史介绍",
 					attributes : {
 						url : "tohistory"
 					}
-				} ]
-			} ];
-			var treeData8= [ {
-				text : "人才招聘",
-				children : [{
+				} ,{
+					text : "公司新闻",
+					attributes : {
+						url : "tocompanynews"
+					}
+				} ,{
 					text : "方向信息",
 					attributes : {
 						url : "tojobtype"
@@ -261,6 +215,7 @@ $(document).ready(
 				}]
 			} ];
 			
+			
 			 var treeData9 = [ {  /*  7.26去掉留言模块 */
 				text : "留言管理",
 				attributes : {
@@ -273,14 +228,14 @@ $(document).ready(
 					url : "yyyback/count/view.jsp"
 				}
 			} ];  */
-			var treeData10 = [ {
-				text : "友情链接",
+			var treeData11 = [ {
+				text : "查看日志",
 				attributes : {
 					url : "yyyback/friendlink/friendlink.jsp"
 				}
 			} ];
 			//css
-			var treeData11 = [ {
+			var treeData10 = [ {
 				text : "前台管理",
 				children : [ {
 					text : "样式管理",
@@ -314,24 +269,7 @@ $(document).ready(
 			 $('#tt3').tree({
 				data : treeData3
 			}); 
-			$('#tt4').tree({
-				data : treeData4
-			});
-			$('#tt5').tree({
-				data : treeData5
-			});
-			$('#tt6').tree({
-				data : treeData6
-			});
-			$('#tt7').tree({
-				data : treeData7
-			});
-			$('#tt8').tree({
-				data : treeData8
-			}); 
-			/* $('#tt9').tree({
-				data : treeData9
-			}); */
+		
 			$('#tt11').tree({
 				data : treeData11
 			});

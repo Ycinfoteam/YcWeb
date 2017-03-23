@@ -21,14 +21,7 @@ public class JobdetailsBizImpl implements JobdetailsBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<Jobdetails> findall() {
-		Jobdetails jobdetails=new Jobdetails();
-		List<Jobdetails>list=this.baseDao.findAll(jobdetails, "selectJobdetails");
-		return list;
-	}
-
-	@Override
-	public List<Jobdetails> findby(Jobdetails jobdetails) {
+	public List<Jobdetails> findall(Jobdetails jobdetails) {
 		List<Jobdetails>list=this.baseDao.findAll(jobdetails, "selectJobdetails");
 		return list;
 	}
@@ -49,6 +42,12 @@ public class JobdetailsBizImpl implements JobdetailsBiz {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public void update(Jobdetails jobdetails) {
 		this.baseDao.update(jobdetails, "updateJobdetails");
+
+	}
+	@Override
+	public int findCount(Jobdetails jobdetails) {
+		int count=(int) this.baseDao.fundFunc(jobdetails, "countJobdetails");
+		return count;
 
 	}
 

@@ -17,57 +17,21 @@ public class Projects implements Serializable {
 	private String p_time;		//开发时间
 	private String p_addr;     //项目发布地址 
 	private List<MultipartFile> p_picUrl;//对应界面上的<input type="file" name="pdfsUrl"/>
-	/*private int start;
-	private int end;
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
 	
-	public int getStart() {
+	public Integer getStart() {
 		return start;
 	}
-	public void setStart(int start) {
+	public void setStart(Integer start) {
 		this.start = start;
 	}
-	public int getEnd() {
-		return end;
+	public Integer getOffset() {
+		return offset;
 	}
-	public void setEnd(int end) {
-		this.end = end;
+	public void setOffset(Integer offset) {
+		this.offset = offset;
 	}
-	/*private List<Projects> rows;// 页面显示数据
-	private int total; // 页面分页数据
-	private  int currentPage=1;
-	private int pageSize=9;
-	private int maxPage=1;
-	
-	public List<Projects> getRows() {
-		return rows;
-	}
-	public void setRows(List<Projects> rows) {
-		this.rows = rows;
-	}
-	public int getTotal() {
-		return total;
-	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
-	public int getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-	public int getMaxPage() {
-		return maxPage;
-	}
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
-	}*/
 	public Integer getP_id() {
 		return p_id;
 	}

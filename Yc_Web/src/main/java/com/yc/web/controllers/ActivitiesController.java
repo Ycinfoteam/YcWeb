@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,8 @@ import com.google.gson.Gson;
 import com.yc.bean.Activities;
 import com.yc.bean.Projects;
 import com.yc.biz.ActivitiesBiz;
+import com.yc.util.JsonModel;
+import com.yc.util.PageUtil;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
 
@@ -37,18 +40,26 @@ public class ActivitiesController {
 	}
 	//查看公司活动
 	@RequestMapping(value="/activities")
-	public void toprojects(HttpServletResponse response) throws IOException{
+	public void toactivities(@ModelAttribute Activities activities,HttpServletResponse response,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
 		logger.info("selectactivities called...");
-		List<Activities>activities=this.activitiesBiz.findall();
+		int start =PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
+		activities.setStart(start);
+		activities.setOffset(offset);
+		List<Activities>activitie=this.activitiesBiz.findall(activities);
+		int total =this.activitiesBiz.findCount(activities);
+		JsonModel model=new JsonModel();
+		model.setRows(activitie);
+		model.setTotal(total);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
-		response.getWriter().print(gson.toJson(activities));
+		response.getWriter().print(gson.toJson(model));
 	}
 	private String picRootName="uploadpic";
-	//添加学员项目
+	//添加公司活动
 	@RequestMapping(value="/activities_add",method=RequestMethod.POST)
-	public void projectsadd(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
-		logger.info("addprojects called....");
+	public void activitiesadd(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
+		logger.info("addactivities called....");
 		String ac_pic="";
 		Activities activities = new Activities();
 		activities.setAc_illus(request.getParameter("ac_illus"));
@@ -75,15 +86,21 @@ public class ActivitiesController {
 
 	//修改学员项目
 	@RequestMapping(value="/activities_update")
-	public String activitieslist(Activities activities){
+	public void activitieslist(Activities activities,HttpServletResponse response) throws IOException{
 		logger.info("UpdateActivities called.....");
-		this.activitiesBiz.update(activities);
-		return "redirect:/activities";
-	}
-	//修改学员项目图片
+		System.out.println(activities.getAc_illus());
+		try {
+			this.activitiesBiz.update(activities);
+		} catch (Exception e) {
+			response.getWriter().print(0);		
+		}
+		response.getWriter().print(1);
+		}
+	
+	//修改公司活动图片
 	@RequestMapping(value="/updateacpic")
 	public void editpic(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
-		logger.info("Updateprojectpic called.....");
+		logger.info("Updateactivitiespic called.....");
 		String ac_pic="";
 		Activities activities=new Activities();
 		activities.setAc_picUrl(file);

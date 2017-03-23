@@ -41,7 +41,6 @@ public class ApplyJobController {
 		int offset=PageUtil.judgeOffset(rows);
 		//处理时间
 		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
-		
 		applyJob.setA_time(date); 
 		applyJob.setStart(start);
 		applyJob.setOffset(offset);
