@@ -29,6 +29,7 @@
     <script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="../js/teacher.js" type="text/javascript"></script>
+    <script src="../js/datadictionary.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">
@@ -58,10 +59,8 @@
             <div class="aboutMe">
                 <h3>关于源辰</h3>
                 <p class="about_title">发布：衡阳源辰IT培训学校      来源：关于源辰     时间：2016-08-03</p>
-                <p>
-                    源辰信息科技是一家定位于大学生软件开发实战培训和企事业单位系统集成、项目研发于一体的综合性软件公司，以大学生高起点就业和为企事业单位提供信息化解决方案为目标。
-                    公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。
-                    我们的宗旨是服务于学生，致力于企业。
+                <p id="finddescription">
+                  
                 </p>
                 <a href="joinUs.jsp" style="height:40px;margin-left:600px;color:red;">加入我们</a>
             </div>
@@ -122,16 +121,8 @@
 </div>
 
 <div id="footer">
-    <div class="address">
-        <p>
-            <span>电话：0734-8355998</span>
-            <span>QQ：1728952785</span>
-            <span>邮政编码：421141</span>
-        </p>
-        <p>
-            <span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
-            <span>地址：衡阳市解放西路丽天名园905室</span>
-        </p>
+    <div id="findfooter" class="address">
+
     </div>
 </div>
 </body>

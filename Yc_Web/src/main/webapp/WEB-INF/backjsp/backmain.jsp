@@ -154,29 +154,19 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "datadict_introduction_selectDatadict.action?type=公司简介"
+						url : "toDataDictionaryDescription"
 					}
-				}, /* {
-					text : "销售网络",
-					attributes : {
-						url : "datadict_salesnet_selectDatadict.action?type=销售网络"
-					}
-				}, */ {
+				},{
 					text : "页脚文字",
 					attributes : {
-						url : "datadict_footwords_selectDatadict.action?type=页脚文字"
+						url : "toDataDictionaryFooter"
 					}
 				},{
 					text : "公司logo",
 					attributes : {
-						url : "logo.jsp"
+						url : "toDataDictionaryLogo"
 					}
-				} ,{
-					text : "前台大图",
-					attributes : {
-						url : "yyyback/datadict/bigpic.jsp"
-					}
-				} ] 
+				}] 
 			} ];
 			
 			var treeData3 = [ {

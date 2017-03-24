@@ -11,9 +11,14 @@
 		select count(*) from admin
 	</select>
 	
-	<!-- 根据条件职位 -->
+	
 	<select id="findAdmin"  parameterType="Admin" resultType="Admin">
 		select a_id,a_name,a_pwd from admin 
+		<trim prefix="where" suffixOverrides="and">
+			<if test="a_name!=null">
+				a_name=#{a_name } and
+			</if>
+		</trim>
 		order by a_id desc
 		<if test="start!=null and offset!=null">
 			limit #{start},#{offset}

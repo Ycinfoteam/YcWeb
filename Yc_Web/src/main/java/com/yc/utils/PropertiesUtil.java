@@ -62,6 +62,6 @@ public class PropertiesUtil {
 	 
 	public static void main(String[] args) throws IOException {
 		//System.out.println(readProperties("admin.properties"));
-		//writeProperties("admin.properties", "李润泽", "110");
+		//writeProperties("admin.properties", "李润泽", "18374727391");
 	}
 }

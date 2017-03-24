@@ -65,6 +65,20 @@ public class AdminController {
 		return 1;
 	}
 	
+	@RequestMapping(value="login")
+	public @ResponseBody int login(@ModelAttribute Admin admin){
+		log.info("login called...");
+		
+		//TODO:数据库加密
+		
+		List<Admin> list=this.adminBiz.findAdmin(admin);
+		if(list!=null && list.size()>0){
+			if(list.get(0).getA_pwd().equals(admin.getA_pwd())){
+				return 1;
+			}
+		}
+		return 0;
+	}
 	
 	
 }

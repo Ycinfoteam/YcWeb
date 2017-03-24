@@ -5,6 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
+	
+	//去后台登录
+	@RequestMapping(value="/tobacklogin")
+	public String tobacklogin(){
+		return "backjsp/backlogin";
+	}
 
 	//去后台主页
 	@RequestMapping(value="/tobackmain")
@@ -16,6 +22,24 @@ public class IndexController {
 	@RequestMapping(value = "/toindex")
 	public String toindex() {
 		return "jsp/about";
+	}
+	
+	//去数据字典footer
+	@RequestMapping(value="toDataDictionaryFooter")
+	public String toDataDictionaryFooter(){
+		return "backjsp/datadictionary/footer";
+	}
+	
+	//去数据字典description
+	@RequestMapping(value="toDataDictionaryDescription")
+	public String toDataDictionaryDescription(){
+		return "backjsp/datadictionary/description";
+	}
+	
+	//去数据字典logo
+	@RequestMapping(value="toDataDictionaryLogo")
+	public String toDataDictionaryLogo(){
+		return "backjsp/datadictionary/logo";
 	}
 
 	// 去行业新闻

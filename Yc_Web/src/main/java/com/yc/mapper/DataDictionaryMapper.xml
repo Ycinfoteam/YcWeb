@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.DataDictionaryMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />	
+	
+	<select id="findDataDictionary"  parameterType="DataDictionary" resultType="DataDictionary">
+		select id,footer,description,logo from datadictionary
+	</select>
+	
+	<!-- 修改页脚内容 -->
+	<update id="updateFooter" parameterType="DataDictionary">
+		update datadictionary set footer=#{footer}
+		<where>
+			<if test="id!=null">
+				id=#{id}
+			</if>
+		</where>
+	</update>
+	
+	<!-- 修改公司简介 -->
+	<update id="updateDescription" parameterType="DataDictionary">
+		update datadictionary set description=#{description}
+		<where>
+			<if test="id!=null">
+				id=#{id}
+			</if>
+		</where>
+	</update>
+	
+	<!-- 修改图片 -->
+	<update id="updateLogo" parameterType="DataDictionary">
+		update datadictionary set logo=#{logo}
+		<where>
+			<if test="id!=null">
+				id=#{id}
+			</if>
+		</where>
+	</update>
+
+
+
+</mapper>
