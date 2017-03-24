@@ -32,7 +32,14 @@
 </style>
        <table id="hsdg">
 </table>
-
+<!-- <div id="hstoolbar" style="display">
+		<label>条件查询：</label> 
+		<input id="findhsBytime" class="easyui-combobox" name="dept"  
+   			 data-options="valueField:'h_createtime',textField:'h_createtime',url:'showhstime'" />
+   			  <a id="btn1" href="javascript:void(0)" class="easyui-linkbutton" 
+			data-options="iconCls:'icon-search'" onclick="findhsBytime()" >查询</a>
+			</div>
+		 -->
 <div id="hslg" class="easyui-dialog"
 	 style=" display:none; width: 1070px; height: 480px;padding: 10px 20px" closed="true"  buttons="#history-buttons">
 	<div class="ftitle">
@@ -72,7 +79,7 @@
 <script type="text/javascript" src="backjs/jquery.form.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript">
-	
+
 	var datagrid;
 	var rowEditor=undefined;	//用于存放当前要编辑的行
 	$(function(){
@@ -93,7 +100,9 @@
         	rownumbers:"true",	//显示行号
         	nowrap:"true",	//不换行显示
         	sortName:"h_id",	//排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
-        	sortOrder:"asc",	//排序方式
+        	sortOrder:"desc",	//排序方式
+        	striped:true,	//交替显示背景
+        	singleSelect:false,
         	//以上的四种增删改查操作，只要失败，都会回掉这个onError
         	onError:function(a,b){
         		$.messager.alert("错误","操作失败");
@@ -105,8 +114,7 @@
            	 	title:'编号',
            	 	width:100,
            	 	align:'center',
-           	 	hidden:'true'
-           	 	
+           	 	hidden:'true',
            	 },{
            	 	field:'h_content',
            	 	title:'内容',
@@ -167,7 +175,7 @@
 					$('#dg').edatagrid('loadData')
 				}
 			},'-',{
-				text:"保存",
+				text:"修改后保存",
 				iconCls: 'icon-save',
 				handler: function(){
 					$('#hsdg').edatagrid('saveRow')
@@ -178,13 +186,21 @@
 				handler: function(){
 					$('#hsdg').edatagrid('cancelRow')
 				}
-			}]
-			
+			}
+			]
     	});
-    	
+	  // $(".datagrid-toolbar").append($("#hstoolbar"));
     	
     });
 
+	
+	function findhsBytime(){
+		var h_createtime=$('#findhsBytime').combobox('getValue');
+
+		$('#hsdg').datagrid({
+			queryParams:{h_createtime:h_createtime}
+		});
+	}
 	  function savehistory(){
 			$("#hsfm").ajaxSubmit({
 				type : "post",

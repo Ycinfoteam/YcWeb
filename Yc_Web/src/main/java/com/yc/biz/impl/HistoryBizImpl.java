@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.Aboutyc;
 import com.yc.bean.History;
+import com.yc.bean.JobType;
 import com.yc.biz.HistoryBiz;
 import com.yc.dao.BaseDao;
 @Service
@@ -21,17 +22,11 @@ public class HistoryBizImpl implements HistoryBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<History> findall() {
-		History history=new History();
+	public List<History> findall(History history) {
 		List<History>list=this.baseDao.findAll(history, "selectHistory");
 		return list;
 	}
 
-	@Override
-	public List<History> findby(History history) {
-		List<History>list=this.baseDao.findAll(history, "selectHistory");
-		return list;
-	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
@@ -52,5 +47,11 @@ public class HistoryBizImpl implements HistoryBiz {
 	public void update(History history) {
 		this.baseDao.update(history, "updateHistory");
 	}
+	@Override
+	public int findCount(History history) {
+		int count=(int) this.baseDao.fundFunc(history, "countHistory");
+		return count;
+	}
+	
 
 }

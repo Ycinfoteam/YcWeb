@@ -87,12 +87,14 @@ public class IndexController {
 	//去学员项目
 	@RequestMapping(value="/toprojects")
 	public String toprojects(){
+		System.out.println("学员项目");
 		return "backjsp/projects/projects";
 	}
 
 	//去学员就业
 	@RequestMapping(value="/tojobdetails")
 	public String toemploy(){
+			System.out.println("进来了");
 		return "backjsp/projects/jobdetails";
 	}
 	//去课程体系管理

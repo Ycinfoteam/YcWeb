@@ -17,7 +17,7 @@ public class Aboutyc implements Serializable {
 	private String a_address;
 	private Integer a_code;
 	private String a_copr;
-
+	
 	public String getA_tel() {
 		return a_tel;
 	}

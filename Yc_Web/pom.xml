@@ -162,7 +162,7 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>sdksource</artifactId>
 			<version>20160607</version>
-		</dependency>
+		</dependency> 
   
 	</dependencies>
 	<build>

@@ -14,6 +14,21 @@ public class History implements Serializable {
 	private String h_content;
 	private String h_creator;
 	private String h_reg;
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public Integer getH_id() {
 		return h_id;
 	}

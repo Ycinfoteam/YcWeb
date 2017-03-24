@@ -21,8 +21,7 @@ public class ActivitiesBizImpl implements ActivitiesBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<Activities> findall() {
-		Activities activities=new Activities();
+	public List<Activities> findall(Activities activities) {
 		List<Activities>list=this.baseDao.findAll(activities, "selectActivities");
 		return list;
 	}
@@ -45,6 +44,11 @@ public class ActivitiesBizImpl implements ActivitiesBiz {
 	public void update(Activities activities) {
 		this.baseDao.update(activities, "updateActivities");
 
+	}
+	@Override
+	public int findCount(Activities activities) {
+		int count=(int) this.baseDao.fundFunc(activities, "countActivities");
+		return count;
 	}
 
 	

@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.yc.bean.History;
 import com.yc.biz.HistoryBiz;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 
 @Controller
 public class HistoryController {
@@ -29,15 +33,30 @@ public class HistoryController {
 	//查看所有发展历史
 	// produces = {"application/json;charset=UTF-8"} 设置http协议响应头，解决编码问题
 	@RequestMapping(value="/history",produces = {"application/json;charset=UTF-8"})
-	public void tohistory(HttpServletResponse response) throws IOException{
+	public void tohistory(@ModelAttribute History history,HttpServletResponse response,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
 		logger.info("selecthistory called...");
-		List<History>history=this.historyBiz.findall();
+		int start =PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
+		history.setStart(start);
+		history.setOffset(offset);
+		List<History>historys=this.historyBiz.findall(history);
+		int total =this.historyBiz.findCount(history);
+		JsonModel model=new JsonModel();
+		model.setRows(historys);
+		model.setTotal(total);
 		Gson gson=new Gson();
-		System.out.println(history);
 		response.setContentType("text/html; charset=utf-8");
-		response.getWriter().print(gson.toJson(history));
+		response.getWriter().print(gson.toJson(model));
 	}
-		
+
+	@RequestMapping(value="showhstime",produces ="text/html;charset=UTF-8")
+	public @ResponseBody String showhstime(@ModelAttribute History history){
+		logger.info("showhstime called...");
+		List<History> list=this.historyBiz.findall(history);
+		Gson gson =new Gson();
+		return gson.toJson(list);
+	}
+
 
 		//添加学员项目
 		@RequestMapping(value="/history_add")
