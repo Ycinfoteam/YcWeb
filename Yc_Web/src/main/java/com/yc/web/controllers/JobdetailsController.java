@@ -59,7 +59,7 @@ public class JobdetailsController {
 
 	// 根据Jd_id 修改图片
 	// 修改学员项目
-	@RequestMapping(value = "/updatejdpic")
+	@RequestMapping(value = "/updatejdpic",produces = {"application/json;charset=UTF-8"})
 	public void editpic(@RequestParam(value = "jd_pic") List<MultipartFile> file, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		logger.info("Updatejobdetailspic called.....");
@@ -103,8 +103,8 @@ public class JobdetailsController {
 		jobdetails.setJd_school(request.getParameter("jd_school"));
 		jobdetails.setJd_emptime(request.getParameter("jd_emptime"));
 		jobdetails.setJd_company(request.getParameter("jd_company"));
+		jobdetails.setJd_palace(request.getParameter("jd_palace"));
 		jobdetails.setJd_picUrl(file);
-		System.out.println(jobdetails.getJd_name() + jobdetails.getJd_profession());
 		// 上传
 		Map<String, UploadFile> map = UploadFileUtil.uploadFile(request, jobdetails.getJd_picUrl(), picRootName);
 		for (Entry<String, UploadFile> entry : map.entrySet()) {
@@ -125,7 +125,6 @@ public class JobdetailsController {
 	public void projectslist(HttpServletRequest request, Jobdetails jobdetails, HttpServletResponse response)
 			throws IOException {
 		logger.info("Updatejobdetails called.....");
-		System.out.println(jobdetails.getJd_name() + jobdetails.getJd_pic());
 		try {
 			this.jobdetailsBiz.update(jobdetails);
 		} catch (Exception e) {

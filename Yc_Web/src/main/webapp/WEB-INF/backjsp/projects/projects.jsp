@@ -40,7 +40,9 @@
 	closed="true" buttons="#piclg-buttons" >
 	<form id="picfm" method="post" enctype="multipart/form-data" novalidate>
 		<div class="fitem">
-			<label>重新上传图片:</label> <input id="p_pic" name="p_pic" type="file" multiple="multiple"  />
+			<label>重新上传图片:</label> 
+			<input type="hidden" name="p_id" id="pid" />
+			<input id="p_pic" name="p_pic" type="file" multiple="multiple"  />
 			<img id="updateppicview" src="" style="width:100px;height:100px; display:none "/>
 		</div>
 		<div class="fitem">
@@ -266,7 +268,6 @@
 	
 
 	$("#p_pic").change(function(){
-		alert(1);
 		var objUrl = getObjectURL(this.files[0]) ;
 		document.getElementById("updateppicview").style.display='block';
 		//console.log("objUrl = "+objUrl) ;
@@ -303,27 +304,25 @@
 			$.messager.alert('提示', '请选择一个图片文件，再点击添加');
 			return;
 		}
-		$("#honorfm").ajaxSubmit({
-			type : "POST",
-			url : "projects_add",
-			contentType : "application/x-www-form-urlencoded; charset=utf-8",
-			success : function(data1) {
-				var dataObj=eval("("+data1+")");
-				alert(dataObj.code);
-				if (dataObj.code==1) {
-					$.messager.alert('Info', '添加成功');
-				}
-			},
-			error : function(data1) {
-				var dataObj=eval("("+data1+")");
-				alert(dataObj.code);
-				$.messager.alert('Info', '系统出现错误请联系管理员');
-			}
-		});
-		$('#honordlg').dialog('close');
-		$('#projectdg').edatagrid('reload');
-
+			$("#honorfm").submit();
+		
 	}
+	$("#honorfm").form({
+		url:"projects_add",
+		success:function(data){
+			if(data==1){
+				$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+			}else{
+				$.messager.alert('错误提示', '添加失败！');
+			}
+			$('#honordlg').dialog('close');
+			$("#honorfm").form('clear');
+			$('#projectdg').edatagrid('load');
+		},error : function(data) {
+			$.messager.alert('错误提示', '系统出现错误请联系管理员');
+		}
+	},'json');
+		
 	//修改图片
 	function updatepic(id) {
 		$('#uploadFiles').dialog({
@@ -337,6 +336,23 @@
 			}
 		});
 	}
+	//修改图片的表单提交
+	$("#picfm").form({
+		url : "updatepropic",
+		success:function(data){
+			if(data==1){
+				$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+			}else{
+				$.messager.alert('错误提示', '修改失败！');
+			}
+			$('#uploadFiles').dialog('close');
+			$('#projectdg').edatagrid('load');
+		},error : function(data) {
+			$.messager.alert('错误提示', '系统出现错误请联系管理员');
+		}
+	},'json');
+	
+	//修改图片
 	function update() {
 		var options = $('#uploadFiles').dialog('options');
 		var p_id = options.queryParams.p_id;
@@ -344,29 +360,13 @@
 			$.messager.alert('提示', '未选中信息');
 			return;
 		}
-		/*if ($("#p_pic").val() == "") {
+		if ($("#p_pic").val() == "") {
 			$.messager.alert('提示', '请选择一个图片文件，再点击修改');
 			return;
-		}*/
-		
-		$("#picfm").form({
-			url:"updatepropic",
-			success:function(data){
-				alert(data);
-				if(data==1){
-					$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
-				}else{
-					$.messager.alert('错误提示', '添加失败！');
-				}
-				$('#uploadFiles').dialog('close');
-				$("#picfm").form('clear');
-				$('#projectdg').edatagrid('load');
-			}
-		},'json');
-		function saveCoursysInfo(){
-			$("#picfm").submit();
 		}
-	}
+			
+		$("#pid").val(p_id);
+		$("#picfm").submit();
 		/*$("#picfm").ajaxSubmit({
 			type : "POST",
 			url : "updatepropic",
@@ -376,22 +376,18 @@
 			},
 			dataType : "json",
 			success : function(data1) {
-				var dataObj=eval("("+data1+")");
-				alert(dataObj.code);
-				if (dataObj.code==1) {
 					$.messager.alert('Info', '添加成功');
-				}
 			},
 			error : function(data1) {
-				var dataObj=eval("("+data1+")");
-				alert(dataObj.code);
 				$.messager.alert('Info', '系统出现错误请联系管理员');
 			}
-		});
-		$('#uploadFiles').dialog('close');
-		$('#projectdg').edatagrid('reload');
+		});*/
+	
+	
 	}
-		*/
+	
+	
+     //改变P_time
 	$('input[name="p_time"]').datebox({
 		required : true
 	});
@@ -409,7 +405,7 @@
 	        },   
 	        message: '请输入中、英文字母、数字，长度1~10位！'  
 	    },
-	    numberRex:{
+	   /* numberRex:{
 	    	validator: function(value, param){  
 	        	var reg=/^([1-9][0-9]*)+(.[0-9]{1,2})?$/;//非零开头的最多带两位小数的数字
 	        	if(reg.test(value)){
@@ -417,15 +413,15 @@
 	        	}
 	        },   
 	        message: '请输入最多带两位小数的数字！' 
-	    }
-	   /* teacherRex:{
+	    }*/
+	    teacherRex:{
 	    	validator: function(value, param){  
 	        	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，中文的组合
 	        	if(reg.test(value)){
 	        		return true;
 	        	}
 	        },   
-	        message: '请输入英文或中文的教师姓名！' 
-	    }*/ 
+	        message: '请输入英文或中文的姓名！' 
+	    } 
 	}); 
 </script>

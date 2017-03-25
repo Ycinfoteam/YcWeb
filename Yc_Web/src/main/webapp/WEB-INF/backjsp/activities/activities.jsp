@@ -21,12 +21,10 @@ a{text-decoration:none}
 .activities_pic{width:580px;height:400px;position:relative;overflow:hidden}
 .activities_pic .pic{width:9999px;height:400px}
 .activities_pic .pic li{width:580px;height:400px;float:left}
-.activities_pic .anniu{width:100px;height:16px;position:absolute;float:left;left:165px;top:470px}
-.activities_pic .anniu li{width:16px;height:16px;background:white;float:left;margin:2px;display:inline;
-cursor:pointer;border-radius:100%}
+
 .activities_pic .lr .pre{width:20px;height:50px;float:left;background:none repeat scroll 0px 0px rgba(1, 0, 0, 0.6);text-align:center;line-height:50px;cursor:pointer}
 .activities_pic .lr .next{width:20px;height:50px;float:right;background:none repeat scroll 0px 0px rgba(1, 0, 0, 0.6);text-align:center;line-height:50px;cursor:pointer}
-.activities_pic .anniu li.on{background:red;float:left;}
+
 .activities_pic .lr{width:580px;height:40px;position:absolute;top:200px;display:none}
 .activities_pic .lr a{color:white}
 #p{float:left}
@@ -50,6 +48,7 @@ cursor:pointer;border-radius:100%}
 <form id="acpicfm" method="post" enctype="multipart/form-data" novalidate>
        <div class="fitem">	
         <label>重新上传图片:</label>	
+        	<input type="hidden" name="ac_id" id="acid" />
         	<input id="ac_pic" name="ac_pic" type="file" multiple="multiple"/>
         	<!-- <img id="updateacpicview" src="" style="width:100px;height:100px; display:none "/>
         	 -->
@@ -242,7 +241,7 @@ cursor:pointer;border-radius:100%}
     	
     	
     });
-	
+	//添加照片预览
 	function preacpic(file){
 		$('div.activities_addpic').empty('');
 		for(var i=0;i<file.files.length;i++){
@@ -255,7 +254,7 @@ cursor:pointer;border-radius:100%}
 	}
 	
 	
-	
+	//修改照片预览
 $("#ac_pic").change(function(){
 	$('div.activities_prepic').empty('');
 	for(var i=0;i<this.files.length;i++){
@@ -292,7 +291,7 @@ function showacpic(){
 	for(var i=0;i<a_pic.length-1;i++){
 		a_pic[i]=a_pic[i].substring(22);
 		$('div.activities_pic').prepend(
-				'<li><a><img class="lazyload" height="400" width="580" src="../'+a_pic[i]+'"visibility="hidden""></a></li>');
+				'<li><a><img class="lazyloads" height="400" width="580" src="../'+a_pic[i]+'"visibility="hidden""></a></li>');
 	}
 	$('div.activities_pic').append('</ul><ul class="lr"><li class="pre"><a> < </a></li>'+
 		      '<li class="next"><a>></a></li>'+
@@ -300,7 +299,7 @@ function showacpic(){
 	
 	
 
-	var images =document.getElementsByClassName('lazyload');
+	var images =document.getElementsByClassName('lazyloads');
     var pos = 0;
     var len = images.length;
     
@@ -319,7 +318,7 @@ function showacpic(){
           if(pos<0){
         	  alert('没有更多图片了,将回到第'+len+'张');
           }else{
-        	  alert('第'+i+'张/共'+len+'张');
+        	 // alert('第'+i+'张/共'+len+'张');
           }
           pos=(pos+len)%len;
          images[pos].style.display = 'inline';
@@ -332,7 +331,7 @@ function showacpic(){
       if(pos>=len){
     	  alert('没有更多图片了,将回到第一张');
       }else{
-    	  alert('第'+i+'张/共'+len+'张');
+    	 // alert('第'+i+'张/共'+len+'张');
       }
       pos=pos%len;
       images[pos].style.display = 'inline';
@@ -369,46 +368,51 @@ function showacpic(){
 		if(undefined==ac_id){
 			$.messager.alert('提示','未选中信息');
 		return;
-		}
-		$("#acpicfm").ajaxSubmit({
-			type : "POST",
-			url : "updateacpic",
-			contentType : "application/x-www-form-urlencoded",
-			data:{ac_id:ac_id},
-			dataType:"json",
-			success : function(data1) {
-				if(  data1==1){	
-					$.messager.alert('Info','添加成功'); 
-				}
-			},error:function(data1){
-				if(data1==0){
-				$.messager.alert('Info','添加失败'); 
-			}
-		}
-		});
-	$('#updateacp').dialog('close');
-	$('#acdg').edatagrid('reload');
+		}	
+		$("#acid").val(ac_id);
+		$("#acpicfm").submit();
+		
 	}
+	//修改图片的表单提交
+	$("#acpicfm").form({
+		url : "updateacpic",
+		success:function(data){
+			if(data==1){
+				$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+			}else{
+				$.messager.alert('错误提示', '修改失败！');
+			}
+			$('#updateacp').dialog('close');
+			$("#acpicfm").form('clear');
+			$('#acdg').edatagrid('load');
+		},error : function(data) {
+			$.messager.alert('错误提示', '系统出现错误请联系管理员');
+		}
+	},'json');
 
 	  function saveactivities(){
 		  if ($("#aac_pic").val() == "") {
 				$.messager.alert('提示', '请选择一个图片文件，再点击添加');
 				return;
 			}
-			$("#acfm").ajaxSubmit({
-				type : "post",
-				url : "activities_add",
-				contentType : "application/x-www-form-urlencoded",
-				success : function(data1) {
-					if(  data1==1){	
-						$.messager.alert('Info','添加成功'); 
-					}
-				
-				}
-			});
-		$('#aclg').dialog('close');
-			$('#acdg').dialog('reload');
+			$("#acfm").submit();
 		}
+	  $("#acfm").form({
+			url:"activities_add",
+			success:function(data){
+				if(data==1){
+					$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+				}else{
+					$.messager.alert('错误提示', '添加失败！');
+				}
+				
+				$('#aclg').dialog('close');
+				$("#acfm").form('clear');
+				$('#acdg').edatagrid('reload');
+			},error : function(data) {
+				$.messager.alert('错误提示', '系统出现错误请联系管理员');
+			}
+		},'json');
 	  $('input[name="ac_time"]').datebox({
 			required:true
 		});

@@ -202,23 +202,24 @@
 		});
 	}
 	  function savehistory(){
-			$("#hsfm").ajaxSubmit({
-				type : "post",
-				url : "history_add",
-				contentType : "application/x-www-form-urlencoded",
-				success : function(data1) {
-					if(  data1==1){	
-						$.messager.alert('提示框','添加成功'); 
-					}else{
-						$.messager.alert('提示框','添加失败');
-					}
-				
-				}
-			});
-		$('#hslg').dialog('close');
-		$('hsdg').resetForm();
-			$('#hsdg').dialog('reload');
+			$("#hsfm").submit();
+	
 		}
+	  $("#hsfm").form({
+			url : "history_add",
+			success:function(data){
+				if(data==1){
+					$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+				}else{
+					$.messager.alert('错误提示', '修改失败！');
+				}
+				$('#hslg').dialog('close');
+				$('#hsdg').edatagrid('load');
+				},error : function(data) {
+				$.messager.alert('错误提示', '系统出现错误请联系管理员');
+			}
+		},'json');
+
 	  $('input[name="h_createtime"]').datebox({
 			required:true
 		});

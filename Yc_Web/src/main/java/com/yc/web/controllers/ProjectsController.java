@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.yc.bean.Projects;
@@ -62,6 +63,9 @@ public class ProjectsController {
 		public void editpic(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
 			logger.info("Updateprojectpic called.....");
 			String p_pic="";
+	        MultipartHttpServletRequest multipartRequest  =  (MultipartHttpServletRequest) request;  
+	        //  获得图片（根据前台的name名称得到上传的文件）   
+	        MultipartFile imgFile  =  multipartRequest.getFile("p_pic");
 			Projects projects=new Projects();
 			projects.setP_picUrl(file);
 			String id=request.getParameter("p_id");
@@ -76,16 +80,15 @@ public class ProjectsController {
 			try {
 				this.projectsBiz.update(projects);
 			} catch (Exception e) {
-				response.getWriter().print(0);		
-
+				response.getWriter().print(0);	
 			}
-
-			response.getWriter().print(1);		
+			//response.getWriter().print("{\"success\": true}");	
+			response.getWriter().print(1);
 			}
 	private String picRootName="uploadpic";
 	//添加学员项目
 	@RequestMapping(value="/projects_add",method=RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-	public @ResponseBody void projectsadd(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
+	public @ResponseBody int projectsadd(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
 		logger.info("addprojects called....");
 		String p_pic="";
 		Projects projects = new Projects();
@@ -107,14 +110,14 @@ public class ProjectsController {
 		try {
 			projectsBiz.add(projects);
 		} catch (Exception e) {
-			response.getWriter().print(0);		
+			return 0;		
 		}
-		response.getWriter().print(1);
+		return 1;
 	}
 	
 
 	//修改学员项目
-	@RequestMapping(value="/projects_update")
+	@RequestMapping(value="/projects_update",produces = {"application/json;charset=UTF-8"})
 	public void projectslist(HttpServletRequest request,Projects projects,HttpServletResponse response) throws IOException{
 		logger.info("Updateprojects called.....");
 		try {
@@ -125,7 +128,7 @@ public class ProjectsController {
 		response.getWriter().print(1);
 		}
 	//删除学员项目
-	@RequestMapping(value="/projects_delete")
+	@RequestMapping(value="/projects_delete",produces = {"application/json;charset=UTF-8"})
 	public String tobook(@RequestParam int id){
 		logger.info("Deleteprojects called.....");
 		Projects projects=new Projects();

@@ -39,6 +39,7 @@
 <form id="jdpicfm" method="post" enctype="multipart/form-data" novalidate>
        <div class="fitem">	
         <label>重新上传图片:</label>	
+        <input type="hidden" name="jd_id" id="jdid" />
         	<input id="jd_pic" name="jd_pic" type="file" />
         	<img id="updatejdpicview" src="" style="width:100px;height:100px; display:none "/>
         	</div>
@@ -60,7 +61,7 @@
 			<label>
 				学员名字:
 			</label>
-			<input name="jd_name" class="easyui-textbox" required="true"></input>
+			<input name="jd_name" class="easyui-textbox" required="true" validType="nameRex"></input>
 			</div>
 			<div class="fitem">
 			<label>
@@ -72,21 +73,29 @@
 			<label>
 				就业时间:
 			</label>
-			<input name="jd_emptime" class="easyui-textbox"></input>
+			<input name="jd_emptime" class="easyui-textbox" ></input>
 		
 			</div>
 			<div class="fitem">
 			<label>
+				就业地址:
+			</label>
+			<input name="jd_palace" class="easyui-textbox" required="true" validType=""></input>
+		</div>
+			<div class="fitem">
+			<label>
 				所在公司:
 			</label>
-			<input name="jd_company" class="easyui-textbox" required="true"></input>
+			<input name="jd_company" class="easyui-textbox" required="true" validType=""></input>
 		</div>
+		
 		<div class="fitem">
 			<label>
 				毕业学校:
 			</label>
-			<input name="jd_school" class="easyui-textbox" required="true"></input>
+			<input name="jd_school" class="easyui-textbox" required="true" validType=""></input>
 		</div>
+		
 		<div class="fitem">
 			<label>
 				专业:
@@ -105,7 +114,7 @@
 <!-- 修改界面按钮 -->
 <div id="ppiclg-buttons"  style=" display:none;">
 	<a  class="easyui-linkbutton c6"
-		 iconCls="icon-ok"  onclick="update()"
+		 iconCls="icon-ok"  onclick="updatejob()"
 		style="width: 90px">Save</a>
 	<a class="easyui-linkbutton"
 		iconCls="icon-cancel" onclick="javascript:$('#updateFiles').dialog('close')"
@@ -207,6 +216,18 @@
      	 		}
          		},
             	 },
+             	 {
+             	 	field:'jd_palace',
+             	 	title:'就业地址',
+             	 	width:100,
+             	 	align:'center',
+             	 editor:{
+             		type:'validatebox',
+      	 		options:{
+      	 			required:true,
+      	 		}
+          		},
+             	 },
             	 {
                 	 	field:'jd_company',
                 	 	title:'所在公司',
@@ -307,6 +328,7 @@
     	
     	
     });
+	//添加图片预览
 	function prejdpic(file){
 		var objUrl = getObjectURL(file.files[0]) ;
 		document.getElementById("addjdpicview").style.display='block';
@@ -314,12 +336,10 @@
 			$("#addjdpicview").attr("src", objUrl) ;
 		}
 	}
-
+//图片预览
 $("#jd_pic").change(function(){
-	alert(1);
 	var objUrl = getObjectURL(this.files[0]) ;
 	document.getElementById("updatejdpicview").style.display='block';
-	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
 		$("#updatejdpicview").attr("src", objUrl) ;
 	}
@@ -342,37 +362,42 @@ function showjdpic(){
 	var jd_name=$('#jobdetailsdg').datagrid('getSelected').jd_name;
 	jd_pic=jd_pic.replace(",","");
 	jd_pic=jd_pic.substring(22);
-	      
-	  
+
 	$("#jdpic").attr("src","../"+jd_pic);
 		$('#showjdpic').dialog('open').dialog('setTitle',jd_name);
 	
 }
+//添加图片
 	  function saveHonor(){
 		  if ($("#ajd_pic").val() == "") {
 				$.messager.alert('提示', '请选择一个图片文件，再点击添加');
 				return;
 			}
-		$("#jobfm").ajaxSubmit({
-				type : "POST",
-				url : "jobdetails_add",
-				contentType : "application/x-www-form-urlencoded",
-				dataType:"json",
-				success : function(data1) {
-					if(  data1==1){	
-						$.messager.alert('Info','添加成功'); 
-					}
-				
-				}
-			});
-		$('#jobdetailsdg').edatagrid('load');
-		$('#joblg').dialog('close');
+	$("#jobfm").submit();
 			
 		}
+		//添加图片的表单提交
+		$("#jobfm").form({
+			url : "jobdetails_add",
+			success : function(data) {
+				if(data==1){
+					$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+				}else{
+					$.messager.alert('错误提示', '添加失败！');
+				}
 		
+				$('#joblg').dialog('close');
+				$("#jobfm").form('clear');
+				$('#jobdetailsdg').edatagrid('load');
+			},error :function(data){
+				$.message.alert('温馨提示','系统出错请与管理员联系')
+			}
+			
+		},'json');
+
 		function updatepic(id){
 			$('#updateFiles').dialog({
-				title:'修改项目图片',
+				title:'修改学员图片',
 				width :350,
 				height : 280,
 				closed : false,
@@ -383,38 +408,53 @@ function showjdpic(){
 					}
 			);
 		}
-		function update(){
-			if ($("#jd_pic").val() == "") {
-				$.messager.alert('提示', '请选择一个图片文件，再点击修改');
-				return;
-			}
-			var options=$('#updateFiles').dialog('options');
-			var jd_id=options.queryParams.jd_id;
-			if(undefined==jd_id){
-				$.messager.alert('提示','未选中信息');
+		//修改图片
+			function updatejob() {
+				var options=$('#updateFiles').dialog('options');
+				var jd_id=options.queryParams.jd_id;
+		if (undefined == jd_id) {
+			$.messager.alert('提示', '未选中信息');
 			return;
-			}
-			$("#jdpicfm").ajaxSubmit({
-				type : "POST",
-				url : "updatejdpic",
-				contentType : "application/x-www-form-urlencoded",
-				data:{jd_id:jd_id},
-				dataType:"json",
-				success : function(data1) {
-					if(  data1==1){	
-						$.messager.alert('Info','添加成功'); 
-					}
-				},error:function(data1){
-					
-					$.messager.alert('Info','添加失败'); 
-				
-			}
-			});
-		$('#updateFiles').dialog('close');
-		$('#jobdetailsdg').edatagrid('reload');
+		}
+		if ($("#jd_pic").val() == "") {
+			$.messager.alert('提示', '请选择一个图片文件，再点击修改');
+			return;
+		}
+		$("#jdid").val(jd_id);
+		$("#jdpicfm").submit();
 		}
 		
 		
+		$("#jdpicfm").form({
+			url : "updatejdpic",
+			success : function(data) {
+				if(data==1){
+					$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+				}else{
+					$.messager.alert('错误提示', '添加失败！');
+				}
+				$('#updateFiles').dialog('close');
+				$('#jobdetailsdg').edatagrid('load');
+			},error :function(data){
+				$.message.alert('温馨提示','系统出错请与管理员联系')
+			}
+			
+		},'json');
+		//自定义表单验证规则
+		$.extend($.fn.validatebox.defaults.rules, {   
+			 nameRex:{
+			    	validator: function(value, param){  
+			        	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，中文的组合
+			        	if(reg.test(value)){
+			        		return true;
+			        	}
+			        },   
+			        message: '请输入英文或中文的姓名！' 
+			    } 
+			    
+			}); 
+		
+		//设置jd_emptime为databox样式
 	  $('input[name="jd_emptime"]').datebox({
 			required:true
 		});

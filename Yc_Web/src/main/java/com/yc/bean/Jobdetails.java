@@ -22,10 +22,19 @@ public class Jobdetails implements Serializable {
 	private String jd_company; // 所在公司
 	private String jd_school; // 毕业学校
 	private String jd_profession; // 专业
+	private String jd_palace;//就业地址
 	List<MultipartFile> jd_picUrl=null;
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
 	
+	public String getJd_palace() {
+		return jd_palace;
+	}
+
+	public void setJd_palace(String jd_palace) {
+		this.jd_palace = jd_palace;
+	}
+
 	public Integer getStart() {
 		return start;
 	}

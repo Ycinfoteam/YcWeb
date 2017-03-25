@@ -83,12 +83,14 @@ create table jobdetails(
 	jd_id integer primary key auto_increment,
 	jd_pic varchar(5000),       
 	jd_name varchar(300),      
-	jd_salary numeric,          
-	jd_emptime time,          
-	jd_company varchar(300),    
+	jd_salary varchar(500),          
+	jd_emptime datetime,          
+	jd_company varchar(300), 
+	jd_palace varchar(300),
 	jd_school varchar(500),	    
 	jd_profession varchar(500) 
 )
+drop table jobdetails
  insert into jobdetails(jd_pic,jd_name,jd_salary,jd_emptime,jd_company,jd_school,jd_profession) values('网易云音乐','钟霞',2.0,now(),'','gg','ii');
 select jd_id,jd_pic,jd_name,jd_salary,jd_emptime,jd_company,jd_school,jd_profession from jobdetails
 delete from jobdetails where jd_id=1
