@@ -100,7 +100,8 @@ ul,li{
     
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
 		<div title="首页">
-			welcome
+			<!-- welcome -->
+			<img src="images/ycbackimg.jpg"/>
 			<!-- </br>
 			您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
@@ -189,18 +190,13 @@ $(document).ready(
 			} ];
 			
 			var treeData4 = [ {
-				text : "产品管理",
+				text : "教师管理",
 				children : [ {
-					text : "类别管理",
+					text : "教师管理",
 					attributes : {
-						url : "yyyback/product/producttype.jsp"
+						url : "toteachers"
 					}
-				}, {
-					text : "产品管理",
-					attributes : {
-						url : "yyyback/product/products.jsp"
-					}
-				} ]
+				}]
 			} ];
 			
 			var treeData5 = [ {

@@ -15,8 +15,21 @@ public class News implements Serializable {
 	private Integer n_sort;     //排序
 	private String n_reportor;  //发布者 
 	private Integer n_status;	//新闻状态
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
 	
-	
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public String getN_time() {
 		return n_time;
 	}

@@ -1,6 +1,9 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Teachers implements Serializable {
 
@@ -13,6 +16,29 @@ public class Teachers implements Serializable {
 	private String t_skill;
 	private Integer r_id;
 	private String t_pic;
+	private List<MultipartFile> picUrl;//对应界面上的            	<input name="pdfsUrl" type="file">
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	
+	public List<MultipartFile> getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(List<MultipartFile> picUrl) {
+		this.picUrl = picUrl;
+	}
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public Integer getT_id() {
 		return t_id;
 	}
@@ -61,5 +87,10 @@ public class Teachers implements Serializable {
 	public void setT_pic(String t_pic) {
 		this.t_pic = t_pic;
 	}
-	
+	@Override
+	public String toString() {
+		return "Teachers [t_id=" + t_id + ", t_title=" + t_title + ", t_name=" + t_name + ", t_job=" + t_job
+				+ ", t_motto=" + t_motto + ", t_skill=" + t_skill + ", r_id=" + r_id + ", t_pic=" + t_pic + ", picUrl="
+				+ picUrl + ", start=" + start + ", offset=" + offset + "]";
+	}
 }

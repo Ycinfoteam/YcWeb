@@ -14,12 +14,12 @@
 		</div>
 		<div class="fitem">
 			<label> 新闻详情: </label>
-			<textarea id="add_companynews_detail" name="detail" style="width: 900px;height:400px;" ></textarea>  
+			<textarea id="add_companynews_detail" name="detail" style="width: 900px;height:400px;" >请输入新闻内容... </textarea>  
 		</div>
 	</form>
 	<div id="add-buttons">
-		<a class="easyui-linkbutton c6" iconCls="icon-filesave" onclick="addCompanyNews(0)" style="width: 90px">仅保存</a>
-		<a class="easyui-linkbutton" iconCls="icon-ok" onclick="addCompanyNews(1)" style="width: 90px">保存并发布</a>
+		<a class="easyui-linkbutton c6" iconCls="icon-filesave" type="submit" onclick="addCompanyNews(0)" style="width: 90px">仅保存</a>
+		<a class="easyui-linkbutton" iconCls="icon-ok" type="submit" onclick="addCompanyNews(1)" style="width: 90px">保存并发布</a>
 	</div>
 </div>
 <!-- 修改新闻内容 -->
@@ -52,7 +52,6 @@
 //实例化编辑器  
 //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例  
 var editor=UE.getEditor('add_companynews_detail');
-//var content = editor.getContent(); 
 $('#companynewsdg').edatagrid({
 	url : 'news_selectAll', //查询时加载的URL
 	saveUrl : 'news_addNews',//保存时的URL
@@ -213,6 +212,7 @@ $('#companynewsdg').edatagrid({
 
 function addCompanyNews(type){
 	alert(type);
+	var content = UE.getPlainTxt();//content就是编辑器的带格式的内容
 	$("#companynewsfm").form({
 		url:"news_addNews",
 		success:function(data){

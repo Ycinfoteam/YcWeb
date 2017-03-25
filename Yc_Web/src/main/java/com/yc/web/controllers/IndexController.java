@@ -63,4 +63,9 @@ public class IndexController {
 	public String toactivities(){
 		return "backjsp/activities/activities";
 	}
+	//去教师管理
+	@RequestMapping(value="/toteachers")
+	public String toteachers(){
+		return "backjsp/teachers/teachers";
+	}
 }

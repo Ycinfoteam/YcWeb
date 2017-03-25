@@ -41,4 +41,10 @@ public class NewsBizImpl implements NewsBiz {
 		List<News> newsList=this.baseDao.findAll(news, "selectByNid");
 		return newsList;
 	}
+	@Override
+	public int selectCountAll() {
+		News news=new News();
+		int total=(int) this.baseDao.fundFunc(news, "findtotal");
+		return total;
+	}
 }

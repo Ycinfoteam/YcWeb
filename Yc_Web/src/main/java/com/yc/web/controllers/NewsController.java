@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.NestedCheckedException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.News;
 import com.yc.biz.NewsBiz;
+import com.yc.util.JsonModel;
+import com.yc.util.PageUtil;
 
 @Controller
 public class NewsController {
@@ -27,23 +30,27 @@ public class NewsController {
  	public void setNewsBiz(NewsBiz newsBiz) {
 		this.newsBiz = newsBiz;
 	}
-	//查询所有的新闻
-//	@RequestMapping(value="/news_list")
-//	public void selectAllNews(HttpServletResponse response) throws IOException{
-//		logger.info("select all news......");
-//		List<News> newList=this.newsBiz.selectAllNews();
-//		Gson gson=new Gson();
-//		response.getWriter().print(gson.toJson(newList));
-//	}
+	//查询所有新闻
 	@RequestMapping(value="/news_selectAll")
-	public @ResponseBody List selectAllNews() {
+	public @ResponseBody String selectAllNews(@ModelAttribute News news,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows,HttpServletResponse resp) {
 		logger.info("select all news......");
+		resp.setContentType("application/text;charset=utf-8 ");
+		//处理分页
+		int start =PageUtil.judgeStart(page, rows);
+		int offset=PageUtil.judgeOffset(rows);
+		news.setStart(start);
+		news.setOffset(offset);
 		List<News> newList=this.newsBiz.selectAllNews();
-		return newList;
+		int total =this.newsBiz.selectCountAll();//查询所有的记录总数，用于分页显示
+		JsonModel model=new JsonModel();
+		model.setRows(newList);
+		model.setTotal(total);
+		Gson gson =new Gson();
+		return gson.toJson(model);
 	}
 	//添加新闻
 	@RequestMapping(value="/news_addNews")
-	public @ResponseBody void addNews(News news,HttpServletRequest request,HttpServletResponse  response) throws IOException{
+	public @ResponseBody void addNews(@ModelAttribute News news,HttpServletRequest request,HttpServletResponse  response) throws IOException{
 		logger.info("add one new......");
 		try {
 			String type=request.getParameter("type");
@@ -69,7 +76,7 @@ public class NewsController {
 	}
 	//修改新闻
 	@RequestMapping(value="/news_updateNews")
-	public @ResponseBody void updateNews(HttpServletResponse response,News news) throws IOException{
+	public @ResponseBody void updateNews(HttpServletResponse response,@ModelAttribute News news) throws IOException{
 		logger.info("update one new......");
 		try {
 			this.newsBiz.updateNews(news);

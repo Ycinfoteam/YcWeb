@@ -17,8 +17,7 @@ public class CoursysBizImpl implements CoursysBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<Coursys> selectAllCoursys() {
-		Coursys csys=new Coursys();
+	public List<Coursys> selectAllCoursys(Coursys csys) {
 		List<Coursys> coursysList=this.baseDao.findAll(csys, "selectCoursys");
 		return coursysList;
 	}
@@ -48,24 +47,19 @@ public class CoursysBizImpl implements CoursysBiz {
 		this.baseDao.update(csys, "updateOneCoursys");
 	}
 	@Override
-	public boolean judge(String type,Coursys csys) {
-		if(type.equalsIgnoreCase("add")){
-			List<Coursys> csyslist=this.baseDao.findAll(csys, "judge");
-			if(csyslist!=null){
-				return true;
-			}
-			return false;
-		}else if(type.equalsIgnoreCase("delete")){
-			List<Coursys> csyslist=this.baseDao.findAll(csys, "judge");
-			if(csyslist!=null){
-				return false;
-			}
-			return true;
-		}else if(type.equalsIgnoreCase("update")){
-			
-			return false;
+	public boolean judge(Coursys csys) {
+		boolean flag=false;
+		List<Coursys> csysList=this.baseDao.findAll(csys, "judge");
+		if(csysList!=null&&csysList.size()>0){
+			flag=true;
 		}
-		return false;
+		return flag;
+	}
+	@Override
+	public int selectCountAll() {
+		Coursys csys=new Coursys();
+		int total=(int) this.baseDao.fundFunc(csys, "findtotal");
+		return total;
 	}
 
 }

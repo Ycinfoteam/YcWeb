@@ -18,7 +18,10 @@ public class CoursysTest{
 	public void testSelectAllCoursys() {//ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		CoursysBiz cb=(CoursysBiz) ac.getBean("coursysBizImpl");
-		List<Coursys> csysList=cb.selectAllCoursys();
+		Coursys csys=new Coursys();
+		csys.setStart(1);
+		csys.setOffset(5);
+		List<Coursys> csysList=cb.selectAllCoursys(csys);
 		System.out.println(csysList);
 	}
 	@Test
@@ -54,5 +57,12 @@ public class CoursysTest{
 		csys.setCs_id(1);
 		csys.setCs_version("2.0");
 		cb.updateCoursys(csys);
+	}
+	@Test
+	public void testSelectCountAll(){//ok
+		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
+		CoursysBiz cb=(CoursysBiz) ac.getBean("coursysBizImpl");
+		int i=cb.selectCountAll();
+		System.out.println(i);  
 	}
 }

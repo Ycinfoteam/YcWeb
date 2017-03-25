@@ -10,6 +10,7 @@ public class Roles implements Serializable {
 	private static final long serialVersionUID = -8996112184813782475L;
 	private Integer r_id;
 	private String r_name;
+	
 	public Integer getR_id() {
 		return r_id;
 	}

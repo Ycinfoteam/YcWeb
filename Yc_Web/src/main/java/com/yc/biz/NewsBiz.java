@@ -15,4 +15,5 @@ public interface NewsBiz {
 	public void addNews(News news);
 	//修改新闻
 	public void updateNews(News news);
+	public int selectCountAll();
 }

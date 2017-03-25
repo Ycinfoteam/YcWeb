@@ -36,13 +36,11 @@ public class ApplyJobController {
 	@RequestMapping(value="/findAllApply",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String findAllApply (@ModelAttribute ApplyJob applyJob,HttpServletResponse response,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows){
 		log.info("findAllApply called ...."); 
-		
 		//处理分页
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
 		//处理时间
 		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
-		
 		applyJob.setA_time(date); 
 		applyJob.setStart(start);
 		applyJob.setOffset(offset);
@@ -52,7 +50,6 @@ public class ApplyJobController {
 		model.setRows(list);
 		model.setTotal(total);
 		Gson gson =new Gson();
-		
 		return gson.toJson(model);
 	} 
 	
