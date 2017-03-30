@@ -23,24 +23,30 @@
 			$(function() {
 			ue = UE.getEditor('container');
 				$.ajax({
-					url : 'findDataDictionaryFooter',
+					url : 'findDataDictionary',
 					type : 'post',
 					dataType : 'json',
+					data:{
+						type:'footer'
+					}, 
 					success : function(data) {
 						ue.ready(function() {//编辑器初始化完成再赋值  
-				            ue.setContent(data);  //赋值给UEditor  
+				            ue.setContent(data[0].description);  //赋值给UEditor  
 				        });  
 					}
 				});
 			});
 			
 			function save(){
-				var footer=ue.getContentTxt();
+				var description=ue.getContentTxt();
 				$.ajax({
-					url:'updateFooter',
+					url:'updateDataDictionary',
 					type:'post',
 					dataType:'json',
-					data:{footer:footer},
+					data:{
+						type:'footer',
+						description:description
+					},
 					success:function(data){
 						if(data==1){
 							$.messager.show({

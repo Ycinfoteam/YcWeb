@@ -26,52 +26,19 @@ public class DataDictionaryController {
 		this.dataDictionaryBiz = dataDictionaryBiz;
 	}
 	
-	@RequestMapping(value="findDataDictionaryFooter",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findDataDictionaryFooter(@ModelAttribute DataDictionary dataDictionary ){
-		log.info("findDataDictionaryFooter called....");
+	
+	@RequestMapping(value="findDataDictionary",produces ="text/html;charset=UTF-8")
+	public @ResponseBody String findDataDictionary(@ModelAttribute DataDictionary dataDictionary){
+		log.info("findDataDictionary called...");
 		List<DataDictionary> list=this.dataDictionaryBiz.findDataDictionary(dataDictionary);
-		String footer=list.get(0).getFooter();
 		Gson gson =new Gson();
-		return gson.toJson(footer);
+		return gson.toJson(list);
 	}
 	
-	@RequestMapping(value="findDataDictionaryDescription",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findDataDictionarydescription(@ModelAttribute DataDictionary dataDictionary){
-		log.info("findDataDictionarydescription called....");
-		List<DataDictionary> list =this.dataDictionaryBiz.findDataDictionary(dataDictionary);
-		String description=list.get(0).getDescription();
-		Gson gson =new Gson();
-		return gson.toJson(description);
-	}
-	
-	@RequestMapping(value="findDataDictionaryLogo",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findDataDictionaryLogo(@ModelAttribute DataDictionary dataDictionary){
-		log.info("findDataDictionaryLogo called...");
-		List<DataDictionary> list= this.dataDictionaryBiz.findDataDictionary(dataDictionary);
-		String logo=list.get(0).getLogo();
-		Gson gson=new Gson();
-		return gson.toJson(logo);
-	}
-	
-	@RequestMapping(value="updateFooter")
-	public @ResponseBody int updateFooter(@ModelAttribute DataDictionary dataDictionary){
-		log.info("updateFooter called...");
-		this.dataDictionaryBiz.updateFooter(dataDictionary);
+	@RequestMapping(value="updateDataDictionary")
+	public @ResponseBody int updateDataDictionary(@ModelAttribute DataDictionary dataDictionary){
+		log.info("updateDataDictionary called...");
+		this.dataDictionaryBiz.updateDataDictionary(dataDictionary);
 		return 1;
 	}
-	
-	@RequestMapping(value="updateDescription")
-	public @ResponseBody int updateDescription(@ModelAttribute DataDictionary dataDictionary){
-		log.info("updateDescription called...");
-		this.dataDictionaryBiz.updateDescription(dataDictionary);
-		return 1;
-	}
-	
-	@RequestMapping(value="updateLogo")
-	public @ResponseBody int updateLogo(@ModelAttribute DataDictionary dataDictionary){
-		log.info("updateLogor called...");
-		this.dataDictionaryBiz.updateLogo(dataDictionary);
-		return 1;
-	}
-	
 }

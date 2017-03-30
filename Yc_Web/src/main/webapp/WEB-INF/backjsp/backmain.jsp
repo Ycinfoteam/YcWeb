@@ -75,17 +75,14 @@ ul,li{
         </div>
     <div data-options="region:'center'" >
     
-    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
-		<div title="首页">
-			welcome
-			<!-- </br>
-			您好：XXX。现在是北京时间XXXX。</br> -->
+	    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
+			<div title="首页">
+				welcome
+				<!-- </br>
+				您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
-	</div>
+		</div>
 		
-  <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
-    </div>  -->
-
 	</div>
 </body>
 
@@ -115,7 +112,7 @@ $(document).ready(
 				children : [ {
 					text : "管理员操作",
 					attributes : {
-						url : "toadmin"
+						url : "toadmin.action"
 					}
 				}/* , {
 					text : "日志管理",
@@ -130,17 +127,17 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "toDataDictionaryDescription"
+						url : "toDataDictionaryCompany.action"
 					}
 				},{
 					text : "页脚文字",
 					attributes : {
-						url : "toDataDictionaryFooter"
+						url : "toDataDictionaryFooter.action"
 					}
 				},{
 					text : "公司logo",
 					attributes : {
-						url : "toDataDictionaryLogo"
+						url : "toDataDictionaryLogo.action"
 					}
 				}] 
 			} ];
@@ -150,62 +147,62 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys",
+						url : "tocoursys.action",
 					}
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteacher"
+						url : "toteacher.action"
 					}
 				},{
 					text : "学员项目",
 					attributes : {
-						url : "toprojects"
+						url : "toprojects.action"
 					}
 				},{text : "学员就业",
 				attributes : {
-					url : "tojobdetails"
+					url : "tojobdetails.action"
 				}
 			}
 				,{
 					text : "关于公司介绍",
 					attributes : {
-						url : "tocompany"
+						url : "tocompany.action"
 					}
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities"
+						url : "toactivities.action"
 					}
 				} ,{
 					text : "公司历史介绍",
 					attributes : {
-						url : "tohistory"
+						url : "tohistory.action"
 					}
 				} ,{
 					text : "公司新闻",
 					attributes : {
-						url : "tocompanynews"
+						url : "tocompanynews.action"
 					}
 				} ,{
 					text : "方向信息",
 					attributes : {
-						url : "tojobtype"
+						url : "tojobtype.action"
 					}
 				},{
 					text : "招聘信息",
 					attributes : {
-						url : "tojob"
+						url : "tojob.action"
 					}
 				},{
 					text : "应聘信息",
 					attributes : {
-						url : "toapply"
+						url : "toapply.action"
 					}
 				},{
 					text : "行政人员信息",
 					attributes : {
-						url : "toadministrator"
+						url : "toadministrator.action"
 					}
 				}]
 			} ];

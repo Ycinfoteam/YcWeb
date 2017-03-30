@@ -12,9 +12,6 @@ public interface DataDictionaryBiz {
 
 	public List<DataDictionary> findDataDictionary(DataDictionary dataDictionary);
 	
-	public void updateFooter(DataDictionary dataDictionary);
+	public void updateDataDictionary(DataDictionary dataDictionary);
 	
-	public void updateDescription(DataDictionary dataDictionary);
-	
-	public void updateLogo(DataDictionary dataDictionary);
 }

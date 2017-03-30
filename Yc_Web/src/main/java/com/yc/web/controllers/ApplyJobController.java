@@ -87,7 +87,7 @@ public class ApplyJobController {
 		} catch (ApiException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/jsp/success.jsp";
+		return "success";
 	}
 	
 }

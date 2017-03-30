@@ -5,8 +5,8 @@
 <script type="text/javascript">
 	$(function(){
 	   $('#admindg').edatagrid({
-        	url: 'findAdmin',	//查询时加载的URL
-            saveUrl: 'addAdmin',
+        	url: 'findAdmin.action',	//查询时加载的URL
+            saveUrl: 'addAdmin.action',
         	pagination:true,	//显示分页   
         	pageSize:5,		//默认分页的条数
         	pageList:[5,10,15],	//可选分页条数

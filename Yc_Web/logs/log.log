@@ -1,31 +1,24 @@
-2017-03-23 21:51:54  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@b0c5a: startup date [Thu Mar 23 21:51:54 CST 2017]; root of context hierarchy
-2017-03-23 21:51:54  [ main:240 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-23 21:51:57  [ main:3111 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-23 21:52:03  [ main:9015 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.DataDictionaryMapper]: 0.0
-2017-03-23 21:52:03  [ main:9051 ] - [ DEBUG ]  ==>  Preparing: select id,footer,description,logo from datadictionary 
-2017-03-23 21:52:03  [ main:9160 ] - [ DEBUG ]  ==> Parameters: 
-2017-03-23 21:52:03  [ main:9224 ] - [ DEBUG ]  <==      Total: 1
-2017-03-23 21:56:51  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@793542: startup date [Thu Mar 23 21:56:51 CST 2017]; root of context hierarchy
-2017-03-23 21:56:51  [ main:268 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-23 21:56:54  [ main:2895 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-23 21:57:00  [ main:9193 ] - [ DEBUG ]  ==>  Preparing: update datadictionary set logo=? 
-2017-03-23 21:57:00  [ main:9326 ] - [ DEBUG ]  ==> Parameters: 11(String)
-2017-03-23 21:57:00  [ main:9330 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-23 21:57:35  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1978b94: startup date [Thu Mar 23 21:57:35 CST 2017]; root of context hierarchy
-2017-03-23 21:57:35  [ main:216 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-23 21:57:37  [ main:2336 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-23 21:57:43  [ main:8260 ] - [ DEBUG ]  ==>  Preparing: update datadictionary set logo=? 
-2017-03-23 21:57:43  [ main:8370 ] - [ DEBUG ]  ==> Parameters: logo地址(String)
-2017-03-23 21:57:43  [ main:8373 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-23 21:59:33  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@11799e7: startup date [Thu Mar 23 21:59:33 CST 2017]; root of context hierarchy
-2017-03-23 21:59:33  [ main:194 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-23 21:59:35  [ main:2362 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-23 21:59:41  [ main:8183 ] - [ DEBUG ]  ==>  Preparing: update datadictionary set description=? 
-2017-03-23 21:59:41  [ main:8286 ] - [ DEBUG ]  ==> Parameters: 111(String)
-2017-03-23 21:59:41  [ main:8290 ] - [ DEBUG ]  <==    Updates: 1
-2017-03-23 22:01:53  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@11799e7: startup date [Thu Mar 23 22:01:53 CST 2017]; root of context hierarchy
-2017-03-23 22:01:53  [ main:164 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-23 22:01:55  [ main:2093 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-23 22:02:00  [ main:7345 ] - [ DEBUG ]  ==>  Preparing: update datadictionary set description=? 
-2017-03-23 22:02:00  [ main:7442 ] - [ DEBUG ]  ==> Parameters: 源辰信息科技是一家定位于大学生软件开发实战培训和企事业单位系统集成、项目研发于一体的综合性软件公司，以大学生高起点就业和为企事业单位提供信息化解决方案为目标。 公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。 我们的宗旨是服务于学生，致力于企业。(String)
-2017-03-23 22:02:00  [ main:7446 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-27 22:57:28  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d5c653: startup date [Mon Mar 27 22:57:28 CST 2017]; root of context hierarchy
+2017-03-27 22:57:28  [ main:170 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-27 22:57:30  [ main:2182 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-27 22:57:35  [ main:6930 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.DataDictionaryMapper]: 0.0
+2017-03-27 22:57:35  [ main:6962 ] - [ DEBUG ]  ==>  Preparing: select description from datadictionary where type=? 
+2017-03-27 22:57:35  [ main:7159 ] - [ DEBUG ]  ==> Parameters: title(String)
+2017-03-27 22:57:35  [ main:7199 ] - [ DEBUG ]  <==      Total: 7
+2017-03-27 22:58:46  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d5c653: startup date [Mon Mar 27 22:58:46 CST 2017]; root of context hierarchy
+2017-03-27 22:58:46  [ main:132 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-27 22:58:48  [ main:1725 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-27 22:58:52  [ main:5916 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.DataDictionaryMapper]: 0.0
+2017-03-27 22:58:52  [ main:5952 ] - [ DEBUG ]  ==>  Preparing: select description from datadictionary where type=? 
+2017-03-27 22:58:52  [ main:6203 ] - [ DEBUG ]  ==> Parameters: title(String)
+2017-03-27 22:58:52  [ main:6255 ] - [ DEBUG ]  <==      Total: 7
+2017-03-27 23:01:55  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@793542: startup date [Mon Mar 27 23:01:55 CST 2017]; root of context hierarchy
+2017-03-27 23:01:55  [ main:140 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-27 23:01:57  [ main:1753 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-27 23:02:01  [ main:6068 ] - [ DEBUG ]  ==>  Preparing: update datadictionary set description=? WHERE type=? 
+2017-03-27 23:02:02  [ main:6265 ] - [ DEBUG ]  ==> Parameters: 22(String), logo(String)
+2017-03-27 23:02:02  [ main:6267 ] - [ DEBUG ]  <==    Updates: 1
+2017-03-27 23:02:02  [ main:6279 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.DataDictionaryMapper]: 0.0
+2017-03-27 23:02:02  [ main:6281 ] - [ DEBUG ]  ==>  Preparing: select description from datadictionary where type=? 
+2017-03-27 23:02:02  [ main:6281 ] - [ DEBUG ]  ==> Parameters: logo(String)
+2017-03-27 23:02:02  [ main:6315 ] - [ DEBUG ]  <==      Total: 1

@@ -23,9 +23,6 @@
     <link rel="stylesheet" href="../css/about.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="../css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="../css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
 
     <script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/jquery.lazyload.js" type="text/javascript"></script>
@@ -41,13 +38,14 @@
         </div>
     </div>
     <ul id="nav">
-        <li class="li1"><a href="index.jsp" target="_blank" >首页</a></li><h1 class="h1"></h1>
-        <li class="li2"><a href="teacher.jsp" target="_blank">师资介绍</a></li>
-        <li class="li3"><a href="subject.jsp" target="_blank">课程体系</a></li>
-        <li class="li4"><a href="studentProject.jsp" target="_blank">学员项目</a></li>
-        <li class="li5"><a href="findWork.jsp" target="_blank">就业详情</a></li>
-        <li class="li6"><a href="about.jsp" target="_blank">关于源辰</a></li>
-        <li class="li7"><a href="company.jsp" target="_blank">公司历史</a></li>
+        <!-- .html后缀是分发器 -->
+		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
+		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+		<li class="li3"><a href="subject.html">${title[2] }</a></li>
+		<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
+		<li class="li5"><a href="findWork.html">${title[4] }</a></li>
+		<li class="li6"><a href="about.html">${title[5] }</a></li>
+		<li class="li7"><a href="company.html">${title[6] }</a></li>
     </ul>
 </div>
 
@@ -58,7 +56,7 @@
         <div class="main_L_d">
             <form id="jobform" action="../addApply" method="post">
             	<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-            	<input  name="a_name" type="text"/><br/>
+            	<input id="hh" name="a_name" type="text" /><br/>
             	<label>应聘职位:</label>
             	<select id="findAllJobType">
             	</select><br/>
@@ -128,14 +126,14 @@
 <div id="footer">
     <div class="address">
         <p>
-            <span>电话：0734-8355998</span>
-            <span>QQ：1728952785</span>
-            <span>邮政编码：421141</span>
-        </p>
-        <p>
-            <span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
-            <span>地址：衡阳市解放西路丽天名园905室</span>
-        </p>
+			<span>${footer[0] }</span>
+			<span>${footer[1] }</span>
+			<span>${footer[2] }</span>
+		</p>
+		<p>
+			<span>${footer[3] }</span>
+			<span>${footer[4] }</span>
+		</p>
     </div>
 </div>
 </body>

@@ -27,19 +27,8 @@ public class DataDictionaryBizImpl implements DataDictionaryBiz {
 	}
 
 	@Override
-	public void updateFooter(DataDictionary dataDictionary) {
-		this.baseDao.update(dataDictionary, "updateFooter");
+	public void updateDataDictionary(DataDictionary dataDictionary) {
+		this.baseDao.update(dataDictionary, "updateDataDictionary");
 	}
 
-	@Override
-	public void updateDescription(DataDictionary dataDictionary) {
-		this.baseDao.update(dataDictionary, "updateDescription");
-	}
-
-	@Override
-	public void updateLogo(DataDictionary dataDictionary) {
-		this.baseDao.update(dataDictionary, "updateLogo");
-	}
-
-	
 }

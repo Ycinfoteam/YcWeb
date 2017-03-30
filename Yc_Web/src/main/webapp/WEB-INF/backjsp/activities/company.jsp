@@ -12,7 +12,7 @@
 	
 	<div class="ftitle" id="nid">公司介绍修改</div>
 		<form id="companynewsffm" method="post"
-			action="yyyback/news_updateNews.action" >
+			action="yyyback/news_updateNews" >
 			<table>
 				<tr>
 					<td colspan="2">

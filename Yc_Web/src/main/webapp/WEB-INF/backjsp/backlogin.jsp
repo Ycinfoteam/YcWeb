@@ -109,7 +109,7 @@ h3{
 		var a_name=$('input[name="a_name"]').val();
 		var a_pwd=$('input[name="a_pwd"]').val();
 		$.ajax({
-			url:'login', 
+			url:'login.action', 
 			type:'post',
 			dataType:'json',
 			data:{
@@ -118,7 +118,7 @@ h3{
 			},
 			success:function(data){
 				if(data==1){
-					window.location.href='tobackmain';
+					window.location.href='tobackmain.action';
 				}else{
 					$('.error').append('用户名或密码错误，请检查后重新登录。');
 				}

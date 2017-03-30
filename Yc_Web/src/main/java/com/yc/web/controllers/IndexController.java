@@ -30,10 +30,10 @@ public class IndexController {
 		return "backjsp/datadictionary/footer";
 	}
 	
-	//去数据字典description
-	@RequestMapping(value="toDataDictionaryDescription")
-	public String toDataDictionaryDescription(){
-		return "backjsp/datadictionary/description";
+	//去数据字典company
+	@RequestMapping(value="toDataDictionaryCompany")
+	public String toDataDictionaryCompany(){
+		return "backjsp/datadictionary/company";
 	}
 	
 	//去数据字典logo
@@ -119,4 +119,5 @@ public class IndexController {
 	public String tohistory(){
 		return "backjsp/activities/history";
 	}
+	
 }
