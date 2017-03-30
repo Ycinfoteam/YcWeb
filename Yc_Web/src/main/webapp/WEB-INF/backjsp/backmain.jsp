@@ -54,35 +54,7 @@ ul,li{
 				<div id="tt3" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> 
-
-			<div title="师资管理">
-				<div id="tt4" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="课程管理">
-				<div id="tt5" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="学员项目">
-				<div id="tt6" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="关于公司">
-				<div id="tt7" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="人才招聘">
-				<div id="tt8" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			<div title="报名信息">
-				<div id="tt13" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
-			 <div title="留言管理">     <!--   7.26前台去掉的模块 -->
-				<div id="tt9" class="easyui-tree"
-					data-options="animate:true,dnd:true"></div>
-			</div>
+		
 			<!-- <div title="浏览统计">
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
@@ -103,17 +75,11 @@ ul,li{
         </div>
     <div data-options="region:'center'" >
     
-
-    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
-		<div title="首页">
-			<!-- welcome -->
-			<img src="images/ycbackimg.jpg"/>
-			<!-- </br>
-			您好：XXX。现在是北京时间XXXX。</br> -->
 	    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
 			<div title="首页">
 				welcome
-
+				<!-- </br>
+				您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
 		</div>
 		
@@ -181,24 +147,13 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys",
+						url : "tocoursys.action",
 					}
-				} ]
-			} ];
-			
-			var treeData4 = [ {
-				text : "教师管理",
-				children : [ {
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteachers"
+						url : "toteacher.action"
 					}
-				}]
-			} ];
-			
-			var treeData5 = [ {
-				text : "课程体系",
 				},{
 					text : "学员项目",
 					attributes : {
@@ -249,7 +204,8 @@ $(document).ready(
 					attributes : {
 						url : "toadministrator.action"
 					}
-				}];
+				}]
+			} ];
 			
 			
 			 var treeData9 = [ {  /*  7.26去掉留言模块 */
@@ -295,12 +251,6 @@ $(document).ready(
 			var treeData12 = [ {
 				text : "一键还原"
 			} ];
-			var treeData13 = [ {
-				text : "学生报名信息管理",
-				attributes : {
-					url : "tostudents",
-				}
-			} ];
 
 			$('#tt1').tree({
 				data : treeData1
@@ -321,9 +271,6 @@ $(document).ready(
 			
 			$('#tt12').tree({
 				data : treeData12
-			});
-			$('#tt13').tree({
-				data : treeData13
 			});
 
 			$(".easyui-tree").tree({

@@ -29,3 +29,6 @@ insert into jobtype(j_name) values('Java工程师');
 insert into jobtype(j_name) values('大数据工程师');
 insert into jobtype(j_name) values('Web前端工程师');
 insert into jobtype(j_name) values('嵌入式工程师');
+
+
+select a_id,a_name,a_pwd from admin

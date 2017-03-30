@@ -1,10 +1,9 @@
 --管理员登录表
-create table users(
-	u_id integer primary key auto_increment,
-	u_name varchar(300),    --姓名
-	u_password varchar(300)  --密码
-)
-
+create table admin(
+	a_id integer primary key auto_increment,
+	a_name varchar(100),
+	a_pwd varchar(100)
+insert into admin(a_name,a_pwd) values('admin','a');
 --角色表
 create table roles(
 	r_id integer primary key auto_increment,
@@ -130,4 +129,36 @@ create table students(
 	s_name varchar(300),       --姓名
 	s_tel integer,			   --电话
 	s_direction varchar(500)   --意向方向
+)
+create table employ(
+	e_id integer primary key auto_increment,
+	e_position varchar(300),	 --职位
+	e_validtime datetime,			 --有效时间
+	e_amount integer,			 --招聘人数
+	e_salary numeric,		     --工资待遇
+	e_detail varchar(5000),		 --详细说明
+	e_addr varchar(5000) 		 --简历投递地址	
+)
+
+--应聘表
+create table applyjob(
+	a_id integer primary key auto_increment,
+	a_name varchar(100), --姓名
+	a_tel varchar(200),	--电话
+	a_email varchar(100), --邮箱
+	a_orientation varchar(100),--方向
+	a_detail varchar(500), --个人简介
+	a_time datetime,	--申请时间	
+	a_status integer default 0   -- 0 待审核，1 已审核 
+	
+)
+create table jobtype(
+	j_id integer primary key auto_increment,
+	j_name varchar(100) ,
+)
+create table datadictionary(
+	id integer primary key auto_increment,
+	footer varchar(500),
+	description varchar(1000),
+	logo varchar(500)
 )
