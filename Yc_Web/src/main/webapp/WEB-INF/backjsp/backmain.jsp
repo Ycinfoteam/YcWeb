@@ -73,7 +73,10 @@ ul,li{
 				<div id="tt8" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			
+			<div title="报名信息">
+				<div id="tt13" class="easyui-tree"
+					data-options="animate:true,dnd:true"></div>
+			</div>
 			 <div title="留言管理">     <!--   7.26前台去掉的模块 -->
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
@@ -284,6 +287,12 @@ $(document).ready(
 			var treeData12 = [ {
 				text : "一键还原"
 			} ];
+			var treeData13 = [ {
+				text : "学生报名信息管理",
+				attributes : {
+					url : "tostudents",
+				}
+			} ];
 
 			$('#tt1').tree({
 				data : treeData1
@@ -321,6 +330,9 @@ $(document).ready(
 			
 			$('#tt12').tree({
 				data : treeData12
+			});
+			$('#tt13').tree({
+				data : treeData13
 			});
 
 			$(".easyui-tree").tree({

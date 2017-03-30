@@ -4,27 +4,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.mapper.StudentsMapper">
 
-	<!-- 查询学生信息 -->
+	<!-- 查询学生报名信息 -->
 	<select id="selectStudents" parameterType="Students" resultType="Students">
-		select s_id,s_name,s_tel,s_direction from students where 1=1	
-		<choose>
-			<when test="s_id!=null">
-				and s_id=#{s_id}
-			</when>
-			<when test="s_name!=null">
-				and s_name=#{s_name}
-			</when>
-			<when test="s_direction!=null">
-				and s_direction=#{s_direction}
-			</when>
-			<otherwise>
-	
-			</otherwise>
-		</choose>
+		select s_id,s_name,s_tel,s_direction,s_status from students
+		<trim prefix="where" suffixOverrides="and">
+			<if test="s_id>0">
+				s_id=#{s_id} and
+			</if>
+			<if test="s_status>0">
+				s_status=#{s_status} and
+			</if>
+			<if test="s_name!=null">
+				s_name=#{s_name} and
+			</if>
+			<if test="s_direction!=null">
+				s_direction=#{s_direction} and
+			</if>
+		</trim>
+		order by s_id desc
+		<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+		</if>
+	</select>
+	<!-- 查询记录总数 -->
+	<select id="findtotal" resultType="java.lang.Double">
+		select count(*) from students
 	</select>
 	<!-- 添加一条学生信息 -->
 	<insert id="addOneStudent" parameterType="Students" useGeneratedKeys="true" keyProperty="s_id">
-		insert into students(s_name,s_tel,s_direction) values(#{s_name},#{s_tel},#{s_direction})
+		insert into students(s_name,s_tel,s_direction,s_status) values(#{s_name},#{s_tel},#{s_direction},#{s_status})
 	</insert>
 	<!-- 删除一条学生信息 -->
 	<delete id="deleteOneStudent" parameterType="Students">
@@ -32,6 +40,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<!-- 修改一条学生信息 -->
 	<update id="updateOneStudent" parameterType="Students">
-		update students set s_name=#{s_name},s_tel=#{s_tel},s_direction=#{s_direction} where s_id=#{s_id}
+		update students set s_status=#{s_status} where s_id=#{s_id}
 	</update>
 </mapper>

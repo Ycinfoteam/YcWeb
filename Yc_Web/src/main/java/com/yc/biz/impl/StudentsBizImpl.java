@@ -17,8 +17,7 @@ public class StudentsBizImpl implements StudentsBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<Students> selectAllStudents() {
-		Students students=new Students();
+	public List<Students> selectAllStudents(Students students) {
 		List<Students> stuList=this.baseDao.findAll(students, "selectStudents");
 		return stuList;
 	}
@@ -46,6 +45,12 @@ public class StudentsBizImpl implements StudentsBiz {
 	@Override
 	public void updateStudents(Students students) {
 		this.baseDao.update(students, "updateOneStudent");
+	}
+	@Override
+	public int selectCountAll() {
+		Students students=new Students();
+		int total=(int) this.baseDao.fundFunc(students, "findtotal");
+		return total;
 	}
 
 }

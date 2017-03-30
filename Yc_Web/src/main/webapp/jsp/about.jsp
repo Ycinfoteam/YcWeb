@@ -76,7 +76,7 @@
                     <h5>嵌入式培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -85,7 +85,7 @@
                     <h5>大数据培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -94,7 +94,7 @@
                     <h5>Web前端培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -103,7 +103,7 @@
                     <h5>JAVA培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="#" class="kbtextInp1">我要咨询</a>
-                    <a href="#" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
 

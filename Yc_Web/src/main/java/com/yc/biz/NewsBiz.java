@@ -6,7 +6,7 @@ import com.yc.bean.News;
 
 public interface NewsBiz {
 	//查询所有的新闻
-	public List<News> selectAllNews();
+	public List<News> selectAllNews(News news);
 	//根据新闻编号查询新闻
 	public List<News> selectNewsById(News news);
 	//删除新闻

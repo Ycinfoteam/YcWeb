@@ -38,3 +38,10 @@
 2017-03-18 16:17:05  [ main:1383 ] - [ DEBUG ]  ==>  Preparing: select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status from coursys order by cs_id desc limit ?,? 
 2017-03-18 16:17:05  [ main:1402 ] - [ DEBUG ]  ==> Parameters: 1(Integer), 5(Integer)
 2017-03-18 16:17:05  [ main:1416 ] - [ DEBUG ]  <==      Total: 5
+2017-03-25 16:54:03  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a8198c: startup date [Sat Mar 25 16:54:03 CST 2017]; root of context hierarchy
+2017-03-25 16:54:03  [ main:90 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2017-03-25 16:54:04  [ main:1630 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitspace/YcWeb/Yc_Web/target/classes/db.properties]
+2017-03-25 16:54:06  [ main:3752 ] - [ DEBUG ]  Cache Hit Ratio [com.yc.mapper.NewsMapper]: 0.0
+2017-03-25 16:54:06  [ main:3770 ] - [ DEBUG ]  ==>  Preparing: select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news 
+2017-03-25 16:54:06  [ main:3804 ] - [ DEBUG ]  ==> Parameters: 
+2017-03-25 16:54:06  [ main:3821 ] - [ DEBUG ]  <==      Total: 11

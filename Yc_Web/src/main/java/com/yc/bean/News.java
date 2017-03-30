@@ -10,9 +10,9 @@ public class News implements Serializable {
 	private Integer n_id;
 	private String n_title;    //标题
 	private String n_content;   //内容
-	private Integer n_click;    //点击次数
+	private Integer n_click=0;    //点击次数
 	private String n_time;	//创建时间
-	private Integer n_sort;     //排序
+	private Integer n_sort=0;     //排序
 	private String n_reportor;  //发布者 
 	private Integer n_status;	//新闻状态
 	private Integer start; // 起始行

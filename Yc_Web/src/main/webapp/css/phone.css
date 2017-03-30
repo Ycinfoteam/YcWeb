@@ -260,11 +260,11 @@ body{
     font-weight:600;
     font-size: 10px;
 }
-.html5{
+ .html5{
     background: url("../images/html5.png") no-repeat center 30%;
     color: #D89566 !important;
 }
-.j2ee{
+/*.j2ee{
     background: url("../images/java.png") no-repeat center 30%;
     color: #1179BD !important;
 }
@@ -275,7 +275,7 @@ body{
 .cloud{
     background: url("../images/cloud.png") no-repeat center 30%;
     color: #3C92CA !important;
-}
+} */ 
 #course_img{
     margin-top:30px;
     text-align: center;

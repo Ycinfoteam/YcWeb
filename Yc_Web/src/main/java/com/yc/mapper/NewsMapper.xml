@@ -4,11 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.mapper.NewsMapper">
 
-	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+	<!-- <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" /> -->
 	
 	<!-- 查询所有新闻 -->
-	<select id="selectAll" resultType="News">
+	<select id="selectAll" parameterType="News"  resultType="News">
 		select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news
+		<trim prefix="where" suffixOverrides="and">
+			<if test="n_id>0">
+				n_id=#{n_id} and
+			</if>
+			<if test="n_title!=null">
+				n_title=#{n_title} and
+			</if>
+			<if test="n_time!=null">
+				n_time=#{n_time} and
+			</if>
+		</trim>
+		order by n_id desc
+		<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+		</if>
 	</select>
 	
 	<!-- 根据id查询新闻 -->
@@ -21,7 +36,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 修改一条新闻 -->
 	<update id="updateOneNew" parameterType="News">
-		update news set n_title=#{n_title},n_content=#{n_content},n_sort=#{n_sort},n_status=#{n_status} where n_id=#{n_id}
+		update news set n_id=#{n_id}
+		<if test="n_content!=null">
+			,n_content=#{n_content}
+		</if>
+		<if test="n_sort>0">
+			,n_sort=#{n_sort}
+		</if>
+		<if test="n_status>0">
+			,n_status=#{n_status}
+		</if>
+		where n_id=#{n_id}
 	</update>
 	<!-- 删除一条新闻 -->
 	<delete id="deleteOneNew" parameterType="News">

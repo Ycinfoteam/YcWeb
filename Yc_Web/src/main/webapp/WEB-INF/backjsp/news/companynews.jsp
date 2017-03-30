@@ -1,57 +1,54 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!-- zx's companyUI -->
 <!-- 新闻显示的数据表格 -->
 <table id="companynewsdg"></table>
-<!-- 添加新闻 -->
+<!-- 编辑新闻 -->
 <div id="companynewsdlg" class="easyui-dialog"
-	style="width: 1070px; height: 480px; padding: 10px 20px;display:none" closed="true"
-	buttons="#add-buttons">
+	style="width: 1070px; height: 680px; padding: 10px 20px;display:none" closed="true"
+	buttons="#news-buttons">
 	<form id="companynewsfm" method="post" novalidate>
-		<div class="fitem">
+		<input id="id" name="n_id" type="hidden"/>
+		<div class="fitem" id="title">
 			<label> 新闻标题: </label> 
-			<input id="companynews_title" name="title" class="easyui-textbox" style="width:300px" required="true">
+			<input id="n_title" name="n_title" class="easyui-textbox" style="width:300px" required="true">
 		</div>
 		<div class="fitem">
 			<label> 新闻详情: </label>
-			<textarea id="add_companynews_detail" name="detail" style="width: 900px;height:400px;" >请输入新闻内容... </textarea>  
+			<script id="n_content" name="n_content" type="text/plain" style="width: 1000px;height:400px;"></script>
+			<font size="2">注：您的良好描述，将影响对该页面的访问量。</font>
+			<input id="type" name="type" type="hidden" />
 		</div>
 	</form>
-	<div id="add-buttons">
-		<a class="easyui-linkbutton c6" iconCls="icon-filesave" type="submit" onclick="addCompanyNews(0)" style="width: 90px">仅保存</a>
-		<a class="easyui-linkbutton" iconCls="icon-ok" type="submit" onclick="addCompanyNews(1)" style="width: 90px">保存并发布</a>
+	<div id="news-buttons">
+		<div id="update-buttons">
+			<a class="easyui-linkbutton c6" iconCls="icon-filesave" type="submit" onclick="updateCompanyNews()" style="width: 90px">保存修改</a>
+			<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#companynewsdlg').dialog('close')" style="width: 90px">取消</a>
+		</div>
+		<div id="add-buttons">
+			<a class="easyui-linkbutton c6" iconCls="icon-filesave" type="submit" onclick="addCompanyNews(0)" style="width: 90px">仅保存</a>
+			<a class="easyui-linkbutton" iconCls="icon-ok" type="submit" onclick="addCompanyNews(1)" style="width: 90px">保存并发布</a>
+		</div>
 	</div>
 </div>
-<!-- 修改新闻内容 -->
-<div id="companynewsllg" class="easyui-dialog" 
-	style="width: 1070px; height: 480px; padding: 10px 20px;display:none" closed="true"
-	buttons="#update-buttons">
-	<form id="updatenewsfm" method="post" action="news_updateNews" novalidate>
-		<div class="fitem">
-			<label> 新闻标题: </label> 
-			<input id="companynews_title" name="title" class="easyui-textbox" style="width:300px" required="true">
-		</div>
-		<div class="fitem">
-			<label>新闻内容:</label> <input type="hidden" name="id" id="id" />
-			<textarea name="detail" id="update_companynews_detail"></textarea>
-			<font size="2">注：您的良好描述，将影响对该页面的访问量。</font>
-		</div>
-	</form>
-	<div id="update-buttons">
-		<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" 
-			onclick="submitCompanyNewsForm()" style="width: 90px">确认修改</a>
-	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
-			onclick="javascript:$('#companynewsllg').dialog('close')" style="width: 90px">放弃修改</a>
+<div id="showNews" class="easyui-dialog" closed="true">
+	<h2 id="sn_title">${news.n_title }</h2>
+	<div id="sn_info">
+		<label style="">发布人：${news.n_reportor} </label>
+		<label>发布时间：${news.n_time }</label>
+		<label>点击次数：${news.n_click}</label>
 	</div>
+	<p id="sn_content">${news.n_content }</p>
 </div>
 <script src="backjs/jquery.edatagrid.js"></script>
+<script src="backjs/jquery.form.js"></script>
 <script type="text/javascript" charset="utf-8" src="utf8-jsp/ueditor.config.js"></script>  
 <script type="text/javascript" charset="utf-8" src="utf8-jsp/ueditor.all.min.js"> </script>  
 <script type="text/javascript" charset="utf-8" src="utf8-jsp/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 //实例化编辑器  
 //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例  
-var editor=UE.getEditor('add_companynews_detail');
+var editor=UE.getEditor('n_content');
 $('#companynewsdg').edatagrid({
 	url : 'news_selectAll', //查询时加载的URL
 	saveUrl : 'news_addNews',//保存时的URL
@@ -98,7 +95,7 @@ $('#companynewsdg').edatagrid({
 		title : '创建时间',
 		width : 100,
 		align : 'center',
-	},{
+	}, {
    	 	field:'n_click',
    	 	title:'点击数',
    	 	width:30,
@@ -115,7 +112,7 @@ $('#companynewsdg').edatagrid({
 			}
 		},
 	}, {
-		field : 'status',
+		field : 'n_status',
 		title : '是否发布',
 		width : 50,
 		align : 'center',
@@ -145,19 +142,10 @@ $('#companynewsdg').edatagrid({
 		field : 'n_content',
 		title : '新闻内容',
 		formatter:function(value,rowData,index){
-			return '<a href="javascript:showNewsContent('+row.n_id+')">查看</a>';
+			return '<a onclick="showNewsContent('+rowData.n_id+')">查看</a>'; 
 		}
 	}] ],
-	onHeaderContextMenu : function(e, field) {
-		e.preventDefault();
-		if (!companycmenu) {
-			createColumnMenu();
-		}
-		companycmenu.menu('show', {
-			left : e.pageX,
-			top : e.pageY
-		});
-	},
+	
 	//定义按钮
 	toolbar : [
 			{
@@ -165,10 +153,16 @@ $('#companynewsdg').edatagrid({
 				iconCls : 'icon-add',
 				handler : function() {
 					var rowflag = $('#companynewsdg').datagrid('getSelected');
+					var n_id=$('#companynewsdg').datagrid('getSelected').n_id;
+					var n_title=$('#companynewsdg').datagrid('getSelected').n_title;
+					var n_content=$('#companynewsdg').datagrid('getSelected').n_content;
 					if (rowflag) {
-						$('#companynewsllg').dialog('open').dialog('setTitle', '公司新闻信息');
-						$('#id').val(row.n_id);
-						companynews_editor.setData(row.detail);
+						$('#companynewsdlg').dialog('open').dialog('setTitle', '修改公司新闻');
+						$('#id').val(n_id);
+						$('#title').css({display:"none"});
+						$('#add-buttons').css({ display: "none" });
+						$('#update-buttons').css({ display: "inline-block" });
+						editor.setContent(n_content);
 					}
 				}
 			},
@@ -179,7 +173,10 @@ $('#companynewsdg').edatagrid({
 				handler : function() {
 					$('#companynewsdlg').dialog('open').dialog('setTitle','新增公司新闻');
 					$('#companynewsfm').form('clear');
-
+					$('#title').css({display:"inline-block"});
+					$('#update-buttons').css({ display: "none" });
+					$('#add-buttons').css({ display: "inline-block" });
+					editor.setContent('');
 				}
 			},
 			'-',
@@ -209,40 +206,55 @@ $('#companynewsdg').edatagrid({
 			} ]
 
 });
-
+//添加公司新闻
+$("#companynewsfm").form({
+	url:"news_addNews",
+	success:function(data){
+		//alert(data);
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '添加失败！');
+		}
+		$('#companynewsdlg').dialog('close');
+		$('#companynewsdg').edatagrid('load');
+	}
+},'json');
 function addCompanyNews(type){
-	alert(type);
-	var content = UE.getPlainTxt();//content就是编辑器的带格式的内容
-	$("#companynewsfm").form({
-		url:"news_addNews",
-		success:function(data){
-			alert(data);
-			if(data==1){
-				$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
-			}else{
-				$.messager.alert('错误提示', '添加失败！');
-			}
-			$('#companynewsdlg').dialog('close');
-			$('#companynewsdg').edatagrid('load');
+	//alert(type);
+	$('#type').val(type);
+	//var content = UE.getPlainTxt();//content就是编辑器的带格式的内容
+	$("#companynewsfm").submit();
+}
+//修改公司新闻内容
+function updateCompanyNews(){
+	var n_id=$('#id').val();
+	var n_content=editor.getPlainTxt();
+	alert(n_id);
+  	$.post('news_updateNewsContent',{n_id:n_id,n_content:n_content},function(data){
+	//alert(data);
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '修改失败！');
 		}
-	},'json');
-	/* $("#companynewsfm").ajaxSubmit({
-		type : "post",
-		url : "news_addNews",
-		dataType:"json",
-		data:{type:type},
-		success : function(data) {
-			alert(12);
-			if(data==1){
-				$.messager.alert('成功提示', '添加成功！');
-			}
-		},
-		error:function(data,status,e){
-			$.messager.alert('错误提示', '新课程添加失败！');
-		}
+		$('#companynewsdlg').dialog('close');
+		$('#companynewsdg').edatagrid('load');
+ 	},'json');
+}
+//查看公司新闻
+function showNewsContent(n_id){
+	$('#showNews').dialog({
+		title:'查看新闻内容',
+		width:700,
+		height:540,
+		closed:false,
+		cache:false,
+		modal:true,
+		href:'toshownewscontent',
+		queryParams:{n_id:n_id}
 	});
-	$('#companynewsdlg').dialog('close');
-	$('#companynewsdg').edatagrid('reload'); */
+	
 }
 </script>
 

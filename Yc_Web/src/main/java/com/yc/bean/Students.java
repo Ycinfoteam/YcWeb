@@ -9,6 +9,28 @@ public class Students implements Serializable {
 	private String s_name;    //姓名
 	private Integer s_tel;    //电话
 	private String s_direction;  //意向方向
+	private Integer s_status;//是否发送了开班信息
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	public Integer getS_status() {
+		return s_status;
+	}
+	public void setS_status(Integer s_status) {
+		this.s_status = s_status;
+	}
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public Integer getS_id() {
 		return s_id;
 	}

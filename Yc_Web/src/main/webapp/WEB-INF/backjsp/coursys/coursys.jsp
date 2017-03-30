@@ -20,9 +20,14 @@
 		</div><br>
 		<div>
 		<label>图片说明: </label>
-		<input id="picUrl" type="file" name="picUrl" required="true"/><br/>
-		<img id="addpreview" src="" style="width:100px;height:100px"/>
+		<input id="picUrl1" type="file" name="picUrl" required="true"/><br/>
+		<img id="addpreview1" src="" style="width:100px;height:100px;display:none"/>
 		</div><br>
+		<div>
+		<label>体系头像：</label>
+		<input id="picUrl2" type="file" name="picUrl" required="true"/><br/>
+		<img id="addpreview2" src="" style="width:100px;height:100px;display:none"/>
+		</div>
 		<div>
 		<label>主讲教师：</label>
 		<input id="cs_text" name="cs_text" class="easyui-combobox" required="true" style="width:200px"  validType="teacherRex" data-options="   
@@ -40,22 +45,41 @@
 			style="width: 90px">取消</a>
 	</div>
 </div>
-<!-- 图片 -->
+<!-- 体系图片 -->
 <div id="showCoursysPic" class="easyui-dialog" 
 	style="width: 700px; height: 500px; padding: 10px 20px;display:none" closed="true" buttons="#update-buttons">
 	<form id="updatepicfm" method="post" enctype="multipart/form-data" novalidate>
 		<img id="cspic" style="width:680px;height:380px;"/>
 		<input id="cs_id" name="cs_id" type="hidden" />
-		<div id="file">
+		<div id="file" style="display:inline-block">
 			<label>上传新图片：</label>
-			<input id="update_picUrl" type="file" name="update_picUrl" required="true"/>
+			<input id="update_picUrl1" type="file" name="update_picUrl1" required="true"/>
 		</div>
 	</form>
 	<div id="update-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="updateCoursysPic()" style="width: 90px">确认</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
+		<a class="easyui-linkbutton"
 			iconCls="icon-cancel" onclick="javascript:$('#showCoursysPic').dialog('close')"
+			style="width: 90px">取消</a>
+	</div>
+</div>
+<!-- 体系头像 -->
+<div id="showCoursysHead" class="easyui-dialog" 
+	style="width: 300px; height: 300px; padding: 10px 20px;display:none" closed="true" buttons="#updatehead-buttons">
+	<form id="updateheadfm" method="post" enctype="multipart/form-data" novalidate>
+		<img id="cshead" style="width:100px;height:100px;"/>
+		<input id="csid" name="csid" type="hidden" />
+		<div id="filehead" style="display:inline-block">
+			<label>上传新图片：</label>
+			<input id="update_picUrl2" type="file" name="update_picUrl2" required="true"/>
+		</div>
+	</form>
+	<div id="updatehead-buttons">
+		<a class="easyui-linkbutton c6"
+			iconCls="icon-ok" onclick="updateCoursysHead()" style="width: 90px">确认</a>
+		<a class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#showCoursysHead').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
 </div>
@@ -153,7 +177,7 @@ $('#coursysinfo').edatagrid({
 			}
 		} ,{
       	 	field:'cs_pic',
-      	 	title:'图片操作',
+      	 	title:'体系图片',
       	 	width:100,
       	 	align:'center',
       	 	formatter:function(value,row,index){
@@ -163,16 +187,19 @@ $('#coursysinfo').edatagrid({
 					return '<a href="javascript:void(0)" onclick="showCoursysPic(2)">添加</a>';
 				}
       	 	}
-      	  	/* formatter : function(value, row, index) {
-				if(value!=null && value!=''){
-					value=value.replace(",","");
-					value=value.substring(22);
-					return '<img src="../'+value+'" width="100px" height="100px" />';
-				}else{
-					return '无图片';
-				}
-			} */
-      	 }] ],
+      	 },{
+       	 	field:'cs_head',
+       	 	title:'体系头像',
+       	 	width:100,
+       	 	align:'center',
+       	 	formatter:function(value,row,index){
+       	 		if(value!=null && value!=''){
+ 					return '<a href="javascript:void(0)" onclick="showCoursysHead(0)">查看</a>|<a href="javascript:void(0)" onclick="showCoursysHead(1)">修改</a>';
+ 				}else{
+ 					return '<a href="javascript:void(0)" onclick="showCoursysHead(2)">添加</a>';
+ 				}
+       	 	}
+       	 }] ],
 		//定义按钮
 		toolbar : [
 				{
@@ -211,19 +238,34 @@ $('#coursysinfo').edatagrid({
 
 });
 //实现图片预览
-$("#picUrl").change(function(){
-	$('#addpreview').css("display","inline-block");
+$("#picUrl1").change(function(){
+	$('#addpreview1').css("display","inline-block");
 	var objUrl = getObjectURL(this.files[0]) ;
 	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
-		$("#addpreview").attr("src", objUrl) ;
+		$("#addpreview1").attr("src", objUrl) ;
 	}
 }) ;
-$('#update_picUrl').change(function(){
+$("#picUrl2").change(function(){
+	$('#addpreview2').css("display","inline-block");
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#addpreview2").attr("src", objUrl) ;
+	}
+}) ;
+$('#update_picUrl1').change(function(){
 	var objUrl = getObjectURL(this.files[0]) ;
 	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
 		$("#cspic").attr("src", objUrl) ;
+	}
+});
+$('#update_picUrl2').change(function(){
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#cshead").attr("src", objUrl) ;
 	}
 });
 //建立一個可存取到該file的url
@@ -247,6 +289,8 @@ $("#csform").form({
 			$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
 			$('#addcsinfo').dialog('close');
 			$("#csform").form('clear');
+			$("#addpreview1").attr("src", "");
+			$("#addpreview2").attr("src", "");
 			$('#coursysinfo').edatagrid('load');
 		}else if(data==2){
 			$('#errorMsg').text('该课程体系已存在，请勿重复添加').css("color","red");
@@ -258,7 +302,7 @@ $("#csform").form({
 function saveCoursysInfo(){
 	$("#csform").submit();
 }
-//查看图片
+//查看体系图片
 function showCoursysPic(type){
 	var cs_id=$('#coursysinfo').datagrid('getSelected').cs_id;
 	var cs_pic=$('#coursysinfo').datagrid('getSelected').cs_pic;
@@ -272,10 +316,12 @@ function showCoursysPic(type){
 	}else if(type==2){
 		$('#update-buttons').css({display:"inline-block"});
 		$('#cs_id').val(cs_id);
+		$('#file').css({ display: "inline-block" });
 		$('#showCoursysPic').dialog('open').dialog('setTitle','添加课程体系图片');
 	}else{
 		$('#update-buttons').css({display:"inline-block"});
 		$('#cs_id').val(cs_id);
+		$('#file').css({ display: "inline-block" });
 		$('#showCoursysPic').dialog('open').dialog('setTitle','修改课程体系图片');
 	}
 }
@@ -295,7 +341,45 @@ $("#updatepicfm").form({
 function updateCoursysPic(){
 	$("#updatepicfm").submit();
 }
-
+//查看体系头像
+function showCoursysHead(type){
+	var csid=$('#coursysinfo').datagrid('getSelected').cs_id;
+	var cs_head=$('#coursysinfo').datagrid('getSelected').cs_head;
+	cs_head=cs_head.replace(",","");
+	cs_head=cs_head.substring(22);
+	$("#cshead").attr("src","../"+cs_head);
+	if(type==0){
+		$('#updatehead-buttons').css({ display: "none" });
+		$('#filehead').css({ display: "none" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','查看课程体系头像');
+	}else if(type==2){
+		$('#updatehead-buttons').css({display:"inline-block"});
+		$('#csid').val(csid);
+		$('#filehead').css({ display: "inline-block" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','添加课程体系头像');
+	}else{
+		$('#updatehead-buttons').css({display:"inline-block"});
+		$('#csid').val(csid);
+		$('#filehead').css({ display: "inline-block" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','修改课程体系头像');
+	}
+}
+//修改体系头像
+$("#updateheadfm").form({
+	url:"coursys_updatehead",
+	success:function(data){
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '修改失败！');
+		}
+		$('#showCoursysHead').dialog('close');
+		$('#coursysinfo').datagrid('reload');
+	}
+},'json');
+function updateCoursysHead(){
+	$("#updateheadfm").submit();
+}
 //自定义表单验证规则
 $.extend($.fn.validatebox.defaults.rules, {   
 	nameRex: {   

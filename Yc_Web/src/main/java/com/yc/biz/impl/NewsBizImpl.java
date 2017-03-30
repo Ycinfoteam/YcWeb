@@ -17,8 +17,7 @@ public class NewsBizImpl implements NewsBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<News> selectAllNews() {
-		News news=new News();
+	public List<News> selectAllNews(News news) {
 		List<News> newsList=this.baseDao.findAll(news, "selectAll");
 		return newsList;
 	}

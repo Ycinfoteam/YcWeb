@@ -15,10 +15,17 @@ public class Coursys implements Serializable {
 	private String cs_text;     //文字说明
 	private Integer cs_status;	//状态（1显示，0不显示）
 	private List<MultipartFile> picUrl;//对应界面上的            	<input name="pdfsUrl" type="file">
+	private String cs_head;		//体系头像
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
 	
 	
+	public String getCs_head() {
+		return cs_head;
+	}
+	public void setCs_head(String cs_head) {
+		this.cs_head = cs_head;
+	}
 	public Integer getStart() {
 		return start;
 	}
@@ -76,8 +83,8 @@ public class Coursys implements Serializable {
 	@Override
 	public String toString() {
 		return "Coursys [cs_id=" + cs_id + ", cs_name=" + cs_name + ", cs_pic=" + cs_pic + ", cs_version=" + cs_version
-				+ ", cs_text=" + cs_text + ", cs_status=" + cs_status + ", picUrl=" + picUrl + ", start=" + start
-				+ ", offset=" + offset + "]";
+				+ ", cs_text=" + cs_text + ", cs_status=" + cs_status + ", picUrl=" + picUrl + ", cs_head=" + cs_head
+				+ ", start=" + start + ", offset=" + offset + "]";
 	}
 	
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,13 @@ public class CoursysController {
 	public void setCoursysBiz(CoursysBiz coursysBiz) {
 		this.coursysBiz = coursysBiz;
 	}
+	/*************************后台操作*****************************/
 	//查询所有的课程体系信息
 	@RequestMapping(value="/coursys_selectAll",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String selectAllCoursys(@ModelAttribute Coursys csys,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows,HttpServletResponse resp) throws IOException {
+	public @ResponseBody String selectAllCoursys(@ModelAttribute Coursys csys,
+			@RequestParam(value="page",required=false) Integer page,
+			@RequestParam(value="rows",required=false) Integer rows,
+			HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/text;charset=utf-8 ");
 		logger.info("select all coursys......");
 		//处理分页
@@ -66,8 +71,11 @@ public class CoursysController {
 			UploadFile uploadFile=entry.getValue();
 			pics+=uploadFile.getNewFileUrl()+",";
 		}
-		coursys.setCs_pic(pics);
+		String [] pic=pics.split(",");
+		coursys.setCs_pic(pic[0]);
+		coursys.setCs_head(pic[1]);
 		coursys.setCs_status(1);
+		System.out.println(coursys);
 		boolean flag=this.coursysBiz.judge(coursys);
 		if(flag){
 			response.getWriter().print(2);
@@ -107,7 +115,7 @@ public class CoursysController {
 	}
 	//修改课程体系图片
 	@RequestMapping(value="/coursys_updatepic")
-	public void updateOneCoursysPic(Coursys csys,@RequestParam(value="update_picUrl") List<MultipartFile> picUrl,
+	public void updateOneCoursysPic(@RequestParam(value="update_picUrl1") List<MultipartFile> picUrl,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		logger.info("update one coursys......");
 			String cs_id=request.getParameter("cs_id");
@@ -117,7 +125,32 @@ public class CoursysController {
 				UploadFile uploadFile=entry.getValue();
 				pics+=uploadFile.getNewFileUrl()+",";
 			}
+			Coursys csys=new Coursys();
+			csys.setCs_id(Integer.parseInt(cs_id));
 			csys.setCs_pic(pics);
+		try {
+			this.coursysBiz.updateCoursys(csys);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getWriter().print(0);
+		}
+		response.getWriter().print(1);
+	}
+	//修改课程体系头像
+	@RequestMapping(value="/coursys_updatehead")
+	public void updateOneCoursysHead(@RequestParam(value="update_picUrl2") List<MultipartFile> picUrl,
+			HttpServletRequest request,HttpServletResponse response) throws IOException{
+		logger.info("update one coursys cs_head......");
+			String csid=request.getParameter("csid");
+			String pics="";
+			Map<String,UploadFile> map=UploadFileUtil.uploadFile(request,picUrl,pdfRootName);
+			for(Entry<String,UploadFile> entry:map.entrySet()){
+				UploadFile uploadFile=entry.getValue();
+				pics+=uploadFile.getNewFileUrl()+",";
+			}
+			Coursys csys=new Coursys();
+			csys.setCs_id(Integer.parseInt(csid));
+			csys.setCs_head(pics);
 		try {
 			this.coursysBiz.updateCoursys(csys);
 		} catch (Exception e) {
@@ -148,5 +181,15 @@ public class CoursysController {
 		}else{
 			out.print("disexsist");
 		}
+	}
+	/*************************前台操作*****************************/
+	@RequestMapping(value="/findAllCoursys",produces ="text/html;charset=UTF-8")
+	public @ResponseBody String findAllCoursys(HttpServletResponse response){
+		response.setContentType("utf-8");
+		logger.info("查询所有的课程体系显示到前台界面");
+		Coursys csys=new Coursys();
+		List<Coursys> csysList=this.coursysBiz.selectAllCoursys(csys);
+		Gson gson =new Gson();
+		return gson.toJson(csysList);
 	}
 }

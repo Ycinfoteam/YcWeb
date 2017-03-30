@@ -4,7 +4,6 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  
   <!-- 字符编码集过滤器 -->
   <filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
