@@ -1,7 +1,10 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  * 就业详情表
@@ -14,11 +17,51 @@ public class Jobdetails implements Serializable {
 	private Integer jd_id;
 	private String jd_pic; // 图片
 	private String jd_name; // 学员姓名
-	private Number jd_salary; // 学员薪资
-	private Time jd_emptime; // 就业时间
+	private String jd_salary; // 学员薪资
+	private String jd_emptime; // 就业时间
 	private String jd_company; // 所在公司
 	private String jd_school; // 毕业学校
 	private String jd_profession; // 专业
+	private String jd_palace;//就业地址
+	List<MultipartFile> jd_picUrl=null;
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	public String getJd_palace() {
+		return jd_palace;
+	}
+
+	public void setJd_palace(String jd_palace) {
+		this.jd_palace = jd_palace;
+	}
+
+	public Integer getStart() {
+		return start;
+	}
+
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
+
+	public List<MultipartFile> getJd_picUrl() {
+		return jd_picUrl;
+	}
+
+	public void setJd_picUrl(List<MultipartFile> jd_picUrl) {
+		this.jd_picUrl = jd_picUrl;
+	}
+
+	public void setJd_pic(String jd_pic) {
+		this.jd_pic = jd_pic;
+	}
 
 	public Integer getJd_id() {
 		return jd_id;
@@ -26,14 +69,6 @@ public class Jobdetails implements Serializable {
 
 	public void setJd_id(Integer jd_id) {
 		this.jd_id = jd_id;
-	}
-
-	public String getJd_pic() {
-		return jd_pic;
-	}
-
-	public void setJd_pic(String jd_pic) {
-		this.jd_pic = jd_pic;
 	}
 
 	public String getJd_name() {
@@ -44,19 +79,27 @@ public class Jobdetails implements Serializable {
 		this.jd_name = jd_name;
 	}
 
-	public Number getJd_salary() {
+	
+
+
+
+	public String getJd_salary() {
 		return jd_salary;
 	}
 
-	public void setJd_salary(Number jd_salary) {
+	public void setJd_salary(String jd_salary) {
 		this.jd_salary = jd_salary;
 	}
 
-	public Time getJd_emptime() {
+	public String getJd_pic() {
+		return jd_pic;
+	}
+
+	public String getJd_emptime() {
 		return jd_emptime;
 	}
 
-	public void setJd_emptime(Time jd_emptime) {
+	public void setJd_emptime(String jd_emptime) {
 		this.jd_emptime = jd_emptime;
 	}
 
@@ -88,7 +131,12 @@ public class Jobdetails implements Serializable {
 	public String toString() {
 		return "Jobdetails [jd_id=" + jd_id + ", jd_pic=" + jd_pic + ", jd_name=" + jd_name + ", jd_salary=" + jd_salary
 				+ ", jd_emptime=" + jd_emptime + ", jd_company=" + jd_company + ", jd_school=" + jd_school
-				+ ", jd_profession=" + jd_profession + "]";
+				+ ", jd_profession=" + jd_profession + ", jd_picUrl=" + jd_picUrl + "]";
 	}
+
+	
+
+	
+
 
 }

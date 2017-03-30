@@ -39,20 +39,19 @@
 <table id="show_apply"></table>
 
 <div id="toolbar">
-		<label>条件查询：</label>
-		<select id="findBytype" class="easyui-combobox" >  
-		    <option value="Java工程师">Java工程师</option>  
-		    <option value="大数据工程师">大数据工程师</option>  
-		    <option value="嵌入式工程师">嵌入式工程师</option>  
-		    <option value="Hadoop工程师">Hadoop工程师</option>  
-		</select> 
+		<label>条件查询：</label> 
+		<input id="findBytype" class="easyui-combobox" name="dept"  
+   			 data-options="valueField:'j_name',textField:'j_name',url:'showJobType'" />
+   			  
 		<a id="btn1" href="javascript:void(0)" class="easyui-linkbutton" 
-			data-options="iconCls:'icon-search'" onclick="saveApply()" >查询</a>
+			data-options="iconCls:'icon-search'" onclick="findApplyBytype()" >查询</a>
 		<a id="btn2" href="javascript:void(0)" class="easyui-linkbutton" 
 			data-options="iconCls:'icon-ok'" onclick="checkStatus()" >已审核</a> 
 </div>
 
 <script type="text/javascript"> 
+
+
 
 $('#show_apply').datagrid({
 	toolbar: '#toolbar'
@@ -81,7 +80,6 @@ $(function(){
 			formatter:function(value,row,index){				
 					return row;
 			}
-
 		 },{
        	 	field:'a_id',
        	 	title:'ID',
@@ -129,11 +127,11 @@ $(function(){
 	});
 });
 
-function saveApply(){
+function findApplyBytype(){
 	var a_orientation=$('#findBytype').combobox('getValue');
-	
+
 	$('#show_apply').datagrid({
-		queryParams:{a_orientation:a_orientation,}
+		queryParams:{a_orientation:a_orientation}
 	});
 }
 
@@ -158,7 +156,6 @@ function checkStatus(){
  		}
  	});
 }
-
 
 </script>
 

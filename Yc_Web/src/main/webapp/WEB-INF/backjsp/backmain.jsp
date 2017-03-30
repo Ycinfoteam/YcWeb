@@ -32,27 +32,29 @@ ul,li{
 </head>
 <body class="easyui-layout">
 
-	<div data-options="region:'north'" style="height:150px;">
-		<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
-		<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
+	<div data-options="region:'north'" style="height:120px;">
+<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
+	<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
 源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心</hl>
 	</div>
 
-    <div data-options="region:'west',title:'菜单项'" style="width:200px;">
+    <div data-options="region:'west',title:'菜单项'" style="width:180px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
 			<div title="系统管理" style="overflow:auto;">
 				<div id="tt1" class="easyui-tree"
 					data-options="animate:true,dnd:true">
 					</div>
 			</div>
+
 			<div title="数据字典"data-options="selected:true">
 				<div id="tt2" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			 <div title="新闻管理">
+			 <div title="内容管理">
 				<div id="tt3" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> 
+
 			<div title="师资管理">
 				<div id="tt4" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
@@ -85,11 +87,11 @@ ul,li{
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> -->
-			<div title="友情链接">
+			<div title="模块管理">
 				<div id="tt10" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			<div title="模块管理">
+			<div title="日志报表">
 				<div id="tt11" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -101,18 +103,20 @@ ul,li{
         </div>
     <div data-options="region:'center'" >
     
+
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
 		<div title="首页">
 			<!-- welcome -->
 			<img src="images/ycbackimg.jpg"/>
 			<!-- </br>
 			您好：XXX。现在是北京时间XXXX。</br> -->
-			</div>
-	</div>
-		
-  <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
-    </div>  -->
+	    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
+			<div title="首页">
+				welcome
 
+			</div>
+		</div>
+		
 	</div>
 </body>
 
@@ -142,7 +146,7 @@ $(document).ready(
 				children : [ {
 					text : "管理员操作",
 					attributes : {
-						url : "toadmin"
+						url : "toadmin.action"
 					}
 				}/* , {
 					text : "日志管理",
@@ -157,37 +161,27 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "datadict_introduction_selectDatadict.action?type=公司简介"
+						url : "toDataDictionaryCompany.action"
 					}
-				}, /* {
-					text : "销售网络",
-					attributes : {
-						url : "datadict_salesnet_selectDatadict.action?type=销售网络"
-					}
-				}, */ {
+				},{
 					text : "页脚文字",
 					attributes : {
-						url : "datadict_footwords_selectDatadict.action?type=页脚文字"
+						url : "toDataDictionaryFooter.action"
 					}
 				},{
 					text : "公司logo",
 					attributes : {
-						url : "logo.jsp"
+						url : "toDataDictionaryLogo.action"
 					}
-				} ,{
-					text : "前台大图",
-					attributes : {
-						url : "yyyback/datadict/bigpic.jsp"
-					}
-				} ] 
+				}] 
 			} ];
 			
 			var treeData3 = [ {
-				text : "新闻管理",
+				text : "内容管理",
 				children : [ {
-					text : "公司新闻",
+					text : "课程体系",
 					attributes : {
-						url : "tocompanynews"
+						url : "tocoursys",
 					}
 				} ]
 			} ];
@@ -195,6 +189,7 @@ $(document).ready(
 			var treeData4 = [ {
 				text : "教师管理",
 				children : [ {
+				} ,{
 					text : "教师管理",
 					attributes : {
 						url : "toteachers"
@@ -204,45 +199,58 @@ $(document).ready(
 			
 			var treeData5 = [ {
 				text : "课程体系",
+				},{
+					text : "学员项目",
+					attributes : {
+						url : "toprojects.action"
+					}
+				},{text : "学员就业",
 				attributes : {
-					url : "tocoursys",
+					url : "tojobdetails.action"
 				}
-			} ];
-			
-			var treeData6 = [ {
-				text : "学员项目",
-				attributes : {
-					url : "toprojects"
-				}
-			} ];
-			var treeData7= [ {
-				text : "关于",
-				children : [ {
+			}
+				,{
 					text : "关于公司介绍",
 					attributes : {
-						url : ""
+						url : "tocompany.action"
 					}
 				} , {
 					text : "公司活动介绍",
 					attributes : {
-						url : ""
+						url : "toactivities.action"
 					}
-				}  ]
-			} ];
-			var treeData8= [ {
-				text : "人才招聘",
-				children : [{
+				} ,{
+					text : "公司历史介绍",
+					attributes : {
+						url : "tohistory.action"
+					}
+				} ,{
+					text : "公司新闻",
+					attributes : {
+						url : "tocompanynews.action"
+					}
+				} ,{
+					text : "方向信息",
+					attributes : {
+						url : "tojobtype.action"
+					}
+				},{
 					text : "招聘信息",
 					attributes : {
-						url : "tojob"
+						url : "tojob.action"
 					}
 				},{
 					text : "应聘信息",
 					attributes : {
-						url : "toapply"
+						url : "toapply.action"
 					}
-				}]
-			} ];
+				},{
+					text : "行政人员信息",
+					attributes : {
+						url : "toadministrator.action"
+					}
+				}];
+			
 			
 			 var treeData9 = [ {  /*  7.26去掉留言模块 */
 				text : "留言管理",
@@ -256,14 +264,14 @@ $(document).ready(
 					url : "yyyback/count/view.jsp"
 				}
 			} ];  */
-			var treeData10 = [ {
-				text : "友情链接",
+			var treeData11 = [ {
+				text : "查看日志",
 				attributes : {
 					url : "yyyback/friendlink/friendlink.jsp"
 				}
 			} ];
 			//css
-			var treeData11 = [ {
+			var treeData10 = [ {
 				text : "前台管理",
 				children : [ {
 					text : "样式管理",
@@ -303,24 +311,7 @@ $(document).ready(
 			 $('#tt3').tree({
 				data : treeData3
 			}); 
-			$('#tt4').tree({
-				data : treeData4
-			});
-			$('#tt5').tree({
-				data : treeData5
-			});
-			$('#tt6').tree({
-				data : treeData6
-			});
-			$('#tt7').tree({
-				data : treeData7
-			});
-			$('#tt8').tree({
-				data : treeData8
-			}); 
-			/* $('#tt9').tree({
-				data : treeData9
-			}); */
+		
 			$('#tt11').tree({
 				data : treeData11
 			});

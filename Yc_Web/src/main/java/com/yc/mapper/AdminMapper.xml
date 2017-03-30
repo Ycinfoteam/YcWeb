@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.AdminMapper">
+
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+	
+	<!-- 查询记录数 -->
+	<select id="findCount" parameterType="Admin" resultType="java.lang.Double">
+		select count(*) from admin
+	</select>
+	
+	
+	<select id="findAdmin"  parameterType="Admin" resultType="Admin">
+		select a_id,a_name,a_pwd from admin 
+		<trim prefix="where" suffixOverrides="and">
+			<if test="a_name!=null">
+				a_name=#{a_name } and
+			</if>
+		</trim>
+		order by a_id desc
+		<if test="start!=null and offset!=null">
+			limit #{start},#{offset}
+		</if>
+	</select>
+	
+	<!-- 插入管理员信息 -->
+	<insert id="addAdmin" parameterType="Admin" useGeneratedKeys="true" keyProperty="a_id">
+		insert into admin(a_name,a_pwd) values(#{a_name},#{a_pwd})
+	</insert>
+	
+	<!-- 修改管理员信息 -->
+	<update id="updateAdmin" parameterType="Admin">
+		update admin set a_pwd=#{a_pwd}
+		<where>
+			<if test="a_id!=null">
+				a_id=#{a_id}
+			</if>
+		</where>
+	</update>
+	
+	<!-- 删除管理员信息 -->
+	<delete id="deleteAdmin" parameterType="Admin" >
+		delete from admin where a_id=#{a_id }
+	</delete>
+
+</mapper>

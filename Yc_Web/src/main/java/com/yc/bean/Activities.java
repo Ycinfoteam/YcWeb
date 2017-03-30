@@ -1,12 +1,9 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Activities implements Serializable {
@@ -17,6 +14,21 @@ public class Activities implements Serializable {
 	private String ac_illus;	//说明
 	private String ac_pic;     //图片（多图）
 	private List<MultipartFile> ac_picUrl;//对应界面上的<input type="file" name="pdfsUrl"/>
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
+	
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public List<String> getac_picStringList(){
 		List<String>list=new ArrayList<String>();
 		if(ac_pic!=null&&ac_pic.length()>0){
@@ -39,14 +51,7 @@ public class Activities implements Serializable {
 	public void setAc_id(Integer ac_id) {
 		this.ac_id = ac_id;
 	}
-	/*@DateTimeFormat(pattern="yyyy-MM-dd")
-	public Date getAc_time() {
-		return ac_time;
-	}
-	public void setAc_time(Date ac_time) {
-		this.ac_time = ac_time;
-	}
-	*/
+
 	public String getAc_illus() {
 		return ac_illus;
 	}

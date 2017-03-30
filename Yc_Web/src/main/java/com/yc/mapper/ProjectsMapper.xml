@@ -8,17 +8,22 @@
 			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
  	<!-- 查询 -->
  	<select id="selectProjects" parameterType="Projects" resultType="Projects">
-	<![CDATA[select p_id,p_name,p_pic,p_developer,date_format(p_time,'%Y-%m-%d') p_time,p_addr from projects where 1=1]]>
- 	<choose>
- 	<when test="p_name!=null" >
- 	and p_name=#{p_name} 
- 	</when>
- 	<when test="p_time!=null">
-	 and p_time=#{p_time} 
- 	</when>
-	<otherwise></otherwise>
- 	</choose>
-	<!-- order by p_id asc limit ${start},${end}  --> 
+	select p_id,p_name,p_pic,p_developer,date_format(p_time,'%Y-%m-%d') p_time,p_addr from projects
+ 	<trim prefix="where" suffixOverrides="and">
+	<if test="p_name!=null">
+ 	p_name=#{p_name} and 
+ 	</if>
+ 	<if test="p_time!=null">
+	p_time>#{p_time } and 
+	</if>
+	<if test="p_addr!=null">
+ 	p_addr=#{p_addr}  and 
+ 	</if>
+ 	</trim>
+	order by p_id desc
+	<if test="start!=null and offset!=null">
+	 limit ${start},${offset}
+	 </if>
  	</select>
 	
  	<!-- 添加-->
@@ -31,13 +36,13 @@
 	delete from projects where p_id=#{p_id} 
 	<choose>
  	<when test="p_name!=null" >
- 	where p_name=#{p_name} 
+ 	and p_name=#{p_name} 
  	</when>
  	<when test="p_time!=null">
-	 where p_time=#{p_time} 
+	 and p_time=#{p_time} 
  	</when>
  	<when test="p_developer!=null">
-	 where p_developer=#{p_developer} 
+	 and p_developer=#{p_developer} 
  	</when>
 	<otherwise></otherwise>
  	</choose>
@@ -45,7 +50,10 @@
  	
  	<!-- 修改 -->
  	<update id="updateProjects" parameterType="Projects">
- 	update projects set p_name=#{p_name}
+ 	update projects set p_id=#{p_id}
+ 	<if test="p_name!=null">
+ 	,p_name=#{p_name}
+ 	</if>
  	 <if test="p_pic!=null">
  	,p_pic=#{p_pic}
  	</if>
@@ -60,4 +68,20 @@
  	</if>
  	 where p_id=#{p_id}
  	</update>
+ 	
+ 	<!-- 查询记录数 -->
+	<select id="countProjects" parameterType="Projects" resultType="java.lang.Double">
+		select count(*) from projects
+		<trim prefix="where" suffixOverrides="and">
+			<if test="p_time!=null">
+			 p_time>#{p_time } and 
+			</if>
+			<if test="p_addr!=null">
+ 			  p_addr=#{p_addr} and
+ 			</if>
+ 			<if test="p_name!=null">
+ 	 		p_name=#{p_name} and 
+ 	</if>
+		</trim>
+	</select>
 	</mapper>

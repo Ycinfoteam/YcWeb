@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
+<%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,20 +29,21 @@
 			</div>
 		</div>
 		<ul id="nav">
-			<li class="li1"><a href="index.html" target="_blank" >首页</a></li><h1 class="h1"></h1>
-			<li class="li2"><a href="teacher.html" target="_blank">师资介绍</a></li>
-			<li class="li3"><a href="subject.html">课程体系</a></li>
-			<li class="li4"><a href="studentProject.html">学员项目</a></li>
-			<li class="li5"><a href="findWork.html">就业详情</a></li>
-			<li class="li6"><a href="about.html">关于源辰</a></li>
-			<li class="li7"><a href="company.html">公司历史</a></li>
+			<!-- .html后缀是分发器 -->
+			<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
+			<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+			<li class="li3"><a href="subject.html">${title[2] }</a></li>
+			<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
+			<li class="li5"><a href="findWork.html">${title[4] }</a></li>
+			<li class="li6"><a href="about.html">${title[5] }</a></li>
+			<li class="li7"><a href="company.html">${title[6] }</a></li>
 		</ul>
 	</div>
 	<div id="banner">
 		<div id="banner_content">
-			<p class="first_des">源辰信息科技是一家定位于大学生软件开发实战培训和企事业单位系统集成、项目研发于一体的综合性软件公司，以大学生高起点就业和为企事业单位提供信息化解决方案为目标。</p>
-			<p>公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。</p>
-			<p>我们的宗旨是服务于学生，致力于企业。</p>
+			<p class="first_des">${company[0] }</p>
+			<p>${company[1] }</p>
+			<p>${company[2] }</p>
 		</div>
 	</div>
 	<div id="content">
@@ -247,13 +250,13 @@
 	<div id="footer">
 		<div class="address">
 			<p>
-				<span>电话：0734-8355998</span>
-				<span>QQ：1728952785</span>
-				<span>邮政编码：421141</span>
+				<span>${footer[0] }</span>
+				<span>${footer[1] }</span>
+				<span>${footer[2] }</span>
 			</p>
 			<p>
-				<span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
-				<span>地址：衡阳市解放西路丽天名园905室</span>
+				<span>${footer[3] }</span>
+				<span>${footer[4] }</span>
 			</p>
 		</div>
 	</div>

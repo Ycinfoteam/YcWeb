@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.HistoryMapper">
+	<cache></cache>
+	<!-- <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+	<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+	<!-- 查询 -->
+	<select id="selectHistory" parameterType="History" resultType="History">
+		select
+		h_id,date_format(h_createtime,'%Y-%m-%d')h_createtime,h_content,h_creator,h_reg
+		from history
+		<trim prefix="where" suffixOverrides="and">
+			<if test="h_id!=null">
+				h_id=#{h_id} and
+			</if>
+			<if test="h_createtime!=null">
+				h_createtime>#{h_createtime } and
+			</if>
+		</trim>
+		order by h_id desc
+		<if test="start!=null and offset!=null">
+			limit ${start},${offset}
+		</if>
+	</select>
+	
+	<!-- 根据条件查询 -->
+	<select id="findHistory"  parameterType="ApplyJob" resultType="ApplyJob">
+		select a_id,a_name,a_tel,a_email,a_orientation,a_detail,date_format(a_time ,'%Y-%m-%d') a_time,a_status from applyjob 
+		<trim prefix="where" suffixOverrides="and">
+			<if test="a_orientation!=null">
+				a_orientation=#{a_orientation } and
+			</if>
+			<if test="a_status!=null">
+				a_status=#{a_status } and
+			</if>
+			<if test="a_time!=null">
+				a_time>#{a_time } and
+			</if>
+		</trim>
+			<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+			</if>
+	</select>
+	<!-- 查询记录数 -->
+	<select id="countHistory" parameterType="History" resultType="java.lang.Double">
+		select count(*) from history
+		<trim prefix="where" suffixOverrides="and">
+			<if test="h_id!=null">
+				h_id=#{h_id} and
+			</if>
+			<if test="h_createtime!=null">
+				h_createtime>#{h_createtime } and
+			</if>
+		</trim>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertHistory" parameterType="History">
+		insert into history(h_createtime,h_content,h_creator,h_reg)
+		values(#{h_createtime},#{h_content},#{h_creator},#{h_reg})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteHistory" parameterType="History">
+		delete from history where h_id=#{h_id}
+	</delete>
+
+	<!-- 修改 -->
+	<update id="updateHistory" parameterType="History">
+		update history set h_id=#{h_id}
+		<if test="h_createtime!=null">
+			,h_createtime=#{h_createtime}
+		</if>
+		<if test="h_content!=null">
+			,h_content=#{h_content}
+		</if>
+		<if test="h_creator!=null">
+			,h_creator=#{h_creator}
+		</if>
+		<if test="h_reg!=null">
+			,h_reg=#{h_reg}
+		</if>
+		where h_id=#{h_id}
+	</update>
+</mapper>

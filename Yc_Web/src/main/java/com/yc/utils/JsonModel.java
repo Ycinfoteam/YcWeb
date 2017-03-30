@@ -1,4 +1,4 @@
-package com.yc.util;
+package com.yc.utils;
 
 import java.io.Serializable;
 

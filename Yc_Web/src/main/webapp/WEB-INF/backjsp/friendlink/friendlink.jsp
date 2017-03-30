@@ -50,10 +50,10 @@
 	var rowEditor=undefined;	//用于存放当前要编辑的行
 	$(function(){
 	   datagrid=$('#friendlinkdg').edatagrid({
-        	url: 'friendlink_findPartFriendLinks.action',	//查询时加载的URL
-            saveUrl: 'friendlink_addFriendLink.action',
-            updateUrl: 'friendlink_updateFriendLink.action', 
-            destroyUrl: 'friendlink_deleteFriendLink.action',
+        	url: 'friendlink_findPartFriendLinks',	//查询时加载的URL
+            saveUrl: 'friendlink_addFriendLink',
+            updateUrl: 'friendlink_updateFriendLink', 
+            destroyUrl: 'friendlink_deleteFriendLink',
             
         	pagination:true,	//不分页
         	pageSize:10,		//默认分页的条数

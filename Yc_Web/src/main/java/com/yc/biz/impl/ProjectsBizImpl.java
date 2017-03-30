@@ -18,8 +18,7 @@ public class ProjectsBizImpl implements ProjectsBiz {
 		this.baseDao = baseDao;
 	}
 	@Override
-	public List<Projects> findall() {
-		Projects projects=new Projects();
+	public List<Projects> findall(Projects projects) {
 		List<Projects>list=this.baseDao.findAll(projects, "selectProjects");
 		return list;
 	}
@@ -42,9 +41,9 @@ public class ProjectsBizImpl implements ProjectsBiz {
 		this.baseDao.update(projects, "updateProjects");
 	}
 	@Override
-	public List<Projects> findby(Projects projects) {
-		List<Projects>list=this.baseDao.findAll(projects, "selectProjects");
-		return list;
+	public int findCount(Projects projects) {
+		int count=(int) this.baseDao.fundFunc(projects, "countProjects");
+		return count;
 	}
 
 }

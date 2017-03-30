@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.yc.mapper.AboutycMapper">
+	<cache></cache>
+			<!--  <cache type="com.yc.dao.redis.cache.RedisCache"></cache> -->
+			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
+ 	<!-- 查询 -->
+ 	<select id="selectAboutyc" parameterType="Aboutyc" resultType="Aboutyc">
+ 	<![CDATA[select a_id,a_title,a_reptor,a_source,date_format(a_time,'%Y-%m-%d')a_time,a_content,a_tel,a_qq,a_address, a_code,a_copr from aboutyc where 1=1]]>
+ 	<choose>
+ 	<when test="a_title!=null" >
+ 	and a_title=#{a_title} 
+ 	</when>
+ 	<when test="a_time!=null">
+	 and a_time=#{a_time} 
+ 	</when>
+ 		<when test="a_id!=null">
+	 and a_id=#{a_id} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+	<!-- order by p_id asc limit ${start},${end}  --> 
+ 	</select>
+	
+ 	<!-- 添加-->
+	<insert id="insertAboutyc" parameterType="Aboutyc" >
+insert into aboutyc(a_title,a_reptor,a_source,a_time,a_content,a_tel,a_qq,a_address,a_code,a_copr) values(#{a_title},#{a_reptor},#{a_source},#{a_time},#{a_content},#{a_tel},#{a_qq},#{a_address},#{a_code},#{a_copr})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteAboutyc" parameterType="Aboutyc" >
+delete from aboutyc where a_id=#{a_id}
+	<choose>
+ 	<when test="a_reptor!=null" >
+ 	and a_reptor=#{a_reptor} 
+ 	</when>
+ 	<when test="a_time!=null">
+	 and a_time=#{a_time} 
+ 	</when>
+ 	<when test="a_title!=null">
+	 and a_title=#{a_title} 
+ 	</when>
+	<otherwise></otherwise>
+ 	</choose>
+ 	</delete>
+ 	
+ 	<!-- 修改 -->
+ 	<update id="updateAboutyc" parameterType="Aboutyc">
+ 	update aboutyc set a_id=#{a_id}
+ 	<if test="a_title!=null">
+ 	,a_title=#{a_title}
+ 	</if>
+ 	 <if test="a_reptor!=null">
+ 	,a_reptor=#{a_reptor}
+ 	</if>
+ 	 <if test="a_source!=null">
+ 	,a_source=#{a_source}
+ 	</if>
+ 	 <if test="a_time!=null">
+ 	,a_time=#{a_time}
+ 	</if>
+ 	<if test="a_content!=null">
+ 	,a_content=#{a_content}
+ 	</if>
+ 	<if test="a_tel!=null">
+ 	,a_tel=#{a_tel}
+ 	</if>
+ 	<if test="a_qq!=null">
+ 	,a_qq=#{a_qq}
+ 	</if>
+ 	<if test="a_address!=null">
+ 	,a_address=#{a_address}
+ 	</if>
+ 	<if test="a_code!=null">
+ 	,a_code=#{a_code}
+ 	</if>
+ 	<if test="a_copr!=null">
+ 	,a_copr=#{a_copr}
+ 	</if>
+ 	 where a_id=#{a_id}
+ 	</update>
+	</mapper>

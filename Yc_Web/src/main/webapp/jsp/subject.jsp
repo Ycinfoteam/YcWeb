@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
-<% 
-	String path=request.getContextPath();
-	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
@@ -32,7 +25,6 @@
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
 </head>
-
 <body>
 <div id="header">
     <div id="logo" class="site-logo">
@@ -42,13 +34,14 @@
         </div>
     </div>
     <ul id="nav">
-        <li class="li1"><a href="index.html" target="_blank" >首页</a></li><h1 class="h1"></h1>
-        <li class="li2"><a href="teacher.html" target="_blank">师资介绍</a></li>
-        <li class="li3"><a href="subject.html" target="_blank">课程体系</a></li>
-        <li class="li4"><a href="studentProject.html" target="_blank">学员项目</a></li>
-        <li class="li5"><a href="findWork.html" target="_blank">就业详情</a></li>
-        <li class="li6"><a href="about.html" target="_blank">关于源辰</a></li>
-        <li class="li7"><a href="company.html" target="_blank">公司历史</a></li>
+      	<!-- .html后缀是分发器 -->
+		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
+		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+		<li class="li3"><a href="subject.html">${title[2] }</a></li>
+		<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
+		<li class="li5"><a href="findWork.html">${title[4] }</a></li>
+		<li class="li6"><a href="about.html">${title[5] }</a></li>
+		<li class="li7"><a href="company.html">${title[6] }</a></li>
     </ul>
 </div>
 
@@ -59,8 +52,8 @@
     <div id="course">
         <h3>课程体系</h3>
         <div id="course_content">
-            <ul class="coursys_list">
-                <!-- <li class="j2ee course_current">
+            <ul>
+                <li class="j2ee course_current">
                     <span>J2EE开发工程师</span>
                 </li>
                 <li class="html5">
@@ -71,7 +64,7 @@
                 </li>
                 <li class="cloud">
                     <span>大数据开发工程师</span>
-                </li> -->
+                </li>
             </ul>
             <div id="course_img">
                 <img src="images/loading.gif" data-original="images/J2EE开发工程师.png" alt="J2EE开发工程师">
@@ -83,46 +76,26 @@
 <div id="footer">
     <div class="address">
         <p>
-            <span>电话：0734-8355998</span>
-            <span>QQ：1728952785</span>
-            <span>邮政编码：421141</span>
-        </p>
-        <p>
-            <span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
-            <span>地址：衡阳市解放西路丽天名园905室</span>
-        </p>
+			<span>${footer[0] }</span>
+			<span>${footer[1] }</span>
+			<span>${footer[2] }</span>
+		</p>
+		<p>
+			<span>${footer[3] }</span>
+			<span>${footer[4] }</span>
+		</p>
     </div>
 </div>
 <script src="js/jquery.js" type="text/javascript"></script>
 <script src="js/jquery.lazyload.js" type="text/javascript"></script>
 <script>
-$.post('findAllCoursys',function(data){
-	//data=data.rows;
-	//显示课程体系信息
-	showCoursys(data);
-},'json');
-function showCoursys(data){
-	alert(data);
-	$('ul.coursys_list').empty('');
-	var str='';
-	for(var i=0;i<data.length;i++){
-		var cs_head=data[i].cs_head.replace(",","");
-		cs_head=cs_head.substring(22);
-		str+='<li class="course_current" id="'+data[i].cs_id+'"><img src='+cs_head+'/><span>'+data[i].cs_name+'</span></li>';
- 	}
-	$('ul.coursys_list').append(str);
-	/* for(var i=0;i<cs_ids.length;i++){
-	 	$('#'+cs_ids[i]).css({"background-image":"url("+cs_heads[i]+")","background-repeat":"no-repeat","background-position":"center","background-size":"30%"});
-	} */
 
-}
-
-$('#course_content ul li').mouseover(function() {
-    var imgsrc = $(this).find('span').text();
-    $(this).addClass('course_current').siblings().removeClass('course_current');
-    $('#course_img img')[0].src = '../images/' + imgsrc + '.png';
-    $('#course_img img')[0].alt = imgsrc
-});
+    $('#course_content ul li').mouseover(function() {
+        var imgsrc = $(this).find('span').text();
+        $(this).addClass('course_current').siblings().removeClass('course_current');
+        $('#course_img img')[0].src = 'images/' + imgsrc + '.png';
+        $('#course_img img')[0].alt = imgsrc
+    });
 </script>
 </body>
 </html>

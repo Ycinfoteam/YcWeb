@@ -22,11 +22,20 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="3"></property>
+	</bean>
+	
+	<bean id="viewResolver1"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="com.yc.utils.JspResourceView"></property>
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2"></property>
 	</bean>
 
 	<!-- 启用mvc的注解解析器  -->
 	<mvc:annotation-driven />
-	<!-- 配置静态资源处理方式 -->
+	<!-- 配置静态资源处理方式 --> 
 	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/backcss/" mapping="/backcss/**" />

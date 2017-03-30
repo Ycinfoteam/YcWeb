@@ -23,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.yc.bean.Teachers;
 import com.yc.biz.TeachersBiz;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 import com.yc.utils.UploadFileUtil;
 import com.yc.utils.UploadFileUtil.UploadFile;
 @Controller

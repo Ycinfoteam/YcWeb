@@ -9,21 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.core.NestedCheckedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.yc.bean.Coursys;
 import com.yc.bean.News;
 import com.yc.biz.NewsBiz;
-import com.yc.util.JsonModel;
-import com.yc.util.PageUtil;
+import com.yc.utils.JsonModel;
+import com.yc.utils.PageUtil;
 
 @Controller
 public class NewsController {
