@@ -152,7 +152,12 @@ $(document).ready(
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteacher.action"
+						url : "toteachers.action"
+					}
+				},{
+					text : "学员报名",
+					attributes : {
+						url : "tostudents.action"
 					}
 				},{
 					text : "学员项目",
@@ -160,21 +165,20 @@ $(document).ready(
 						url : "toprojects.action"
 					}
 				},{text : "学员就业",
-				attributes : {
-					url : "tojobdetails.action"
-				}
-			}
-				,{
+					attributes : {
+						url : "tojobdetails.action"
+					}
+				},{
 					text : "关于公司介绍",
 					attributes : {
 						url : "tocompany.action"
 					}
-				} , {
+				},{
 					text : "公司活动介绍",
 					attributes : {
 						url : "toactivities.action"
 					}
-				} ,{
+				},{
 					text : "公司历史介绍",
 					attributes : {
 						url : "tohistory.action"

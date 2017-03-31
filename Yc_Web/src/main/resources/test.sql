@@ -2,6 +2,7 @@
 select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news
 insert into news(n_title,n_content,n_click,n_time,n_sort,n_reportor,n_status) values('源辰28班三期项目开始','源辰28班学期将满一年，进入三期项目阶段',0,curdate(),1,'admin',0)
 delete from news;
+select n_id,n_title,n_content,n_click,date_format(n_time,'%Y-%m-%d') n_time,n_sort,n_reportor,n_status from news order by n_sort desc limit 0,5
 --课程体系表的测试数据
 select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_head from coursys
 insert into coursys(cs_name,cs_pic,cs_version,cs_text) values('源辰','a','a','a');

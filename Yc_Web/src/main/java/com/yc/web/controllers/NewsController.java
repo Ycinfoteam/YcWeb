@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.yc.bean.Admin;
 import com.yc.bean.News;
 import com.yc.biz.NewsBiz;
 import com.yc.utils.JsonModel;
@@ -32,7 +33,12 @@ public class NewsController {
 	}
 	//查询所有新闻
 	@RequestMapping(value="/news_selectAll",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String selectAllNews(@ModelAttribute News news,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows,HttpServletResponse resp) throws IOException {
+	public @ResponseBody String selectAllNews(@ModelAttribute News news,
+			@RequestParam(value="page",required=false) Integer page,
+			@RequestParam(value="rows",required=false) Integer rows,
+			@RequestParam(value="sort",required=false) String sortcol,
+			@RequestParam(value="order",required=false) String order,
+			HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/text;charset=utf-8 ");
 		logger.info("select all news......");
 		//处理分页
@@ -40,6 +46,8 @@ public class NewsController {
 		int offset=PageUtil.judgeOffset(rows);
 		news.setStart(start);
 		news.setOffset(offset);
+		news.setN_order(order);
+		news.setN_sortcol(sortcol);
 		List<News> newsList=this.newsBiz.selectAllNews(news);
 		int total =this.newsBiz.selectCountAll();
 		JsonModel model=new JsonModel();
@@ -50,7 +58,7 @@ public class NewsController {
 	}
 	//添加新闻
 	@RequestMapping(value="/news_addNews")
-	public @ResponseBody void addNews(News news,HttpServletRequest request,HttpServletResponse  response) throws IOException{
+	public @ResponseBody void addNews(@ModelAttribute Admin admin,News news,HttpServletRequest request,HttpServletResponse  response) throws IOException{
 		logger.info("add one new......");
 		try {
 			String type=request.getParameter("type");
@@ -61,6 +69,7 @@ public class NewsController {
 //			news.setN_reportor(request.getParameter("admin"));
 //			news.setN_sort(1);
 //			news.setN_title(request.getParameter("title"));
+			news.setN_reportor(admin.getA_name());
 			news.setN_status(Integer.parseInt(type));
 			this.newsBiz.addNews(news);
 		} catch (Exception e) {
@@ -110,16 +119,6 @@ public class NewsController {
 			response.getWriter().print(0);
 		}
 		response.getWriter().print(1);
-	}
-	//根据条件查询新闻
-	@RequestMapping(value="/findNewsByRule")
-	public @ResponseBody String findNewsByRule(HttpServletResponse response,HttpServletRequest request) throws IOException{
-			int n_id=Integer.parseInt(request.getParameter("n_id"));
-			News news=new News();
-			news.setN_id(n_id);
-			List<News> newsList=this.newsBiz.selectAllNews(news);
-			Gson gson =new Gson();
-			return gson.toJson(newsList);
 	}
 	//去新闻详情的jsp页面
 	@RequestMapping(value="/toshownewscontent")
