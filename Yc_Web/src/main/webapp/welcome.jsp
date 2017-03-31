@@ -1,3 +1,3 @@
 <%
-request.getRequestDispatcher("tobacklogin.action").forward(request,response);
+request.getRequestDispatcher("tobacklogin").forward(request,response);
 %>
