@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -66,8 +67,8 @@ public class AdminController {
 		return 1;
 	}
 	
-	@RequestMapping(value="login")
-	public @ResponseBody int login(@ModelAttribute Admin admin){
+	@RequestMapping(value="/login")
+	public int login(@ModelAttribute Admin admin,HttpSession session){
 		log.info("login called...");
 		
 		//TODO:数据库加密
@@ -75,6 +76,7 @@ public class AdminController {
 		List<Admin> list=this.adminBiz.findAdmin(admin);
 		if(list!=null && list.size()>0){
 			if(list.get(0).getA_pwd().equals(admin.getA_pwd())){
+				session.setAttribute("user", list.get(0).getA_name());
 				return 1;
 			}
 		}

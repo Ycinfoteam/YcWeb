@@ -78,7 +78,7 @@ public class ApplyJobController {
 		this.applyJobBiz.addApply(applyJob); 
 		try {
 			Map<String,String> map=PropertiesUtil.readProperties("admin.properties");
-			MessageUtil.sendMessageToAdmin(map.get("name"), map.get("tel"));
+			MessageUtil.sendMessage(map.get("name"), map.get("tel"), "56640030");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ApiException e) {

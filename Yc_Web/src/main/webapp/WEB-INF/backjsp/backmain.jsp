@@ -5,6 +5,7 @@
 	String path=request.getContextPath();
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<% String username=session.getAttribute("user").toString(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,15 @@ ul,li{
 <body class="easyui-layout">
 
 	<div data-options="region:'north'" style="height:120px;">
-<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
-	<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
-源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心</hl>
+		<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
+		<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
+			源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心
+		</hl>
+		<%
+			if(username!=null&&!"".equals(username)){%>
+				欢迎：【<%=username %>】
+		<% 	} %>	
+		
 	</div>
 
     <div data-options="region:'west',title:'菜单项'" style="width:180px;">
@@ -112,7 +119,7 @@ $(document).ready(
 				children : [ {
 					text : "管理员操作",
 					attributes : {
-						url : "toadmin.action"
+						url : "toadmin"
 					}
 				}/* , {
 					text : "日志管理",
@@ -127,17 +134,17 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "toDataDictionaryCompany.action"
+						url : "toDataDictionaryCompany"
 					}
 				},{
 					text : "页脚文字",
 					attributes : {
-						url : "toDataDictionaryFooter.action"
+						url : "toDataDictionaryFooter"
 					}
 				},{
 					text : "公司logo",
 					attributes : {
-						url : "toDataDictionaryLogo.action"
+						url : "toDataDictionaryLogo"
 					}
 				}] 
 			} ];
@@ -147,66 +154,67 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys.action",
+						url : "tocoursys"
 					}
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteachers.action"
+					url : "toteacher"
 					}
 				},{
 					text : "学员报名",
 					attributes : {
-						url : "tostudents.action"
+						url : "tostudents"
 					}
 				},{
 					text : "学员项目",
 					attributes : {
-						url : "toprojects.action"
+						url : "toprojects"
 					}
 				},{text : "学员就业",
-					attributes : {
-						url : "tojobdetails.action"
-					}
-				},{
+				attributes : {
+					url : "tojobdetails"
+				}
+			}
+				,{
 					text : "关于公司介绍",
 					attributes : {
-						url : "tocompany.action"
+						url : "tocompany"
 					}
 				},{
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities.action"
+						url : "toactivities"
 					}
 				},{
 					text : "公司历史介绍",
 					attributes : {
-						url : "tohistory.action"
+						url : "tohistory"
 					}
 				} ,{
 					text : "公司新闻",
 					attributes : {
-						url : "tocompanynews.action"
+						url : "tocompanynews"
 					}
 				} ,{
 					text : "方向信息",
 					attributes : {
-						url : "tojobtype.action"
+						url : "tojobtype"
 					}
 				},{
 					text : "招聘信息",
 					attributes : {
-						url : "tojob.action"
+						url : "tojob"
 					}
 				},{
 					text : "应聘信息",
 					attributes : {
-						url : "toapply.action"
+						url : "toapply"
 					}
 				},{
 					text : "行政人员信息",
 					attributes : {
-						url : "toadministrator.action"
+						url : "toadministrator"
 					}
 				}]
 			} ];
