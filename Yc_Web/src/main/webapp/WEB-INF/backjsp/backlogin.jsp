@@ -90,13 +90,14 @@ h3{
 			<h1>源辰信息科技</h1>
 	            <h3>yuan chen info tech</h3>
 			</div>
+			
     	</div>
 		<form id="login_form">
 			<label>用户名:</label> 
 			<input name="a_name" type="text" required="true" placeholder="请输入用户名..."><br/>
 			<label>密&nbsp;&nbsp;&nbsp;码:</label>
 			<input name="a_pwd" type="password" required="true" placeholder="请输入密码..."/><br/>
-			<input id="submit" type="button" onclick="login()" value="登录" />
+			<input id="submit" type="button" onclick="login()"  value="登录" />
 			<input id="forget" type="button" onclick="forget()" value="忘记密码"/><br/>
 		</form>
 		<span class="error"></span>
@@ -105,7 +106,7 @@ h3{
 
 <script type="text/javascript" src="backjs/jquery.min.js"></script>
 <script type="text/javascript">
-	function login(){
+	 function login(){
 		var a_name=$('input[name="a_name"]').val();
 		var a_pwd=$('input[name="a_pwd"]').val();
 		$.ajax({
@@ -117,11 +118,11 @@ h3{
 				a_pwd:a_pwd
 			},
 			success:function(data){
-				if(data==1){
-					window.location.href='tobackmain';
+				 if(data==1){
+					 window.location.href="tobackmain";
 				}else{
 					$('.error').append('用户名或密码错误，请检查后重新登录。');
-				}
+				} 
 			}
 		});
 	}
