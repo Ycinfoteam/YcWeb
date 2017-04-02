@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.TeachersMapper">
+<!-- 查询所有的教师信息 -->
+<select id="selectAllTeacher" parameterType="Teachers" resultType="Teachers">
+	select t_id,t_title,t_name,t_job,t_motto,t_skill,t_pic,r_id from teachers
+	<trim prefix="where" suffixOverrides="and">
+			<if test="t_id>0">
+				t_id=#{t_id} and
+			</if>
+			<if test="t_skill!=null">
+				t_skill=#{t_skill} and
+			</if>
+			<if test="t_name!=null">
+				t_name=#{t_name} and
+			</if>
+		</trim>
+		order by t_id desc
+		<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+		</if>
+</select>
+<!-- 查询记录总数 -->
+<select id="findtotal" resultType="java.lang.Double">
+	select count(*) from teachers
+</select>
+<!-- 查询当前课程体系表中是否存在所查记录  -->
+<select id="judge" parameterType="Teachers" resultType="Teachers">
+	select t_id,t_title,t_name,t_job,t_motto,t_skill,t_pic,r_id from teachers
+	<trim prefix="where" suffixOverrides="and">
+		<if test="t_id>0">
+			t_id=#{t_id} and
+		</if>
+		<if test="t_name!=null">
+			t_name=#{t_name} and
+		</if>
+	</trim>
+	limit 1; 
+</select>
+<!-- 添加教师信息 -->
+<insert id="addOneTeacher" parameterType="Teachers" useGeneratedKeys="true" keyProperty="t_id">
+	insert into teachers(t_title,t_name,t_job,t_motto,t_skill,t_pic,r_id) values(#{t_title},#{t_name},#{t_job},#{t_motto},#{t_skill},#{t_pic},#{r_id})
+</insert>
+<delete id="deleteOneTeacher" parameterType="Teachers">
+		delete from teachers where t_id=#{t_id}
+</delete>
+<update id="updateOneTeacher" parameterType="Teachers">
+		update teachers set t_id=#{t_id} 
+		<if test="t_name!=null">
+			,t_name=#{t_name}
+		</if>
+		<if test="t_pic!=null">
+			,t_pic=#{t_pic}
+		</if>
+		<if test="t_title!=null">
+			,t_title=#{t_title}
+		</if>
+		<if test="t_job!=null">
+			,t_job=#{t_job}
+		</if>
+		<if test="t_motto!=null">
+			,t_motto=#{t_motto}
+		</if>
+		<if test="t_motto!=null">
+			,t_skill=#{t_skill}
+		</if>
+		where t_id=#{t_id}
+</update>
+</mapper>

@@ -61,6 +61,11 @@ public class IndexController {
 	public String toDataDictionaryDescription() {
 		return "backjsp/datadictionary/description";
 	}
+	//去数据字典company
+	@RequestMapping(value="toDataDictionaryCompany")
+	public String toDataDictionaryCompany(){
+		return "backjsp/datadictionary/company";
+	}
 
 	// 去数据字典logo
 	@RequestMapping(value = "toDataDictionaryLogo")
@@ -137,9 +142,21 @@ public class IndexController {
 		return "backjsp/activities/activities";
 	}
 
-	// 去公司介绍
-	@RequestMapping(value = "/tocompany")
-	public String tocompany() {
+	
+	//去教师管理
+	@RequestMapping(value="/toteachers")
+	public String toteachers(){
+		return "backjsp/teachers/teachers";
+	}
+	//去学生报名信息管理
+	@RequestMapping(value="/tostudents")
+	public String tostudent(){
+		return "backjsp/students/students";
+	}
+	
+	//去公司介绍
+	@RequestMapping(value="/tocompany")
+	public String tocompany(){
 		return "backjsp/activities/company";
 	}
 
@@ -614,3 +631,5 @@ public class IndexController {
     }
 	}
 	
+	
+

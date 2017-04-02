@@ -4,32 +4,82 @@
 <script src="backjs/jquery.form.js"></script>
 <table id="coursysinfo"></table>
 <div id="addcsinfo" class="easyui-dialog"
-	style="width: 1070px; height: 480px; padding: 10px 20px;display:none" closed="true"
-	buttons="#fooddlg-buttons">
-	<form id="csform" method="post" enctype="multipart/form-data"  novalidate>
+	style="width: 900px; height: 600px; padding: 10px 20px;display:none" closed="true"
+	buttons="#add-buttons">
+	<form id="csform" method="post" enctype="multipart/form-data"  novalidate onSubmit="">
 		<div>
 		<label>课程方向: </label> 
-		<input id="cs_name" name="cs_name" class="easyui-textbox" style="width:300px" required="true">
-		</div>
+		<input id="cs_name" name="cs_name" class="easyui-textbox" style="width:300px" 
+				required="true" validType="nameRex">
+		<span id="errorMsg"></span>
+		</div><br>
 		<div>
 		<label>体系版本:</label>
-		<input id="cs_version" name="cs_version" class="easyui-textbox" style="width:80px"required="true">
-		</div>
+		<input id="cs_version" name="cs_version" class="easyui-textbox" style="width:80px"
+				required="true" placeholder="请输入版本号..." validType="numberRex">
+		</div><br>
 		<div>
 		<label>图片说明: </label>
-		<input id="picUrl" type="file" name="picUrl" required="true"/>
+		<input id="picUrl1" type="file" name="picUrl" required="true"/><br/>
+		<img id="addpreview1" src="" style="width:100px;height:100px;display:none"/>
+		</div><br>
+		<div>
+		<label>体系头像：</label>
+		<input id="picUrl2" type="file" name="picUrl" required="true"/><br/>
+		<img id="addpreview2" src="" style="width:100px;height:100px;display:none"/>
 		</div>
 		<div>
-		<label>文字说明：</label>
-		<textarea id="cs_text" name="cs_text" class="easyui-textbox" style="width:300px;height:100px" required="true"></textarea>
+		<label>主讲教师：</label>
+		<input id="cs_text" name="cs_text" class="easyui-combobox" required="true" style="width:200px"  validType="teacherRex" data-options="   
+        valueField: 't_name',   
+        textField: 't_name',   
+        url:'findTeachers'"/>
 		</div>
 	</form>
-	<div id="fooddlg-buttons">
+	<div id="add-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="saveCoursysInfo()" style="width: 90px">保存</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
+		<a class="easyui-linkbutton"
 			iconCls="icon-cancel"
 			onclick="javascript:$('#addcsinfo').dialog('close')"
+			style="width: 90px">取消</a>
+	</div>
+</div>
+<!-- 体系图片 -->
+<div id="showCoursysPic" class="easyui-dialog" 
+	style="width: 700px; height: 500px; padding: 10px 20px;display:none" closed="true" buttons="#update-buttons">
+	<form id="updatepicfm" method="post" enctype="multipart/form-data" novalidate>
+		<img id="cspic" style="width:680px;height:380px;"/>
+		<input id="cs_id" name="cs_id" type="hidden" />
+		<div id="file" style="display:inline-block">
+			<label>上传新图片：</label>
+			<input id="update_picUrl1" type="file" name="update_picUrl1" required="true"/>
+		</div>
+	</form>
+	<div id="update-buttons">
+		<a class="easyui-linkbutton c6"
+			iconCls="icon-ok" onclick="updateCoursysPic()" style="width: 90px">确认</a>
+		<a class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#showCoursysPic').dialog('close')"
+			style="width: 90px">取消</a>
+	</div>
+</div>
+<!-- 体系头像 -->
+<div id="showCoursysHead" class="easyui-dialog" 
+	style="width: 300px; height: 300px; padding: 10px 20px;display:none" closed="true" buttons="#updatehead-buttons">
+	<form id="updateheadfm" method="post" enctype="multipart/form-data" novalidate>
+		<img id="cshead" style="width:100px;height:100px;"/>
+		<input id="csid" name="csid" type="hidden" />
+		<div id="filehead" style="display:inline-block">
+			<label>上传新图片：</label>
+			<input id="update_picUrl2" type="file" name="update_picUrl2" required="true"/>
+		</div>
+	</form>
+	<div id="updatehead-buttons">
+		<a class="easyui-linkbutton c6"
+			iconCls="icon-ok" onclick="updateCoursysHead()" style="width: 90px">确认</a>
+		<a class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#showCoursysHead').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
 </div>
@@ -42,27 +92,23 @@ $('#coursysinfo').edatagrid({
 
 		pagination : true, //显示分页
 		pageSize : 5, //默认分页的条数
-		pageList : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ], //可选分页条数
+		pageList : [ 5, 10 ], //可选分页条数
 		fitColumns : true, //自适应列
 		fit : true, //自动补全
-		title : "公司新闻管理",
+		title : "课程体系管理",
 		iconCls : "icon-save",//图标
 		idField : "cs_id", //标识，会记录我们选中的一行的id，不一定是id，通常都是主键
 		rownumbers : "true", //显示行号
 		nowrap : "true", //不换行显示
 		sortName : "sort", //排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
 		sortOrder : "desc", //排序方式
-		singleSelect:false,
+		singleSelect:true,
 		//以上的四种增删改查操作，只要失败，都会回掉这个onError
 		onError : function(a, b) {
 			$.messager.alert("错误", "操作失败");
 		},
 		striped : true,//设置为true将交替显示行背景
 		columns : [ [ {
-			field : 'ck',
-			checkbox : true,
-			title:'全选'
-		},{
 			field : 'cs_id',
 			title : '课程体系编号',
 			width : 100,
@@ -90,24 +136,10 @@ $('#coursysinfo').edatagrid({
 					required : true
 				}
 			},
-		},{
-      	 	field:'cs_pic',
-      	 	title:'图片说明',
-      	 	width:100,
-      	 	align:'center',
-      	  	formatter : function(value, row, index) {
-				if(value!=null && value!=''){
-					value=value.replace(",","");
-					value=value.substring(22);
-					console.info(value);
-					return '<img src="../'+value+'" width="100px" height="100px" />';
-				}else{
-					return '无图片';
-				}
-			}},
+		},
       	 {
 			field : 'cs_text',
-			title : '文字说明',
+			title : '主讲教师',
 			align:'center',
 			width : 100,
 			editor : {
@@ -118,7 +150,7 @@ $('#coursysinfo').edatagrid({
 			},
 		}, {
 			field : 'cs_status',
-			title : '是否显示',
+			title : '是否显示到前台',
 			width : 50,
 			align : 'center',
 			editor : {
@@ -143,7 +175,31 @@ $('#coursysinfo').edatagrid({
 					return '显示';
 				};
 			}
-		} ] ],
+		} ,{
+      	 	field:'cs_pic',
+      	 	title:'体系图片',
+      	 	width:100,
+      	 	align:'center',
+      	 	formatter:function(value,row,index){
+      	 		if(value!=null && value!=''){
+					return '<a href="javascript:void(0)" onclick="showCoursysPic(0)">查看</a>|<a href="javascript:void(0)" onclick="showCoursysPic(1)">修改</a>';
+				}else{
+					return '<a href="javascript:void(0)" onclick="showCoursysPic(2)">添加</a>';
+				}
+      	 	}
+      	 },{
+       	 	field:'cs_head',
+       	 	title:'体系头像',
+       	 	width:100,
+       	 	align:'center',
+       	 	formatter:function(value,row,index){
+       	 		if(value!=null && value!=''){
+ 					return '<a href="javascript:void(0)" onclick="showCoursysHead(0)">查看</a>|<a href="javascript:void(0)" onclick="showCoursysHead(1)">修改</a>';
+ 				}else{
+ 					return '<a href="javascript:void(0)" onclick="showCoursysHead(2)">添加</a>';
+ 				}
+       	 	}
+       	 }] ],
 		//定义按钮
 		toolbar : [
 				{
@@ -181,19 +237,177 @@ $('#coursysinfo').edatagrid({
 				} ]
 
 });
-function saveCoursysInfo(){
-	$("#csform").ajaxSubmit({
-		type : "post",
-		url : "coursys_add",
-		dataType:"json",
-		success : function(data) {
-			alert(data);
-			if(data==1){
-				$.messager.alert('成功提示', '添加成功！');
-			}
-		}
-	});
-	$('#addcsinfo').dialog('close');
-	$('#coursysinfo').edatagrid('reload');
+//实现图片预览
+$("#picUrl1").change(function(){
+	$('#addpreview1').css("display","inline-block");
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#addpreview1").attr("src", objUrl) ;
+	}
+}) ;
+$("#picUrl2").change(function(){
+	$('#addpreview2').css("display","inline-block");
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#addpreview2").attr("src", objUrl) ;
+	}
+}) ;
+$('#update_picUrl1').change(function(){
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#cspic").attr("src", objUrl) ;
+	}
+});
+$('#update_picUrl2').change(function(){
+	var objUrl = getObjectURL(this.files[0]) ;
+	//console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+		$("#cshead").attr("src", objUrl) ;
+	}
+});
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+	var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
 }
+//实现添加操作
+$("#csform").form({
+	url:"coursys_add",
+	success:function(data){
+		alert(data);
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
+			$('#addcsinfo').dialog('close');
+			$("#csform").form('clear');
+			$("#addpreview1").attr("src", "");
+			$("#addpreview2").attr("src", "");
+			$('#coursysinfo').edatagrid('load');
+		}else if(data==2){
+			$('#errorMsg').text('该课程体系已存在，请勿重复添加').css("color","red");
+		}else{
+			$.messager.alert('错误提示', '添加失败！');
+		}
+	}
+},'json');
+function saveCoursysInfo(){
+	$("#csform").submit();
+}
+//查看体系图片
+function showCoursysPic(type){
+	var cs_id=$('#coursysinfo').datagrid('getSelected').cs_id;
+	var cs_pic=$('#coursysinfo').datagrid('getSelected').cs_pic;
+	cs_pic=cs_pic.replace(",","");
+	cs_pic=cs_pic.substring(22);
+	$("#cspic").attr("src","../"+cs_pic);
+	if(type==0){
+		$('#update-buttons').css({ display: "none" });
+		$('#file').css({ display: "none" });
+		$('#showCoursysPic').dialog('open').dialog('setTitle','查看课程体系图片');
+	}else if(type==2){
+		$('#update-buttons').css({display:"inline-block"});
+		$('#cs_id').val(cs_id);
+		$('#file').css({ display: "inline-block" });
+		$('#showCoursysPic').dialog('open').dialog('setTitle','添加课程体系图片');
+	}else{
+		$('#update-buttons').css({display:"inline-block"});
+		$('#cs_id').val(cs_id);
+		$('#file').css({ display: "inline-block" });
+		$('#showCoursysPic').dialog('open').dialog('setTitle','修改课程体系图片');
+	}
+}
+//修改课程体系图片
+$("#updatepicfm").form({
+	url:"coursys_updatepic",
+	success:function(data){
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '修改失败！');
+		}
+		$('#showCoursysPic').dialog('close');
+		$('#coursysinfo').datagrid('reload');
+	}
+},'json');
+function updateCoursysPic(){
+	$("#updatepicfm").submit();
+}
+//查看体系头像
+function showCoursysHead(type){
+	var csid=$('#coursysinfo').datagrid('getSelected').cs_id;
+	var cs_head=$('#coursysinfo').datagrid('getSelected').cs_head;
+	cs_head=cs_head.replace(",","");
+	cs_head=cs_head.substring(22);
+	$("#cshead").attr("src","../"+cs_head);
+	if(type==0){
+		$('#updatehead-buttons').css({ display: "none" });
+		$('#filehead').css({ display: "none" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','查看课程体系头像');
+	}else if(type==2){
+		$('#updatehead-buttons').css({display:"inline-block"});
+		$('#csid').val(csid);
+		$('#filehead').css({ display: "inline-block" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','添加课程体系头像');
+	}else{
+		$('#updatehead-buttons').css({display:"inline-block"});
+		$('#csid').val(csid);
+		$('#filehead').css({ display: "inline-block" });
+		$('#showCoursysHead').dialog('open').dialog('setTitle','修改课程体系头像');
+	}
+}
+//修改体系头像
+$("#updateheadfm").form({
+	url:"coursys_updatehead",
+	success:function(data){
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '修改失败！');
+		}
+		$('#showCoursysHead').dialog('close');
+		$('#coursysinfo').datagrid('reload');
+	}
+},'json');
+function updateCoursysHead(){
+	$("#updateheadfm").submit();
+}
+//自定义表单验证规则
+$.extend($.fn.validatebox.defaults.rules, {   
+	nameRex: {   
+        validator: function(value, param){  
+        	var reg=/^[\u4E00-\u9FA5A0-9a-zA-Z]{1,10}$/;//只允许英文，数字，中文的组合
+        	if(reg.test(value)){
+        		return true;
+        	}
+        },   
+        message: '请输入中、英文字母、数字，长度1~10位！'  
+    },
+    numberRex:{
+    	validator: function(value, param){  
+        	var reg=/^([1-9][0-9]*)+(.[0-9]{1,2})?$/;//非零开头的最多带两位小数的数字
+        	if(reg.test(value)){
+        		return true;
+        	}
+        },   
+        message: '请输入最多带两位小数的数字！' 
+    },
+    teacherRex:{
+    	validator: function(value, param){  
+        	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，中文的组合
+        	if(reg.test(value)){
+        		return true;
+        	}
+        },   
+        message: '请输入英文或中文的教师姓名！' 
+    }
+});  
 </script>

@@ -10,13 +10,40 @@ public class News implements Serializable {
 	private Integer n_id;
 	private String n_title;    //标题
 	private String n_content;   //内容
-	private Integer n_click;    //点击次数
+	private Integer n_click=0;    //点击次数
 	private String n_time;	//创建时间
-	private Integer n_sort;     //排序
+	private Integer n_sort=0;     //排序
 	private String n_reportor;  //发布者 
 	private Integer n_status;	//新闻状态
+	private String n_order;//排序方式
+	private String n_sortcol;//排序的列
+	private Integer start; // 起始行
+	private Integer offset; // 偏移量
 	
-	
+	public String getN_order() {
+		return n_order;
+	}
+	public void setN_order(String n_order) {
+		this.n_order = n_order;
+	}
+	public String getN_sortcol() {
+		return n_sortcol;
+	}
+	public void setN_sortcol(String n_sortcol) {
+		this.n_sortcol = n_sortcol;
+	}
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
 	public String getN_time() {
 		return n_time;
 	}

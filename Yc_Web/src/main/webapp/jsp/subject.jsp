@@ -41,13 +41,14 @@
         </div>
     </div>
     <ul id="nav">
-            <li class="li1"><a href="jsp/index.jsp" target="_blank" >首页</a></li><h1 class="h1"></h1>
-        <li class="li2"><a href="jsp/teacher.jsp" target="_blank">师资介绍</a></li>
-        <li class="li3"><a href="jsp/subject.jsp" target="_blank">课程体系</a></li>
-        <li class="li4"><a href="jsp/studentProject.jsp" target="_blank">学员项目</a></li>
-        <li class="li5"><a href="jsp/findWork.jsp" target="_blank">就业详情</a></li>
-        <li class="li6"><a href="jsp/about.jsp" target="_blank">关于源辰</a></li>
-        <li class="li7"><a href="jsp/company.jsp" target="_blank">公司历史</a></li>
+      	<!-- .html后缀是分发器 -->
+		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
+		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+		<li class="li3"><a href="subject.html">${title[2] }</a></li>
+		<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
+		<li class="li5"><a href="findWork.html">${title[4] }</a></li>
+		<li class="li6"><a href="about.html">${title[5] }</a></li>
+		<li class="li7"><a href="company.html">${title[6] }</a></li>
     </ul>
 </div>
 
@@ -82,14 +83,14 @@
 <div id="footer">
     <div class="address">
         <p>
-            <span>电话：0734-8355998</span>
-            <span>QQ：1728952785</span>
-            <span>邮政编码：421141</span>
-        </p>
-        <p>
-            <span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
-            <span>地址：衡阳市解放西路丽天名园905室</span>
-        </p>
+			<span>${footer[0] }</span>
+			<span>${footer[1] }</span>
+			<span>${footer[2] }</span>
+		</p>
+		<p>
+			<span>${footer[3] }</span>
+			<span>${footer[4] }</span>
+		</p>
     </div>
 </div>
 <script src="js/jquery.js" type="text/javascript"></script>
@@ -113,12 +114,12 @@ function showCoursys(data){
 	$('ul.coursys_list').append(str);
 }
 
-$('#course_content ul li').mouseover(function() {
-    var imgsrc = $(this).find('span').text();
-    $(this).addClass('course_current').siblings().removeClass('course_current');
-    $('#course_img img')[0].src = 'images/' + imgsrc + '.png';
-    $('#course_img img')[0].alt = imgsrc
-});
+    $('#course_content ul li').mouseover(function() {
+        var imgsrc = $(this).find('span').text();
+        $(this).addClass('course_current').siblings().removeClass('course_current');
+        $('#course_img img')[0].src = 'images/' + imgsrc + '.png';
+        $('#course_img img')[0].alt = imgsrc
+    });
 </script>
 </body>
 </html>

@@ -7,39 +7,22 @@
 	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />	
 	
 	<select id="findDataDictionary"  parameterType="DataDictionary" resultType="DataDictionary">
-		select id,footer,description,logo from datadictionary
+		select id,type,description from datadictionary
+		<trim prefix="where">
+			<if test="type!=null">
+				type=#{type }
+			</if>
+		</trim>
 	</select>
 	
-	<!-- 修改页脚内容 -->
-	<update id="updateFooter" parameterType="DataDictionary">
-		update datadictionary set footer=#{footer}
-		<where>
-			<if test="id!=null">
-				id=#{id}
-			</if>
-		</where>
-	</update>
 	
-	<!-- 修改公司简介 -->
-	<update id="updateDescription" parameterType="DataDictionary">
+	<update id="updateDataDictionary" parameterType="DataDictionary">
 		update datadictionary set description=#{description}
 		<where>
-			<if test="id!=null">
-				id=#{id}
+			<if test="type!=null">
+				type=#{type}
 			</if>
 		</where>
 	</update>
 	
-	<!-- 修改图片 -->
-	<update id="updateLogo" parameterType="DataDictionary">
-		update datadictionary set logo=#{logo}
-		<where>
-			<if test="id!=null">
-				id=#{id}
-			</if>
-		</where>
-	</update>
-
-
-
 </mapper>

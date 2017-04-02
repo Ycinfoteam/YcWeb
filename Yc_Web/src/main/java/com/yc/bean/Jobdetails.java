@@ -1,10 +1,10 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  * 就业详情表

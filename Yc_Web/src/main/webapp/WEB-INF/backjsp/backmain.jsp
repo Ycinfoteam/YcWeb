@@ -5,6 +5,7 @@
 	String path=request.getContextPath();
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<% String username=session.getAttribute("user").toString(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,15 @@ ul,li{
 <body class="easyui-layout">
 
 	<div data-options="region:'north'" style="height:120px;">
-<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
-	<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
-源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心</hl>
+		<img id="Image1" src="images/logo.png" width="100" height="100px" style="margin-left: 220px; ">
+		<hl style="font-size: 60px; width: 300px; color: blue; height: 100px;">
+			源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心
+		</hl>
+		<%
+			if(username!=null&&!"".equals(username)){%>
+				欢迎：【<%=username %>】
+		<% 	} %>	
+		
 	</div>
 
     <div data-options="region:'west',title:'菜单项'" style="width:180px;">
@@ -75,17 +82,14 @@ ul,li{
         </div>
     <div data-options="region:'center'" >
     
-    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
-		<div title="首页">
-			welcome
-			<!-- </br>
-			您好：XXX。现在是北京时间XXXX。</br> -->
+	    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
+			<div title="首页">
+				welcome
+				<!-- </br>
+				您好：XXX。现在是北京时间XXXX。</br> -->
 			</div>
-	</div>
+		</div>
 		
-  <!--  <div id="jiazai" class="easyui-panel" title="操作" data-options="fit:true,border:false"></div>
-    </div>  -->
-
 	</div>
 </body>
 
@@ -130,7 +134,7 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "toDataDictionaryDescription"
+						url : "toDataDictionaryCompany"
 					}
 				},{
 					text : "页脚文字",
@@ -150,12 +154,17 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys",
+						url : "tocoursys"
 					}
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteacher"
+					url : "toteacher"
+					}
+				},{
+					text : "学员报名",
+					attributes : {
+						url : "tostudents"
 					}
 				},{
 					text : "学员项目",
@@ -172,12 +181,12 @@ $(document).ready(
 					attributes : {
 						url : "tocompany"
 					}
-				} , {
+				},{
 					text : "公司活动介绍",
 					attributes : {
 						url : "toactivities"
 					}
-				} ,{
+				},{
 					text : "公司历史介绍",
 					attributes : {
 						url : "tohistory"

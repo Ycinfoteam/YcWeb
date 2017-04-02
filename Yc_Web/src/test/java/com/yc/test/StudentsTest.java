@@ -1,7 +1,5 @@
 package com.yc.test;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -17,8 +15,8 @@ public class StudentsTest {
 	public void testSelectAllStudents() {//ok
 		ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
 		StudentsBiz sb=(StudentsBiz) ac.getBean("studentsBizImpl");
-		List<Students> stuList=sb.selectAllStudents();
-		System.out.println(stuList);
+		//List<Students> stuList=sb.selectAllStudents();
+		//System.out.println(stuList);
 	}
 
 	@Test

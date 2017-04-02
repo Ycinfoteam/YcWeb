@@ -6,27 +6,13 @@ import java.io.Serializable;
 public class JobType implements Serializable {
 
 	private static final long serialVersionUID = -1503428153576050305L;
+
 	private Integer j_id;
 	private String j_name;
-
-	private Integer start; // 起始行
-	private Integer offset; // 偏移量
-
-	public Integer getStart() {
-		return start;
-	}
-
-	public void setStart(Integer start) {
-		this.start = start;
-	}
-
-	public Integer getOffset() {
-		return offset;
-	}
-
-	public void setOffset(Integer offset) {
-		this.offset = offset;
-	}
+	private Integer start ;
+	private Integer offset;
+	
+	
 
 	public Integer getJ_id() {
 		return j_id;
@@ -42,6 +28,19 @@ public class JobType implements Serializable {
 
 	public void setJ_name(String j_name) {
 		this.j_name = j_name;
+	}
+	
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getOffset() {
+		return offset;
+	}
+	public void setOffset(Integer offset) {
+		this.offset = offset;
 	}
 
 	@Override

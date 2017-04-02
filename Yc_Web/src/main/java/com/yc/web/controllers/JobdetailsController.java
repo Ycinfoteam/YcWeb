@@ -30,8 +30,8 @@ import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 import com.yc.utils.PropertiesUtil;
-import com.yc.web.utils.UploadFileUtil;
-import com.yc.web.utils.UploadFileUtil.UploadFile;
+import com.yc.utils.UploadFileUtil;
+import com.yc.utils.UploadFileUtil.UploadFile;
 
 @Controller
 public class JobdetailsController {

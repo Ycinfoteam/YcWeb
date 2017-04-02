@@ -12,25 +12,24 @@ public class DataDictionary implements Serializable {
 
 	private static final long serialVersionUID = 4683805071644883651L;
 
-	private Integer id;
-	private String footer; // 页脚文字
-	private String description; // 公司简介
-	private String logo; // 公司logo
+	private String id; // 主键
+	private String type; // 类型
+	private String description; // 描述
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getFooter() {
-		return footer;
+	public String getType() {
+		return type;
 	}
 
-	public void setFooter(String footer) {
-		this.footer = footer;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
@@ -41,18 +40,9 @@ public class DataDictionary implements Serializable {
 		this.description = description;
 	}
 
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
 	@Override
 	public String toString() {
-		return "DataDictionary [id=" + id + ", footer=" + footer + ", description=" + description + ", logo=" + logo
-				+ "]";
+		return "DataDictionary [id=" + id + ", type=" + type + ", description=" + description + "]";
 	}
 
 }

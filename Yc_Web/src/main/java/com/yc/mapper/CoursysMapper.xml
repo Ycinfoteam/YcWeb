@@ -6,29 +6,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 查询课程体系 -->
 	<select id="selectCoursys" parameterType="Coursys" resultType="Coursys">
-		select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status from coursys where 1=1
-		<choose>
-			<when test="cs_id>0">
-				and cs_id=#{cs_id}
-			</when>
-			<when test="cs_name!=null">
-				and cs_name=#{cs_name}
-			</when>
-			<when test="cs_version!=null">
-				and cs_version=#{cs_version}
-			</when>
-			<otherwise>
-
-			</otherwise>
-		</choose>
+		select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status,cs_head from coursys
+		<trim prefix="where" suffixOverrides="and">
+			<if test="cs_id>0">
+				cs_id=#{cs_id} and
+			</if>
+			<if test="cs_name!=null">
+				cs_name=#{cs_name} and
+			</if>
+			<if test="cs_version!=null">
+				cs_version=#{cs_version} and
+			</if>
+		</trim>
+		order by cs_id desc
+		<if test="start!=null and offset!=null">
+				limit #{start},#{offset}
+		</if>
 	</select>
 	<!-- 添加一个课程体系 -->
 	<insert id="addOneCoursys" parameterType="Coursys" useGeneratedKeys="true" keyProperty="cs_id">
-		insert into coursys(cs_name,cs_pic,cs_version,cs_text,cs_status) values(#{cs_name},#{cs_pic},#{cs_version},#{cs_text},#{cs_status})
+		insert into coursys(cs_name,cs_pic,cs_version,cs_text,cs_status,cs_head) values(#{cs_name},#{cs_pic},#{cs_version},#{cs_text},#{cs_status},#{cs_head})
 	</insert>
 	<!-- 修改一个课程体系 -->
 	<update id="updateOneCoursys" parameterType="Coursys">
-		update coursys set cs_name=#{cs_name},cs_pic=#{cs_pic},cs_version=#{cs_version},cs_text=#{cs_text},cs_status=#{cs_status} where cs_id=#{cs_id}
+		update coursys set cs_id=#{cs_id} 
+		<if test="cs_name!=null">
+			,cs_name=#{cs_name}
+		</if>
+		<if test="cs_pic!=null">
+			,cs_pic=#{cs_pic}
+		</if>
+		<if test="cs_version!=null">
+			,cs_version=#{cs_version}
+		</if>
+		<if test="cs_text!=null">
+			,cs_text=#{cs_text}
+		</if>
+		<if test="cs_status!=null">
+			,cs_status=#{cs_status}
+		</if>
+		<if test="cs_head!=null">
+			,cs_head=#{cs_head}
+		</if>
+		where cs_id=#{cs_id}
 	</update>
 	<!-- 删除一条课程体系 -->
 	<delete id="deleteCoursys" parameterType="Coursys">
@@ -36,6 +56,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<!-- 查询当前课程体系表中是否存在所查记录  -->
 	<select id="judge" parameterType="Coursys" resultType="Coursys">
-		select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status from coursys where cs_id = #{cs_id} limit 1; 
+		select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status,cs_head from coursys
+		<trim prefix="where" suffixOverrides="and">
+			<if test="cs_id>0">
+				cs_id=#{cs_id} and
+			</if>
+			<if test="cs_name!=null">
+				cs_name=#{cs_name} and
+			</if>
+		</trim>
+		limit 1; 
+	</select>
+	<!-- 查询当前课程体系表的记录总数 -->
+	<select id="findtotal" resultType="java.lang.Double">
+		select count(*) from coursys
 	</select>
 </mapper>

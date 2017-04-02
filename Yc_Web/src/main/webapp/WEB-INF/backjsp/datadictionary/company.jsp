@@ -19,28 +19,36 @@
 		<script type="text/javascript" src="utf8-jsp/ueditor.all.min.js"></script>
 		<!-- 实例化编辑器 -->
 		<script type="text/javascript">
+		
 			var ue=null; 
 			$(function() {
-			ue = UE.getEditor('container');
+				ue = UE.getEditor('container');
+			
 				$.ajax({
-					url : 'findDataDictionaryDescription',
+					url : 'findDataDictionary',
 					type : 'post',
 					dataType : 'json',
+					data:{
+						type:'company'
+					},
 					success : function(data) {
 						ue.ready(function() {//编辑器初始化完成再赋值  
-				            ue.setContent(data);  //赋值给UEditor  
+				            ue.setContent(data[0].description);  //赋值给UEditor  
 				        });  
 					}
 				});
-			});
+			}); 
 			
 			function save(){
 				var description=ue.getContentTxt();
 				$.ajax({
-					url:'updateDescription',
+					url:'updateDataDictionary',
 					type:'post',
 					dataType:'json',
-					data:{description:description},
+					data:{
+						type:'company', 
+						description:description
+						},
 					success:function(data){
 						if(data==1){
 							$.messager.show({

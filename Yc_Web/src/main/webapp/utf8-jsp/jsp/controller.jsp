@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="com.baidu.ueditor.ActionEnter"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.baidu.ueditor.ActionEnter"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 
@@ -10,5 +9,5 @@
 	String rootPath = application.getRealPath( "/" );
 	
 	out.write( new ActionEnter( request, rootPath ).exec() );
-	
+
 %>
