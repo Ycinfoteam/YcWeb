@@ -39,8 +39,9 @@ ul,li{
 			源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心
 		</hl>
 		<%
-			if(username!=null&&!"".equals(username)){%>
-				欢迎：【<%=username %>】
+			if(username!=null && !"".equals(username)){%>
+				<p style="display:inline-block; font-size:15px; margin-left:60px;">欢迎：[<%=username %>]</p>&nbsp;&nbsp;
+				<a href="tobacklogin" style="font-size:14px;">退出登录</a>
 		<% 	} %>	
 		
 	</div>
@@ -66,7 +67,7 @@ ul,li{
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> -->
-			<div title="模块管理">
+			<div title="备份与还原">
 				<div id="tt10" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -240,28 +241,23 @@ $(document).ready(
 			var treeData11 = [ {
 				text : "查看日志",
 				attributes : {
-					url : "yyyback/friendlink/friendlink.jsp"
+					url : "tolog"
 				}
 			} ];
 			//css
 			var treeData10 = [ {
-				text : "前台管理",
+				text : "备份与还原",
 				children : [ {
-					text : "样式管理",
+					text : "数据库备份或还原",
 					attributes : {
-						url : "yyyback/model/modelView.jsp"
+						url : "tobackupdatabase"
 					}
 				}, {
-					text : "特效管理",
+					text : "文件备份或还原",
 					attributes : {
-						url : "yyyback/model/modelJs.jsp"
+						url : "tofile"
 					}
-				}, {
-					text : "一键换肤",
-					attributes : {
-						url : "yyyback/model/easyChange.jsp"
-					}
-				} ]
+				}]
 				
 			} ];
 			//还原

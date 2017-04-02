@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
-<%@page isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	String path=request.getContextPath();
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="<%=basePath %>">
 	<meta charset="UTF-8">
 	<meta http-equiv="Cache-Control" content="max-age=7200" />
 	<meta http-equiv="expires" Content="Fri, 01 Sep 2017 08:00:00 GMT">
@@ -232,18 +236,9 @@
 		<h1>公司活动</h1>
 		<div id="act_content">
 			<ul>
-				<li><a target="_blank" href="images/act_1_b.jpg"><img src="images/act_1.jpg"></a></li>
-				<li><a target="_blank" href="images/act_2_b.jpg"><img src="images/act_2.jpg"></a></li>
-				<li><a target="_blank" href="images/act_3_b.jpg"><img src="images/act_3.jpg"></a></li>
-				<li><a target="_blank" href="images/act_4_b.jpg"><img src="images/act_4.jpg"></a></li>
-				<li><a target="_blank" href="images/act_5_b.jpg"><img src="images/act_5.jpg"></a></li>
-				<li><a target="_blank" href="images/act_6_b.jpg"><img src="images/act_6.jpg"></a></li>
-				<li><a target="_blank" href="images/act_7_b.jpg"><img src="images/act_7.jpg"></a></li>
-				<li><a target="_blank" href="images/act_8_b.jpg"><img src="images/act_8.jpg"></a></li>
-				<li><a target="_blank" href="images/act_9_b.jpg"><img src="images/act_9.jpg"></a></li>
-				<li><a target="_blank" href="images/act_10_b.jpg"><img src="images/act_10.jpg"></a></li>
-				<li><a target="_blank" href="images/act_11_b.jpg"><img src="images/act_11.jpg"></a></li>
-				<li><a target="_blank" href="images/act_12_b.jpg"><img src="images/act_12.jpg"></a></li>
+				<c:forEach items="${activties }"  var="ac">
+					<li><a target="_blank" href="${ac }"><img src="${ac }"></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

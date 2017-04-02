@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +21,7 @@ import com.google.gson.Gson;
 import com.yc.bean.Admin;
 import com.yc.bean.News;
 import com.yc.biz.NewsBiz;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 
@@ -31,6 +33,7 @@ public class NewsController {
  	public void setNewsBiz(NewsBiz newsBiz) {
 		this.newsBiz = newsBiz;
 	}
+
 	//查询所有新闻
 	@RequestMapping(value="/news_selectAll",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String selectAllNews(@ModelAttribute News news,
@@ -72,6 +75,10 @@ public class NewsController {
 			news.setN_reportor(admin.getA_name());
 			news.setN_status(Integer.parseInt(type));
 			this.newsBiz.addNews(news);
+			MDC.put("explain" , "添加一条新闻");
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("add one new......");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);
@@ -80,10 +87,13 @@ public class NewsController {
 	}
 	//修改新闻标题、排序、状态等
 	@RequestMapping(value="/news_updateNews")
-	public @ResponseBody void updateNews(HttpServletResponse response,@ModelAttribute News news) throws IOException{
+	public @ResponseBody void updateNews(HttpServletResponse response,HttpServletRequest request,News news) throws IOException{
 		logger.info("修改一条新闻信息");
 		try {
 			this.newsBiz.updateNews(news);
+			MDC.put("explain" , "修改新闻"+news.getN_id());
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("update one new......");
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);
@@ -110,10 +120,12 @@ public class NewsController {
 	
 	//删除新闻
 	@RequestMapping(value="/news_deleteNews")
-	public @ResponseBody void deleteNews(@RequestParam(value="id") int cs_id,HttpServletResponse response) throws IOException{
-		logger.info("delete one new......");
+	public @ResponseBody void deleteNews(@RequestParam(value="id") int cs_id,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		try {
 			this.newsBiz.deleteNewsById(cs_id);
+			MDC.put("explain" , "删除新闻"+cs_id);
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("delete one new......");
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);

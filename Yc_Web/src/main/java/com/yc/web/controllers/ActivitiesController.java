@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
@@ -24,6 +25,9 @@ import com.yc.bean.Activities;
 import com.yc.biz.ActivitiesBiz;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
+
+import com.yc.utils.PropertiesUtil;
+
 import com.yc.utils.UploadFileUtil;
 import com.yc.utils.UploadFileUtil.UploadFile;
 
@@ -52,11 +56,12 @@ public class ActivitiesController {
 		response.setContentType("text/html; charset=utf-8");
 		response.getWriter().print(gson.toJson(model));
 	}
-	private String picRootName="uploadpic";
 	//添加公司活动
 	@RequestMapping(value="/activities_add",method=RequestMethod.POST)
 	public void activitiesadd(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException{
 		logger.info("addactivities called....");
+		Properties p=PropertiesUtil.readProperties("file.properties");
+		String picRootName=p.getProperty("picRootName");
 		String ac_pic="";
 		Activities activities = new Activities();
 		activities.setAc_illus(request.getParameter("ac_illus"));
@@ -98,6 +103,8 @@ public class ActivitiesController {
 	@RequestMapping(value="/updateacpic")
 	public void editpic(@RequestParam(value="ac_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		logger.info("Updateactivitiespic called.....");
+		Properties p=PropertiesUtil.readProperties("file.properties");
+		String picRootName=p.getProperty("picRootName");
 		String ac_pic="";
 		Activities activities=new Activities();
 		activities.setAc_picUrl(file);

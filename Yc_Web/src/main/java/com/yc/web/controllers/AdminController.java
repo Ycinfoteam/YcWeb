@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -67,21 +68,25 @@ public class AdminController {
 		return 1;
 	}
 	
+
 	@RequestMapping(value="/login")
-	public @ResponseBody int login(@ModelAttribute Admin admin,HttpSession session){
+	public @ResponseBody int login(@RequestParam String validateCode,@ModelAttribute Admin admin,HttpSession session){
 		log.info("login called...");
 		
 		//TODO:数据库加密
 		
+		String randCode = (String) session.getAttribute("rand");
+		if (!validateCode.equals(randCode)) {
+			return 2;
+		}
 		List<Admin> list=this.adminBiz.findAdmin(admin);
 		if(list!=null && list.size()>0){
 			if(list.get(0).getA_pwd().equals(admin.getA_pwd())){
+
 				session.setAttribute("user", list.get(0).getA_name());
 				return 1;
 			}
 		}
 		return 0;
 	}
-	
-	
 }

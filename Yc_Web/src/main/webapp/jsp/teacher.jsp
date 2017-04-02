@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
 <% 
 	String path=request.getContextPath();
@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
@@ -24,9 +25,7 @@
     <link rel="stylesheet"  href="css/teacher.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
+
 
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
@@ -85,33 +84,6 @@
 	                    </dd>
 	                </div>
                 </c:forEach>
-               <!--  <div class="kb1">
-                    <dd><img src="images/bigdata.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>大数据培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/qianduan.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>Web前端培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/javaLogo.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>JAVA培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="#" class="kbtextInp1">我要咨询</a>
-                        <a href="#" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div> -->
 
                 <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
                 <ul class="ycNewsul">

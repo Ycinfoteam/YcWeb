@@ -56,8 +56,6 @@ public class HistoryController {
 		Gson gson =new Gson();
 		return gson.toJson(list);
 	}
-
-
 		//添加学员项目
 		@RequestMapping(value="/history_add")
 		public void historyadd(HttpServletRequest request,HttpServletResponse response,History history) throws IOException, ParseException{
@@ -94,4 +92,16 @@ public class HistoryController {
 			this.historyBiz.delete(history);
 			return "redirect:/history";
 			}
+		//学员项目
+				@RequestMapping(value="/toprehistory",produces="text/html;charset=UTF-8")
+				public @ResponseBody void toprehistory(HttpServletResponse response) throws IOException{
+					logger.info("selectprehistory called.....");
+					History history=new History();
+					List<History>historys=this.historyBiz.findall(history);
+					Gson gson =new Gson();
+					response.setContentType("text/html; charset=utf-8");
+					response.getWriter().print(gson.toJson(historys));
+					}
+		
+		
 	}
