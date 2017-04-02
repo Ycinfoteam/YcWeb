@@ -45,7 +45,6 @@ body {
 	text-align: center;
 	display:inline-block;
 	padding-left:100px;
-	font-weight:bold;
 }
 
 #login_form input {
@@ -125,8 +124,8 @@ h3{
 			<input name="a_pwd" type="password" placeholder="请输入密码..."/><br/>
 			<label>验证码:</label>
 			<input type="text" name="validateCode"/>
-			<img id="randImg" border=0 src="imageCode.jsp" style="height:16px; margin-left:145px;">
-			<a href="javascript:void(0);" onclick="loadImage()" style="color:black;text-decoration:none;margin-left:10px;">换一张</a><br/>
+			<img id="randImg" border=0 src="imageCode.jsp" style="height:17px; margin-left:145px;">
+			<a href="javascript:void(0);" onclick="loadImage()" style="color:black;text-decoration:none;margin-left:15px;">换一张</a><br/>
 			<input id="submit" type="button" onclick="login()"  value="登    录" />
 			<input id="forget" type="button" onclick="forget()" value="忘记密码"/><br/>
 		</form>
