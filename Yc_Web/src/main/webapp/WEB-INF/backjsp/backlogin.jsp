@@ -79,11 +79,11 @@ img{
 	width:75px;
 	height:85px;
 	margin-top:24px;
-	margin-left:80px;
+	margin-left:75px;
 }
 #title{
 	float:right;
-	margin-right:195px;
+	margin-right:200px;
 	margin-top:2px;
 	height:110px;	
 }
