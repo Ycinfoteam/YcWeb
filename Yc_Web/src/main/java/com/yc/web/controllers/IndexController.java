@@ -103,6 +103,12 @@ public class IndexController {
 		return "backjsp/coursys/coursys";
 
 	}
+	//去开班信息管理
+	@RequestMapping(value="/toopenclass")
+	public String toopenclass(){
+		System.out.println("jinlainial");
+		return "backjsp/openclass/openclass";
+	}
 	//去公司活动
 	@RequestMapping(value="/toactivities")
 	public String toactivities(){

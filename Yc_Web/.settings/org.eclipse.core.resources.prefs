@@ -2,4 +2,6 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/yc/bean/JobType.java=UTF-8
 encoding//src/main/java/com/yc/bean/Jobdetails.java=UTF-8
 encoding//src/main/resources/admin.properties=UTF-8
+encoding//src/main/webapp/css/about.css=UTF-8
+encoding//src/main/webapp/css/newcomputer.css=UTF-8
 encoding/<project>=UTF-8

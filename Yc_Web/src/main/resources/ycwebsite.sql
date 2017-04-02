@@ -3,11 +3,13 @@ create table admin(
 	a_id integer primary key auto_increment,
 	a_name varchar(100),
 	a_pwd varchar(100)
+)
 insert into admin(a_name,a_pwd) values('admin','a');
 --角色表
 create table roles(
 	r_id integer primary key auto_increment,
 	r_name varchar(300)   --角色名
+	
 )
 
 --师资表
@@ -30,7 +32,8 @@ create table news(
 	n_click integer,         --点击次数
 	n_time timestamp,        --创建时间
 	n_sort integer,  	     --排序 
-	n_reportor varchar(300)  --发布者
+	n_reportor varchar(300),  --发布者
+	n_status integer
 )
 --学员项目表
 create table projects(
@@ -98,8 +101,19 @@ create table coursys(
 	cs_name varchar(5000),		 --方向名
 	cs_pic varchar(5000),		 --图片说明
 	cs_version varchar(500),     --版本
-	cs_text varchar(5000)		 --文字说明
+	cs_text varchar(5000),		 --文字说明
+    cs_head varchar(5000),		 --体系头像
+
 )
+--开班信息表
+create table openclass(
+	oc_id integer primary key auto_increment,
+	oc_name varchar(50),
+	oc_time datetime,
+	oc_pic varchar(5000),
+	oc_status integer
+)
+alter table openclass add oc_status integer
 
 --招聘表
 create table employ(
@@ -126,9 +140,10 @@ create table technology(
 create table students(
 	s_id integer primary key auto_increment,
 	s_name varchar(300),       --姓名
-	s_tel integer,			   --电话
+	s_tel varchar(20),			   --电话
 	s_direction varchar(500)   --意向方向
 )
+alter table students modify column s_tel varchar(20);
 create table employ(
 	e_id integer primary key auto_increment,
 	e_position varchar(300),	 --职位
@@ -156,8 +171,18 @@ create table jobtype(
 	j_name varchar(100) ,
 )
 create table datadictionary(
-	id integer primary key auto_increment,
-	footer varchar(500),
-	description varchar(1000),
-	logo varchar(500)
+	id int primary key auto_increment,
+	type varchar(40),
+	description varchar(5000)
 )
+select * from datadictionary
+
+insert into datadictionary(id,type,description) values ('1','title','首页')
+insert into datadictionary(id,type,description) values ('2','title','师资介绍')
+insert into datadictionary(id,type,description) values ('3','title','课程体系')
+insert into datadictionary(id,type,description) values ('4','title','学员项目')
+insert into datadictionary(id,type,description) values ('5','title','就业详情')
+insert into datadictionary(id,type,description) values ('6','title','关于源辰')
+insert into datadictionary(id,type,description) values ('7','title','公司历史')
+insert into datadictionary(id,type,description) values ('8','company','源辰信息科技是一家定位于大学生软件开发实战培训和企事业单位系统集成、项目研发于一体的综合性软件公司，以大学生高起点就业和为企事业单位提供信息化解决方案为目标。/公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。/我们的宗旨是服务于学生，致力于企业。')
+insert into datadictionary(id,type,description) values ('9','footer','电话：0734-8355998/QQ：1728952785/邮政编码：421141/版权所有CopyRight 2016 源辰信息科技有限公司/地址：衡阳市解放西路丽天名园905室')

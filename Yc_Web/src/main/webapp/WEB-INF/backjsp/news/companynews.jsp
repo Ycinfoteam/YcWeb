@@ -140,6 +140,7 @@ $('#companynewsdg').edatagrid({
 		title : '是否发布',
 		width : 50,
 		align : 'center',
+		styler:cellStyler,
 		editor : {
 			type : 'combobox',
 			options : {
@@ -230,6 +231,11 @@ $('#companynewsdg').edatagrid({
 			} ]
 
 });
+function cellStyler(value,row,index){
+	if (value < 1){
+		return 'color:red;';
+	}
+}
 //添加公司新闻
 $("#companynewsfm").form({
 	url:"news_addNews",

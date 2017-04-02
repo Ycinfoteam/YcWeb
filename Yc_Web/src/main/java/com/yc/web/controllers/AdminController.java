@@ -68,7 +68,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/login")
-	public int login(@ModelAttribute Admin admin,HttpSession session){
+	public @ResponseBody int login(@ModelAttribute Admin admin,HttpSession session){
 		log.info("login called...");
 		
 		//TODO:数据库加密
