@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -80,8 +81,10 @@ public class ApplyJobController {
 		applyJob.setA_time(date);
 		this.applyJobBiz.addApply(applyJob); 
 		try {
-			Map<String,String> map=PropertiesUtil.readProperties("admin.properties");
-			MessageUtil.sendMessageToAdmin(map.get("name"), map.get("tel"));
+			Properties properties=PropertiesUtil.readProperties("admin.properties");
+			String name= properties.getProperty("name");
+			String tel= properties.getProperty("tel");
+			MessageUtil.sendMessageToAdmin(name,tel);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ApiException e) {

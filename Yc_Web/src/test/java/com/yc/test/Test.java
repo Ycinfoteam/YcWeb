@@ -9,6 +9,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,10 +26,12 @@ import com.yc.biz.HistoryBiz;
 import com.yc.biz.JobdetailsBiz;
 import com.yc.biz.ProjectsBiz;
 import com.yc.biz.TechnologyBiz;
+import com.yc.web.controllers.AdminController;
 
 import junit.framework.TestCase;
 
 public class Test extends TestCase {
+	private static final Logger log=Logger.getLogger(AdminController.class);
 
 	public void testConnection() throws SQLException {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
@@ -283,5 +287,22 @@ public class Test extends TestCase {
 		ba.setH_id(1);
 		bab.delete(ba);
 	}
+	 
+	public void Test(){  
+	    MDC.clear();  
+	    MDC.put("sessionId" , "f9e287fad9e84cff8b2c2f2ed92adbe6");  
+	    MDC.put("cityId" , 1);  
+	    MDC.put("siteName" , "北京");  
+	    MDC.put("userName" , "userwyh");  
+	   log. info("测试MDC打印一");  
+	           
+	    MDC.put("mobile" , "110");  
+	   log. info("测试MDC打印二");  
+	           
+	    MDC.put("mchId" , 12);  
+	    MDC.put("mchName", "商户名称");  
+	    log. info("测试MDC打印三");  
+	           
+	} 
 
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.MDC;
 import org.springframework.core.NestedCheckedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.News;
 import com.yc.biz.NewsBiz;
+import com.yc.utils.GetIp;
 
 @Controller
 public class NewsController {
@@ -36,15 +38,16 @@ public class NewsController {
 //		response.getWriter().print(gson.toJson(newList));
 //	}
 	@RequestMapping(value="/news_selectAll")
-	public @ResponseBody List selectAllNews() {
-		logger.info("select all news......");
+	public @ResponseBody List selectAllNews(HttpServletRequest request) {
 		List<News> newList=this.newsBiz.selectAllNews();
+		MDC.put("explain" , "查询所有新闻");
+		MDC.put("mchIp",new GetIp().getRemortIP(request));
+		logger.info("select all news......");
 		return newList;
 	}
 	//添加新闻
 	@RequestMapping(value="/news_addNews")
 	public @ResponseBody void addNews(News news,HttpServletRequest request,HttpServletResponse  response) throws IOException{
-		logger.info("add one new......");
 		try {
 			String type=request.getParameter("type");
 			System.out.println(type);
@@ -61,6 +64,10 @@ public class NewsController {
 				news.setN_status(0);
 			}
 			this.newsBiz.addNews(news);
+			MDC.put("explain" , "添加一条新闻");
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("add one new......");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);
@@ -69,10 +76,12 @@ public class NewsController {
 	}
 	//修改新闻
 	@RequestMapping(value="/news_updateNews")
-	public @ResponseBody void updateNews(HttpServletResponse response,News news) throws IOException{
-		logger.info("update one new......");
+	public @ResponseBody void updateNews(HttpServletResponse response,HttpServletRequest request,News news) throws IOException{
 		try {
 			this.newsBiz.updateNews(news);
+			MDC.put("explain" , "修改新闻"+news.getN_id());
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("update one new......");
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);
@@ -81,10 +90,12 @@ public class NewsController {
 	}
 	//删除新闻
 	@RequestMapping(value="/news_deleteNews")
-	public @ResponseBody void deleteNews(@RequestParam(value="id") int cs_id,HttpServletResponse response) throws IOException{
-		logger.info("delete one new......");
+	public @ResponseBody void deleteNews(@RequestParam(value="id") int cs_id,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		try {
 			this.newsBiz.deleteNewsById(cs_id);
+			MDC.put("explain" , "删除新闻"+cs_id);
+			MDC.put("mchIp",new GetIp().getRemortIP(request));
+			logger.info("delete one new......");
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(0);

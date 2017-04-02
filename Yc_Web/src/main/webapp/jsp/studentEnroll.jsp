@@ -41,13 +41,13 @@
             </div>
         </div>
         <ul id="nav">
-               <li class="li1"><a href="jsp/index.jsp" target="_blank" >首页</a></li><h1 class="h1"></h1>
-        <li class="li2"><a href="jsp/teacher.jsp" target="_blank">师资介绍</a></li>
-        <li class="li3"><a href="jsp/subject.jsp" target="_blank">课程体系</a></li>
-        <li class="li4"><a href="jsp/studentProject.jsp" target="_blank">学员项目</a></li>
-        <li class="li5"><a href="jsp/findWork.jsp" target="_blank">就业详情</a></li>
-        <li class="li6"><a href="jsp/about.jsp" target="_blank">关于源辰</a></li>
-        <li class="li7"><a href="jsp/company.jsp" target="_blank">公司历史</a></li>
+            <li class="li1"><a href="index.html" target="_blank" >首页</a></li><h1 class="h1"></h1>
+            <li class="li2"><a href="teacher.html" target="_blank">师资介绍</a></li>
+            <li class="li3"><a href="subject.html" target="_blank">课程体系</a></li>
+            <li class="li4"><a href="studentProject.html" target="_blank">学员项目</a></li>
+            <li class="li5"><a href="findWork.html" target="_blank">就业详情</a></li>
+            <li class="li6"><a href="about.html" target="_blank">关于源辰</a></li>
+            <li class="li7"><a href="company.html" target="_blank">公司历史</a></li>
         </ul>
     </div>
 
@@ -55,66 +55,26 @@
         <div id="main_L">
             <a href=""><img src="images/topAd.jpg"/></a>
             <div class="main_L_d">
-                <p class="teacher_title">衡阳源辰IT培训学校 > 专家师资</p>
-                <div class="zjsz">
-                    <dl>
-                        <dd><img src="images/teacher_zy.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]张影 网络营销教研总监</a>
-                            <p>追求卓越。</p>
-                            <p>技术方向：大数据处理与分析，中间件平台，系统集成，系统平台开发。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_zhj.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]周海军 网络营销教研总监</a>
-                            <p>态度决定一切,行动造就未来。</p>
-                            <p>技术方向：J2EE企业级开发, redis, mongodb,hadoop大数据平台搭建,nodejs。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_yt.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]杨婷 网络营销教研总监</a>
-                            <p>成长,长成自己的样子。</p>
-                            <p>技术方向：擅长J2EE方面的技术，熟悉SSH开发框架。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_jp.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]姜平 网络营销教研总监</a>
-                            <p>用数据来说话。</p>
-                            <p>技术方向：大数据开发，擅长大数据分析和处理、企业级应用开发。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_fpc.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]付鹏程 网络营销教研总监</a>
-                            <p>幸福就像香水,洒给别人也一定会感染自己。</p>
-                            <p>技术方向：高级前端工程师，微信公众平台开发,移动开发。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_wx.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]吴晓 网络营销教研总监</a>
-                            <p>不积跬步,无以至千里;不积小流,无以成江海。</p>
-                            <p>技术方向：J2EE企业级开发,mongodb,redis,hadoop大数据平台。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_ll.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]罗路 网络营销教研总监</a>
-                            <p>业精于勤荒于嬉,行成于思毁于随。</p>
-                            <p>技术方向：高级软件开发工程师,擅长前后端开发.</p>
-                        </dd>
-                    </dl>
+                <p class="studentEnroll_title">衡阳源辰IT培训学校 > 学生报名</p>
+                <div class="studentEnroll_info">
+                	<ul>
+                		<li>
+                			<label>姓名：</label>
+                			<input id="s_name" name="s_name" type="text" />
+                		</li>
+                		<li>
+                			<label>电话：</label>
+                			<input id="s_tel" name="s_tel" type="tel" />
+                		</li>
+                		<li>
+                			<label>报名意向：</label>
+                			<select id="s_direction" name="s_direction">
+                				<option value="${classType}">${classType}</option>
+                			</select>
+                		</li>
+                	</ul>
                 </div>
-            </div>
+            </div>      
         </div>
         <div id="main_R">
             <div class="kaiban">

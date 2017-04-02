@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,7 +67,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="login")
-	public @ResponseBody int login(@ModelAttribute Admin admin){
+	public @ResponseBody int login(@ModelAttribute Admin admin,Model model){
 		log.info("login called...");
 		
 		//TODO:数据库加密
@@ -74,6 +75,8 @@ public class AdminController {
 		List<Admin> list=this.adminBiz.findAdmin(admin);
 		if(list!=null && list.size()>0){
 			if(list.get(0).getA_pwd().equals(admin.getA_pwd())){
+				model.addAttribute("Admin",list);
+
 				return 1;
 			}
 		}
