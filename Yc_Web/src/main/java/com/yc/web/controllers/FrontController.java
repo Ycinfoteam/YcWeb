@@ -1,7 +1,9 @@
 package com.yc.web.controllers;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yc.bean.Activities;
+import com.yc.bean.Coursys;
 import com.yc.bean.DataDictionary;
+import com.yc.bean.Employ;
 import com.yc.biz.ActivitiesBiz;
+import com.yc.biz.CoursysBiz;
 import com.yc.biz.DataDictionaryBiz;
+import com.yc.biz.EmployBiz;
 import com.yc.biz.NewsBiz;
+import com.yc.utils.DateFormatUtil;
 
 /**
  * 前端页面分发器
@@ -32,8 +39,19 @@ public class FrontController {
 	private DataDictionaryBiz datadicBiz;
 	private ActivitiesBiz activitiesBiz;
 	private NewsBiz newBiz;
+	private CoursysBiz coursysBiz;
+	private EmployBiz employBiz;
 	
-	
+	@Resource(name="employBizImpl")
+	public void setEmployBiz(EmployBiz employBiz) {
+		this.employBiz = employBiz;
+	}
+
+	@Resource(name="coursysBizImpl")
+	public void setCoursysBiz(CoursysBiz coursysBiz) {
+		this.coursysBiz = coursysBiz;
+	}
+
 	@Resource(name="newsBizImpl")
 	public void setNewBiz(NewsBiz newBiz) {
 		this.newBiz = newBiz;
@@ -79,6 +97,20 @@ public class FrontController {
 		return "findWork";
 	}
 	
+	@RequestMapping(value="/job.html")
+	public String job(Model model){
+		Employ employ=new Employ();
+		String date=DateFormatUtil.ycDateformat(new Date(), "yyyy-MM-dd");
+		employ.setE_validtime(date);
+		List<Employ> list=employBiz.findEmploy(employ);
+		
+		Map<String, Object> map=this.base();
+		model.addAttribute("job", list);
+		model.addAttribute("title", map.get("title"));
+		model.addAttribute("footer", map.get("footer"));
+		return "job";
+	}
+	
 	@RequestMapping(value="/index.html",produces ="text/html;charset=UTF-8")
 	public String index(Model model){
 		
@@ -97,9 +129,11 @@ public class FrontController {
 			}else{
 				pic=ac.getAc_pic().split(",");
 			}
-			 
 		}
 		
+		List<Coursys> courses=this.coursysBiz.selectAllCoursys(new Coursys());
+		
+		model.addAttribute("courses", courses);
 		model.addAttribute("activties", pic);
 		model.addAttribute("title", map.get("title"));
 		model.addAttribute("company", map.get("company"));
@@ -141,7 +175,7 @@ public class FrontController {
 	}
 	
 	@RequestMapping(value="/teacher.html")
-	public String teacher(Model model){
+	public String teacher(Model model) throws IOException{
 		Map<String, Object> map=this.base();
 		model.addAttribute("title", map.get("title"));
 		model.addAttribute("footer", map.get("footer"));

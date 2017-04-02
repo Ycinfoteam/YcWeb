@@ -284,7 +284,6 @@ function getObjectURL(file) {
 $("#csform").form({
 	url:"coursys_add",
 	success:function(data){
-		alert(data);
 		if(data==1){
 			$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
 			$('#addcsinfo').dialog('close');

@@ -19,7 +19,6 @@ public class Coursys implements Serializable {
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
 	
-	
 	public String getCs_head() {
 		return cs_head;
 	}

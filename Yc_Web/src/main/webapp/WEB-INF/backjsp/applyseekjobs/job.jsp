@@ -49,7 +49,9 @@
 			<label>
 				招聘职位:
 			</label>
-			<input name="e_position" class="easyui-textbox" required="true">
+			<!-- <input name="e_position" class="easyui-textbox" required="true"> -->
+			<input class="easyui-combobox" name="e_position"  
+   			 data-options="valueField:'j_name',textField:'j_name',url:'showJobType'" />
 		</div>
 		<div class="fitem">
 			<label>

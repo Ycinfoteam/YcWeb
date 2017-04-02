@@ -14,7 +14,7 @@
 				e_position=#{e_position } and
 			</if>
 			<if test="e_validtime!=null">
-				e_validtime=#{e_validtime } and
+				e_validtime>#{e_validtime } and
 			</if>
 			<if test="e_amount!=null">
 				e_amount>=#{e_amount } and
@@ -33,18 +33,16 @@
 				e_position=#{e_position } and
 			</if>
 			<if test="e_validtime!=null">
-				e_validtime=#{e_validtime } and
+				e_validtime>#{e_validtime } and
 			</if>
 			<if test="e_amount!=null">
 				e_amount>=#{e_amount } and
-			</if>
-			<if test="e_salary!=0">
-				e_salary>=#{e_salary } and
 			</if>
 		</trim>
 			<if test="start!=null and offset!=null">
 				limit #{start},#{offset}
 			</if>
+			order by e_id desc
 	</select>
 	
 	<!-- 插入招聘信息 -->

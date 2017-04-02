@@ -16,7 +16,7 @@
     <meta http-equiv="expires" Content="Fri, 01 Sep 2017 08:00:00 GMT">
     <meta name="Keywords" Content="源辰,源辰信息,源辰信息科技,源辰信息科技官网,源辰信息科技有限公司">
     <meta name="Description" Content="公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。我们的宗旨是服务于学生，致力于企业。">
-    <link rel="shortcut icon" href="../images/logo.png">
+    <link rel="shortcut icon" href="images/logo.png">
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
@@ -24,11 +24,9 @@
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
 
-
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
-    <script src="js/joinUs.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">
@@ -54,9 +52,30 @@
 <div id="main">
     <div id="main_L">
         <a href=""><img src="images/topAd.jpg"/></a>
-        <div class="main_L_d" style="height:300px;">
-            <p style="margin-left:240px;margin-top:130px;color:red;font-size:30px;">应聘申请成功！</p>
-            <a href="index.html" style="padding-left:300px;">返回首页</a>
+        <div class="main_L_d">
+        <br/>
+        <p style="padding-left:300px;font-size:24px;">招聘信息</p>
+        <table style="margin-top:30px;" border="1" width="650" height="300" cellspacing="0" cellpadding="0" align="center">
+      		<tr align="center">
+            	<td>职位</td>
+            	<td>招聘人数</td>
+            	<td>薪资</td>
+            	<td>职位要求</td>
+            	<td>过期时间</td>
+            </tr>
+	        <c:forEach items="${job }" var="j">
+	        	<tr align="center">
+	            	<td>${j.e_position }</td>
+	            	<td>${j.e_amount }</td>
+	            	<td>${j.e_salary }</td>
+	            	<td>${j.e_detail }</td>
+	            	<td>${j.e_validtime }</td>
+	            </tr>
+	        </c:forEach>
+            </table>
+            <br/>
+            <a href="joinUs.html" style="padding-left:565px;">>>>加入我们</a>
+            <br/>
         </div>
     </div>
     <div id="main_R">
@@ -114,7 +133,7 @@
 
 <div id="footer">
     <div class="address">
-       <p>
+        <p>
 			<span>${footer[0] }</span>
 			<span>${footer[1] }</span>
 			<span>${footer[2] }</span>
