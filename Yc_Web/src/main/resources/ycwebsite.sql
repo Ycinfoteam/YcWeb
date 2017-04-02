@@ -33,7 +33,6 @@ create table news(
 	n_reportor varchar(300)  --发布者
 	n_status integer     --新闻发布状态
 )
-
 --学员项目表
 create table projects(
 	p_id integer primary key auto_increment,

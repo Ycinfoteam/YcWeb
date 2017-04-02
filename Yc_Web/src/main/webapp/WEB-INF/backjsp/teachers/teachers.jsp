@@ -315,15 +315,21 @@ function updateTeacherPic(){
 }
 //验证教师姓名是否重名
 function checkTcName(){
-	alert(101);
 	var t_name=$('#t_name').val();
-	$.post('findTeacherByName',{t_name:t_name},function(data){
-		if('1'==data){
-			$('#errorMsg').text('*该教师名已存在，请检查是否有重名教师').css("color","red");
-		}else{
-			$('#errorMsg').text('');
-		}
-	},'json');
+	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，数字，中文的组合
+	if(reg.test(t_name)){
+		$.post('findTeacherByName',{t_name:t_name},function(data){
+			alert(data);
+			if('1'==data){
+				$('#errorMsg').text('*该教师名已存在，请检查是否有重名教师').css("color","red");
+			}else{
+				$('#errorMsg').text('');
+			}
+		},'json');
+	}else{
+		$('#errorMsg').text('*请输入英文或中文的教师姓名！').css("color","red");
+	}
+	
 }
 //自定义表单验证规则
 $.extend($.fn.validatebox.defaults.rules, {   

@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
@@ -15,7 +16,7 @@
     <meta http-equiv="expires" Content="Fri, 01 Sep 2017 08:00:00 GMT">
     <meta name="Keywords" Content="源辰,源辰信息,源辰信息科技,源辰信息科技官网,源辰信息科技有限公司">
     <meta name="Description" Content="公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。我们的宗旨是服务于学生，致力于企业。">
-<<<<<<< HEAD
+
     <link rel="shortcut icon" href="images/logo.png">
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -132,7 +133,6 @@
             <span>版权所有 &copy; CopyRight 2016 源辰信息科技有限公司</span>
             <span>地址：衡阳市解放西路丽天名园905室</span>
         </p>
-=======
     <link rel="shortcut icon" href="../images/logo.png">
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -147,7 +147,6 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
-    
 </head>
 <body>
 <div id="header">
@@ -181,7 +180,6 @@
                 <p>
                   ${company[0] } 
                 </p>
-                <a href="joinUs.jsp" style="height:40px;margin-left:600px;color:red;">加入我们</a>
             </div>
 
         </div>
@@ -195,7 +193,7 @@
                     <h5>嵌入式培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -204,7 +202,7 @@
                     <h5>大数据培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -213,7 +211,7 @@
                     <h5>Web前端培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="" class="kbtextInp1">我要咨询</a>
-                    <a href="" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
             <div class="kb1">
@@ -222,7 +220,7 @@
                     <h5>JAVA培训班</h5>
                     <p>开班日期：2月28日</p>
                     <a href="#" class="kbtextInp1">我要咨询</a>
-                    <a href="#" class="kbtextInp2">我要报名</a>
+                    <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                 </dd>
             </div>
 
@@ -250,7 +248,6 @@
 			<span>${footer[3] }</span>
 			<span>${footer[4] }</span>
 		</p>
->>>>>>> branch 'master' of ssh://git@github.com/Ycinfoteam/YcWeb.git
     </div>
 </div>
 </body>

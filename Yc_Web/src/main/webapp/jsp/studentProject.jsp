@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page isELIgnored="false"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
+<% 
+	String path=request.getContextPath();
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
@@ -13,16 +20,16 @@
     <link rel="shortcut icon" href="images/logo.png">
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+       <link rel="stylesheet" href="css/student.css">
+      <!--  <link rel="stylesheet" href="css/lightbox.css"/> --> 
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
-
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
+       <!--  <script src="js/lightbox.js" type="text/javascript"></script> -->
+    
 </head>
 <body>
 <div id="header">
@@ -44,10 +51,14 @@
     </ul>
 </div>
 
-<div style="height:1500px;font-size: 100px;">
-    学员项目
-</div>
-
+<div class="kctx" style="margin-left: 180px;">
+    <div class="kctx_title" >
+        衡阳源辰IT培训学校 > 学员项目
+    </div>
+    <div id="project">
+    <ul class="pro"></ul>
+    </div>
+    </div>
 <div id="footer">
     <div class="address">
         <p>
@@ -61,5 +72,23 @@
 		</p>
     </div>
 </div>
+<script>
+$.post('topreprojects',function(data){
+	//data=data.rows;
+	//显示课程体系信息
+	showProjects(data);
+},'json');
+function showProjects(data){
+	for(var i=0;i<data.length;i++){
+		var p_pic=data[i].p_pic.replace(",","");
+		p_pic=p_pic.substring(22); 
+		//$('#projects').prepend('<a id="lii"><img id="pic" class="lazyloads" height="300" width="350" src="../'+p_pic+'"visibility="hidden""></a>');
+	$('ul.pro').prepend('<li><img src="../'+p_pic+'" data-original="../'+p_pic+'" alt="'+data[i].p_name+'"/></li>');
+	}
+}
+
+</script>
+	<script src="js/index.js" type="text/javascript"></script>
+
 </body>
 </html>

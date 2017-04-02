@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,11 @@ public class AdministratorController {
 	@RequestMapping(value="findAdministrator",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String findAdministrator() throws IOException{
 		log.info("findAdministrator called....");
-		Map<String, String> map=PropertiesUtil.readProperties("admin.properties");
+		Properties p=PropertiesUtil.readProperties("admin.properties");
+		
 		Administrator administrator =new Administrator();
-		administrator.setName(map.get("name"));
-		administrator.setTel(map.get("tel")); 
+		administrator.setName(p.getProperty("name"));
+		administrator.setTel(p.getProperty("tel")); 
 		List<Administrator> list=new ArrayList<Administrator>();
 		list.add(administrator);
 		JsonModel model=new JsonModel();
@@ -40,9 +42,9 @@ public class AdministratorController {
 	@RequestMapping(value="findAdministrator1",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String findAdministrator1() throws IOException{
 		log.info("findAdministrator1 called....");
-		Map<String, String> map=PropertiesUtil.readProperties("admin.properties");
+		Properties properties=PropertiesUtil.readProperties("admin.properties");
 		Gson gson =new Gson();
-		return gson.toJson(map); 
+		return gson.toJson(properties); 
 	}
 	
 	@RequestMapping(value="updateAdministrator")

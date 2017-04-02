@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@page isELIgnored="false" %>
 <!-- zx's companyUI -->
 <!-- 新闻显示的数据表格 -->
 <table id="companynewsdg"></table>
@@ -31,14 +32,17 @@
 		</div>
 	</div>
 </div>
-<div id="showNews" class="easyui-dialog" closed="true">
-	<h2 id="sn_title">${news.n_title }</h2>
+<div id="showNews" class="easyui-dialog" closed="true" 
+	style="width: 1070px; height: 680px; padding: 10px 20px;display:none">
+	<h2 id="sn_title"></h2>
 	<div id="sn_info">
-		<label style="">发布人：${news.n_reportor} </label>
-		<label>发布时间：${news.n_time }</label>
-		<label>点击次数：${news.n_click}</label>
+		<label>
+			发布人:<span id="sn_reportor"></span>
+			发布时间:<span id="sn_time"></span>
+			点击次数:<span id="sn_click"></span>
+		</label>
 	</div>
-	<p id="sn_content">${news.n_content }</p>
+	<p id="sn_content"></p>
 </div>
 <script src="backjs/jquery.edatagrid.js"></script>
 <script src="backjs/jquery.form.js"></script>
@@ -65,9 +69,9 @@ $('#companynewsdg').edatagrid({
 	idField : "n_id", //标识，会记录我们选中的一行的id，不一定是id，通常都是主键
 	rownumbers : "true", //显示行号
 	nowrap : "true", //不换行显示
-	sortName : "n_sort", //排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
+	sortName : "n_id", //排序的列  这个参数会传到后台的servlet上，所以要有后台对应的接收
 	sortOrder : "desc", //排序方式
-
+	remoteSort:false,
 	//以上的四种增删改查操作，只要失败，都会回掉这个onError
 	onError : function(a, b) {
 		$.messager.alert("错误", "操作失败");
@@ -95,12 +99,32 @@ $('#companynewsdg').edatagrid({
 		title : '创建时间',
 		width : 100,
 		align : 'center',
+		sortable:true,
+		sorter:function(a,b){
+			a = a.split('-');
+			b = b.split('-');
+			if (a[0] == b[0]){//年份相同
+				if (a[1] == b[1]){//月份相同
+					return (a[2]>b[2]?1:-1);
+				} else {
+					return (a[2]>b[2]?1:-1);
+				}
+			} else {
+				return (a[0]>b[0]?1:-1);
+			}
+		}
 	}, {
    	 	field:'n_click',
    	 	title:'点击数',
    	 	width:30,
    	 	align:'center',
-   	 }, {
+   	 	sortable:true,
+   	 },{
+    	 	field:'n_reportor',
+    	 	title:'发布人',
+    	 	width:30,
+    	 	align:'center',
+    },{
 		field : 'n_sort',
 		title : '排序(数字越大显示越前)',
 		width : 50,
@@ -244,17 +268,17 @@ function updateCompanyNews(){
 }
 //查看公司新闻
 function showNewsContent(n_id){
-	$('#showNews').dialog({
-		title:'查看新闻内容',
-		width:700,
-		height:540,
-		closed:false,
-		cache:false,
-		modal:true,
-		href:'toshownewscontent',
-		queryParams:{n_id:n_id}
-	});
-	
+	var n_title=$('#companynewsdg').datagrid('getSelected').n_title;//标题
+	var n_time=$('#companynewsdg').datagrid('getSelected').n_time;//发布时间
+	var n_reportor=$('#companynewsdg').datagrid('getSelected').n_reportor;//发布人
+	var n_click=$('#companynewsdg').datagrid('getSelected').n_click;//点击数
+	var n_content=$('#companynewsdg').datagrid('getSelected').n_content;
+	$('#showNews').dialog('open').dialog('setTitle','查看公司新闻');
+	$('#sn_title').text(n_title);
+	$('#sn_reportor').text(n_reportor);
+	$('#sn_time').text(n_time);
+	$('#sn_click').text(n_click);
+	$('#sn_content').append(n_content);
 }
 </script>
 

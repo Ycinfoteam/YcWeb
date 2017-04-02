@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-	public static Map<String, String> readProperties(String file) throws IOException{
+	public static Properties readProperties(String file) throws IOException{
 		
 		Map<String, String> map=new HashMap<String,String>();
 		//InputStream input =PropertiesUtil.class.getClassLoader().getResourceAsStream(file);
@@ -35,12 +35,16 @@ public class PropertiesUtil {
 			input.close();
 			bf.close();
 		}
-		if(p.getProperty("name")!=null && p.getProperty("tel")!=null){
+		/*if(p.getProperty("name")!=null && p.getProperty("tel")!=null){
 			map.put("name", p.getProperty("name"));
 			map.put("tel", p.getProperty("tel"));
 			return map;
-		}
+		}*/
+		if(p.isEmpty()){
 		return null;
+		}else{
+			return p;
+		}
 	}
 	
 	public static void writeProperties(String file,String name,String tel) throws IOException{

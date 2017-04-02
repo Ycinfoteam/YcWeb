@@ -67,7 +67,7 @@ ul,li{
 				<div id="tt9" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> -->
-			<div title="模块管理">
+			<div title="备份与还原">
 				<div id="tt10" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
@@ -155,12 +155,17 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys",
+						url : "tocoursys"
 					}
 				} ,{
 					text : "教师管理",
 					attributes : {
-						url : "toteacher"
+					url : "toteacher"
+					}
+				},{
+					text : "学员报名",
+					attributes : {
+						url : "tostudents"
 					}
 				},{
 					text : "学员项目",
@@ -177,12 +182,12 @@ $(document).ready(
 					attributes : {
 						url : "tocompany"
 					}
-				} , {
+				},{
 					text : "公司活动介绍",
 					attributes : {
 						url : "toactivities"
 					}
-				} ,{
+				},{
 					text : "公司历史介绍",
 					attributes : {
 						url : "tohistory"
@@ -231,28 +236,23 @@ $(document).ready(
 			var treeData11 = [ {
 				text : "查看日志",
 				attributes : {
-					url : "yyyback/friendlink/friendlink.jsp"
+					url : "tolog"
 				}
 			} ];
 			//css
 			var treeData10 = [ {
-				text : "前台管理",
+				text : "备份与还原",
 				children : [ {
-					text : "样式管理",
+					text : "数据库备份或还原",
 					attributes : {
-						url : "yyyback/model/modelView.jsp"
+						url : "tobackupdatabase"
 					}
 				}, {
-					text : "特效管理",
+					text : "文件备份或还原",
 					attributes : {
-						url : "yyyback/model/modelJs.jsp"
+						url : "tofile"
 					}
-				}, {
-					text : "一键换肤",
-					attributes : {
-						url : "yyyback/model/easyChange.jsp"
-					}
-				} ]
+				}]
 				
 			} ];
 			//还原

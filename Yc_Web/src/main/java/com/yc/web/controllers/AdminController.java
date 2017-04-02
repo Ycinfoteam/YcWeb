@@ -68,6 +68,7 @@ public class AdminController {
 		return 1;
 	}
 	
+
 	@RequestMapping(value="/login")
 	public @ResponseBody int login(@RequestParam String validateCode,@ModelAttribute Admin admin,HttpSession session){
 		log.info("login called...");
@@ -81,6 +82,7 @@ public class AdminController {
 		List<Admin> list=this.adminBiz.findAdmin(admin);
 		if(list!=null && list.size()>0){
 			if(list.get(0).getA_pwd().equals(admin.getA_pwd())){
+
 				session.setAttribute("user", list.get(0).getA_name());
 				return 1;
 			}

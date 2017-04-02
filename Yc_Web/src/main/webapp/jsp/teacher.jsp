@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page isELIgnored="false"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
+<% 
+	String path=request.getContextPath();
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
@@ -119,7 +126,7 @@
                         <h5>嵌入式培训班</h5>
                         <p>开班日期：2月28日</p>
                         <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="" class="kbtextInp2">我要报名</a>
+                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                     </dd>
                 </div>
                 <div class="kb1">
@@ -128,7 +135,7 @@
                         <h5>大数据培训班</h5>
                         <p>开班日期：2月28日</p>
                         <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="" class="kbtextInp2">我要报名</a>
+                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                     </dd>
                 </div>
                 <div class="kb1">
@@ -137,7 +144,7 @@
                         <h5>Web前端培训班</h5>
                         <p>开班日期：2月28日</p>
                         <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="" class="kbtextInp2">我要报名</a>
+                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                     </dd>
                 </div>
                 <div class="kb1">
@@ -146,7 +153,7 @@
                         <h5>JAVA培训班</h5>
                         <p>开班日期：2月28日</p>
                         <a href="#" class="kbtextInp1">我要咨询</a>
-                        <a href="#" class="kbtextInp2">我要报名</a>
+                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
                     </dd>
                 </div>
 
