@@ -28,9 +28,10 @@ create table news(
 	n_title varchar(300),    --标题
 	n_content varchar(5000), --内容
 	n_click integer,         --点击次数
-	n_time timestamp,        --创建时间
+	n_time datetime,        --创建时间
 	n_sort integer,  	     --排序 
 	n_reportor varchar(300)  --发布者
+	n_status integer     --新闻发布状态
 )
 
 --学员项目表
@@ -99,7 +100,8 @@ create table coursys(
 	cs_name varchar(5000),		 --方向名
 	cs_pic varchar(5000),		 --图片说明
 	cs_version varchar(500),     --版本
-	cs_text varchar(5000)		 --文字说明
+	cs_text varchar(5000),		 --文字说明
+	cs_head varchar(5000)	--小头像
 )
 
 --招聘表

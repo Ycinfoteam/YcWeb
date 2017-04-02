@@ -11,12 +11,13 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mysql.fabric.xmlrpc.base.Data;
+import com.yc.bean.Activities;
 import com.yc.bean.DataDictionary;
+import com.yc.biz.ActivitiesBiz;
 import com.yc.biz.DataDictionaryBiz;
+import com.yc.biz.NewsBiz;
 
 /**
  * 前端页面分发器
@@ -29,11 +30,25 @@ public class FrontController {
 	private static final Logger log=Logger.getLogger(FrontController.class);
 	
 	private DataDictionaryBiz datadicBiz;
+	private ActivitiesBiz activitiesBiz;
+	private NewsBiz newBiz;
 	
+	
+	@Resource(name="newsBizImpl")
+	public void setNewBiz(NewsBiz newBiz) {
+		this.newBiz = newBiz;
+	}
+
 	@Resource(name="dataDictionaryBizImpl")
 	public void setDatadic(DataDictionaryBiz datadicBiz) {
 		this.datadicBiz = datadicBiz;
 	}
+	
+	@Resource(name="activitiesBizImpl")
+	public void setActivitiesBiz(ActivitiesBiz activitiesBiz) {
+		this.activitiesBiz = activitiesBiz;
+	}
+
 
 	@RequestMapping(value="/about.html")
 	public String about(Model model){
@@ -64,10 +79,28 @@ public class FrontController {
 		return "findWork";
 	}
 	
-	@RequestMapping(value="/index.html")
+	@RequestMapping(value="/index.html",produces ="text/html;charset=UTF-8")
 	public String index(Model model){
 		
 		Map<String, Object> map=this.base();
+		
+		List<Activities> list=this.activitiesBiz.findall(new Activities());
+		
+		String [] pic = null;
+		for(Activities ac:list){	//拼接公司活动图片
+			if(pic!=null){
+				String [] temp=pic;
+				String [] temp2=ac.getAc_pic().split(",");
+				pic=new String[temp.length+temp2.length];
+				System.arraycopy(temp, 0, pic, 0, temp.length);
+				System.arraycopy(temp2, 0, pic, temp.length, temp2.length); 
+			}else{
+				pic=ac.getAc_pic().split(",");
+			}
+			 
+		}
+		
+		model.addAttribute("activties", pic);
 		model.addAttribute("title", map.get("title"));
 		model.addAttribute("company", map.get("company"));
 		model.addAttribute("footer", map.get("footer"));

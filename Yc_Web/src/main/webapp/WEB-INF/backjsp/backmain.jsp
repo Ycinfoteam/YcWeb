@@ -39,8 +39,9 @@ ul,li{
 			源&nbsp;&nbsp;辰&nbsp;&nbsp;官&nbsp;&nbsp;网&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;中&nbsp;&nbsp;心
 		</hl>
 		<%
-			if(username!=null&&!"".equals(username)){%>
-				欢迎：【<%=username %>】
+			if(username!=null && !"".equals(username)){%>
+				<p style="display:inline-block; font-size:15px; margin-left:60px;">欢迎：[<%=username %>]</p>&nbsp;&nbsp;
+				<a href="tobacklogin" style="font-size:14px;">退出登录</a>
 		<% 	} %>	
 		
 	</div>
