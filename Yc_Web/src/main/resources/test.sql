@@ -12,7 +12,7 @@ alter table coursys add cs_head varchar(5000)
 
 --学生报名信息表的测试数据
 select s_id,s_name,s_tel,s_direction,s_status from students
-insert into students(s_name,s_tel,s_direction,s_status) values('a',111111,'前端工程师',0);
+insert into students(s_name,s_tel,s_direction,s_status) values('a',18569432115,'前端工程师',1);
 show variables like 'character_set_%';
 --增加一个学生发送信息状态字段
 alter table students add s_status integer

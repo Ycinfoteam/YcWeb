@@ -158,9 +158,14 @@ $(document).ready(
 						url : "tocoursys"
 					}
 				} ,{
+					text : "开班信息管理",
+					attributes : {
+						url : "toopenclass"
+					}
+				},{
 					text : "教师管理",
 					attributes : {
-					url : "toteacher"
+					url : "toteachers"
 					}
 				},{
 					text : "学员报名",

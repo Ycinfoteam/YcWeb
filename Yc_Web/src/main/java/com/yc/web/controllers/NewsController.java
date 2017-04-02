@@ -27,8 +27,8 @@ import com.yc.utils.PageUtil;
 
 @Controller
 public class NewsController {
-	private NewsBiz newsBiz;
 	private static final Log logger=LogFactory.getLog(NewsController.class);
+	private NewsBiz newsBiz;
 	@Resource(name="newsBizImpl")
  	public void setNewsBiz(NewsBiz newsBiz) {
 		this.newsBiz = newsBiz;

@@ -14,17 +14,24 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yc.bean.Activities;
 import com.yc.bean.Coursys;
 import com.yc.bean.DataDictionary;
 import com.yc.bean.Employ;
+import com.yc.bean.News;
+import com.yc.bean.OpenClass;
+import com.yc.bean.Teachers;
 import com.yc.biz.ActivitiesBiz;
 import com.yc.biz.CoursysBiz;
 import com.yc.biz.DataDictionaryBiz;
 import com.yc.biz.EmployBiz;
 import com.yc.biz.NewsBiz;
+import com.yc.biz.OpenClassBiz;
+import com.yc.biz.TeachersBiz;
 import com.yc.utils.DateFormatUtil;
+
 
 /**
  * 前端页面分发器
@@ -61,12 +68,28 @@ public class FrontController {
 	public void setDatadic(DataDictionaryBiz datadicBiz) {
 		this.datadicBiz = datadicBiz;
 	}
+
+	private TeachersBiz teachersBiz;
+	@Resource(name="teachersBizImpl")
+	public void setTeachersBiz(TeachersBiz teachersBiz) {
+		this.teachersBiz = teachersBiz;
+	}
+	private NewsBiz newsBiz;
+	@Resource(name="newsBizImpl")
+ 	public void setNewsBiz(NewsBiz newsBiz) {
+		this.newsBiz = newsBiz;
+	}
+	private OpenClassBiz openClsBiz;
+	@Resource(name="openClassBizImpl")
+	public void setOpenClsBiz(OpenClassBiz openClsBiz) {
+		this.openClsBiz = openClsBiz;
+	}
+
 	
 	@Resource(name="activitiesBizImpl")
 	public void setActivitiesBiz(ActivitiesBiz activitiesBiz) {
 		this.activitiesBiz = activitiesBiz;
 	}
-
 
 	@RequestMapping(value="/about.html")
 	public String about(Model model){
@@ -173,15 +196,71 @@ public class FrontController {
 		model.addAttribute("footer", map.get("footer"));
 		return "success";
 	}
-	
+	//师资介绍界面
 	@RequestMapping(value="/teacher.html")
 	public String teacher(Model model) throws IOException{
 		Map<String, Object> map=this.base();
+		Teachers teachers=new Teachers();
+		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(teachers);
+		List<News> newsList=findAllNews();
+		List<OpenClass> openClsList=findAllOpenCls();
+		for(int i=0;i<teachersList.size();i++){
+			String pics []=teachersList.get(i).getT_pic().split(",");
+			teachersList.get(i).setT_pic(pics[0]);
+		}
+		model.addAttribute("openClsinfo", openClsList);
+		model.addAttribute("newsinfo", newsList);
+		model.addAttribute("teacherinfo", teachersList);
 		model.addAttribute("title", map.get("title"));
 		model.addAttribute("footer", map.get("footer"));
 		return "teacher";
 	}
-	
+	//公司新闻列表界面
+	@RequestMapping(value="/companynews.html")
+	public String companyNews(Model model){
+		List<News> newsList=findAllNews();
+		List<OpenClass> openClsList=findAllOpenCls();
+		model.addAttribute("openClsinfo", openClsList);
+		model.addAttribute("newsList", newsList);
+		return "companynews";
+	}
+	//去某一新闻详情页面
+	@RequestMapping(value="/news.html")
+	public String news(Model model,@RequestParam(value="n_id") int nid){
+		News news=new News();
+		news.setN_id(nid);
+		List<News> thenews=this.newsBiz.selectNewsById(news);
+		List<News> newsList=findAllNews();
+		news.setN_id(nid-1);
+		List<News> thenextnews=this.newsBiz.selectNewsById(news);
+		news.setN_id(nid+1);
+		List<News> thebeforenews=this.newsBiz.selectNewsById(news);
+		List<OpenClass> openClsList=findAllOpenCls();
+		model.addAttribute("newsList", newsList);
+		model.addAttribute("thenews", thenews);
+		model.addAttribute("thenextnews", thenextnews);
+		model.addAttribute("thebeforenews", thebeforenews);
+		model.addAttribute("openClsinfo", openClsList);
+		return "news";
+	}
+	//查询所有的新闻信息
+	public List<News> findAllNews(){
+		News news=new News();
+		List<News> newsList=this.newsBiz.selectAllNews(news);
+		return newsList;
+	}
+	//查询所有的开班信息
+	public List<OpenClass> findAllOpenCls(){
+		OpenClass openCls=new OpenClass();
+		List<OpenClass> openClsList=this.openClsBiz.selectAllOpenClass(openCls);
+		for(int i=0;i<openClsList.size();i++){
+			String pics []=openClsList.get(i).getOc_pic().split(",");
+			openClsList.get(i).setOc_pic(pics[0]);
+			String times []=openClsList.get(i).getOc_time().split("-");
+			openClsList.get(i).setOc_time(times[1]+"月"+times[2]+"日");
+		}
+		return openClsList;
+	}
 	public Map<String, Object> base(){
 		Map<String, Object> map =new HashMap<String, Object>();
 		
@@ -204,7 +283,7 @@ public class FrontController {
 		map.put("title", title);
 		map.put("company", company);
 		map.put("footer", footer);
-
+ 
 		return map;
 	}
 }

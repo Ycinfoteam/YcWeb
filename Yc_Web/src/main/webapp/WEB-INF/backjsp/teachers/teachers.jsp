@@ -293,6 +293,7 @@ function showTeacherPic(type){
 		$('#showTeachersPic').dialog('open').dialog('setTitle','添加教师照片');
 	}else{
 		$('#update-buttons').css({display:"inline-block"});
+		$('#file').css({display:"inline-block"});
 		$('#t_id').val(t_id);
 		$('#showTeachersPic').dialog('open').dialog('setTitle','修改教师照片');
 	}

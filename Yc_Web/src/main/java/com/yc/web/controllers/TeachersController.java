@@ -59,9 +59,10 @@ public class TeachersController {
 	}
 	//查询所有的教师信息用于COMBOBOX动态数据添加
 	@RequestMapping(value="/findTeachers",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findTeachers(@ModelAttribute Teachers teachers){
+	public @ResponseBody String findTeachers(@ModelAttribute Teachers teachers,Model model){
 		logger.info("select all teacher for combobox......");
 		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(teachers);
+		model.addAttribute("teacherinfo", teachersList);
 		Gson gson =new Gson();
 		return gson.toJson(teachersList);
 	}

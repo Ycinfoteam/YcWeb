@@ -9,7 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select s_id,s_name,s_tel,s_direction,s_status from students
 		<trim prefix="where" suffixOverrides="and">
 			<if test="s_id>0">
-				s_id=#{s_id} and
+				s_id = #{s_id} and
+			</if>
+			<if test="s_ids>0">
+				s_id int #{s_ids} and
 			</if>
 			<if test="s_status>0">
 				s_status=#{s_status} and
@@ -40,6 +43,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<!-- 修改一条学生信息 -->
 	<update id="updateOneStudent" parameterType="Students">
-		update students set s_status=#{s_status} where s_id=#{s_id}
+		update students set s_status=#{s_status}
+		<trim prefix="where" suffixOverrides="and">
+			<if test="s_id>0">
+				s_id = #{s_id} and
+			</if>
+			<if test="s_ids>0">
+				s_id int #{s_ids} and
+			</if>
+			</trim>
 	</update>
 </mapper>

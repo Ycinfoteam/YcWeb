@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
 <% 
 	String path=request.getContextPath();
@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
@@ -23,9 +22,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet"  href="css/teacher.css">
+    <link rel="stylesheet"  href="css/companynews.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-
+    <!--[if gte IE 8]>
+    <link rel="stylesheet" href="css/styleforie.css">
+    <![endif]-->
 
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
@@ -55,19 +57,26 @@
         <div id="main_L">
             <a href=""><img src="images/topAd.jpg"/></a>
             <div class="main_L_d">
-                <p class="teacher_title">衡阳源辰IT培训学校 > 专家师资</p>
-                <div class="zjsz">
-                <c:forEach items="${teacherinfo}" var="tcinfo">
-                    <dl>
-                        <dd><img src="${tcinfo.t_pic }"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[${tcinfo.t_title }]${tcinfo.t_name } ${tcinfo.t_job }</a>
-                            <p>${tcinfo.t_motto }</p>
-                            <p>技术方向：${tcinfo.t_skill }</p>
-                        </dd>
-                    </dl>
-                </c:forEach>
-                </div>
+                <p class="teacher_title">衡阳源辰IT培训学校 > 源辰新闻</p>
+                <div class="ycnews">
+	                <h3>源辰新闻</h3>
+	                <table>
+		                <c:forEach items="${newsList}" var="news">
+		                	<tr>
+		                		<td style="width:500px;">
+			                		<li><a href="news.html?n_id=${news.n_id}">${news.n_title}</a></li>
+		                		</td>
+		                		<td style="width:100px;">
+			                		<span id="news_time">${news.n_time }</span>
+		                		</td>
+		                	</tr>
+	                	</c:forEach>
+	                </table>
+	                <div>
+	                	<span><a href=""> 上一页 </a></span>
+	                	<span><a href=""> 下一页 </a></span>
+	                </div>
+            	</div>
             </div>
         </div>
         <div id="main_R">
@@ -84,11 +93,10 @@
 	                    </dd>
 	                </div>
                 </c:forEach>
-
                 <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
-                <ul class="ycNewsul">
+                <ul>
                 	<c:forEach items="${newsinfo }" var="news">
-                	  <li><a href="news.html?n_id=${news.n_id}">+ ${news.n_title}</a></li>
+                	  <li><a href="news.html/${news.n_id}">+ ${news.n_title}</a></li>
                 	</c:forEach>
                 </ul>
             </div>
