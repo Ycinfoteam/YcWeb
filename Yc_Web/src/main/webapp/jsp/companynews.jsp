@@ -72,10 +72,12 @@
 		                	</tr>
 	                	</c:forEach>
 	                </table>
+	                <br/>
 	                <div>
-	                	<span><a href=""> 上一页 </a></span>
-	                	<span><a href=""> 下一页 </a></span>
+	                	<a href="companynews.html/1" style="display: inline;width: 50px;margin-left: 260px;"> 上一页 </a>
+	                	<a href="companynews.html/2" style="display: inline;width: 50px;margin-left: 80px;"> 下一页 </a>
 	                </div>
+	                <br/>
             	</div>
             </div>
         </div>
@@ -96,7 +98,11 @@
                 <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
                 <ul>
                 	<c:forEach items="${newsinfo }" var="news">
-                	  <li><a href="news.html/${news.n_id}">+ ${news.n_title}</a></li>
+                	  <li style="width:250px;font-size: 14px;">
+                	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+                	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+                	  	</a>
+                	  </li>
                 	</c:forEach>
                 </ul>
             </div>

@@ -80,13 +80,13 @@ public class ApplyJobController {
 			Properties properties=PropertiesUtil.readProperties("admin.properties");
 			String name= properties.getProperty("name");
 			String tel= properties.getProperty("tel");
-			MessageUtil.sendMessage(name,tel,"SMS_56640030");
+			MessageUtil.sendMessage(name,tel,"SMS_56640051");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ApiException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/success";
+		return "redirect:/success.html";
 	}
 	
 }

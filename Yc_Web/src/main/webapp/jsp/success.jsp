@@ -101,12 +101,13 @@
 
             <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
             <ul>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
-                <li><a href="">+ Win10用户数量下滑，...</a></li>
+                <c:forEach items="${newsinfo }" var="news">
+               	  <li style="width:250px;font-size: 14px;">
+               	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+               	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+               	  	</a>
+               	  </li>
+               	</c:forEach>
             </ul>
         </div>
     </div>
