@@ -85,10 +85,14 @@
 	                </div>
                 </c:forEach>
 
-                <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
-                <ul class="ycNewsul">
+                <p class="ycNews">源辰新闻 | <a href="companynews.html/3">更多</a></p>
+                <ul >
                 	<c:forEach items="${newsinfo }" var="news">
-                	  <li><a href="news.html?n_id=${news.n_id}">+ ${news.n_title}</a></li>
+                	  <li style="width:250px;font-size: 14px;">
+                	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+                	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+                	  	</a>
+                	  </li>
                 	</c:forEach>
                 </ul>
             </div>

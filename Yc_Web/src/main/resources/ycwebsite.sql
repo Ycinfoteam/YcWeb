@@ -102,7 +102,8 @@ create table coursys(
 	cs_pic varchar(5000),		 --图片说明
 	cs_version varchar(500),     --版本
 	cs_text varchar(5000),		 --文字说明
-    cs_head varchar(5000),		 --体系头像
+	cs_status integer,
+	cs_head varchar(5000)	--小头像
 )
 --开班信息表
 create table openclass(

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.yc.bean.Jobdetails;
-import com.yc.bean.Projects;
 import com.yc.biz.JobdetailsBiz;
 import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;

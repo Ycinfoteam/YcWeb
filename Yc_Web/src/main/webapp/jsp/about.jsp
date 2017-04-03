@@ -59,8 +59,10 @@
                 <h3>关于源辰</h3>
                 <p class="about_title">发布：衡阳源辰IT培训学校      来源：关于源辰     时间：2016-08-03</p>
                 <p>
-                  ${company[0] } 
+                  ${content } 
                 </p>
+                <a href="job.html" style="padding-left:555px;font-size:15px;">>>>招聘信息</a>
+                <br/>
             </div>
 
         </div>
@@ -79,11 +81,15 @@
 	                    </dd>
 	                </div>
             </c:forEach>
-            <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
-            <ul class="ycNewsul">
-                	<c:forEach items="${newsinfo }" var="news">
-                	  <li><a href="news.html?n_id=${news.n_id}">+ ${news.n_title}</a></li>
-                	</c:forEach>
+            <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
+            <ul>
+               <c:forEach items="${newsinfo }" var="news">
+              	  <li style="width:250px;font-size: 14px;">
+              	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+              	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+              	  	</a>
+              	  </li>
+               </c:forEach>
             </ul>
         </div>
     </div>

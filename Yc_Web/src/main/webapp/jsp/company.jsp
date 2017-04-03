@@ -167,6 +167,7 @@
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
+
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>

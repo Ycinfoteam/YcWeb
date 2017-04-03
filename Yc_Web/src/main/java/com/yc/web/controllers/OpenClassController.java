@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
-import com.yc.bean.Coursys;
 import com.yc.bean.OpenClass;
-import com.yc.bean.Teachers;
 import com.yc.biz.OpenClassBiz;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;

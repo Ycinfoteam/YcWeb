@@ -19,18 +19,16 @@
     <link rel="shortcut icon" href="../images/logo.png">
     <title>源辰信息科技官网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="stylesheet" media="screen and (min-width: 1024px)" href="../css/newcomputer.css">
-    <link rel="stylesheet" href="../css/about.css">
-    <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="../css/pad.css">
-    <link rel="stylesheet" media="screen and (max-width: 768px)" href="../css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
+    <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
 
-    <script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/jquery.lazyload.js" type="text/javascript"></script>
-    <script src="../js/teacher.js" type="text/javascript"></script>
-    <script src="../js/joinUs.js" type="text/javascript"></script>
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="js/teacher.js" type="text/javascript"></script>
+    <script src="js/joinUs.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">
@@ -55,10 +53,10 @@
 
 <div id="main">
     <div id="main_L">
-        <a href=""><img src="../images/topAd.jpg"/></a>
+        <a href=""><img src="images/topAd.jpg"/></a>
         <div class="main_L_d" style="height:300px;">
             <p style="margin-left:240px;margin-top:130px;color:red;font-size:30px;">应聘申请成功！</p>
-            <a href="index.jsp" style="padding-left:300px;">返回首页</a>
+            <a href="index.html" style="padding-left:300px;">返回首页</a>
         </div>
     </div>
     <div id="main_R">
@@ -75,11 +73,16 @@
 	                    </dd>
 	                </div>
                 </c:forEach>
+
             <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
-            <ul class="ycNewsul">
-                	<c:forEach items="${newsinfo }" var="news">
-                	  <li><a href="news.html?n_id=${news.n_id}">+ ${news.n_title}</a></li>
-                	</c:forEach>
+            <ul>
+                <c:forEach items="${newsinfo }" var="news">
+               	  <li style="width:250px;font-size: 14px;">
+               	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+               	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+               	  	</a>
+               	  </li>
+               	</c:forEach>
             </ul>
         </div>
     </div>
