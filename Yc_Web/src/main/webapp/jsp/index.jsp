@@ -236,18 +236,9 @@
 		<h1>公司活动</h1>
 		<div id="act_content">
 			<ul>
-				<li><a target="_blank" href="images/act_1_b.jpg"><img src="images/act_1.jpg"></a></li>
-				<li><a target="_blank" href="images/act_2_b.jpg"><img src="images/act_2.jpg"></a></li>
-				<li><a target="_blank" href="images/act_3_b.jpg"><img src="images/act_3.jpg"></a></li>
-				<li><a target="_blank" href="images/act_4_b.jpg"><img src="images/act_4.jpg"></a></li>
-				<li><a target="_blank" href="images/act_5_b.jpg"><img src="images/act_5.jpg"></a></li>
-				<li><a target="_blank" href="images/act_6_b.jpg"><img src="images/act_6.jpg"></a></li>
-				<li><a target="_blank" href="images/act_7_b.jpg"><img src="images/act_7.jpg"></a></li>
-				<li><a target="_blank" href="images/act_8_b.jpg"><img src="images/act_8.jpg"></a></li>
-				<li><a target="_blank" href="images/act_9_b.jpg"><img src="images/act_9.jpg"></a></li>
-				<li><a target="_blank" href="images/act_10_b.jpg"><img src="images/act_10.jpg"></a></li>
-				<li><a target="_blank" href="images/act_11_b.jpg"><img src="images/act_11.jpg"></a></li>
-				<li><a target="_blank" href="images/act_12_b.jpg"><img src="images/act_12.jpg"></a></li>
+				<c:forEach items="${activties }"  var="ac">
+					<li><a target="_blank" href="${ac }"><img src="${ac }"></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

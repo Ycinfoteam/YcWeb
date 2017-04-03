@@ -76,7 +76,7 @@ public class JobTypeController {
 		return 1;
 	}
 	
-	@RequestMapping(value="showJobType",produces ="text/html;charset=UTF-8")
+	@RequestMapping(value="/showJobType",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String showJobType(@ModelAttribute JobType jobType){
 		log.info("showJobType called...");
 		List<JobType> list=this.jobTypeBiz.findJobType(jobType);

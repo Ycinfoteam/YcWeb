@@ -40,8 +40,9 @@ ul,li{
 		</hl>
 	
 		<%
-			if(username!=null&&!"".equals(username)){%>
-				欢迎：【<%=username %>】
+			if(username!=null && !"".equals(username)){%>
+				<p style="display:inline-block; font-size:15px; margin-left:60px;">欢迎：[<%=username %>]</p>&nbsp;&nbsp;
+				<a href="tobacklogin" style="font-size:14px;">退出登录</a>
 		<% 	} %>	
 		
 	</div>
@@ -156,6 +157,11 @@ $(document).ready(
 						url : "tocoursys"
 					}
 				} ,{
+					text : "开班信息管理",
+					attributes : {
+						url : "toopenclass"
+					}
+				},{
 					text : "教师管理",
 					attributes : {
 					url : "toteachers"

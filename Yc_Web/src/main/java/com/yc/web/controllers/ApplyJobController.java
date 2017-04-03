@@ -3,7 +3,6 @@ package com.yc.web.controllers;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -89,13 +88,13 @@ public class ApplyJobController {
 			Properties properties=PropertiesUtil.readProperties("admin.properties");
 			String name= properties.getProperty("name");
 			String tel= properties.getProperty("tel");
-			MessageUtil.sendMessage(name,tel,"56640030");
+			MessageUtil.sendMessage(name,tel,"SMS_56640051");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ApiException e) {
 			e.printStackTrace();
 		}
-		return "success";
+		return "redirect:/success.html";
 	}
 	
 }

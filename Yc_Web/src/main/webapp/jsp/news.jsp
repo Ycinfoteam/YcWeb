@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@page isELIgnored="false" %>
 <%
 	String path=request.getContextPath();
 	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,60 +26,6 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
-    <script type="text/javascript">
-  //查出所有的工作种类
-    $(function(){
-    	
-    	$.ajax({
-    		url:'showJobType',
-    		type:'post',
-    		dataType:"json",
-    		success:function(data){
-    			$('#findAllJobType').empty('');
-    			var str='';
-    			for(var i=0;i<data.length;i++){
-    				str+='<option value='+data[i].j_id+'>'+data[i].j_name+'</option>'
-    			}
-    			$('#findAllJobType').append(str);
-    		}
-    	});
-
-		$('input[name="a_tel"]').blur(function(){
-    		
-    		var tel=$(this).val();
-    		if(!isTel(tel)){
-    			$('#tel_error').append('电话格式错误');
-    		}else{
-    			$('#tel_error').empty('');
-    		}
-    	});
-    	
-    	$('input[name="a_email"]').blur(function(){
-    		
-    		var email=$(this).val();
-    		if(!isEmail(email)){
-    			$('#email_error').append('邮箱格式错误');
-    		}else{
-    			$('#email_error').empty('');
-    		}
-    	});
-    	
-    });
-
-    //邮箱验证
-    function isEmail(str){
-    	var reg=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/;
-    	return reg.test(str);
-    }
-
-    //电话验证
-    function isTel(str){
-    	var reg=/^^1[3|4|5|7|8][0-9]{9}$/;
-    	return reg.test(str);
-    }
-
-
-    </script>
 </head>
 <body>
 <div id="header">
@@ -107,22 +52,24 @@
     <div id="main_L">
         <a href=""><img src="images/topAd.jpg"/></a>
         <div class="main_L_d">
-            <form id="jobform" action="addApply" method="post">
-            	<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-            	<input id="hh" name="a_name" type="text" /><br/>
-            	<label>应聘职位:</label>
-            	<select id="findAllJobType">
-            	</select><br/>
-            	<label>联系方式:</label>
-            	<input  name="a_tel" type="text" />
-            	<span id="tel_error" style="color:red;font-size:14px;"></span><br/>
-            	<label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</label>
-            	<input name="a_email" type="text" />
-            	<span id="email_error" style="color:red;font-size:14px;"></span><br/>
-            	<label>个人简介:</label>
-            	<textarea name="a_detail" cols="20" rows="15"></textarea><br/>
-            	<input id="submit" type="submit" value="提交申请"/>
-            </form>
+            <p class="teacher_title">衡阳源辰IT培训学校 > 源辰新闻</p>
+            <div class="thenews">
+            	<c:forEach items="${thenews }" var="thenews">
+	                <h3 style="text-align: center;">${thenews.n_title }</h3>
+	                <p class="about_title">发布：衡阳源辰IT培训学校      来源：源辰新闻     时间：${thenews.n_time }</p>
+	                <div id="thenewscontent">${thenews.n_content }</div>
+            	</c:forEach>
+            </div>
+            <br/>
+            <br/>
+            <div>
+            	<c:forEach items="${thebeforenews }" var="before">
+            	<label>上一篇：<a href="news.html?n_id=${before.n_id }"> ${before.n_title } </a></label>
+            	</c:forEach>
+            	<c:forEach items="${thenextnews}" var="next">
+            	<label>下一篇：<a href="news.html?n_id=${next.n_id }"> ${next.n_title } </a></label>
+            	</c:forEach>
+            </div>
         </div>
     </div>
     <div id="main_R">
@@ -135,12 +82,11 @@
 	                        <h5>${openCls.oc_name }</h5>
 	                        <p>开班日期：${openCls.oc_time }</p>
 	                        <a href="" class="kbtextInp1">我要咨询</a>
-	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
+	                        <a href="" class="kbtextInp2">我要报名</a>
 	                    </dd>
 	                </div>
                 </c:forEach>
-
-            <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
+            <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
             <ul>
                 <c:forEach items="${newsinfo }" var="news">
                	  <li style="width:250px;font-size: 14px;">
@@ -156,7 +102,7 @@
 
 <div id="footer">
     <div class="address">
-        <p>
+       <p>
 			<span>${footer[0] }</span>
 			<span>${footer[1] }</span>
 			<span>${footer[2] }</span>
@@ -165,7 +111,8 @@
 			<span>${footer[3] }</span>
 			<span>${footer[4] }</span>
 		</p>
-    </div>
-</div>
+	</div>
+</div>    
+</head>
 </body>
 </html>

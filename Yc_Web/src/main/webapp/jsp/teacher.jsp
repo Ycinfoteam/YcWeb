@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <base href="<%=basePath %>">
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
@@ -24,9 +25,7 @@
     <link rel="stylesheet"  href="css/teacher.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
+
 
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
@@ -58,113 +57,43 @@
             <div class="main_L_d">
                 <p class="teacher_title">衡阳源辰IT培训学校 > 专家师资</p>
                 <div class="zjsz">
+                <c:forEach items="${teacherinfo}" var="tcinfo">
                     <dl>
-                        <dd><img src="images/teacher_zy.png"/></dd>
+                        <dd><img src="${tcinfo.t_pic }"/></dd>
                         <dd class="teacher_text">
-                            <a href="">[专家师资]张影 网络营销教研总监</a>
-                            <p>追求卓越。</p>
-                            <p>技术方向：大数据处理与分析，中间件平台，系统集成，系统平台开发。</p>
+                            <a href="">[${tcinfo.t_title }]${tcinfo.t_name } ${tcinfo.t_job }</a>
+                            <p>${tcinfo.t_motto }</p>
+                            <p>技术方向：${tcinfo.t_skill }</p>
                         </dd>
                     </dl>
-                    <dl>
-                        <dd><img src="images/teacher_zhj.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]周海军 网络营销教研总监</a>
-                            <p>态度决定一切,行动造就未来。</p>
-                            <p>技术方向：J2EE企业级开发, redis, mongodb,hadoop大数据平台搭建,nodejs。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_yt.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]杨婷 网络营销教研总监</a>
-                            <p>成长,长成自己的样子。</p>
-                            <p>技术方向：擅长J2EE方面的技术，熟悉SSH开发框架。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_jp.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]姜平 网络营销教研总监</a>
-                            <p>用数据来说话。</p>
-                            <p>技术方向：大数据开发，擅长大数据分析和处理、企业级应用开发。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_fpc.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]付鹏程 网络营销教研总监</a>
-                            <p>幸福就像香水,洒给别人也一定会感染自己。</p>
-                            <p>技术方向：高级前端工程师，微信公众平台开发,移动开发。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_wx.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]吴晓 网络营销教研总监</a>
-                            <p>不积跬步,无以至千里;不积小流,无以成江海。</p>
-                            <p>技术方向：J2EE企业级开发,mongodb,redis,hadoop大数据平台。</p>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dd><img src="images/teacher_ll.png"/></dd>
-                        <dd class="teacher_text">
-                            <a href="">[专家师资]罗路 网络营销教研总监</a>
-                            <p>业精于勤荒于嬉,行成于思毁于随。</p>
-                            <p>技术方向：高级软件开发工程师,擅长前后端开发.</p>
-                        </dd>
-                    </dl>
+                </c:forEach>
                 </div>
             </div>
         </div>
         <div id="main_R">
             <div class="kaiban">
                 <p class="kbtitle">最新开班日期 | <a href="">更多</a></p>
-                <div class="kb1">
-                    <dd><img src="images/qianrushi.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>嵌入式培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/bigdata.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>大数据培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/qianduan.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>Web前端培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/javaLogo.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>JAVA培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="#" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
+                <c:forEach items="${openClsinfo }" var="openCls">
+	                <div class="kb1">
+	                    <dd><img src="${openCls.oc_pic }"/></dd>
+	                    <dd class="kbtext">
+	                        <h5>${openCls.oc_name }</h5>
+	                        <p>开班日期：${openCls.oc_time }</p>
+	                        <a href="" class="kbtextInp1">我要咨询</a>
+	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
+	                    </dd>
+	                </div>
+                </c:forEach>
 
-                <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
-                <ul>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
+                <p class="ycNews">源辰新闻 | <a href="companynews.html/3">更多</a></p>
+                <ul >
+                	<c:forEach items="${newsinfo }" var="news">
+                	  <li style="width:250px;font-size: 14px;">
+                	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
+                	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
+                	  	</a>
+                	  </li>
+                	</c:forEach>
                 </ul>
             </div>
         </div>

@@ -134,7 +134,7 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
-		</dependency>
+		</dependency> 
 		
 		<!-- 使用responseBody需要引入依赖的jar解决浏览器406 -->
 		<dependency>

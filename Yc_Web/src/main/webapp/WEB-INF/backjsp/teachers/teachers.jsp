@@ -42,6 +42,7 @@
 		<img id="addpreview" src="" style="width:200px;height:200px ;display:none"/>
 		</div>
 	</form>
+</div>
 	<div id="add-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="addTeacher()" style="width: 90px">保存</a>
@@ -50,7 +51,6 @@
 			onclick="javascript:$('#addtc_dialog').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
-</div>
 <!-- 图片 -->
 <div id="showTeachersPic" class="easyui-dialog" 
 	style="width: 700px; height: 500px; padding: 10px 20px;display:none" closed="true" buttons="#update-buttons">
@@ -62,6 +62,7 @@
 			<input id="update_picUrl" type="file" name="update_picUrl" required="true"/>
 		</div>
 	</form>
+</div>
 	<div id="update-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="updateTeacherPic()" style="width: 90px">确认</a>
@@ -69,7 +70,6 @@
 			iconCls="icon-cancel" onclick="javascript:$('#showTeachersPic').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
-</div>
 <script type="text/javascript">
 $('#tcinfo_datagrid').edatagrid({
 		url : 'selectAllTeacher', //查询时加载的URL
@@ -289,10 +289,12 @@ function showTeacherPic(type){
 		$('#showTeachersPic').dialog('open').dialog('setTitle','查看教师照片');
 	}else if(type==2){
 		$('#update-buttons').css({display:"inline-block"});
+		$('#file').css({display:"inline-block"});
 		$('#t_id').val(t_id);
 		$('#showTeachersPic').dialog('open').dialog('setTitle','添加教师照片');
 	}else{
 		$('#update-buttons').css({display:"inline-block"});
+		$('#file').css({display:"inline-block"});
 		$('#t_id').val(t_id);
 		$('#showTeachersPic').dialog('open').dialog('setTitle','修改教师照片');
 	}
@@ -307,7 +309,7 @@ $("#updatepicfm").form({
 			$.messager.alert('错误提示', '修改失败！');
 		}
 		$('#showTeachersPic').dialog('close');
-		$('#tcinfo_datagrid').datagrid('load');
+		$('#tcinfo_datagrid').datagrid('reload');
 	}
 },'json');
 function updateTeacherPic(){

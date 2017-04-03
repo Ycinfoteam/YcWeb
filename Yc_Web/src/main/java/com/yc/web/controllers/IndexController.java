@@ -8,26 +8,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import java.nio.channels.FileChannel;
-import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mysql.jdbc.Connection;
 import com.yc.utils.PropertiesUtil;
 
 @Controller
@@ -131,6 +124,12 @@ public class IndexController {
 	public String tocoursys() {
 		return "backjsp/coursys/coursys";
 
+	}
+	//去开班信息管理
+	@RequestMapping(value="/toopenclass")
+	public String toopenclass(){
+		System.out.println("jinlainial");
+		return "backjsp/openclass/openclass";
 	}
 
 	// 去公司活动
@@ -636,7 +635,7 @@ public class IndexController {
             }
         }
     }
-	}
+}
 	
 	
 

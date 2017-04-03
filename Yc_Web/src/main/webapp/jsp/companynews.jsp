@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
+<%@page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- 在jsp中加入基底网址，防止部分相对路径带来的路径拼接错误,只能对jsp界面有效 -->
 <% 
@@ -22,12 +22,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet"  href="css/teacher.css">
+    <link rel="stylesheet"  href="css/companynews.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
+    <!--[if gte IE 8]>
+    <link rel="stylesheet" href="css/styleforie.css">
+    <![endif]-->
+
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-     <script src="js/studentEnroll.js" type="text/javascript"></script>
-     <script src="js/teacher.js" type="text/javascript"></script>
+    <script src="js/teacher.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="header">
@@ -53,45 +57,29 @@
         <div id="main_L">
             <a href=""><img src="images/topAd.jpg"/></a>
             <div class="main_L_d">
-                <p class="teacher_title">衡阳源辰IT培训学校 > 学生报名</p>
-                <div class="studentEnroll_info">
-                <form action="stu_add" method="post" onSubmit="return rex()" style="margin-left:20px;">
-                	<ul>
-                		<li style="list-style-type:none">
-                			<label>姓名：</label>
-                			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
-                			<span id="s_name_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>报名意向：</label>
-                			<select id="s_direction" name="s_direction" >
-                				<option value="${oc_name}" selected="selected">${oc_name}</option>
-                				<c:forEach items="${ openClsinfo}" var="clsinfo">
-	                				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
-                				</c:forEach>
-                			</select>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>手机号码：</label>
-                			<input id="s_tel" name="s_tel" type="text" rule="required" required onBlur="checkphone()"/>
-                			<span id="s_tel_msg1"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>短信验证码：</label>
-                			<input id="yzm"  type="text" name="yzm" tips="请输入获取的验证码" rule="required" required onBlur="checkyzm()"/>
-                			<input type="button" name="yanzhengma" value="发送验证码"/>
-                			<span id="s_tel_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			 <label id="successmsg" class="labelbox"></label>
-                		</li>
-                		<li style="list-style-type:none">
-                			<input id="button" type="submit" value="确认报名"/>
-                		</li>
-                	</ul>
-                </form>
-                </div>
-            </div>      
+                <p class="teacher_title">衡阳源辰IT培训学校 > 源辰新闻</p>
+                <div class="ycnews">
+	                <h3>源辰新闻</h3>
+	                <table>
+		                <c:forEach items="${newsList}" var="news">
+		                	<tr>
+		                		<td style="width:500px;">
+			                		<li><a href="news.html?n_id=${news.n_id}">${news.n_title}</a></li>
+		                		</td>
+		                		<td style="width:100px;">
+			                		<span id="news_time">${news.n_time }</span>
+		                		</td>
+		                	</tr>
+	                	</c:forEach>
+	                </table>
+	                <br/>
+	                <div>
+	                	<a href="companynews.html/1" style="display: inline;width: 50px;margin-left: 260px;"> 上一页 </a>
+	                	<a href="companynews.html/2" style="display: inline;width: 50px;margin-left: 80px;"> 下一页 </a>
+	                </div>
+	                <br/>
+            	</div>
+            </div>
         </div>
         <div id="main_R">
             <div class="kaiban">
@@ -103,14 +91,13 @@
 	                        <h5>${openCls.oc_name }</h5>
 	                        <p>开班日期：${openCls.oc_time }</p>
 	                        <a href="" class="kbtextInp1">我要咨询</a>
-	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
+	                        <a href="" class="kbtextInp2">我要报名</a>
 	                    </dd>
 	                </div>
                 </c:forEach>
-
-                <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
+                <p class="ycNews">源辰新闻 | <a href="companynews.html">更多</a></p>
                 <ul>
-                    <c:forEach items="${newsinfo }" var="news">
+                	<c:forEach items="${newsinfo }" var="news">
                 	  <li style="width:250px;font-size: 14px;">
                 	  	<a href="news.html?n_id=${news.n_id}" style="color:black;">
                 	  		■ ${news.n_title}<p style="display: inline-block;float: right;">${news.n_time }</p>
@@ -124,7 +111,7 @@
 
     <div id="footer">
         <div class="address">
-           <p>
+            <p>
 				<span>${footer[0] }</span>
 				<span>${footer[1] }</span>
 				<span>${footer[2] }</span>

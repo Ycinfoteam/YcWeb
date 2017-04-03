@@ -27,8 +27,8 @@ import com.yc.utils.PageUtil;
 
 @Controller
 public class NewsController {
-	private NewsBiz newsBiz;
 	private static final Log logger=LogFactory.getLog(NewsController.class);
+	private NewsBiz newsBiz;
 	@Resource(name="newsBizImpl")
  	public void setNewsBiz(NewsBiz newsBiz) {
 		this.newsBiz = newsBiz;
@@ -72,7 +72,9 @@ public class NewsController {
 //			news.setN_reportor(request.getParameter("admin"));
 //			news.setN_sort(1);
 //			news.setN_title(request.getParameter("title"));
-			news.setN_reportor(admin.getA_name());
+			String user=request.getSession().getAttribute("user").toString(); 
+			System.out.println(user); 
+			news.setN_reportor(user);
 			news.setN_status(Integer.parseInt(type));
 			this.newsBiz.addNews(news);
 			MDC.put("explain" , "添加一条新闻");
