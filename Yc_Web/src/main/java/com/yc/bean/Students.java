@@ -7,7 +7,7 @@ public class Students implements Serializable {
 	private static final long serialVersionUID = -126555970239925228L;
 	private Integer s_id;   
 	private String s_name;    //姓名
-	private Integer s_tel;    //电话
+	private String s_tel;    //电话
 	private String s_direction;  //意向方向
 	private Integer s_status;//是否发送了开班信息
 	private Integer start; // 起始行
@@ -43,10 +43,11 @@ public class Students implements Serializable {
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
 	}
-	public Integer getS_tel() {
+	
+	public String getS_tel() {
 		return s_tel;
 	}
-	public void setS_tel(Integer s_tel) {
+	public void setS_tel(String s_tel) {
 		this.s_tel = s_tel;
 	}
 	public String getS_direction() {

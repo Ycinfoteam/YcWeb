@@ -208,14 +208,43 @@
 							},
 							{
 								field : 'cx',
-								title : '操作',
+								title : '图片操作',
 								width : 100,
 								align : 'center',
 								formatter : function(value, row, index) {
 									return '<a href="javascript:updatepic('
 											+ row.p_id + ')">修改图片</a>';
 								}
-							}, ] ],
+							}, {
+								field : 'p_status',
+								title : '是否显示',
+								width : 50,
+								align : 'center',
+								editor : {
+									type : 'combobox',
+									options : {
+										required:true,
+										data : [ {
+											text : '显示',
+											value : '1'
+										}, {
+											text : '不显示',
+											value : '0'
+										} ]
+									}
+								},
+								formatter : function(value, rowData, index) { //value：当前列的值、rowData当前行的值、rowIndex：当前行的索引
+									//必须返回一个字符串、用于替换被加formatter的单元格。
+									if (value == 0) {
+										return '不显示';
+									}
+									if (value == 1) {
+										return '显示';
+									}
+								}
+							} ,
+							
+							] ],
 
 					//定义按钮 如果没有选择图片应该给予提示
 					toolbar : [ {
@@ -364,26 +393,8 @@
 			$.messager.alert('提示', '请选择一个图片文件，再点击修改');
 			return;
 		}
-			
 		$("#pid").val(p_id);
 		$("#picfm").submit();
-		/*$("#picfm").ajaxSubmit({
-			type : "POST",
-			url : "updatepropic",
-			contentType : "application/x-www-form-urlencoded",
-			data : {
-				p_id : p_id
-			},
-			dataType : "json",
-			success : function(data1) {
-					$.messager.alert('Info', '添加成功');
-			},
-			error : function(data1) {
-				$.messager.alert('Info', '系统出现错误请联系管理员');
-			}
-		});*/
-	
-	
 	}
 	
 	
@@ -405,15 +416,6 @@
 	        },   
 	        message: '请输入中、英文字母、数字，长度1~10位！'  
 	    },
-	   /* numberRex:{
-	    	validator: function(value, param){  
-	        	var reg=/^([1-9][0-9]*)+(.[0-9]{1,2})?$/;//非零开头的最多带两位小数的数字
-	        	if(reg.test(value)){
-	        		return true;
-	        	}
-	        },   
-	        message: '请输入最多带两位小数的数字！' 
-	    }*/
 	    teacherRex:{
 	    	validator: function(value, param){  
 	        	var reg=/^[\u4E00-\u9FA5A-Za-z]+$/;//只允许英文，中文的组合

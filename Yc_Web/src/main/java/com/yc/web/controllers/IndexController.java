@@ -37,7 +37,6 @@ public class IndexController {
 	public String tobacklogin() {
 		return "backjsp/backlogin";
 	}
-
 	// 去后台主页
 	@RequestMapping(value = "/tobackmain")
 	public String tobackmain() {
@@ -118,14 +117,12 @@ public class IndexController {
 	// 去学员项目
 	@RequestMapping(value = "/toprojects")
 	public String toprojects() {
-		System.out.println("学员项目");
 		return "backjsp/projects/projects";
 	}
 
 	// 去学员就业
 	@RequestMapping(value = "/tojobdetails")
 	public String toemploy() {
-		System.out.println("进来了");
 		return "backjsp/projects/jobdetails";
 	}
 
@@ -305,11 +302,21 @@ public class IndexController {
 		String templateFile = p.getProperty("log4j.appender.file.File");
 		String name = templateFile.substring(25);
 		String logsBasePath=name.split("/")[0];
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		System.out.println("我在这里哦q"+System.getProperty("/logs"));
+		System.out.println("我在这里哦"+request.getServletContext().getRealPath("/"+logsBasePath));
+		System.out.println("我在这里哦e"+request.getSession().getServletContext().getRealPath("/uploadpic"));
 		String paths = Class.forName(this.getClass().getName()).getResource("/").getPath();
 		int index = Integer.parseInt(
 				"" + Class.forName(this.getClass().getName()).getResource("/").getPath().indexOf("webapps")) + 7;
 		paths = paths.substring(1, index);
 		String path = paths + "/" + logsBasePath;
+		System.out.println("我也在这里哦"+path);
 		 filelist=new ArrayList<String>();
 		getFiles(path);
 		System.out.println(filelist);

@@ -6,6 +6,7 @@
  <div id="tb" style="padding:5px">  
         <div style="margin-bottom:5px">  
              <a id="sendclsinfo" onclick="sendclsinfo()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">发送开班信息</a>  
+       	      <a id="loadpdf" onclick="loadpdf()" class="easyui-linkbutton" iconCls="icon-save" plain="true">导出为pdf文件</a>
         </div>  
         <div>  
             <label>根据学生报名意向查询：
@@ -121,6 +122,47 @@ function searchEnroll(){
 }
 //发送开班信息
 function sendclsinfo(){
+	
+}
+
+//导出为pdf文件
+function loadpdf(){
+	alert(1);
+	
+	var planids=new Array();
+	var names=new Array();
+	var tels=new Array();
+	var classess=new Array();
+	var rows=$('#studentinfo').datagrid('getSelections');
+	alert(rows);
+	for(var i=0;i<rows.length;i++){
+		planids.push(rows[i].s_id);
+		names.push(rows[i].s_name);
+		tels.push(rows[i].s_tel);
+		classess.push(rows[i].s_direction);
+	}
+	$.ajax({
+		cache:false,
+		type:"post",
+		dataType:"json",
+		url:"loadpdf",
+		data:{
+			planids:planids,
+			names:names,
+			tels:tels,
+			classess:classess
+		},
+		success:function(data){
+			if(data==1){
+				$.message.alert("提示","发送成功");
+			}else{
+				$.message.alert("提示","发送失败");
+			}
+		}
+	})
+	
+		
+	
 	
 }
 </script>

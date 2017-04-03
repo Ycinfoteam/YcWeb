@@ -22,6 +22,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet" href="css/subject.css">
+            <link rel="stylesheet" href="css/lightbox.css"/>
+    
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
     <!--[if gte IE 8]>
@@ -31,6 +33,8 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
+            <script src="js/lightbox.js" type="text/javascript"></script>
+    
 </head>
 <body>
 <div id="header">
@@ -54,31 +58,12 @@
 
 <div class="kctx">
     <div class="kctx_title">
-        衡阳源辰IT培训学校 > 课程体系
+        衡阳源辰IT培训学校 > 课程体系   &nbsp;&nbsp;<h style=" color: blue;">->>点击图片查看课程体系说明</h>
+     </div>
+    <div id="course_content" style=" margin-top:35px;">
+ <ul id="cs" style="width:1000px; heigth:auto; margin-left:0px;"></ul>
     </div>
-    <div id="course">
-        <h3>课程体系</h3>
-        <div id="course_content">
-            <ul class="coursys_list">
-                <!-- <li class="j2ee course_current">
-                    <span>J2EE开发工程师</span>
-                </li>
-                <li class="html5">
-                    <span>前端工程师</span>
-                </li>
-                <li class="ubuntu">
-                    <span>嵌入式软件工程师</span>
-                </li>
-                <li class="cloud">
-                    <span>大数据开发工程师</span>
-                </li> -->
-            </ul>
-            <div id="course_img">
-                <img src="images/loading.gif" data-original="images/J2EE开发工程师.png" alt="J2EE开发工程师">
-            </div>
-        </div>
     </div>
-</div>
 
 <div id="footer">
     <div class="address">
@@ -96,30 +81,31 @@
 <script src="js/jquery.js" type="text/javascript"></script>
 <script src="js/jquery.lazyload.js" type="text/javascript"></script>
 <script>
+
+$(function(){
+    var lightbox=new LightBox({
+        speed:'fast',
+        maxWidth:900,
+        maxHeight:900
+
+    });
+})
+
+
 $.post('findAllCoursys',function(data){
 	//data=data.rows;
 	//显示课程体系信息
 	showCoursys(data);
 },'json');
 function showCoursys(data){
-	alert(data);
-	$('ul.coursys_list').empty('');
-	var str='';
-	for(var i=0;i<data.length;i++){
-		var image=data[i].cs_pic.split(',')[0];
-		/* cs_pic=cs_pic.replace(",","");
-		cs_pic=cs_pic.substring(22); */
-		str+='<li class="j2ee course_current"><span>'+data[i].cs_name+'</span></li>';
-	}
-	$('ul.coursys_list').append(str);
+		for(var i=0;i<data.length;i++){
+			var cs_pic=data[i].cs_pic.replace(",","");
+			cs_pic=cs_pic.substring(22);
+			var cs_head=data[i].cs_head.replace(",","");
+			cs_head=cs_head.substring(22);
+		$('#cs').prepend('<li style="width:210px; height:210px;"><span>'+data[i].cs_name+'</span><img src="../'+cs_head+'" class="js-lightbox" data-role="lightbox"   data-group="group'+i+'" data-source="../'+cs_pic+'" data-id="'+i+'" data-caption="'+data[i].cs_name+'" width="160" height="160" style="border-width: 0px;"/></li>');
+		}
 }
-
-    $('#course_content ul li').mouseover(function() {
-        var imgsrc = $(this).find('span').text();
-        $(this).addClass('course_current').siblings().removeClass('course_current');
-        $('#course_img img')[0].src = 'images/' + imgsrc + '.png';
-        $('#course_img img')[0].alt = imgsrc
-    });
 </script>
 </body>
 </html>

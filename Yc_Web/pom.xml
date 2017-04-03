@@ -162,7 +162,27 @@
 			<artifactId>sdksource</artifactId>
 			<version>20160607</version>
 		</dependency> 
-    
+    	<!-- 导出成pdf文件包 -->
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>bcprov-ext-jdk15</artifactId>
+			<version>1.46</version>
+    	</dependency>
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>itext</artifactId>
+			<version>4.2.1</version>
+    	</dependency>
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>itext-rups</artifactId>
+			<version>2.1.7</version>
+    	</dependency>
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>itext-rtf</artifactId>
+			<version>2.1.7</version>
+    	</dependency>
 	</dependencies>
 	<build>
 		<finalName>Yc_Web</finalName>

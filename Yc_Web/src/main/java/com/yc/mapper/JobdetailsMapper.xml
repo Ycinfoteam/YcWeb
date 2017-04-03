@@ -8,22 +8,25 @@
 			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
  	<!-- 查询 -->
  	<select id="selectJobdetails" parameterType="Jobdetails" resultType="Jobdetails">
- 	select jd_id,jd_pic,jd_name,jd_salary,date_format(jd_emptime,'%Y-%m-%d')jd_emptime,jd_company,jd_palace,jd_school,jd_profession from jobdetails 
+ 	select jd_id,jd_pic,jd_name,jd_salary,date_format(jd_emptime,'%Y-%m-%d')jd_emptime,jd_company,jd_palace,jd_school,jd_profession,jd_status from jobdetails 
  <trim prefix="where" suffixOverrides="and">
  	<if test="jd_name!=null" >
- 	and jd_name=#{jd_name} 
+ 	 jd_name=#{jd_name} and
  	</if>
  	<if test="jd_id!=null" >
- 	and jd_id=#{jd_id} 
+ 	 jd_id=#{jd_id} and
  	</if>
  	<if test="jd_salary!=null">
-	 and jd_salary=#{jd_salary} 
+	  jd_salary=#{jd_salary} and
  	</if>
  	<if test="jd_emptime!=null">
-	 and jd_emptime=#{jd_emptime} 
+	  jd_emptime=#{jd_emptime} and
  	</if>
  	<if test="jd_profession!=null">
-	 and jd_profession=#{jd_profession} 
+	  jd_profession=#{jd_profession} and
+ 	</if>
+ 	<if test="jd_status!=null">
+ 	 jd_status=#{jd_status} and
  	</if>
 	</trim>
 	order by jd_id desc
@@ -50,12 +53,15 @@
  	<if test="jd_profession!=null">
 	 jd_profession=#{jd_profession} and 
  	</if>
+ 	<if test="jd_status!=null">
+ 	jd_status=#{jd_status} and
+ 	</if>
 		</trim>
 	</select>
  	<!-- 添加-->
 	<insert id="insertJobdetails" parameterType="Jobdetails" >
- insert into jobdetails(jd_pic,jd_name,jd_salary,jd_emptime,jd_company,jd_palace,jd_school,jd_profession) 
- values(#{jd_pic},#{jd_name},#{jd_salary},#{jd_emptime},#{jd_company},#{jd_palace},#{jd_school},#{jd_profession})
+ insert into jobdetails(jd_pic,jd_name,jd_salary,jd_emptime,jd_company,jd_palace,jd_school,jd_profession,jd_status) 
+ values(#{jd_pic},#{jd_name},#{jd_salary},#{jd_emptime},#{jd_company},#{jd_palace},#{jd_school},#{jd_profession},1)
 	</insert>
 
 	<!-- 删除 -->
@@ -101,6 +107,9 @@
  	</if>
  	<if test="jd_profession!=null">
  	,jd_profession=#{jd_profession}
+ 	</if>
+ 	<if test="jd_status!=null">
+ 	,jd_status=#{jd_status}
  	</if>
  	 where jd_id=#{jd_id}
  	</update>

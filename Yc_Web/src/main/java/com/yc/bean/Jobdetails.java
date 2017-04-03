@@ -26,7 +26,16 @@ public class Jobdetails implements Serializable {
 	List<MultipartFile> jd_picUrl=null;
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
+	private Integer jd_status;//就业详情
 	
+	public Integer getJd_status() {
+		return jd_status;
+	}
+
+	public void setJd_status(Integer jd_status) {
+		this.jd_status = jd_status;
+	}
+
 	public String getJd_palace() {
 		return jd_palace;
 	}

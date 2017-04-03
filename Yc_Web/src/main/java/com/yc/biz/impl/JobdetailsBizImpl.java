@@ -23,6 +23,7 @@ public class JobdetailsBizImpl implements JobdetailsBiz {
 	@Override
 	public List<Jobdetails> findall(Jobdetails jobdetails) {
 		List<Jobdetails>list=this.baseDao.findAll(jobdetails, "selectJobdetails");
+		System.out.println("nali"+list);
 		return list;
 	}
 	@Override

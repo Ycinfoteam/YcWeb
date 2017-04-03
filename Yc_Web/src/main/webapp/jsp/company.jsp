@@ -87,10 +87,10 @@
 
         .c_i_head{padding: 15px 15px 0px 15px;}
 
-        .c_i_head_title{height: 46px;line-height: 46px;font-size: 28px;padding: 0px 0px 10px 56px;position: relative;}
+        .c_i_head_title{height: 46px;line-height: 46px;font-size: 20px;padding: 0px 0px 10px 56px;position: relative;}
         .c_i_head_intro{
             margin-bottom: 10px;
-            font-size: 14px;
+            font-size: 24px;
             line-height: 22px;
             padding: 0 15px;
         }
@@ -101,7 +101,7 @@
             font-size: 27px;
             line-height: 23px;
         }
-        .c_i_media{padding-bottom: 10px;height: 50px;overflow: hidden; font-size: 28px;}
+        .c_i_media{padding-bottom: 10px;height: 50px;overflow: hidden; font-size: 22px;}
         .c_i_footer{padding: 10px 15px;margin: 0px 15px;border-top: 1px solid #d6d6d6;font-size: 12px;color: #b2b2b2;}
         
         .c_i_footer_info{}
@@ -151,7 +151,6 @@
     margin-top: 11px;
     background:white;
 }
-
 .kctx_title{
 
     width: 970px;
@@ -167,13 +166,6 @@
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-<<<<<<< HEAD
-=======
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
-
->>>>>>> b5d59e4ef16185909d985fb5bd046445de5ff27b
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>

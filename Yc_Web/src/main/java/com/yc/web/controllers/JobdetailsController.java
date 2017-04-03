@@ -167,7 +167,9 @@ public class JobdetailsController {
 	@RequestMapping(value="/toprejobdetails",produces="text/html;charset=UTF-8")
 	public @ResponseBody void toprejobdetails(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		Jobdetails jobdetails=new Jobdetails();
+		jobdetails.setJd_status(1);
 		List<Jobdetails>jobdetail=this.jobdetailsBiz.findall(jobdetails);
+		System.out.println(jobdetail);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
 		MDC.put("explain" , "查询了官网就业详情");

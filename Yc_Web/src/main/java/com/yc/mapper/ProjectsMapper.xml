@@ -8,7 +8,7 @@
 			<!-- D:\安装软件\redis\安装文件\windows版\32bit -->
  	<!-- 查询 -->
  	<select id="selectProjects" parameterType="Projects" resultType="Projects">
-	select p_id,p_name,p_pic,p_developer,date_format(p_time,'%Y-%m-%d') p_time,p_addr from projects
+	select p_id,p_name,p_pic,p_developer,date_format(p_time,'%Y-%m-%d') p_time,p_addr,p_status from projects
  	<trim prefix="where" suffixOverrides="and">
 	<if test="p_name!=null">
  	p_name=#{p_name} and 
@@ -19,6 +19,9 @@
 	<if test="p_addr!=null">
  	p_addr=#{p_addr}  and 
  	</if>
+ 	<if test="p_status!=null">
+ 	p_status=#{p_status} and
+ 	</if>
  	</trim>
 	order by p_id desc
 	<if test="start!=null and offset!=null">
@@ -28,7 +31,7 @@
 	
  	<!-- 添加-->
 	<insert id="insertProjects" parameterType="Projects" >
-	insert into projects(p_name,p_pic,p_developer,p_time,p_addr) values(#{p_name},#{p_pic},#{p_developer},#{p_time},#{p_addr});
+	insert into projects(p_name,p_pic,p_developer,p_time,p_addr,p_status) values(#{p_name},#{p_pic},#{p_developer},#{p_time},#{p_addr},1);
 	</insert>
 
 	<!-- 删除 -->
@@ -43,6 +46,9 @@
  	</when>
  	<when test="p_developer!=null">
 	 and p_developer=#{p_developer} 
+ 	</when>
+ 	<when test="p_status!=null">
+  and	p_status=#{p_status}
  	</when>
 	<otherwise></otherwise>
  	</choose>
@@ -65,6 +71,9 @@
  	</if>
  	<if test="p_addr!=null">
  	,p_addr=#{p_addr}
+ 	</if>
+ 	<if test="p_status!=null">
+ 	,p_status=#{p_status}
  	</if>
  	 where p_id=#{p_id}
  	</update>

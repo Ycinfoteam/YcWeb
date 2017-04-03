@@ -1,6 +1,0 @@
-2017-03-17 10:46:03  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5a8a7e: startup date [Fri Mar 17 10:46:03 CST 2017]; root of context hierarchy
-2017-03-17 10:46:03  [ main:46 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-17 10:46:04  [ main:637 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitstudy/YcWeb/Yc_Web/target/classes/db.properties]
-2017-03-17 10:46:05  [ main:1940 ] - [ DEBUG ]  ==>  Preparing: insert into applyjob (a_name,a_tel,a_email,a_orientation,a_detail,a_time) values (?,?,?,?,?,?) 
-2017-03-17 10:46:05  [ main:1968 ] - [ DEBUG ]  ==> Parameters: haha(String), 18541818348(String), gggg@163.com(String), 嵌入式工程师(String), 团队意识好(String), 2017-6-6(String)
-2017-03-17 10:46:05  [ main:2122 ] - [ DEBUG ]  <==    Updates: 1

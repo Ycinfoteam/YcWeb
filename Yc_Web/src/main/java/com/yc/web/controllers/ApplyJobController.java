@@ -7,9 +7,13 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,7 @@ import com.taobao.api.ApiException;
 import com.yc.bean.ApplyJob;
 import com.yc.biz.ApplyJobBiz;
 import com.yc.utils.DateFormatUtil;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.MessageUtil;
 import com.yc.utils.PageUtil;
@@ -39,8 +44,7 @@ public class ApplyJobController {
 	}
 	
 	@RequestMapping(value="/findAllApply",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findAllApply (@ModelAttribute ApplyJob applyJob,HttpServletResponse response,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows){
-		log.info("findAllApply called ...."); 
+	public @ResponseBody String findAllApply (@ModelAttribute ApplyJob applyJob,HttpServletResponse response,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows, HttpServletRequest request, HttpSession session){
 		//处理分页
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
@@ -52,6 +56,10 @@ public class ApplyJobController {
 		applyJob.setStart(start);
 		applyJob.setOffset(offset);
 		List<ApplyJob> list=this.applyJobBiz.findApply(applyJob);
+		MDC.put("explain" , "查找所有招聘");
+		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
+		log.info("findAllApply called ...."); 
 		int total =this.applyJobBiz.findCount(applyJob);
 		JsonModel model=new JsonModel();
 		model.setRows(list);

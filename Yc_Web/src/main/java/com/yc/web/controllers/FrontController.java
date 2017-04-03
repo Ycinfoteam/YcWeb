@@ -47,7 +47,6 @@ public class FrontController {
 		
 		return "about";
 	}
-	
 	@RequestMapping(value="/company.html")
 	public String company(Model model){
 		Map<String, Object> map=this.base();
