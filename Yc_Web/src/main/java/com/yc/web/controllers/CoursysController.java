@@ -135,7 +135,7 @@ public class CoursysController {
 	}
 	//修改课程体系头像
 	@RequestMapping(value="/coursys_updatehead")
-	public void updateOneCoursysHead(@RequestParam(value="update_picUrl2") List<MultipartFile> picUrl,
+	public void updateOneCoursysHead(@RequestParam(value="update_headUrl") List<MultipartFile> picUrl,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		logger.info("update one coursys cs_head......");
 			String csid=request.getParameter("csid");
@@ -148,6 +148,7 @@ public class CoursysController {
 			Coursys csys=new Coursys();
 			csys.setCs_id(Integer.parseInt(csid));
 			csys.setCs_head(pics);
+			csys.setCs_pic(null);
 		try {
 			this.coursysBiz.updateCoursys(csys);
 		} catch (Exception e) {

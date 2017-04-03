@@ -38,14 +38,7 @@ public class FrontController {
 	
 	private DataDictionaryBiz datadicBiz;
 	private ActivitiesBiz activitiesBiz;
-	private NewsBiz newBiz;
 	
-	
-	@Resource(name="newsBizImpl")
-	public void setNewBiz(NewsBiz newBiz) {
-		this.newBiz = newBiz;
-	}
-
 	@Resource(name="dataDictionaryBizImpl")
 	public void setDatadic(DataDictionaryBiz datadicBiz) {
 		this.datadicBiz = datadicBiz;
@@ -196,6 +189,9 @@ public class FrontController {
 		News news=new News();
 		news.setN_id(nid);
 		List<News> thenews=this.newsBiz.selectNewsById(news);
+		int click=thenews.get(0).getN_click()+1;//设置新闻点击量
+		news.setN_click(click);
+		this.newsBiz.updateNews(news);
 		List<News> newsList=findAllNews();
 		news.setN_id(nid-1);
 		List<News> thenextnews=this.newsBiz.selectNewsById(news);
@@ -209,9 +205,18 @@ public class FrontController {
 		model.addAttribute("openClsinfo", openClsList);
 		return "news";
 	}
+	//去我要报名界面
+	@RequestMapping(value="/studentEnroll.html")
+	public String studentEnroll(Model model,@RequestParam(value="oc_name") String oc_name){
+		List<OpenClass> openClsList=findAllOpenCls();
+		model.addAttribute("openClsinfo", openClsList);
+		model.addAttribute("oc_name", oc_name);
+		return "studentEnroll";
+	}
 	//查询所有的新闻信息
 	public List<News> findAllNews(){
 		News news=new News();
+		news.setN_status(1);
 		List<News> newsList=this.newsBiz.selectAllNews(news);
 		return newsList;
 	}

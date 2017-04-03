@@ -21,12 +21,12 @@
 		<div>
 		<label>图片说明: </label>
 		<input id="picUrl1" type="file" name="picUrl" required="true"/><br/>
-		<img id="addpreview1" src="" style="width:100px;height:100px;display:none"/>
+		<img id="addpreview1" style="width:100px;height:100px;"/>
 		</div><br>
 		<div>
 		<label>体系头像：</label>
 		<input id="picUrl2" type="file" name="picUrl" required="true"/><br/>
-		<img id="addpreview2" src="" style="width:100px;height:100px;display:none"/>
+		<img id="addpreview2" style="width:100px;height:100px;"/>
 		</div>
 		<div>
 		<label>主讲教师：</label>
@@ -72,7 +72,7 @@
 		<input id="csid" name="csid" type="hidden" />
 		<div id="filehead" style="display:inline-block">
 			<label>上传新图片：</label>
-			<input id="update_picUrl2" type="file" name="update_picUrl2" required="true"/>
+			<input id="update_headUrl" type="file" name="update_headUrl" required="true"/>
 		</div>
 	</form>
 	<div id="updatehead-buttons">
@@ -239,17 +239,17 @@ $('#coursysinfo').edatagrid({
 });
 //实现图片预览
 $("#picUrl1").change(function(){
-	$('#addpreview1').css("display","inline-block");
+	//$('#addpreview1').css("display","inline-block");
+	//$("#addpreview1").removeAttr("src");
 	var objUrl = getObjectURL(this.files[0]) ;
-	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
 		$("#addpreview1").attr("src", objUrl) ;
 	}
 }) ;
 $("#picUrl2").change(function(){
-	$('#addpreview2').css("display","inline-block");
+	//$('#addpreview2').css("display","inline-block");
+	//$("#addpreview2").removeAttr("src");
 	var objUrl = getObjectURL(this.files[0]) ;
-	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
 		$("#addpreview2").attr("src", objUrl) ;
 	}
@@ -261,7 +261,7 @@ $('#update_picUrl1').change(function(){
 		$("#cspic").attr("src", objUrl) ;
 	}
 });
-$('#update_picUrl2').change(function(){
+$('#update_headUrl').change(function(){
 	var objUrl = getObjectURL(this.files[0]) ;
 	//console.log("objUrl = "+objUrl) ;
 	if (objUrl) {
@@ -284,13 +284,13 @@ function getObjectURL(file) {
 $("#csform").form({
 	url:"coursys_add",
 	success:function(data){
-		alert(data);
 		if(data==1){
 			$.messager.show({title:'温馨提示',msg:'添加成功！',timeout:2000,showType:'slide'});
 			$('#addcsinfo').dialog('close');
+			$('#addcsinfo').dialog('refresh');
 			$("#csform").form('clear');
-			$("#addpreview1").attr("src", "");
-			$("#addpreview2").attr("src", "");
+			$("#addpreview1").css({display:"none"});
+			$("#addpreview2").css({display:"none"});
 			$('#coursysinfo').edatagrid('load');
 		}else if(data==2){
 			$('#errorMsg').text('该课程体系已存在，请勿重复添加').css("color","red");

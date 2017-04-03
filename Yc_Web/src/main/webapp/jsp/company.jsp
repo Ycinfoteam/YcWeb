@@ -167,13 +167,6 @@
     <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-<<<<<<< HEAD
-=======
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
-
->>>>>>> b5d59e4ef16185909d985fb5bd046445de5ff27b
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>

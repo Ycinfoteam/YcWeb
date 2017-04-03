@@ -80,7 +80,7 @@
 	                        <h5>${openCls.oc_name }</h5>
 	                        <p>开班日期：${openCls.oc_time }</p>
 	                        <a href="" class="kbtextInp1">我要咨询</a>
-	                        <a href="" class="kbtextInp2">我要报名</a>
+	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
 	                    </dd>
 	                </div>
                 </c:forEach>

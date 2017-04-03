@@ -51,4 +51,17 @@ public class MessageUtil {
 		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 		System.out.println(rsp.getBody());
 	}
+	public static void sendMessageforCheckTel(String name,String tel,String YZM,String typeId) throws ApiException{
+		//${name}同学，你好！我公司将于${time}在${address}举行${class}开班仪式，期待你的加入！
+		TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
+		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
+		req.setExtend("123456");
+		req.setSmsType("normal");
+		req.setSmsFreeSignName("李润泽");
+		req.setSmsParamString( "{name:'"+name+"',YZM:'"+YZM+"'}");
+		req.setRecNum(tel);
+		req.setSmsTemplateCode(typeId);
+		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
+		System.out.println(rsp.getBody());
+	}
 }

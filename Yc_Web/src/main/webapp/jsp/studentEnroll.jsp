@@ -24,13 +24,10 @@
     <link rel="stylesheet"  href="css/teacher.css">
     <link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-    <!--[if gte IE 8]>
-    <link rel="stylesheet" href="css/styleforie.css">
-    <![endif]-->
-
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-    <script src="js/teacher.js" type="text/javascript"></script>
+     <script src="js/studentEnroll.js" type="text/javascript"></script>
+     <script src="js/teacher.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="header">
@@ -55,75 +52,66 @@
         <div id="main_L">
             <a href=""><img src="images/topAd.jpg"/></a>
             <div class="main_L_d">
-                <p class="studentEnroll_title">衡阳源辰IT培训学校 > 学生报名</p>
+                <p class="teacher_title">衡阳源辰IT培训学校 > 学生报名</p>
                 <div class="studentEnroll_info">
+                <form action="stu_add" method="post" onSubmit="return rex()" style="margin-left:20px;">
                 	<ul>
-                		<li>
+                		<li style="list-style-type:none">
                 			<label>姓名：</label>
-                			<input id="s_name" name="s_name" type="text" />
+                			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
+                			<span id="s_name_msg"></span>
                 		</li>
-                		<li>
-                			<label>电话：</label>
-                			<input id="s_tel" name="s_tel" type="tel" />
-                		</li>
-                		<li>
+                		<li style="list-style-type:none">
                 			<label>报名意向：</label>
-                			<select id="s_direction" name="s_direction">
-                				<option value="${classType}">${classType}</option>
+                			<select id="s_direction" name="s_direction" >
+                				<option value="${oc_name}" selected="selected">${oc_name}</option>
+                				<c:forEach items="${ openClsinfo}" var="clsinfo">
+	                				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
+                				</c:forEach>
                 			</select>
                 		</li>
+                		<li style="list-style-type:none">
+                			<label>手机号码：</label>
+                			<input id="s_tel" name="s_tel" type="text" rule="required" required onBlur="checkphone()"/>
+                			<span id="s_tel_msg1"></span>
+                		</li>
+                		<li style="list-style-type:none">
+                			<label>短信验证码：</label>
+                			<input id="yzm"  type="text" name="yzm" tips="请输入获取的验证码" rule="required" required onBlur="checkyzm()"/>
+                			<input type="button" name="yanzhengma" value="发送验证码"/>
+                			<span id="s_tel_msg"></span>
+                		</li>
+                		<li style="list-style-type:none">
+                			 <label id="successmsg" class="labelbox"></label>
+                		</li>
+                		<li style="list-style-type:none">
+                			<input id="button" type="submit" value="确认报名"/>
+                		</li>
                 	</ul>
+                </form>
                 </div>
             </div>      
         </div>
         <div id="main_R">
             <div class="kaiban">
                 <p class="kbtitle">最新开班日期 | <a href="">更多</a></p>
-                <div class="kb1">
-                    <dd><img src="images/qianrushi.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>嵌入式培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/bigdata.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>大数据培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/qianduan.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>Web前端培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
-                <div class="kb1">
-                    <dd><img src="images/javaLogo.jpg"/></dd>
-                    <dd class="kbtext">
-                        <h5>JAVA培训班</h5>
-                        <p>开班日期：2月28日</p>
-                        <a href="#" class="kbtextInp1">我要咨询</a>
-                        <a href="toStudentEnroll" class="kbtextInp2">我要报名</a>
-                    </dd>
-                </div>
+                <c:forEach items="${openClsinfo }" var="openCls">
+	                <div class="kb1">
+	                    <dd><img src="${openCls.oc_pic }"/></dd>
+	                    <dd class="kbtext">
+	                        <h5>${openCls.oc_name }</h5>
+	                        <p>开班日期：${openCls.oc_time }</p>
+	                        <a href="" class="kbtextInp1">我要咨询</a>
+	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
+	                    </dd>
+	                </div>
+                </c:forEach>
 
                 <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
-                <ul>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
-                    <li><a href="">+ Win10用户数量下滑，...</a></li>
+               	<ul class="ycNewsul">
+                	<c:forEach items="${newsinfo }" var="news">
+                	  <li><a href="news.html?n_id=${news.n_id}">+ ${news.n_title}</a></li>
+                	</c:forEach>
                 </ul>
             </div>
         </div>

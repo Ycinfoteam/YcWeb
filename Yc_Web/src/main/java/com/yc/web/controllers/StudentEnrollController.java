@@ -3,6 +3,7 @@ package com.yc.web.controllers;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,12 +34,6 @@ public class StudentEnrollController {
 	@Resource(name="studentsBizImpl")
 	public void setStuBiz(StudentsBiz stuBiz) {
 		this.stuBiz = stuBiz;
-	}
-	//去学生报名界面
-	@RequestMapping(value="/toStudentEnroll")
-	public String toStudentEnroll(Model model,@RequestParam(value="classType") String classType){
-		model.addAttribute("classType", classType);
-		return "studentEnroll";
 	}
 	//查询所有的学生报名信息
 	@RequestMapping(value="/stu_selectAll",produces ="text/html;charset=UTF-8")
@@ -111,7 +106,7 @@ public class StudentEnrollController {
 			for(int i=0;i<total;i++){
 				String name=names.get(i);
 				String tel=tels.get(i);
-				MessageUtil.sendMessageforOpenCls("a", tel, oc_time, address, s_direction, "SMS_60020056");
+				MessageUtil.sendMessageforOpenCls(name, tel, oc_time, address, s_direction, "SMS_60020056");
 				Students stu=new Students();
 				stu.setS_id(planIds.get(i));
 				stu.setS_status(1);
@@ -146,5 +141,32 @@ public class StudentEnrollController {
 			response.getWriter().print(0);
 		}
 		response.getWriter().print(1);
+	}
+	//添加学生报名信息
+	@RequestMapping(value="/stu_add")
+	public @ResponseBody void addStudent(@RequestParam(value="s_name") String s_name,
+			@RequestParam(value="s_tel") String s_tel,@RequestParam(value="s_direction") String s_direction){
+		Students stu=new Students();
+		try {
+			this.stuBiz.addStudents(stu);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//发送短信验证码
+	@RequestMapping(value="/sendTelYZM")
+	public @ResponseBody void sendTelYZM(Students stus, @RequestParam(value="s_name") String s_name,@RequestParam(value="s_tel") String s_tel,
+			HttpServletResponse response) throws IOException{
+		logger.info("发送短信验证码到报名学生手机");
+		//SMS_60020056
+		Random r=new Random();
+		String YZM=""+r.nextInt(9999-1000+1)+1000;
+		try {
+				MessageUtil.sendMessageforCheckTel(s_name, s_tel,YZM, "SMS_59965389");
+		} catch (ApiException e) {
+			e.printStackTrace();
+			response.getWriter().print(0);
+		}
+		response.getWriter().print(YZM);
 	}
 }
