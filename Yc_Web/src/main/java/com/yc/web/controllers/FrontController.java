@@ -17,20 +17,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.bean.Activities;
 import com.yc.bean.Coursys;
 import com.yc.bean.DataDictionary;
 import com.yc.bean.Employ;
+import com.yc.bean.Jobdetails;
 import com.yc.bean.News;
 import com.yc.bean.OpenClass;
+import com.yc.bean.Students;
 import com.yc.bean.Teachers;
 import com.yc.biz.ActivitiesBiz;
 import com.yc.biz.CoursysBiz;
 import com.yc.biz.DataDictionaryBiz;
 import com.yc.biz.EmployBiz;
+import com.yc.biz.JobdetailsBiz;
 import com.yc.biz.NewsBiz;
 import com.yc.biz.OpenClassBiz;
+import com.yc.biz.StudentsBiz;
 import com.yc.biz.TeachersBiz;
 import com.yc.utils.DateFormatUtil;
 
@@ -51,6 +56,12 @@ public class FrontController {
 	private CoursysBiz coursysBiz;
 	private EmployBiz employBiz;
 	private NewsBiz newsBiz;
+	private StudentsBiz stuBiz;
+	@Resource(name="studentsBizImpl")
+	public void setStuBiz(StudentsBiz stuBiz) {
+		this.stuBiz = stuBiz;
+	}
+	
 
 	@Resource(name="employBizImpl")
 	public void setEmployBiz(EmployBiz employBiz) {
@@ -95,7 +106,6 @@ public class FrontController {
 	public void setActivitiesBiz(ActivitiesBiz activitiesBiz) {
 		this.activitiesBiz = activitiesBiz;
 	}
-
 	//去关于源辰前端界面
 	@RequestMapping(value="/about.html")
 	public String about(Model model){
@@ -110,7 +120,6 @@ public class FrontController {
 		
 		return "about";
 	}
-
 	
 	//去公司历史前端界面
 	@RequestMapping(value="/company.html")
@@ -151,11 +160,8 @@ public class FrontController {
 	//去首页
 	@RequestMapping(value="/index.html",produces ="text/html;charset=UTF-8")
 	public String index(Model model){
-		
 		Map<String, Object> map=this.base();
-		
 		List<Activities> list=this.activitiesBiz.findall(new Activities());
-		
 		String [] pic = null;
 		for(Activities ac:list){	//拼接公司活动图片
 			if(pic!=null){
@@ -168,9 +174,13 @@ public class FrontController {
 				pic=ac.getAc_pic().split(",");
 			}
 		}
-		
+		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(new Teachers());
+		for(int i=0;i<teachersList.size();i++){
+			String pics []=teachersList.get(i).getT_pic().split(",");
+			teachersList.get(i).setT_pic(pics[0]);
+		}
+		model.addAttribute("teacherinfo", teachersList);
 		List<Coursys> courses=this.coursysBiz.selectAllCoursys(new Coursys());
-		
 		model.addAttribute("courses", courses);
 		model.addAttribute("activties", pic);
 		model.addAttribute("title", map.get("title"));
@@ -226,8 +236,8 @@ public class FrontController {
 		Map<String, Object> map=this.base();
 		
 		Teachers teachers=new Teachers();
-		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(teachers);
 		List<OpenClass> openClsList=findAllOpenCls();
+		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(teachers);
 		for(int i=0;i<teachersList.size();i++){
 			String pics []=teachersList.get(i).getT_pic().split(",");
 			teachersList.get(i).setT_pic(pics[0]);
@@ -282,6 +292,8 @@ public class FrontController {
 	//去某一新闻详情页面
 	@RequestMapping(value="/news.html")
 	public String news(Model model,@RequestParam(value="n_id") int nid){
+		Map<String, Object> map=this.base();
+		
 		News news=new News();
 		news.setN_id(nid);
 		List<News> thenews=this.newsBiz.selectNewsById(news);
@@ -294,6 +306,8 @@ public class FrontController {
 		news.setN_id(nid+1);
 		List<News> thebeforenews=this.newsBiz.selectNewsById(news);
 		List<OpenClass> openClsList=findAllOpenCls();
+		model.addAttribute("title", map.get("title"));
+		model.addAttribute("footer", map.get("footer"));
 		model.addAttribute("newsList", newsList);
 		model.addAttribute("newsinfo", this.findNews());
 		model.addAttribute("thenews", thenews);
@@ -304,14 +318,34 @@ public class FrontController {
 	}
 	
 	//去我要报名界面
-	@RequestMapping(value="/studentEnroll.html")
+	@RequestMapping(value="/studentEnroll.html" ,produces="text/html;charset=UTF-8")
 	public String studentEnroll(Model model,@RequestParam(value="oc_name") String oc_name){
 		List<OpenClass> openClsList=findAllOpenCls();
 		model.addAttribute("openClsinfo", openClsList);
 		model.addAttribute("oc_name", oc_name);
+		Map<String, Object> map=this.base();
+		model.addAttribute("title", map.get("title"));
+		model.addAttribute("footer", map.get("footer"));
+		model.addAttribute("newsinfo", this.findNews());
 		return "studentEnroll";
 	}
 	
+	//去报名完成界面
+	@RequestMapping(value="/stu_add.html")
+	public String student(Model model, Students students){
+		Map<String, Object> map=this.base();
+		model.addAttribute("title", map.get("title"));
+		model.addAttribute("footer", map.get("footer"));
+		model.addAttribute("newsinfo", this.findNews());
+		try {
+			this.stuBiz.addStudents(students);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "studentEnroll";
+		}
+		return "enrollok";
+	}
+
 
 	//查询所有的开班信息
 	public List<OpenClass> findAllOpenCls(){

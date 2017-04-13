@@ -58,9 +58,10 @@ public class StudentEnrollController {
 		return gson.toJson(model);
 	}
 	//根据条件查询学生报名信息
+	@RequestMapping(value="/stu_selectByTag",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String selectAllStudent(@RequestParam(value="page",required=false) Integer page,
 			@RequestParam(value="rows",required=false) Integer rows,
-			HttpServletResponse resp,HttpServletRequest request){
+			HttpServletResponse resp,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		resp.setContentType("application/text;charset=utf-8 ");
 		logger.info("根据条件查询学生报名信息");
 		//处理分页
@@ -77,15 +78,15 @@ public class StudentEnrollController {
 		if(direction!=null&&!"".equals(direction)&&!"请选择".equals(direction)){
 			stus.setS_direction(direction);
 		}
-		List<Students> newsList=this.stuBiz.selectAllStudents(stus);
+		List<Students> newsList1=this.stuBiz.selectAllStudents(stus);
 		int total =this.stuBiz.selectCountAll();
 		JsonModel model=new JsonModel();
-		if(newsList.size()==0){
+		if(newsList1.size()==0){
 			Students stu=new Students();
 			List<Students> newslist=this.stuBiz.selectAllStudents(stu);
 			model.setRows(newslist);
 		}else{
-			model.setRows(newsList);
+			model.setRows(newsList1);
 		}
 		model.setTotal(total);
 		Gson gson =new Gson();
@@ -95,7 +96,6 @@ public class StudentEnrollController {
 	//导出为pdf文件
 	@RequestMapping(value="/loadpdf",produces ="text/html;charset=UTF-8")
 	public @ResponseBody void loadpdf(@RequestParam(value="planids[]")List<Integer>planids,@RequestParam(value="names[]")List<String>names,@RequestParam(value="tels[]")List<String>tels,@RequestParam(value="classess[]")List<String>classess,HttpServletResponse resp,HttpServletRequest request){
-		System.out.println("jinlailele");
 		int total=planids.size()+1;
 		String[][] tableContent=new String[total][6];
 		for(int i=0;i<total;i++){
@@ -194,10 +194,10 @@ public class StudentEnrollController {
 			HttpServletResponse response) throws IOException{
 		logger.info("发送短信验证码到报名学生手机");
 		//SMS_60020056
-		Random r=new Random();
-		String YZM=""+r.nextInt(9999-1000+1)+1000;
+//		Random r=new Random();
+		String YZM="20170403";
 		try {
-				MessageUtil.sendMessageforCheckTel(s_name, s_tel,YZM, "SMS_59965389");
+				MessageUtil.sendMessageforCheckTel(s_name, s_tel,YZM, "SMS_60050569");
 		} catch (ApiException e) {
 			e.printStackTrace();
 			response.getWriter().print(0);

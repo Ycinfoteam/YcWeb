@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="max-age=7200" />
+        <meta http-equiv="Cache-Control" content="max-age=7200" />
     <meta http-equiv="expires" Content="Fri, 01 Sep 2017 08:00:00 GMT">
     <meta name="Keywords" Content="源辰,源辰信息,源辰信息科技,源辰信息科技官网,源辰信息科技有限公司">
     <meta name="Description" Content="公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。我们的宗旨是服务于学生，致力于企业。">
@@ -276,14 +276,12 @@
     <script type="text/javascript" src="js/GetLunarDay.js"></script>
 
     <script type="text/javascript" >
-
   var g = function(id){ return document.getElementById(id);}
 var getBodyW = function(){ return document.body.offsetWidth; };
 var getBodyH = function(){ return document.body.offsetHeight; };
 var getElTop = function(el){ return el.offsetTop+170; };
 
 //--------  模版内容输出
-
     //  分析归类数据
     var list = {};  //  { year: { month : [ item ,item ] } }
 

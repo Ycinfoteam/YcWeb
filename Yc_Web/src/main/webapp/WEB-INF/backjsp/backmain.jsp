@@ -86,7 +86,7 @@ ul,li{
     
 	    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
 			<div title="首页">
-		<img id="Image2" src="images/ycinfoback.jpg" width="900" height="480px" >
+		<img id="Image2" src="images/ycbackimg.jpg" width="900" height="480px" >
 			</div>
 		</div>
 		

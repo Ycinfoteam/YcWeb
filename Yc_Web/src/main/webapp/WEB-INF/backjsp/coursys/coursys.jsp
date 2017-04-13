@@ -29,7 +29,7 @@
 		<img id="addpreview2" style="width:100px;height:100px;"/>
 		</div>
 		<div>
-		<label>主讲教师：</label>
+		<label>文字说明：</label>
 		<input id="cs_text" name="cs_text" class="easyui-combobox" required="true" style="width:200px"  validType="teacherRex" data-options="   
         valueField: 't_name',   
         textField: 't_name',   
@@ -139,7 +139,7 @@ $('#coursysinfo').edatagrid({
 		},
       	 {
 			field : 'cs_text',
-			title : '主讲教师',
+			title : '文字说明',
 			align:'center',
 			width : 100,
 			editor : {

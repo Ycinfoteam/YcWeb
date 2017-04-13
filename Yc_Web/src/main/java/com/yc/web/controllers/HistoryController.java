@@ -56,7 +56,6 @@ public class HistoryController {
 		Gson gson =new Gson();
 		return gson.toJson(list);
 	}
-		//添加学员项目
 		@RequestMapping(value="/history_add")
 		public void historyadd(HttpServletRequest request,HttpServletResponse response,History history) throws IOException, ParseException{
 			logger.info("addhistory called....");
@@ -65,6 +64,7 @@ public class HistoryController {
 			try {
 				historyBiz.add(history);
 			} catch (Exception e) {
+				e.printStackTrace();
 				response.getWriter().print(0);		
 			}
 			response.getWriter().print(1);

@@ -63,58 +63,19 @@
 			<div id="teacher_content">
 				<div id="teacher_team">
 					<ul>
+					 <c:forEach items="${teacherinfo}" var="tcinfo">
 						<li id="zy">
-                            <img src="images/loading.gif" data-original="images/teacher_zy.png" />
-                            <h4>张影老师</h4>
-                            <p>追求卓越。</p>
-                            <p id="zy_intro" class="teacher_intro"><span>技术方向：</span>大数据处理与分析，中间件平台，系统集成，系统平台开发。</p>
+                            <img src="${tcinfo.t_pic }" data-original="${tcinfo.t_pic }" />
+                            <h4>${tcinfo.t_name}</h4>
+                            <p>${tcinfo.t_motto }</p>
+                            <p id="zy_intro" class="teacher_intro"><span>技术方向：</span>${tcinfo.t_skill }</p>
                         </li>
-						<li id="zhj">
-                            <img src="images/loading.gif" data-original="images/teacher_zhj.png" />
-                            <h4>周海军老师</h4>
-                            <p>态度决定一切,行动造就未来。</p>
-                            <p id="zhj_intro" class="teacher_intro"><span>技术方向：</span>J2EE企业级开发, redis, mongodb,hadoop大数据平台搭建,nodejs。</p>
-                        </li>
-                        <li id="wx">
-                            <img src="images/loading.gif" data-original="images/teacher_wx.png" />
-                            <h4>吴晓老师</h4>
-                            <p>不积跬步,无以至千里;不积小流,无以成江海。</p>
-                            <p id="wx_intro" class="teacher_intro"><span>技术方向：</span>J2EE企业级开发,mongodb,redis,hadoop大数据平台。</p>
-                        </li>
-                        <li id="jp">
-                            <img src="images/loading.gif" data-original="images/teacher_jp.png" />
-                            <h4>姜平老师</h4>
-                            <p>用数据来说话。</p>
-                            <p id="jp_intro" class="teacher_intro"><span>技术方向：</span>大数据开发，擅长大数据分析和处理、企业级应用开发。</p>
-                        </li>
-                        <li id="yt">
-                            <img src="images/loading.gif" data-original="images/teacher_yt.png" />
-                            <h4>杨婷老师</h4>
-                            <p>成长,长成自己的样子。</p>
-                            <p id="yt_intro" class="teacher_intro"><span>技术方向：</span>擅长J2EE方面的技术，熟悉SSH开发框架。</p>
-                        </li>
-						<li id="fpc">
-                            <img src="images/loading.gif" data-original="images/teacher_fpc.png" />
-                            <h4>付鹏程老师</h4>
-                            <p>幸福就像香水,洒给别人也一定会感染自己。</p>
-                            <p id="fpc_intro" class="teacher_intro"><span>技术方向：</span>高级前端工程师，微信公众平台开发,移动开发。</p>
-                        </li>
-                        <li id="ljh">
-                            <img src="images/loading.gif" data-original="images/teacher_ljh.png" />
-                            <h4>刘经欢老师</h4>
-                            <p>业精于勤荒于嬉,行成于思毁于随。</p>
-                            <p id="ljh_intro" class="teacher_intro"><span>技术方向：</span>嵌入式系统研发。擅长mips,arm架构芯片系统移植，uboot、linux，应用开发、驱动开发，熟悉传感器、自动化技术研发。</p>
-                        </li>
-                        <li id="ll">
-                            <img src="images/loading.gif" data-original="images/teacher_ll.png" />
-                            <h4>罗路老师</h4>
-                            <p>业精于勤荒于嬉,行成于思毁于随。</p>
-                            <p id="ll_intro" class="teacher_intro"><span>技术方向：</span>高级软件开发工程师,擅长前后端开发.</p>
-                        </li>
+                   </c:forEach>
 					</ul>
                 </div>
                 <div id="manage_team" style="display: none;">
 					<ul>
+					<!-- 数据库中无管理团队 -->
 						<li id="ly">
 							<img src="images/loading.gif" data-original="images/teacher_ly.png" />
 							<h4>刘源老师</h4>
@@ -131,10 +92,11 @@
                 </div>
 			</div>
 		</div>
-		<div id="course">
+			<div id="course">
 			<h3>课程体系</h3>
 			<div id="course_content">
 				<ul>
+				<!-- 中文乱码 -->
 					<li class="j2ee course_current">
 						<span>J2EE开发工程师</span>
 					</li>
@@ -156,6 +118,7 @@
 		<div id="project">
 			<h3>学员项目</h3>
 			<ul>
+			<!-- 否则放大镜功能失效  因为它放大镜的放大图片名字是前台传送-->
 				<li><img src="images/loading.gif" data-original="images/proj_1.jpg" alt="前端项目-网易云音乐"></li>
 				<li><img src="images/loading.gif" data-original="images/proj_2.jpg" alt="大数据项目-分析与报表"></li>
 				<li><img src="images/loading.gif" data-original="images/proj_3.jpg" alt="大数据项目-数据操作"></li>
@@ -165,70 +128,9 @@
 		</div>
 		<div id="work">
 			<h3>就业详情</h3>
-			<div id="jobbox">
-				<ul>
-					<li>
-						<img src="images/loading.gif" data-original="images/p1.png" alt="">
-						<div>
-							<p>赵艳  7000/月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p2.png" alt="">
-						<div>
-							<p>冯景华  10000／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p3.png" alt="">
-						<div>
-							<p>陈湘湘  7500／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p4.png" alt="">
-						<div>
-							<p>肖丽芳  5800／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p5.png" alt="">
-						<div>
-							<p>包囡馨  8500／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p6.png" alt="">
-						<div>
-							<p>麻威杰  15000／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p7.png" alt="">
-						<div>
-							<p>盛紫薇  8500／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p8.png" alt="">
-						<div>
-							<p>万云华  10000／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p9.png" alt="">
-						<div>
-							<p>陈建  7000／月</p>
-						</div>
-					</li>
-					<li>
-						<img src="images/loading.gif" data-original="images/p10.png" alt="">
-						<div>
-							<p>朱翠婷  6000／月</p>
-						</div>
-					</li>
-				</ul>
-			</div>
+				  <div id="jobbox">
+    <ul class="ii"></ul>
+    </div>
 		</div>
 
 	</div>
@@ -277,5 +179,21 @@
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
 	<script src="js/newindex.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$.post('toprejobdetails',function(data){
+		//data=data.rows;
+		//显示课程体系信息
+		showJobdetails(data);
+	},'json');
+	function showJobdetails(data){
+		for(var i=0;i<data.length;i++){
+			var jd_pic=data[i].jd_pic.replace(",","");
+			jd_pic=jd_pic.substring(22); 
+			$('ul.ii').prepend('<li><img src="../'+jd_pic+'"  data-original="../'+jd_pic+'" alt=""><div><p>'+data[i].jd_name+data[i].jd_salary+' </p></div></li> ');
+		}
+	}
+	
+	$.post('to')
+	</script>
 </body>
 </html>

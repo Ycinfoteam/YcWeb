@@ -106,7 +106,24 @@ $(function(){
        	 	title:'就职方向',
        	 	width:50,
        	 	align:'center',
-       	 },{
+       	 formatter : function(value, rowData, index) { //value：当前列的值、rowData当前行的值、rowIndex：当前行的索引
+ 			//必须返回一个字符串、用于替换被加formatter的单元格。
+ 			if (value == 1) {
+ 				return 'Java工程师';
+ 			}
+ 			if (value == 2) {
+ 				return '大数据工程师';
+ 			}
+ 			if(value==3){
+ 				return 'Web前端工程师';
+ 			}
+ 			if(value==4){
+ 				return '嵌入式工程师';
+ 			}
+ 			
+ 		}
+ 	} , 
+       	 {
        	 	field:'a_detail',
        	 	title:'个人简介',
        	 	width:50,

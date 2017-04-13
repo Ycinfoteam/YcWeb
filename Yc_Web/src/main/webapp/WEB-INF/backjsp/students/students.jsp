@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+         <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <script src="backjs/jquery.edatagrid.js"></script>
 <script src="backjs/jquery.form.js"></script>
@@ -32,6 +32,7 @@
 	            </select>  
 			</label> 
             <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchEnroll()">查询</a>  
+       	  <a id="loadpdf" onclick="loadpdf()" class="easyui-linkbutton" iconCls="icon-save" plain="true">导出pdf文件</a>
         </div>
 </div>  
 <script type="text/javascript">
@@ -76,24 +77,29 @@ $(function(){
 	                    }
 	                }
 	            }
-	        },
-            onSelectAll : function(rows) {  
+	        }, 
+            /* onSelectAll : function(rows) {  
                 //根据status值  全选时某些行不选中  
                 $.each(rows, function(i, n) {  
                     if (n.s_status == "1") {  
                    	 	$('#studentinfo').datagrid('unselectRow', rowIndex);  
                     }  
                 });  
-            } ,
+            } , */
 			striped : true,//设置为true将交替显示行背景
 			singleSelect:false,
 			columns : [ [ 
 			{
-				field : 'ck',
+				/* field : 'ck',
 				title : '全选',
 				width : 10,
 				align : 'center',
-				checkbox:true
+				checkbox:true */
+				field:'ck',
+				checkbox:true,
+				formatter:function(value,row,index){				
+						return row;
+				}
 			},{
 				field : 's_id',
 				title : '学生报名编号',
@@ -169,7 +175,7 @@ function searchEnroll(){
 			direction:direction,
 			status:status
 		},
-		onLoadSuccess: function (data) {
+		onLoadSuccess: function (data) {a
             if (data.rows.length == 0) {
                 $.messager.alert("提示", "未找到相关记录");
             }
@@ -218,14 +224,11 @@ function sendclsinfo() {
 
 //导出为pdf文件
 function loadpdf(){
-	alert(1);
-	
 	var planids=new Array();
 	var names=new Array();
 	var tels=new Array();
 	var classess=new Array();
 	var rows=$('#studentinfo').datagrid('getSelections');
-	alert(rows);
 	for(var i=0;i<rows.length;i++){
 		planids.push(rows[i].s_id);
 		names.push(rows[i].s_name);

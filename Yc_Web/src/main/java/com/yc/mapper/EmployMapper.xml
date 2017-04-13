@@ -39,10 +39,11 @@
 				e_amount>=#{e_amount } and
 			</if>
 		</trim>
+			order by e_id desc 
 			<if test="start!=null and offset!=null">
 				limit #{start},#{offset}
 			</if>
-			order by e_id desc
+			
 	</select>
 	
 	<!-- 插入招聘信息 -->
