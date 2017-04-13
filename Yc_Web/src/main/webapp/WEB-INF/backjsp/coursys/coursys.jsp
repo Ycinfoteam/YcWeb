@@ -29,13 +29,19 @@
 		<img id="addpreview2" style="width:100px;height:100px;"/>
 		</div>
 		<div>
+<<<<<<< HEAD
+		<label>课程说明：</label>
+		<input id="cs_text" class="easyui-textbox" name="cs_text" required="true" style="width:300px;height:150px"/>
+=======
 		<label>文字说明：</label>
 		<input id="cs_text" name="cs_text" class="easyui-combobox" required="true" style="width:200px"  validType="teacherRex" data-options="   
         valueField: 't_name',   
         textField: 't_name',   
         url:'findTeachers'"/>
+>>>>>>> 64a9e570483c7e1e61df7231fe6776c0ee501fa8
 		</div>
 	</form>
+</div>
 	<div id="add-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="saveCoursysInfo()" style="width: 90px">保存</a>
@@ -44,7 +50,6 @@
 			onclick="javascript:$('#addcsinfo').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
-</div>
 <!-- 体系图片 -->
 <div id="showCoursysPic" class="easyui-dialog" 
 	style="width: 700px; height: 500px; padding: 10px 20px;display:none" closed="true" buttons="#update-buttons">
@@ -56,6 +61,7 @@
 			<input id="update_picUrl1" type="file" name="update_picUrl1" required="true"/>
 		</div>
 	</form>
+</div>
 	<div id="update-buttons">
 		<a class="easyui-linkbutton c6"
 			iconCls="icon-ok" onclick="updateCoursysPic()" style="width: 90px">确认</a>
@@ -63,7 +69,6 @@
 			iconCls="icon-cancel" onclick="javascript:$('#showCoursysPic').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
-</div>
 <!-- 体系头像 -->
 <div id="showCoursysHead" class="easyui-dialog" 
 	style="width: 300px; height: 300px; padding: 10px 20px;display:none" closed="true" buttons="#updatehead-buttons">
@@ -80,6 +85,21 @@
 			iconCls="icon-ok" onclick="updateCoursysHead()" style="width: 90px">确认</a>
 		<a class="easyui-linkbutton"
 			iconCls="icon-cancel" onclick="javascript:$('#showCoursysHead').dialog('close')"
+			style="width: 90px">取消</a>
+	</div>
+</div>
+<!-- 课程体系文字说明 -->
+<div id="showCoursysText" class="easyui-dialog" 
+	style="width: 350px; height: 260px; padding: 10px 20px;display:none" closed="true" buttons="#updatetext-buttons">
+	<form id="updatetextfm" method="post" enctype="multipart/form-data" novalidate>
+		<input id="cs_textid" name="cs_textid" type="hidden" />
+		<input id="cs_newtext" class="easyui-textbox" name="cs_text" required="true" style="width:300px;height:150px"/>
+	</form>
+	<div id="updatetext-buttons">
+		<a class="easyui-linkbutton c6"
+			iconCls="icon-ok" onclick="updateCoursysText()" style="width: 90px">确认</a>
+		<a class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#showCoursysText').dialog('close')"
 			style="width: 90px">取消</a>
 	</div>
 </div>
@@ -141,13 +161,7 @@ $('#coursysinfo').edatagrid({
 			field : 'cs_text',
 			title : '文字说明',
 			align:'center',
-			width : 100,
-			editor : {
-				type : 'validatebox',
-				options : {
-					required : true
-				}
-			},
+			width : 100
 		}, {
 			field : 'cs_status',
 			title : '是否显示到前台',
@@ -203,6 +217,16 @@ $('#coursysinfo').edatagrid({
 		//定义按钮
 		toolbar : [
 				{
+					text:"选定一行即可编辑该课程体系的文字说明",
+					iconCls : 'icon-add',
+					handler : function() {
+						$('#showCoursysText').dialog('open').dialog('setTitle','编辑课程体系文字说明');
+						var cs_textid=$('#coursysinfo').datagrid('getSelected').cs_id;
+						var cs_text1=$('#coursysinfo').datagrid('getSelected').cs_text;
+						$('#cs_textid').val(cs_textid);
+						$("#cs_newtext").textbox("setValue", cs_text1);
+					}
+				},{
 					text : "增加",
 					iconCls : 'icon-add',
 					handler : function() {
@@ -379,6 +403,28 @@ $("#updateheadfm").form({
 },'json');
 function updateCoursysHead(){
 	$("#updateheadfm").submit();
+}
+//课程体系的文字说明
+$("#updatetextfm").form({
+	url:"coursys_updatetext",
+	success:function(data){
+		if(data==1){
+			$.messager.show({title:'温馨提示',msg:'修改成功！',timeout:2000,showType:'slide'});
+		}else{
+			$.messager.alert('错误提示', '修改失败！');
+		}
+		$('#showCoursysText').dialog('close');
+		$('#coursysinfo').datagrid('reload');
+	}
+},'json');
+function updateCoursysText(){
+	$.messager.confirm('提示', '您确定要更改该体系的文字说明吗？', function(r) {
+		if (r) {
+			$("#updatetextfm").submit();
+		}else{
+			$('#showCoursysText').dialog('close');
+		}
+	});
 }
 //自定义表单验证规则
 $.extend($.fn.validatebox.defaults.rules, {   

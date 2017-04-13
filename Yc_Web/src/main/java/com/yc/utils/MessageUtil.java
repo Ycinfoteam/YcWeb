@@ -58,7 +58,7 @@ public class MessageUtil {
 		req.setExtend("123456");
 		req.setSmsType("normal");
 		req.setSmsFreeSignName("李润泽");
-		req.setSmsParamString( "{name:'"+name+"',YZM:'"+YZM+"'}");
+		req.setSmsParamString( "{name:'"+name+"',number:'"+YZM+"'}");
 		req.setRecNum(tel);
 		req.setSmsTemplateCode(typeId);
 		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);

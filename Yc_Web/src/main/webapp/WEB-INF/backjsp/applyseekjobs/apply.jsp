@@ -39,12 +39,12 @@
 <table id="show_apply"></table>
 
 <div id="toolbar">
-		<label>条件查询：</label> 
+		<!-- <label>条件查询：</label> 
 		<input id="findBytype" class="easyui-combobox" name="dept"  
    			 data-options="valueField:'j_name',textField:'j_name',url:'showJobType'" />
    			  
 		<a id="btn1" href="javascript:void(0)" class="easyui-linkbutton" 
-			data-options="iconCls:'icon-search'" onclick="findApplyBytype()" >查询</a>
+			data-options="iconCls:'icon-search'" onclick="findApplyBytype()" >查询</a> -->
 		<a id="btn2" href="javascript:void(0)" class="easyui-linkbutton" 
 			data-options="iconCls:'icon-ok'" onclick="checkStatus()" >已审核</a> 
 </div>

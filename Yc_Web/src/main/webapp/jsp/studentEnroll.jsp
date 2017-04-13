@@ -39,8 +39,8 @@
         </div>
         <ul id="nav">
             <!-- .html后缀是分发器 -->
-			<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
-			<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+			<li class="li1"><a href="index.html">${title[0]}</a></li><h1 class="h1"></h1>
+			<li class="li2"><a href="teacher.html">${title[1] }</a></li>
 			<li class="li3"><a href="subject.html">${title[2] }</a></li>
 			<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
 			<li class="li5"><a href="findWork.html">${title[4] }</a></li>
@@ -55,10 +55,10 @@
             <div class="main_L_d">
                 <p class="teacher_title">衡阳源辰IT培训学校 > 学生报名</p>
                 <div class="studentEnroll_info">
-                <form action="stu_add.html" method="post" onSubmit="return rex()" style="margin-left:20px;">
+                <form id="addstu" action="stu_add.html" method="post" onSubmit="return rex()" style="margin-left:20px;">
                 	<ul>
                 		<li style="list-style-type:none">
-                			<label>姓名：</label>
+                			<label style="width:50px">姓名：</label>
                 			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
                 			<span id="s_name_msg"></span>
                 		</li>

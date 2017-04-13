@@ -64,7 +64,18 @@
         </div>
         <div id="main_R">
             <div class="kaiban">
-               
+                <p class="kbtitle">最新开班日期 | <a href="">更多</a></p>
+                <c:forEach items="${openClsinfo }" var="openCls">
+	                <div class="kb1">
+	                    <dd><img src="${openCls.oc_pic }"/></dd>
+	                    <dd class="kbtext">
+	                        <h5>${openCls.oc_name }</h5>
+	                        <p>开班日期：${openCls.oc_time }</p>
+	                        <a href="" class="kbtextInp1">我要咨询</a>
+	                        <a href="studentEnroll.html?oc_name=${openCls.oc_name }" class="kbtextInp2">我要报名</a>
+	                    </dd>
+	                </div>
+                </c:forEach>
 
                 <p class="ycNews">源辰新闻 | <a href="">更多</a></p>
                 <ul>

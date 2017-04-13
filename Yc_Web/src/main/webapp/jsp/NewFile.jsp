@@ -165,13 +165,13 @@
         </div>
     </div>
     <ul id="nav">
-        <li class="li1"><a href="index.jsp" target="_blank" >首页</a></li><h1 class="h1"></h1>
-        <li class="li2"><a href="teacher.jsp" target="_blank">师资介绍</a></li>
-        <li class="li3"><a href="subject.jsp" target="_blank">课程体系</a></li>
-        <li class="li4"><a href="studentProject.jsp" target="_blank">学员项目</a></li>
-        <li class="li5"><a href="findWork.jsp" target="_blank">就业详情</a></li>
-        <li class="li6"><a href="about.jsp" target="_blank">关于源辰</a></li>
-        <li class="li7"><a href="jsp/company.jsp" target="_blank">公司历史</a></li>
+        <li class="li1"><a href="index.jsp">首页</a></li><h1 class="h1"></h1>
+        <li class="li2"><a href="teacher.jsp">师资介绍</a></li>
+        <li class="li3"><a href="subject.jsp" >课程体系</a></li>
+        <li class="li4"><a href="studentProject.jsp" >学员项目</a></li>
+        <li class="li5"><a href="findWork.jsp" >就业详情</a></li>
+        <li class="li6"><a href="about.jsp">关于源辰</a></li>
+        <li class="li7"><a href="jsp/company.jsp" >公司历史</a></li>
     </ul>
     </div>
 <!-- 模版定义 -->

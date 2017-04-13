@@ -11,9 +11,11 @@ select cs_id,cs_name,cs_pic,cs_version,cs_text,cs_status from coursys  order by 
 alter table coursys add cs_head varchar(5000)
 
 --学生报名信息表的测试数据
-select s_id,s_name,s_tel,s_direction,s_status from students
-insert into students(s_name,s_tel,s_direction,s_status) values('a',18569432115,'前端工程师',1);
+select * from students
+insert into students(s_name,s_tel,s_direction,s_status,s_date) values('d',18569432115,'前端工程师培训班',0,curdate())
 show variables like 'character_set_%';
+delete from students where s_id <>6
+update students set s_status=0 where s_id=6
 --增加一个学生发送信息状态字段
 alter table students add s_status integer
 --师资表的测试数据

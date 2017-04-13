@@ -39,7 +39,7 @@ import com.yc.utils.DateFormatUtil;
 
 
 /**
- * 前端页面分发器
+ * 鍓嶇椤甸潰鍒嗗彂鍣�
  * @author lee
  *
  */
@@ -59,8 +59,6 @@ public class FrontController {
 	public void setStuBiz(StudentsBiz stuBiz) {
 		this.stuBiz = stuBiz;
 	}
-	
-
 	@Resource(name="employBizImpl")
 	public void setEmployBiz(EmployBiz employBiz) {
 		this.employBiz = employBiz;
@@ -104,7 +102,7 @@ public class FrontController {
 	public void setActivitiesBiz(ActivitiesBiz activitiesBiz) {
 		this.activitiesBiz = activitiesBiz;
 	}
-	//去关于源辰前端界面
+	//鍘诲叧浜庢簮杈板墠绔晫闈�
 	@RequestMapping(value="/about.html")
 	public String about(Model model){
 		Map<String, Object> map=this.base();
@@ -115,11 +113,11 @@ public class FrontController {
 		model.addAttribute("content", content);
 		model.addAttribute("footer", map.get("footer"));
 		model.addAttribute("newsinfo", this.findNews());
-		
+		model.addAttribute("openClsinfo", this.findAllOpenCls());
 		return "about";
 	}
 	
-	//去公司历史前端界面
+	//鍘诲叕鍙稿巻鍙插墠绔晫闈�
 	@RequestMapping(value="/company.html")
 	public String company(Model model){
 		Map<String, Object> map=this.base();
@@ -129,7 +127,7 @@ public class FrontController {
 		return "company";
 	}
 	
-	//去就业详情前端界面
+	//鍘诲氨涓氳鎯呭墠绔晫闈�
 	@RequestMapping(value="/findWork.html")
 	public String findWork(Model model){
 		Map<String, Object> map=this.base();
@@ -139,7 +137,7 @@ public class FrontController {
 		return "findWork";
 	}
 	
-	//去招聘信息前端界面
+	//鍘绘嫑鑱樹俊鎭墠绔晫闈�
 	@RequestMapping(value="/job.html")
 	public String job(Model model){
 		Employ employ=new Employ();
@@ -155,13 +153,13 @@ public class FrontController {
 		return "job";
 	}
 	
-	//去首页
+	//鍘婚椤�
 	@RequestMapping(value="/index.html",produces ="text/html;charset=UTF-8")
 	public String index(Model model){
 		Map<String, Object> map=this.base();
 		List<Activities> list=this.activitiesBiz.findall(new Activities());
 		String [] pic = null;
-		for(Activities ac:list){	//拼接公司活动图片
+		for(Activities ac:list){	//鎷兼帴鍏徃娲诲姩鍥剧墖
 			if(pic!=null){
 				String [] temp=pic;
 				String [] temp2=ac.getAc_pic().split(",");
@@ -188,7 +186,7 @@ public class FrontController {
 		return "index";
 	}
 	
-	//去应聘信息前端界面
+	//鍘诲簲鑱樹俊鎭墠绔晫闈�
 	@RequestMapping(value="/joinUs.html")
 	public String joinUs(Model model){
 		Map<String, Object> map=this.base();
@@ -198,7 +196,7 @@ public class FrontController {
 		return "joinUs";
 	}
 	
-	//去学员项目前端界面
+	//鍘诲鍛橀」鐩墠绔晫闈�
 	@RequestMapping(value="/studentProject.html")
 	public String studentProject(Model model){
 		Map<String, Object> map=this.base();
@@ -208,7 +206,7 @@ public class FrontController {
 		return "studentProject";
 	}
 	
-	//去课程体系前端页面
+	//鍘昏绋嬩綋绯诲墠绔〉闈�
 	@RequestMapping(value="/subject.html")
 	public String subject(Model model){
 		Map<String, Object> map=this.base();
@@ -218,7 +216,7 @@ public class FrontController {
 		return "subject";
 	}
 	
-	//去简历投递成功页面
+	//鍘荤畝鍘嗘姇閫掓垚鍔熼〉闈�
 	@RequestMapping(value="/success.html")
 	public String success(Model model){
 		Map<String, Object> map=this.base();
@@ -228,7 +226,7 @@ public class FrontController {
 		return "success";
 	}
 	
-	//师资介绍界面
+	//甯堣祫浠嬬粛鐣岄潰
 	@RequestMapping(value="/teacher.html")
 	public String teacher(Model model) throws IOException{
 		Map<String, Object> map=this.base();
@@ -248,7 +246,7 @@ public class FrontController {
 		return "teacher";
 	}
 	
-	//公司新闻列表界面
+	//鍏徃鏂伴椈鍒楄〃鐣岄潰
 	@RequestMapping(value="/companynews.html/{temp}")
 	public String companyNews(HttpSession session,Model model,@PathVariable String temp){
 		Map<String, Object> map=this.base();
@@ -257,13 +255,13 @@ public class FrontController {
 		if(session.getAttribute("page")==null){
 			session.setAttribute("page", 1);
 		}else{
-			if(temp.equals("1")){	//上一页
+			if(temp.equals("1")){	//涓婁竴椤�
 				int t=(int) session.getAttribute("page")-1;
 				if(t<=0){
 					t=1;
 				}
 				session.setAttribute("page", t); 
-			}else if(temp.equals("2")){	//下一页
+			}else if(temp.equals("2")){	//涓嬩竴椤�
 				int t=(int) session.getAttribute("page")+1;
 				if(t>=(total/10+1)){
 					t=total/10+1;
@@ -273,7 +271,7 @@ public class FrontController {
 		}
 		System.out.println(session.getAttribute("page"));
 		News news=new News();
-		news.setStart(((int)session.getAttribute("page")-1)*10);	//每页10条数据
+		news.setStart(((int)session.getAttribute("page")-1)*10);	//姣忛〉10鏉℃暟鎹�
 		news.setOffset(10);
 		List<News> newsList=this.newsBiz.selectAllNews(news);
 		List<OpenClass> openClsList=findAllOpenCls();
@@ -287,7 +285,7 @@ public class FrontController {
 		return "companynews";
 	}
 	
-	//去某一新闻详情页面
+	//鍘绘煇涓�鏂伴椈璇︽儏椤甸潰
 	@RequestMapping(value="/news.html")
 	public String news(Model model,@RequestParam(value="n_id") int nid){
 		Map<String, Object> map=this.base();
@@ -295,7 +293,7 @@ public class FrontController {
 		News news=new News();
 		news.setN_id(nid);
 		List<News> thenews=this.newsBiz.selectNewsById(news);
-		int click=thenews.get(0).getN_click()+1;//设置新闻点击量
+		int click=thenews.get(0).getN_click()+1;//璁剧疆鏂伴椈鐐瑰嚮閲�
 		news.setN_click(click);
 		this.newsBiz.updateNews(news);
 		List<News> newsList=findAllNews();
@@ -315,7 +313,7 @@ public class FrontController {
 		return "news";
 	}
 	
-	//去我要报名界面
+	//鍘绘垜瑕佹姤鍚嶇晫闈�
 	@RequestMapping(value="/studentEnroll.html" ,produces="text/html;charset=UTF-8")
 	public String studentEnroll(Model model,@RequestParam(value="oc_name") String oc_name){
 		List<OpenClass> openClsList=findAllOpenCls();
@@ -328,7 +326,7 @@ public class FrontController {
 		return "studentEnroll";
 	}
 	
-	//去报名完成界面
+	//鍘绘姤鍚嶅畬鎴愮晫闈�
 	@RequestMapping(value="/stu_add.html")
 	public String student(Model model, Students students){
 		Map<String, Object> map=this.base();
@@ -336,16 +334,20 @@ public class FrontController {
 		model.addAttribute("footer", map.get("footer"));
 		model.addAttribute("newsinfo", this.findNews());
 		try {
-			this.stuBiz.addStudents(students);
+			List<Students> stuList=this.stuBiz.selectAllStudents(students);
+			if(stuList!=null&&stuList.size()>0){
+				return "enrollfailure";
+			}else{
+				students.setS_status(0);
+				this.stuBiz.addStudents(students);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "studentEnroll";
 		}
 		return "enrollok";
 	}
-
-
-	//查询所有的开班信息
+	//鏌ヨ鎵�鏈夌殑寮�鐝俊鎭�
 	public List<OpenClass> findAllOpenCls(){
 		OpenClass openCls=new OpenClass();
 		List<OpenClass> openClsList=this.openClsBiz.selectAllOpenClass(openCls);
@@ -353,12 +355,12 @@ public class FrontController {
 			String pics []=openClsList.get(i).getOc_pic().split(",");
 			openClsList.get(i).setOc_pic(pics[0]);
 			String times []=openClsList.get(i).getOc_time().split("-");
-			openClsList.get(i).setOc_time(times[1]+"月"+times[2]+"日");
+			openClsList.get(i).setOc_time(times[1]+"鏈�"+times[2]+"鏃�");
 		}
 		return openClsList;
 	}
 	
-	//查询所有的新闻信息
+	//鏌ヨ鎵�鏈夌殑鏂伴椈淇℃伅
 	public List<News> findAllNews(){
 		News news=new News();
 		news.setN_status(1);
@@ -366,12 +368,12 @@ public class FrontController {
 		return newsList;
 	}
 	
-	//前端界面右下角新闻模块
+	//鍓嶇鐣岄潰鍙充笅瑙掓柊闂绘ā鍧�
 	public List<News> findNews(){	
 		News n =new News();
 		n.setStart(0);
 		n.setOffset(8);
-		List<News> list=this.newBiz.selectAllNews(n);	//查询最新的
+		List<News> list=this.newBiz.selectAllNews(n);	//鏌ヨ鏈�鏂扮殑
 		for(News news:list){
 			if(news.getN_title().length()>10){
 				String temp=news.getN_title().substring(0,8);
@@ -382,7 +384,7 @@ public class FrontController {
 		return list;
 	}
 	
-	//标题、公司简介、页脚文字
+	//鏍囬銆佸叕鍙哥畝浠嬨�侀〉鑴氭枃瀛�
 	public Map<String, Object> base(){
 		Map<String, Object> map =new HashMap<String, Object>();
 		
@@ -392,13 +394,13 @@ public class FrontController {
 		
 		List<DataDictionary> list= this.datadicBiz.findDataDictionary(new DataDictionary());
 		for(DataDictionary d:list){
-			if(d.getType().equals("title")){	//存标题
+			if(d.getType().equals("title")){	//瀛樻爣棰�
 				title.add(d.getDescription());
 			}
-			if(d.getType().equals("company")){	//存公司简介
+			if(d.getType().equals("company")){	//瀛樺叕鍙哥畝浠�
 				company=d.getDescription().split("/");
 			}
-			if(d.getType().equals("footer")){	//存页脚文字
+			if(d.getType().equals("footer")){	//瀛橀〉鑴氭枃瀛�
 				footer=d.getDescription().split("/");
 			}
 		}
