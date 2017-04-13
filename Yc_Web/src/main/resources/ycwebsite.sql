@@ -13,7 +13,6 @@ create table roles(
 	r_name varchar(300)   --角色名
 	
 )
-
 --师资表
 create table teachers(
 	t_id integer primary key auto_increment,
