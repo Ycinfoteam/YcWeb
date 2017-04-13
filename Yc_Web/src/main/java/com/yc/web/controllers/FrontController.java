@@ -24,6 +24,7 @@ import com.yc.bean.DataDictionary;
 import com.yc.bean.Employ;
 import com.yc.bean.News;
 import com.yc.bean.OpenClass;
+import com.yc.bean.Students;
 import com.yc.bean.Teachers;
 import com.yc.biz.ActivitiesBiz;
 import com.yc.biz.CoursysBiz;
@@ -31,6 +32,7 @@ import com.yc.biz.DataDictionaryBiz;
 import com.yc.biz.EmployBiz;
 import com.yc.biz.NewsBiz;
 import com.yc.biz.OpenClassBiz;
+import com.yc.biz.StudentsBiz;
 import com.yc.biz.TeachersBiz;
 import com.yc.utils.DateFormatUtil;
 
@@ -51,7 +53,11 @@ public class FrontController {
 	private CoursysBiz coursysBiz;
 	private EmployBiz employBiz;
 	private NewsBiz newsBiz;
-
+	private StudentsBiz stuBiz;
+	@Resource(name="studentsBizImpl")
+	public void setStuBiz(StudentsBiz stuBiz) {
+		this.stuBiz = stuBiz;
+	}
 	@Resource(name="employBizImpl")
 	public void setEmployBiz(EmployBiz employBiz) {
 		this.employBiz = employBiz;
@@ -107,7 +113,7 @@ public class FrontController {
 		model.addAttribute("content", content);
 		model.addAttribute("footer", map.get("footer"));
 		model.addAttribute("newsinfo", this.findNews());
-		
+		model.addAttribute("openClsinfo", this.findAllOpenCls());
 		return "about";
 	}
 	
@@ -310,7 +316,23 @@ public class FrontController {
 		model.addAttribute("oc_name", oc_name);
 		return "studentEnroll";
 	}
-	
+	//去报名完成界面
+	@RequestMapping(value="/stu_add.html")
+	public String student(Model model, Students students){
+		try {
+			List<Students> stuList=this.stuBiz.selectAllStudents(students);
+			if(stuList!=null&&stuList.size()>0){
+				students.setS_status(0);
+				this.stuBiz.addStudents(students);
+			}else{
+				return "enrollfailure";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "studentEnroll";
+		}
+		return "enrollok";
+	}
 
 	//查询所有的开班信息
 	public List<OpenClass> findAllOpenCls(){

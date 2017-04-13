@@ -1,23 +1,34 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Students implements Serializable {
 
 	private static final long serialVersionUID = -126555970239925228L;
 	private Integer s_id; 
-	private Integer s_ids [];
+	private List<Integer> s_ids;
 	private String s_name;    //姓名
 	private String s_tel;    //电话
 	private String s_direction;  //意向方向
 	private Integer s_status;//是否发送了开班信息
+	private String s_date;
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
 	
-	public Integer[] getS_ids() {
+	public String getS_date() {
+		return s_date;
+	}
+	public void setS_date(String s_date) {
+		this.s_date = s_date;
+	}
+	public String getS_tel() {
+		return s_tel;
+	}
+	public List<Integer> getS_ids() {
 		return s_ids;
 	}
-	public void setS_ids(Integer[] s_ids) {
+	public void setS_ids(List<Integer> s_ids) {
 		this.s_ids = s_ids;
 	}
 	public Integer getS_status() {
@@ -58,6 +69,12 @@ public class Students implements Serializable {
 	}
 	public void setS_direction(String s_direction) {
 		this.s_direction = s_direction;
+	}
+	@Override
+	public String toString() {
+		return "Students [s_id=" + s_id + ", s_ids=" + s_ids + ", s_name=" + s_name + ", s_tel=" + s_tel
+				+ ", s_direction=" + s_direction + ", s_status=" + s_status + ", s_date=" + s_date + ", start=" + start
+				+ ", offset=" + offset + "]";
 	}
 	
 	

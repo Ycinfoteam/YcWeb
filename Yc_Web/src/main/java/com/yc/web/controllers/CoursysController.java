@@ -180,6 +180,24 @@ public class CoursysController {
 			out.print("disexsist");
 		}
 	}
+	//修改课程体系文字说明
+	@RequestMapping(value="/coursys_updatetext")
+	public void updateOneCousysText(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		logger.info("修改课程体系文字说明......");
+		String id=request.getParameter("cs_textid");
+		String cs_text=request.getParameter("cs_text");
+		Coursys csys=new Coursys();
+		csys.setCs_id(Integer.parseInt(id));
+		csys.setCs_text(cs_text);
+		csys.setCs_pic(null);
+		try {
+			this.coursysBiz.updateCoursys(csys);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getWriter().print(0);
+		}
+		response.getWriter().print(1);
+	}
 	/*************************前台操作*****************************/
 	@RequestMapping(value="/findAllCoursys",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String findAllCoursys(HttpServletResponse response){

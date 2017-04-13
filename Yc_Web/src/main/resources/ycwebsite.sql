@@ -144,6 +144,7 @@ create table students(
 	s_direction varchar(500)   --意向方向
 )
 alter table students modify column s_tel varchar(20);
+alter table students add s_date datetime
 create table employ(
 	e_id integer primary key auto_increment,
 	e_position varchar(300),	 --职位
