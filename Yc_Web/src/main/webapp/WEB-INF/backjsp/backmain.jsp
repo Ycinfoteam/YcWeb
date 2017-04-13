@@ -59,8 +59,13 @@ ul,li{
 				<div id="tt2" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div>
-			 <div title="内容管理">
+			<div title="内容管理">
 				<div id="tt3" class="easyui-tree"
+					data-options="animate:true,dnd:true"></div>
+			</div> 
+			
+			<div title="人才管理">
+				<div id="tt4" class="easyui-tree"
 					data-options="animate:true,dnd:true"></div>
 			</div> 
 		
@@ -141,11 +146,6 @@ $(document).ready(
 					attributes : {
 						url : "admin/toDataDictionaryFooter"
 					}
-				},{
-					text : "公司logo",
-					attributes : {
-						url : "admin/toDataDictionaryLogo"
-					}
 				}] 
 			} ];
 			
@@ -196,29 +196,35 @@ $(document).ready(
 					attributes : {
 						url : "admin/tocompanynews"
 					}
-				} ,{
-					text : "方向信息",
-					attributes : {
-						url : "admin/tojobtype"
-					}
-				},{
-					text : "招聘信息",
-					attributes : {
-						url : "admin/tojob"
-					}
-				},{
-					text : "应聘信息",
-					attributes : {
-						url : "admin/toapply"
-					}
-				},{
-					text : "行政人员信息",
-					attributes : {
-						url : "admin/toadministrator"
-					}
-				}]
+				} ]
 			} ];
-			var treeData11 = [ {
+			
+			var treeData4 = [ {
+				text : "人才管理",
+				children : [{
+						text : "职位信息",
+						attributes : {
+							url : "admin/tojobtype"
+						}
+					},{
+						text : "招聘信息",
+						attributes : {
+							url : "admin/tojob"
+						}
+					},{
+						text : "应聘信息",
+						attributes : {
+							url : "admin/toapply"
+						}
+					},{
+						text : "行政人员信息",
+						attributes : {
+							url : "admin/toadministrator"
+						}
+					}] 
+			} ];
+			
+			/* var treeData11 = [ {
 				text : "查看日志",
 				attributes : {
 					url : "admin/tolog"
@@ -238,8 +244,9 @@ $(document).ready(
 						url : "admin/tofile"
 					}
 				}]
-				
-			} ];
+			}]; */
+			
+			
 			//还原
 			var treeData12 = [ {
 				text : "一键还原"
@@ -251,16 +258,19 @@ $(document).ready(
 			$('#tt2').tree({
 				data : treeData2
 			});
-			 $('#tt3').tree({
+			$('#tt3').tree({
 				data : treeData3
 			}); 
-		
-			$('#tt11').tree({
-				data : treeData11
+			$('#tt4').tree({
+				data : treeData4
 			});
+		
+			/* $('#tt11').tree({
+				data : treeData11
+			}); 
 			$('#tt10').tree({
 				data : treeData10
-			});
+			});*/
 			
 			$('#tt12').tree({
 				data : treeData12

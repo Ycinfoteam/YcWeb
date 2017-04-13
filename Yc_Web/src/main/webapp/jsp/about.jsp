@@ -28,6 +28,22 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
+    <style type="text/css">
+    	#subtitle{
+    		border-color:  #dadada #dadada;
+    		border-style: solid;
+    		border-width: 0px 1px 0px 0px;
+    		height:390px;
+    		font-size: 16px;
+    		padding-left: 17px;
+    		padding-top: 20px; 
+    		list-style: none;
+    		color:black;
+    	}
+    	#subtitle li a{
+    		color:black;
+    	}
+    </style>
 </head>
 <body>
 <div id="header">
@@ -39,8 +55,8 @@
     </div>
     <ul id="nav">
         <!-- .html后缀是分发器 -->
-		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
-		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+		<li class="li1"><a href="index.html">${title[0]}</a></li><h1 class="h1"></h1>
+		<li class="li2"><a href="teacher.html">${title[1] }</a></li>
 		<li class="li3"><a href="subject.html">${title[2] }</a></li>
 		<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
 		<li class="li5"><a href="findWork.html">${title[4] }</a></li>
@@ -54,14 +70,24 @@
     <div id="main_L">
         <a href=""><img src="images/topAd.jpg"/></a>
         <div class="main_L_d">
+        
+        	<div style="width:100px;height:390px;float: left;margin-top: 40px;">
+    			<ul id="subtitle" >
+    				<li><a href="job.html">招聘信息</a></li>
+    				<li><a href="joinUs.html">应聘申请</a></li>
+    				<li><a href="about.html">关于源辰</a></li>
+    			</ul>
+   			</div>
+   			
             <p class="teacher_title">衡阳源辰IT培训学校 > 关于源辰</p>
             <div class="aboutMe">
                 <h3>关于源辰</h3>
                 <p class="about_title">发布：衡阳源辰IT培训学校      来源：关于源辰     时间：2016-08-03</p>
-                <p>
+                <p style="margin-left: 100px;">
                   ${content } 
                 </p>
-                <a href="job.html" style="padding-left:555px;font-size:15px;">>>>招聘信息</a>
+                <br/>
+                <br/>
                 <br/>
             </div>
 

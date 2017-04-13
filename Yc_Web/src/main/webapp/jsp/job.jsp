@@ -27,6 +27,23 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/teacher.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+    	#subtitle{
+    		border-color:  #dadada #dadada;
+    		border-style: solid;
+    		border-width: 0px 1px 0px 0px;
+    		height:390px;
+    		font-size: 16px;
+    		padding-left: 17px;
+    		padding-top: 20px; 
+    		list-style: none;
+    		color:black;
+    	}
+    	#subtitle li a{
+    		color:black;
+    	}
+    </style>
 </head>
 <body>
 <div id="header">
@@ -38,8 +55,8 @@
     </div>
     <ul id="nav">
         <!-- .html后缀是分发器 -->
-		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
-		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
+		<li class="li1"><a href="index.html">${title[0]}</a></li><h1 class="h1"></h1>
+		<li class="li2"><a href="teacher.html">${title[1] }</a></li>
 		<li class="li3"><a href="subject.html">${title[2] }</a></li>
 		<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
 		<li class="li5"><a href="findWork.html">${title[4] }</a></li>
@@ -53,29 +70,38 @@
     <div id="main_L">
         <a href=""><img src="images/topAd.jpg"/></a>
         <div class="main_L_d">
-        <br/>
-        <p style="padding-left:300px;font-size:24px;">招聘信息</p>
-        <table style="margin-top:30px;" border="1" width="650" height="300" cellspacing="0" cellpadding="0" align="center">
-      		<tr align="center">
-            	<td>职位</td>
-            	<td>招聘人数</td>
-            	<td>薪资</td>
-            	<td>职位要求</td>
-            	<td>过期时间</td>
-            </tr>
-	        <c:forEach items="${job }" var="j">
-	        	<tr align="center">
-	            	<td>${j.e_position }</td>
-	            	<td>${j.e_amount }</td>
-	            	<td>${j.e_salary }</td>
-	            	<td>${j.e_detail }</td>
-	            	<td>${j.e_validtime }</td>
-	            </tr>
-	        </c:forEach>
-            </table>
-            <br/>
-            <a href="joinUs.html" style="padding-left:565px;">>>>加入我们</a>
-            <br/>
+        
+	        <div style="width:100px;height:390px;float: left;margin-top: 40px;">
+	   			<ul id="subtitle" >
+	   				<li><a href="job.html">招聘信息</a></li>
+	   				<li><a href="joinUs.html">应聘申请</a></li>
+	   				<li><a href="about.html">关于源辰</a></li>
+	   			</ul>
+	   		</div>
+        
+        	<div style="height: 450px;">
+	       		<p style="padding-left:330px;padding-top:35px;font-size:20px;">招聘信息</p>
+	       		<table  style="margin-top:10px;" border="1"  cellspacing="0" cellpadding="0" align="center">
+		      		<tr align="center">
+		            	<td>职位</td>
+		            	<td>招聘人数</td>
+		            	<td>薪资</td>
+		            	<td>职位要求</td>
+		            	<td>过期时间</td>
+		            </tr>
+			        <c:forEach items="${job }" var="j">
+			        	<tr align="center">
+			            	<td>${j.e_position }</td>
+			            	<td>${j.e_amount }</td>
+			            	<td>${j.e_salary }</td>
+			            	<td>${j.e_detail }</td>
+			            	<td>${j.e_validtime }</td>
+			            </tr>
+			        </c:forEach>
+	            </table>
+	            <br/>
+	            <br/>
+            </div>
         </div>
     </div>
     <div id="main_R">
