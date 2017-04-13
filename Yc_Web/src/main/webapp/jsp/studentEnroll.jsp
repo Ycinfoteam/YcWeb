@@ -26,8 +26,29 @@
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-     <script src="js/studentEnroll.js" type="text/javascript"></script>
-     <script src="js/teacher.js" type="text/javascript"></script>
+    <script src="js/studentEnroll.js" type="text/javascript"></script>
+    <script src="js/teacher.js" type="text/javascript"></script>
+    <style type="text/css">
+    	
+    	
+    	#addstuform {
+    		width:800px;
+    		height:500px;
+    		padding-left:200px;
+    		padding-top: 50px;
+    	}
+    	#addstuform label{
+    		display:inline-block;
+			width:100px;
+			text-align: right;
+			margin-top:15px;
+    	}
+    	#button{
+    		width:100px;
+    		margin-left: 103px;
+    	}
+    	
+    </style> 
 </head>
 <body>
     <div id="header">
@@ -54,41 +75,34 @@
             <a href=""><img src="images/topAd.jpg"/></a>
             <div class="main_L_d">
                 <p class="teacher_title">衡阳源辰IT培训学校 > 学生报名</p>
-                <div class="studentEnroll_info">
-                <form id="addstu" action="stu_add.html" method="post" onSubmit="return rex()" style="margin-left:20px;">
-                	<ul>
-                		<li style="list-style-type:none">
-                			<label style="width:50px">姓名：</label>
-                			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
-                			<span id="s_name_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>报名意向：</label>
-                			<select id="s_direction" name="s_direction" >
-                				<c:forEach items="${ openClsinfo}" var="clsinfo">
-	                				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
-                				</c:forEach>
-                			</select>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>手机号码：</label>
-                			<input id="s_tel" name="s_tel" type="text" rule="required" required onBlur="checkphone()"/>
-                			<span id="s_tel_msg1"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>短信验证码：</label>
-                			<input id="yzm"  type="text" name="yzm" tips="请输入获取的验证码" rule="required" required onBlur="checkyzm()"/>
-                			<input type="button" name="yanzhengma" value="发送验证码"/>
-                			<span id="s_tel_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			 <label id="successmsg" class="labelbox"></label>
-                		</li>
-                		<li style="list-style-type:none">
-                			<input id="button" type="submit" value="确认报名"/>
-                		</li>
-                	</ul>
-                </form>
+                <div>
+	                <form id="addstuform" action="stu_add.html" method="post" onSubmit="return rex()">
+	                	
+	           			<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+	           			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
+	           			<span id="s_name_msg"></span><br/>
+	           		
+	           			<label>报名意向：</label>
+	           			<select id="s_direction" name="s_direction" >
+	           				<c:forEach items="${ openClsinfo}" var="clsinfo">
+	            				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
+	           				</c:forEach>
+	           			</select><br/>
+	           		
+	           			<label>手机号码：</label>
+	           			<input id="s_tel" name="s_tel" type="text" rule="required" required onBlur="checkphone()"/>
+	           			<span id="s_tel_msg1"></span><br/>
+	           		
+	           			<label>验&nbsp;证&nbsp;码&nbsp;：</label>
+	           			<input id="yzm"  type="text" name="yzm" tips="请输入获取的验证码" rule="required" required onBlur="checkyzm()"/>
+	           			<input type="button" name="yanzhengma" value="发送验证码"/>
+	           			<span id="s_tel_msg"></span><br/>
+	           		
+	           			<br/>
+	           		
+	           			<input id="button" type="submit"  value="确认报名"/>
+	                </form>
+	                <br/>
                 </div>
             </div>      
         </div>
