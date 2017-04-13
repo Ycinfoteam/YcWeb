@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 查询学生报名信息 -->
 	<select id="selectStudents" parameterType="Students" resultType="Students">
-		select s_id,s_name,s_tel,s_direction,s_status from students
+		select s_id,s_name,s_tel,s_direction,s_status,date_format(s_date,'%Y-%m-%d') s_date from students
 		<trim prefix="where" suffixOverrides="and">
 			<if test="s_id>0">
 				s_id = #{s_id} and
@@ -14,17 +14,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="s_ids>0">
 				s_id int #{s_ids} and
 			</if>
-			<if test="s_status>0">
-				s_status=#{s_status} and
-			</if>
 			<if test="s_name!=null">
 				s_name=#{s_name} and
+			</if>
+			<if test="s_status>=0">
+				s_status=#{s_status} and
 			</if>
 			<if test="s_direction!=null">
 				s_direction=#{s_direction} and
 			</if>
+			<if test="s_date!=null">
+				s_date=#{s_date} and
+			</if>
 		</trim>
-		order by s_id desc
+		order by s_date desc
 		<if test="start!=null and offset!=null">
 				limit #{start},#{offset}
 		</if>
@@ -35,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 添加一条学生信息 -->
 	<insert id="addOneStudent" parameterType="Students" useGeneratedKeys="true" keyProperty="s_id">
-		insert into students(s_name,s_tel,s_direction,s_status) values(#{s_name},#{s_tel},#{s_direction},#{s_status})
+		insert into students(s_name,s_tel,s_direction,s_status,s_date) values(#{s_name},#{s_tel},#{s_direction},#{s_status},curdate())
 	</insert>
 	<!-- 删除一条学生信息 -->
 	<delete id="deleteOneStudent" parameterType="Students">
@@ -49,8 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				s_id = #{s_id} and
 			</if>
 			<if test="s_ids>0">
-				s_id int #{s_ids} and
+				s_id in #{s_ids} and
 			</if>
-			</trim>
+		</trim>
 	</update>
 </mapper>

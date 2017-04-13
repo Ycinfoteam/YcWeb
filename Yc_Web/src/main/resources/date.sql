@@ -83,7 +83,7 @@ create table datadictionary(
 	type varchar(40),
 	description varchar(5000)
 )
-
+select * from datadictionary
 insert into datadictionary(type,description) values ('title','首页')
 insert into datadictionary(type,description) values ('title','师资介绍')
 insert into datadictionary(type,description) values ('title','课程体系')

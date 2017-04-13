@@ -28,7 +28,6 @@
 	 limit ${start},${offset}
 	 </if>
  	</select>
-	
  	<!-- 添加-->
 	<insert id="insertProjects" parameterType="Projects" >
 	insert into projects(p_name,p_pic,p_developer,p_time,p_addr,p_status) values(#{p_name},#{p_pic},#{p_developer},#{p_time},#{p_addr},1);

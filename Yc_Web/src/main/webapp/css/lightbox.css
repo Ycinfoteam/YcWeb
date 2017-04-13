@@ -1,20 +1,17 @@
-/*body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h5,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+/*样式重置
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h5,
 */
+dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h5,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 table{border-collapse:collapse;border-spacing:0;}
 fieldset,img{border:0;}
 ol,ul{list-style:none;}
 /*h1,h2,h3,h4,h5,h6{font-size: 100%;font-weight: normal;}
-body{font:12px/1.5 'microsoft yahei',tahoma,arial,'Hiragino Sans GB',����,sans-serif;}
+body{font:12px/1.5 'microsoft yahei',tahoma,arial,'Hiragino Sans GB',宋体,sans-serif;}
 */
 .clearfix:after{visibility: hidden;display: block;font-size: 0;content: '';clear: both;height: 0;}
 .clearfix{zoom:1;}
-.text-ellipsis{white-space: nowrap;
-text-overflow: ellipsis;overflow: hidden;}
-.js-lightbox{
-	border:2px solid #dbdbdb;
-	margin-left:10px;
-	margin-top:5px;
-}
+.text-ellipsis{white-space: nowrap;/*设置不换行*/text-overflow: ellipsis;overflow: hidden;}
+/*lightbox图片画廊样式*/
 #G-lightbox-mask{
     position: fixed;
     left:0;
@@ -28,6 +25,7 @@ text-overflow: ellipsis;overflow: hidden;}
     display: none;
     background: url(icon/opacity.png) repeat left top;
 }
+/*hack技术解决IE6没有固定定位问题*/
 *html #G-lightbox-mask{
     position: absolute;
 }
@@ -48,7 +46,7 @@ text-overflow: ellipsis;overflow: hidden;}
     border:5px solid #fff;
     border-radius: 3px;
     overflow: hidden;
-    background: #fff url(icon/loading.gif) no-repeat center center;
+    background: #fff url(icon/loading.gif) no-repeat center center;/*等待图片*/
 }
 #G-lightbox-popup .lightbox-pic-view .lightbox-btn{
     position: absolute;
@@ -56,7 +54,7 @@ text-overflow: ellipsis;overflow: hidden;}
     width: 40%;
     height: 100%;
     z-index: 1;
-    background:url(icon/transparent.png)repeat left top;
+    background:url(icon/transparent.png)repeat left top;/*IE中如果没有背景或图片，则无法触发它上面的事件,所以加一个透明的背景*/
 }
 #G-lightbox-popup .lightbox-pic-view .lightbox-prev-btn{
     left:0;
@@ -88,7 +86,7 @@ text-overflow: ellipsis;overflow: hidden;}
     background: url(icon/opacity.png) repeat left top;
 }
 #G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area{
-    padding:5px 5px;
+    padding:10px 5px;
     color:#fff;
 }
 #G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area .lightbox-of-index{
@@ -101,7 +99,4 @@ text-overflow: ellipsis;overflow: hidden;}
     width:27px;
     height:27px;
     background: url(icon/close.png) no-repeat center center;
-}
-.lightbox-of-index{
-	font:12px/1.5 'microsoft yahei',tahoma,arial,'Hiragino Sans GB',����,sans-serif;
 }

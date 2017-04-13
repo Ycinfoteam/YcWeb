@@ -20,7 +20,6 @@ $('input[name="yanzhengma"]').click(function(){
 	});
 	$('#s_tel_msg').text('10分钟内有效').css("color","red");
 });
-
 function checkname(){
 	var s_name=$('#s_name').val();
 	var reg=/^[\u4E00-\u9FA5A]{1,8}$/;//用户名

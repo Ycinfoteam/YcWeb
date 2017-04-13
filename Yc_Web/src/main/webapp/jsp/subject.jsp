@@ -85,8 +85,8 @@
 $(function(){
     var lightbox=new LightBox({
         speed:'fast',
-        maxWidth:900,
-        maxHeight:900
+        maxWidth:1200,
+        maxHeight:1200
 
     });
 })
@@ -103,7 +103,7 @@ function showCoursys(data){
 			cs_pic=cs_pic.substring(22);
 			var cs_head=data[i].cs_head.replace(",","");
 			cs_head=cs_head.substring(22);
-		$('#cs').prepend('<li style="width:210px; height:210px;"><span>'+data[i].cs_name+'</span><img src="../'+cs_head+'" class="js-lightbox" data-role="lightbox"   data-group="group'+i+'" data-source="../'+cs_pic+'" data-id="'+i+'" data-caption="'+data[i].cs_name+'" width="160" height="160" style="border-width: 0px;"/></li>');
+		$('#cs').prepend('<li style="width:210px; height:210px;"><span>'+data[i].cs_name+'</span><img src="../'+cs_head+'" class="js-lightbox" data-role="lightbox"   data-group="group'+i+'" data-source="../'+cs_pic+'" data-id="'+i+'" data-caption="'+data[i].cs_text+'" width="160" height="160" style="border-width: 0px;"/></li>');
 		}
 }
 </script>

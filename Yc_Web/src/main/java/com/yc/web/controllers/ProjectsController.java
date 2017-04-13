@@ -58,6 +58,7 @@ public class ProjectsController {
 		model.setTotal(total);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
+		//log日志配置
 		MDC.put("explain" , "查询了学员项目");
 		MDC.put("mchIp",new GetIp().getRemortIP(request) );
 		MDC.put("mchName",session.getAttribute("user"));
@@ -93,6 +94,7 @@ public class ProjectsController {
 				logger.info("Updateprojectpic called.....");
 
 			} catch (Exception e) {
+				e.printStackTrace();
 				response.getWriter().print(0);	
 			}
 			//response.getWriter().print("{\"success\": true}");	
@@ -125,6 +127,7 @@ public class ProjectsController {
 			projectsBiz.add(projects);
 			logger.info("addprojects called....");
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;		
 		}
 		return 1;
@@ -155,11 +158,13 @@ public class ProjectsController {
 		MDC.put("mchIp",new GetIp().getRemortIP(request));
 		return "redirect:/projects";
 		}
-	
+	//前台
 	@RequestMapping(value="/topreprojects",produces="text/html;charset=UTF-8")
 	public @ResponseBody void topreprojects(HttpServletResponse response,HttpServletRequest request) throws IOException{
 		Projects projects=new Projects();
 		projects.setP_status(1);
+		projects.setStart(0);
+		projects.setOffset(10);
 		List<Projects>project=this.projectsBiz.findall(projects);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");

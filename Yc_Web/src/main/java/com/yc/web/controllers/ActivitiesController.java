@@ -87,9 +87,12 @@ public class ActivitiesController {
 		try {
 			activitiesBiz.add(activities);;
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
 		}
-		response.getWriter().print(1);
+		
+			response.getWriter().print(1);
+		
 	}
 
 	//修改学员项目
@@ -100,6 +103,7 @@ public class ActivitiesController {
 		try {
 			this.activitiesBiz.update(activities);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
 		}
 		response.getWriter().print(1);
@@ -128,10 +132,9 @@ public class ActivitiesController {
 		try {
 			this.activitiesBiz.update(activities);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
-
 		}
-
 		response.getWriter().print(1);		
 		}
 	

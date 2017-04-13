@@ -167,7 +167,8 @@ public class IndexController {
 		return "backjsp/sys/logs/log";
 	}
 
-	// 查看日志
+	// 查看日志 不用了
+	
 	@RequestMapping(value = "/admin/tologs", produces = { "application/json;charset=UTF-8" })
 	public void tologs(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
@@ -213,6 +214,7 @@ public class IndexController {
 			out.close();
 			out.flush();
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getOutputStream().print(0);
 		}
 	}
@@ -244,6 +246,7 @@ public class IndexController {
 			System.out.println("数据已导出到文件" + filepath + "中");
 			response.getOutputStream().print(1);
 		} catch (IOException e) {
+			e.printStackTrace();
 			response.getOutputStream().print(0);
 		}
 	}
@@ -282,7 +285,7 @@ public class IndexController {
 	}
 
 
-	// 去备份还原文件
+	// 去备份还原文件  思想错误
 	@RequestMapping(value = "/admin/tofile")
 	public String tofile() {
 		return "backjsp/backupandload/file/file";
@@ -300,15 +303,6 @@ public class IndexController {
 		String templateFile = p.getProperty("log4j.appender.file.File");
 		String name = templateFile.substring(25);
 		String logsBasePath=name.split("/")[0];
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
-		System.out.println("我在这里哦q"+System.getProperty("/logs"));
-		System.out.println("我在这里哦"+request.getServletContext().getRealPath("/"+logsBasePath));
-		System.out.println("我在这里哦e"+request.getSession().getServletContext().getRealPath("/uploadpic"));
 		String paths = Class.forName(this.getClass().getName()).getResource("/").getPath();
 		int index = Integer.parseInt(
 				"" + Class.forName(this.getClass().getName()).getResource("/").getPath().indexOf("webapps")) + 7;
@@ -344,12 +338,13 @@ public class IndexController {
 				 fileChannelCopy(srcFile, backUpFile);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getOutputStream().print(0);
 			System.out.println("备份文件失败");
 		}}
 		response.getOutputStream().print(1);
 	}
-	//去备份图片文件
+	//去备份图片文件  思想错误
 	@RequestMapping(value = "/admin/backuppic")
 	public void backpic(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
@@ -395,6 +390,7 @@ public class IndexController {
 				 fileChannelCopy(filelists, backUpfile);
 			}
     	} catch (Exception e) {
+			e.printStackTrace();
 			response.getOutputStream().print(0);
 			System.out.println("备份文件失败");
 		}}
@@ -445,6 +441,7 @@ public class IndexController {
 						 fileChannelCopy(srcFile, backUpFile);
 					}
 				 } catch (Exception e) {
+						e.printStackTrace();
 						response.getOutputStream().print(0);
 						System.out.println("还原文件失败");
 					}
@@ -476,12 +473,14 @@ public class IndexController {
 
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getOutputStream().print(0);
 			System.out.println("还原文件失败");
 		}}
 		response.getOutputStream().print(1);
 	}
 	}
+	// 思想错误
 	@RequestMapping(value = "/admin/loadpic")
 	public void loadpic(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
@@ -534,6 +533,7 @@ public class IndexController {
 									 fileChannelCopy(srcFile, backUpFile);
 								}
 							} catch (Exception e) {
+								e.printStackTrace();
 								response.getOutputStream().print(0);
 								System.out.println("还原文件失败");
 							}
@@ -575,6 +575,7 @@ public class IndexController {
 							 fileChannelCopy(filelists, backUpfile);
 						}
 			    	} catch (Exception e) {
+						e.printStackTrace();
 						response.getOutputStream().print(0);
 						System.out.println("还原文件失败");
 					}}

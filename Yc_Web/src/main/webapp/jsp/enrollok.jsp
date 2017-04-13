@@ -39,8 +39,8 @@
         </div>
         <ul id="nav">
             <!-- .html后缀是分发器 -->
-			<li class="li1"><a href="index.html">${title[0]}</a></li><h1 class="h1"></h1>
-			<li class="li2"><a href="teacher.html">${title[1] }</a></li>
+			<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
+			<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
 			<li class="li3"><a href="subject.html">${title[2] }</a></li>
 			<li class="li4"><a href="studentProject.html">${title[3] }</a></li>
 			<li class="li5"><a href="findWork.html">${title[4] }</a></li>
@@ -55,40 +55,10 @@
             <div class="main_L_d">
                 <p class="teacher_title">衡阳源辰IT培训学校 > 学生报名</p>
                 <div class="studentEnroll_info">
-                <form id="addstu" action="stu_add.html" method="post" onSubmit="return rex()" style="margin-left:20px;">
-                	<ul>
-                		<li style="list-style-type:none">
-                			<label style="width:50px">姓名：</label>
-                			<input id="s_name" name="s_name" type="text"rule="required" required  onBlur="checkname()"/>
-                			<span id="s_name_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>报名意向：</label>
-                			<select id="s_direction" name="s_direction" >
-                				<c:forEach items="${ openClsinfo}" var="clsinfo">
-	                				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
-                				</c:forEach>
-                			</select>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>手机号码：</label>
-                			<input id="s_tel" name="s_tel" type="text" rule="required" required onBlur="checkphone()"/>
-                			<span id="s_tel_msg1"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			<label>短信验证码：</label>
-                			<input id="yzm"  type="text" name="yzm" tips="请输入获取的验证码" rule="required" required onBlur="checkyzm()"/>
-                			<input type="button" name="yanzhengma" value="发送验证码"/>
-                			<span id="s_tel_msg"></span>
-                		</li>
-                		<li style="list-style-type:none">
-                			 <label id="successmsg" class="labelbox"></label>
-                		</li>
-                		<li style="list-style-type:none">
-                			<input id="button" type="submit" value="确认报名"/>
-                		</li>
-                	</ul>
-                </form>
+					<h3 style="color:red;text-align: center">恭喜你，报名成功！</h3>
+					<span class="txt" style="text-align: center">
+                     		   30个工作日内，请注意查收开班通知短信！
+                    </span>
                 </div>
             </div>      
         </div>

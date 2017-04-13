@@ -288,14 +288,11 @@
 	function preppic(file){
 		var objUrl = getObjectURL(file.files[0]) ;
 		document.getElementById("addppicview").style.display='block';
-		//console.log("objUrl = "+objUrl) ;
 		if (objUrl) {
 			$("#addppicview").attr("src", objUrl) ;
 		}
 	}
-		
 	
-
 	$("#p_pic").change(function(){
 		var objUrl = getObjectURL(this.files[0]) ;
 		document.getElementById("updateppicview").style.display='block';
@@ -336,6 +333,7 @@
 			$("#honorfm").submit();
 		
 	}
+	//form 表单提交
 	$("#honorfm").form({
 		url:"projects_add",
 		success:function(data){
@@ -397,13 +395,10 @@
 		$("#picfm").submit();
 	}
 	
-	
      //改变P_time
 	$('input[name="p_time"]').datebox({
 		required : true
 	});
-	
-	
 	
 	//自定义表单验证规则
 	$.extend($.fn.validatebox.defaults.rules, {   

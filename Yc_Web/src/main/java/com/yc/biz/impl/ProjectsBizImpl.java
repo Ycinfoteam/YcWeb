@@ -22,7 +22,6 @@ public class ProjectsBizImpl implements ProjectsBiz {
 		List<Projects>list=this.baseDao.findAll(projects, "selectProjects");
 		return list;
 	}
-
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public void add(Projects projects) {
