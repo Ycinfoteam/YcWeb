@@ -19,12 +19,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/newcomputer.css">
 	<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1024px)" href="css/pad.css">
-	<link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">
-	<!--[if gte IE 8]> 
-		<link rel="stylesheet" href="css/styleforie.css">
-	<![endif]--> 
+	<link rel="stylesheet" media="screen and (max-width: 768px)" href="css/phone.css">	
+	
 </head>
 <body>
+
+		</div>
 	<div id="header">
 		<div id="logo" class="site-logo">
 			<div>
@@ -42,6 +42,8 @@
 			<li class="li6"><a href="about.html">${title[5] }</a></li>
 			<li class="li7"><a href="company.html">${title[6] }</a></li>
 		</ul>
+		
+		
 	</div>
 	<div id="banner">
 		<div id="banner_content">

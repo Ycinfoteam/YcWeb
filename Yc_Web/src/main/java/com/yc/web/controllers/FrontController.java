@@ -17,13 +17,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.bean.Activities;
 import com.yc.bean.Coursys;
 import com.yc.bean.DataDictionary;
 import com.yc.bean.Employ;
-import com.yc.bean.Jobdetails;
 import com.yc.bean.News;
 import com.yc.bean.OpenClass;
 import com.yc.bean.Students;
@@ -370,17 +368,16 @@ public class FrontController {
 	
 	//前端界面右下角新闻模块
 	public List<News> findNews(){	
-		List<News> newsList=findAllNews();
-		for(News news:newsList){
+		News n =new News();
+		n.setStart(0);
+		n.setOffset(8);
+		List<News> list=this.newBiz.selectAllNews(n);	//查询最新的
+		for(News news:list){
 			if(news.getN_title().length()>10){
 				String temp=news.getN_title().substring(0,8);
 				String title=temp+"...";
 				news.setN_title(title);
 			}
-		}
-		List<News> list=new ArrayList<News>();
-		for(int i=0;i<8;i++){		//只显示最新的八条新闻
-			list.add(newsList.get(i));
 		}
 		return list;
 	}

@@ -98,7 +98,7 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.2.RELEASE</version>
 		</dependency>
-
+ 
 		<!-- 解析文件上传的Http协议，spring MVC利用fileupload组件解析完数据后， 将上传的文件存到一个Multipartfile对象中 -->
 		<!-- 百度富文本编辑器所需jar包 -->
 		<dependency>
@@ -178,7 +178,7 @@
 			<artifactId>itext-rups</artifactId>
 			<version>2.1.7</version>
     	</dependency>
-    	<dependency>
+    	<dependency> 
     	<groupId>pdf</groupId>
 			<artifactId>itext-rtf</artifactId>
 			<version>2.1.7</version>

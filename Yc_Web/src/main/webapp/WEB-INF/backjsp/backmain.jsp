@@ -119,7 +119,7 @@ $(document).ready(
 				children : [ {
 					text : "管理员操作",
 					attributes : {
-						url : "toadmin"
+						url : "admin/toadmin"
 					}
 				}/* , {
 					text : "日志管理",
@@ -134,17 +134,17 @@ $(document).ready(
 				children : [ {
 					text : "公司简介",
 					attributes : {
-						url : "toDataDictionaryCompany"
+						url : "admin/toDataDictionaryCompany"
 					}
 				},{
 					text : "页脚文字",
 					attributes : {
-						url : "toDataDictionaryFooter"
+						url : "admin/toDataDictionaryFooter"
 					}
 				},{
 					text : "公司logo",
 					attributes : {
-						url : "toDataDictionaryLogo"
+						url : "admin/toDataDictionaryLogo"
 					}
 				}] 
 			} ];
@@ -154,102 +154,88 @@ $(document).ready(
 				children : [ {
 					text : "课程体系",
 					attributes : {
-						url : "tocoursys"
+						url : "admin/tocoursys"
 					}
 				} ,{
 					text : "开班信息管理",
 					attributes : {
-						url : "toopenclass"
+						url : "admin/toopenclass"
 					}
 				},{
 					text : "教师管理",
 					attributes : {
-					url : "toteachers"
+					url : "admin/toteachers"
 					}
 				},{
 					text : "学员报名",
 					attributes : {
-						url : "tostudents"
+						url : "admin/tostudents"
 					}
 				},{
 					text : "学员项目",
 					attributes : {
-						url : "toprojects"
+						url : "admin/toprojects"
 					}
 				},{text : "学员就业",
 				attributes : {
-					url : "tojobdetails"
+					url : "admin/tojobdetails"
 				}
 			}
 				,{
 					text : "公司活动介绍",
 					attributes : {
-						url : "toactivities"
+						url : "admin/toactivities"
 					}
 				},{
 					text : "公司历史介绍",
 					attributes : {
-						url : "tohistory"
+						url : "admin/tohistory"
 					}
 				} ,{
 					text : "公司新闻",
 					attributes : {
-						url : "tocompanynews"
+						url : "admin/tocompanynews"
 					}
 				} ,{
 					text : "方向信息",
 					attributes : {
-						url : "tojobtype"
+						url : "admin/tojobtype"
 					}
 				},{
 					text : "招聘信息",
 					attributes : {
-						url : "tojob"
+						url : "admin/tojob"
 					}
 				},{
 					text : "应聘信息",
 					attributes : {
-						url : "toapply"
+						url : "admin/toapply"
 					}
 				},{
 					text : "行政人员信息",
 					attributes : {
-						url : "toadministrator"
+						url : "admin/toadministrator"
 					}
 				}]
 			} ];
-			
-			
-			 var treeData9 = [ {  /*  7.26去掉留言模块 */
-				text : "留言管理",
-				attributes : {
-					url : "yyyback/message/message.jsp"
-				}
-			} ]; 
-			/*  var treeData9 = [ {
-				text : "浏览统计",
-				attributes : {
-					url : "yyyback/count/view.jsp"
-				}
-			} ];  */
 			var treeData11 = [ {
 				text : "查看日志",
 				attributes : {
-					url : "tolog"
+					url : "admin/tolog"
 				}
 			} ];
-			//css
+
 			var treeData10 = [ {
 				text : "备份与还原",
 				children : [ {
 					text : "数据库备份或还原",
 					attributes : {
-						url : "tobackupdatabase"
+						url : "admin/tobackupdatabase"
 					}
 				}, {
 					text : "文件备份或还原",
 					attributes : {
-						url : "tofile"
+						url : "admin/tofile"
 					}
 				}]
 				

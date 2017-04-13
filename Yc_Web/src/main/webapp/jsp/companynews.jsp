@@ -59,11 +59,10 @@
             <div class="main_L_d">
                 <p class="teacher_title">衡阳源辰IT培训学校 > 源辰新闻</p>
                 <div class="ycnews">
-	                <h3>源辰新闻</h3>
-	                <table>
+	                <table style="padding-left:20px; margin-top:20px;">
 		                <c:forEach items="${newsList}" var="news">
 		                	<tr>
-		                		<td style="width:500px;">
+		                		<td style="width:480px;">
 			                		<li><a href="news.html?n_id=${news.n_id}">${news.n_title}</a></li>
 		                		</td>
 		                		<td style="width:100px;">

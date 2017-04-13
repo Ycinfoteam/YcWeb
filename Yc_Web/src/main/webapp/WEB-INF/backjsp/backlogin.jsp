@@ -151,7 +151,7 @@ h3{
 			},
 			success:function(data){
 				 if(data==1){
-					 window.location.href="tobackmain";
+					 window.location.href="admin/tobackmain";
 				}else if(data==0){
 					$('.error').append('用户名或密码错误，请检查后重新登录。');
 					$('input[name="a_pwd"]').click(function(){
