@@ -39,8 +39,8 @@
             <h3>yuan chen info tech</h3>
         </div>
     </div>
-    <ul id="nav">
-        <!-- .html后缀是分发器 -->
+       <ul id="nav">
+      	<!-- .html后缀是分发器 -->
 		<li class="li1"><a href="index.html" target="_blank" >${title[0]}</a></li><h1 class="h1"></h1>
 		<li class="li2"><a href="teacher.html" target="_blank">${title[1] }</a></li>
 		<li class="li3"><a href="subject.html">${title[2] }</a></li>
@@ -53,7 +53,7 @@
 
 <div class="kctx" style="margin-left: 180px;">
     <div class="kctx_title" >
-        衡阳源辰IT培训学校 > 学员项目
+     &nbsp;&nbsp;   衡阳源辰IT培训学校 > 学员项目
     </div>
     <div id="project">
     <ul class="pro"></ul>
@@ -61,7 +61,7 @@
     </div>
 <div id="footer">
     <div class="address">
-        <p>
+         <p>
 			<span>${footer[0] }</span>
 			<span>${footer[1] }</span>
 			<span>${footer[2] }</span>
@@ -83,7 +83,8 @@ function showProjects(data){
 		var p_pic=data[i].p_pic.replace(",","");
 		p_pic=p_pic.substring(22); 
 		//$('#projects').prepend('<a id="lii"><img id="pic" class="lazyloads" height="300" width="350" src="../'+p_pic+'"visibility="hidden""></a>');
-	$('ul.pro').prepend('<li><img src="../'+p_pic+'" data-original="../'+p_pic+'" alt="'+data[i].p_name+'"/></li>');
+	$('ul.pro').prepend('<ul><li><img src="../'+p_pic+'" data-original="../'+p_pic+'" alt="'+data[i].p_name+'"/></li></ul>');
+		
 	}
 }
 

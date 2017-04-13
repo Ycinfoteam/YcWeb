@@ -3,10 +3,12 @@ package com.yc.web.controllers;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.Admin;
 import com.yc.biz.AdminBiz;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 
@@ -32,11 +35,14 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="/findAdmin",produces ="text/html;charset=UTF-8")
-	public @ResponseBody String findAdmin(@ModelAttribute Admin admin,HttpServletResponse response,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows){
-		log.info("findAdmin called...");
+	public @ResponseBody String findAdmin(@ModelAttribute Admin admin,HttpServletRequest request,HttpServletResponse response,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="rows",required=false) Integer rows, HttpSession session){
 		admin.setStart(PageUtil.judgeStart(page, rows));
 		admin.setOffset(PageUtil.judgeOffset(rows));
 		List<Admin> list=this.adminBiz.findAdmin(admin);
+		MDC.put("explain" , "查看管理员");
+		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
+		log.info("findAdmin called...");
 		int total=this.adminBiz.findCount(admin);
 		JsonModel model =new JsonModel();
 		model.setRows(list);

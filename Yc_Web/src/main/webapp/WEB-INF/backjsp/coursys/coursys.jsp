@@ -29,8 +29,16 @@
 		<img id="addpreview2" style="width:100px;height:100px;"/>
 		</div>
 		<div>
+<<<<<<< HEAD
 		<label>课程说明：</label>
 		<input id="cs_text" class="easyui-textbox" name="cs_text" required="true" style="width:300px;height:150px"/>
+=======
+		<label>文字说明：</label>
+		<input id="cs_text" name="cs_text" class="easyui-combobox" required="true" style="width:200px"  validType="teacherRex" data-options="   
+        valueField: 't_name',   
+        textField: 't_name',   
+        url:'findTeachers'"/>
+>>>>>>> 64a9e570483c7e1e61df7231fe6776c0ee501fa8
 		</div>
 	</form>
 </div>
@@ -151,7 +159,7 @@ $('#coursysinfo').edatagrid({
 		},
       	 {
 			field : 'cs_text',
-			title : '课程说明',
+			title : '文字说明',
 			align:'center',
 			width : 100
 		}, {

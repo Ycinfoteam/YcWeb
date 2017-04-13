@@ -61,6 +61,11 @@ public class Students implements Serializable {
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
 	}
+	
+	public String getS_tel() {
+		return s_tel;
+	}
+
 	public void setS_tel(String s_tel) {
 		this.s_tel = s_tel;
 	}

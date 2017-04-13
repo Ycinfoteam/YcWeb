@@ -93,6 +93,7 @@ public class JobdetailsController {
 			MDC.put("mchIp",new GetIp().getRemortIP(request) );
 			logger.info("selectjobdetails called...");
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);
 
 		}
@@ -130,6 +131,7 @@ public class JobdetailsController {
 			MDC.put("mchIp",new GetIp().getRemortIP(request) );
 			logger.info("addjobdetails called....");
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);
 		}
 		response.getWriter().print(1);
@@ -162,11 +164,15 @@ public class JobdetailsController {
 		return "redirect:/jobdetails";
 	}
 	
-	
+	//前台查询
 	@RequestMapping(value="/toprejobdetails",produces="text/html;charset=UTF-8")
 	public @ResponseBody void toprejobdetails(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		Jobdetails jobdetails=new Jobdetails();
+		jobdetails.setJd_status(1);
+		jobdetails.setStart(0);
+		jobdetails.setOffset(10);
 		List<Jobdetails>jobdetail=this.jobdetailsBiz.findall(jobdetails);
+		System.out.println(jobdetail);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
 		MDC.put("explain" , "查询了官网就业详情");

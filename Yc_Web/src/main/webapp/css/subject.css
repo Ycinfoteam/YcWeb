@@ -1,11 +1,15 @@
 
 .kctx{
     width:1000px;
-    height:1000px;
     border: 1px solid #dadada;
     border-top: 4px solid #03447C;
     margin-top: 11px;
     background:white;
+    height: 1200px;;
+}
+#cs{
+	float:left;
+	color:#B7B7B7;
 }
 
 .kctx_title{

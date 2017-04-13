@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+         <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <script src="backjs/jquery.edatagrid.js"></script>
 <script src="backjs/jquery.form.js"></script>
@@ -68,6 +68,39 @@ width:50%
 		</tr>
 	</table>
 </div>
+<table id="studentinfo"></table>
+ <div id="tb" style="padding:5px"> 
+        <div style="margin-bottom:5px"> 
+        <label>开班课程：
+        	<input id="cc1" class="easyui-combobox" data-options="   
+	        valueField: 'oc_id',   
+	        textField: 'oc_name',   
+	        url: 'findopenCls',   
+	        onSelect: function(rec){   
+	            $('#oc_time').datebox('setValue', rec.oc_time);	 
+	        }" />  </label>
+			<!-- <input id="cc2" class="easyui-combobox" data-options="valueField:'id',textField:'text'" />   -->
+        	<label>开班时间：<input id="oc_time" name="oc_time" class="easyui-datebox"  editable:false  style="width:150px"
+				required="true" validType="dateRex"></label>
+        	<label>开班地点：<input id="address" class="easyui-textbox" style="width:150px" required="true"/></label> 
+            <a id="sendclsinfo" onclick="sendclsinfo()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">发送开班信息</a>  
+            <br/><label>根据学生报名意向查询：
+				<input id="stu_direction" name="stu_direction" class="easyui-combobox" style="width:200px" editable:false  data-options="   
+        		valueField: 'j_name',   
+       			textField: 'j_name',   
+        		url:'showJobType'"/>
+			</label>  
+			<label>是否已发送开班信息：
+	            <select id="status" class="easyui-combobox" panelHeight="auto" style="width:100px">  
+	                <option value="-1">请选择</option>  
+	                <option value="1">已发送开班信息</option>  
+	                <option value="0">未发送开班信息</option>  
+	            </select>  
+			</label> 
+            <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchEnroll()">查询</a>  
+       	  <a id="loadpdf" onclick="loadpdf()" class="easyui-linkbutton" iconCls="icon-save" plain="true">导出pdf文件</a>
+        </div>
+</div>  
 <script type="text/javascript">
 	//强制要求开班日期只能是当前日期之后的30个工作日
 	$('#oc_time').datebox().datebox('calendar').calendar(
@@ -105,11 +138,11 @@ width:50%
 			striped : true,//设置为true将交替显示行背景
 			singleSelect : false,
 			columns : [ [ {
-				field : 'ck',
-				title : '全选',
-				width : 10,
-				align : 'center',
-				checkbox : true
+				field:'ck',
+				checkbox:true,
+				formatter:function(value,row,index){				
+						return row;
+				}
 			}, {
 				field : 's_id',
 				title : '学生报名编号',
@@ -231,10 +264,7 @@ width:50%
 				}
 			});
 		}
-	}
-	function deletethestu(){
-		$('#studentinfo').edatagrid('destroyRow');
-	}
+}
 	//发送开班信息
 	function sendclsinfo() {
 		var oc_time = $('#oc_time').datebox("getValue");
@@ -288,7 +318,6 @@ width:50%
 			});
 		}
 	}
-
 	//自定义表单验证规则
 	$.extend($.fn.textbox.defaults.rules, {
 		//验证非特殊符号
@@ -299,4 +328,41 @@ width:50%
 			message : '不能输入非法字符，如@'
 		},
 	});
+//导出为pdf文件
+	function loadpdf() {
+			var planids = new Array();
+			var names = new Array();
+			var tels = new Array();
+			var classess = new Array();
+			var date = new Array();
+			var rows = $('#studentinfo').datagrid('getSelections');
+			for (var i = 0; i < rows.length; i++) {
+				planids.push(rows[i].s_id);
+				names.push(rows[i].s_name);
+				tels.push(rows[i].s_tel);
+				classess.push(rows[i].s_direction);
+				date.push(rows[i].s_date);
+			}
+			$.ajax({
+				cache : false,
+				type : "post",
+				dataType : "json",
+				url : "loadpdf",
+				data : {
+					planids : planids,
+					names : names,
+					tels : tels,
+					classess : classess,
+					date : date,
+				},
+				success : function(data) {
+					if (data == 1) {
+						$.message.alert("提示", "发送成功");
+					} else {
+						$.message.alert("提示", "发送失败");
+					}
+				}
+			});
+		}
+	
 </script>

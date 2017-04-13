@@ -7,11 +7,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.yc.bean.Teachers;
 import com.yc.biz.TeachersBiz;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 import com.yc.utils.UploadFileUtil;
@@ -41,15 +45,18 @@ public class TeachersController {
 	public @ResponseBody String selectAllTeachers(@ModelAttribute Teachers teachers,
 			@RequestParam(value="page",required=false) Integer page,
 			@RequestParam(value="rows",required=false) Integer rows,
-			Model model,HttpServletResponse resp) throws IOException {
+			Model model,HttpServletResponse resp, HttpServletRequest request, HttpSession session) throws IOException {
 		resp.setContentType("application/text;charset=utf-8 ");
-		logger.info("select all teacher......");
 		//处理分页
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
 		teachers.setStart(start);
 		teachers.setOffset(offset);
 		List<Teachers> teachersList=this.teachersBiz.selectAllTeachers(teachers);
+		MDC.put("explain" , "查找所有教师");
+		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
+		logger.info("select all teacher......");
 		int total =this.teachersBiz.selectCountAll();//查询所有的记录总数，用于分页显示
 		JsonModel jsonModel=new JsonModel();
 		jsonModel.setRows(teachersList);

@@ -1,3 +1,0 @@
-2017-03-04 14:56:34  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15e0163: startup date [Sat Mar 04 14:56:34 CST 2017]; root of context hierarchy
-2017-03-04 14:56:34  [ main:42 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
-2017-03-04 14:56:34  [ main:531 ] - [ INFO ]  Loading properties file from URL [file:/D:/gitwork/YcWeb/Yc_Web/target/classes/db.properties]

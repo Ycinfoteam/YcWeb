@@ -65,7 +65,6 @@
                 		<li style="list-style-type:none">
                 			<label>报名意向：</label>
                 			<select id="s_direction" name="s_direction" >
-                				<option value="${oc_name}" selected="selected">${oc_name}</option>
                 				<c:forEach items="${ openClsinfo}" var="clsinfo">
 	                				<option value="${clsinfo.oc_name}">${clsinfo.oc_name}</option>
                 				</c:forEach>

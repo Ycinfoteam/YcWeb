@@ -80,22 +80,21 @@
 			<label>
 				就业地址:
 			</label>
-			<input name="jd_palace" class="easyui-textbox" required="true" validType=""></input>
+			<input name="jd_palace" class="easyui-textbox" required="true" validType="nameRex"></input>
 		</div>
 			<div class="fitem">
 			<label>
 				所在公司:
 			</label>
-			<input name="jd_company" class="easyui-textbox" required="true" validType=""></input>
+			<input name="jd_company" class="easyui-textbox" required="true" validType="nameRex"></input>
 		</div>
 		
 		<div class="fitem">
 			<label>
 				毕业学校:
 			</label>
-			<input name="jd_school" class="easyui-textbox" required="true" validType=""></input>
+			<input name="jd_school" class="easyui-textbox" required="true" validType="nameRex"></input>
 		</div>
-		
 		<div class="fitem">
 			<label>
 				专业:
@@ -279,12 +278,40 @@
 	      	 	}},
      				 {
                    	 	field:'cx',
-                   	 	title:'操作',
+                   	 	title:'图片操作',
                    	 	width:100,
                    	 	align:'center',
                    	 formatter : function(value, row, index) {
                    		return '<a href="javascript:updatepic('+row.jd_id+')">修改图片</a>';
-         				}},
+         				}}, {
+							field : 'jd_status',
+							title : '是否显示',
+							width : 50,
+							align : 'center',
+							editor : {
+								type : 'combobox',
+								options : {
+									required:true,
+									data : [ {
+										text : '显示',
+										value : '1'
+									}, {
+										text : '不显示',
+										value : '0'
+									} ]
+								}
+							},
+							formatter : function(value, rowData, index) { //value：当前列的值、rowData当前行的值、rowIndex：当前行的索引
+								//必须返回一个字符串、用于替换被加formatter的单元格。
+								if (value == 0) {
+									return '不显示';
+								}
+								if (value == 1) {
+									return '显示';
+								}
+							}
+						} ,
+						
            	
            	 ]],
            	 

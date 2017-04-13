@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,7 +45,7 @@ public class ProjectsController {
 	//查看所有学员项目
 	// produces = {"application/json;charset=UTF-8"} 设置http协议响应头，解决编码问题
 	@RequestMapping(value="/projects",produces = {"application/json;charset=UTF-8"})
-	public void toprojects(@ModelAttribute Projects projects,HttpServletResponse response,HttpServletRequest request,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
+	public void toprojects(@ModelAttribute Projects projects,HttpServletResponse response,HttpServletRequest request,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows,HttpSession session) throws IOException{
 		//处理分页
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
@@ -57,8 +58,10 @@ public class ProjectsController {
 		model.setTotal(total);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");
+		//log日志配置
 		MDC.put("explain" , "查询了学员项目");
 		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
 		logger.info("selectprojects called...");
 		response.getWriter().print(gson.toJson(model));
 	}
@@ -66,7 +69,7 @@ public class ProjectsController {
 	//根据p_id 修改图片
 	//修改学员项目
 		@RequestMapping(value="/updatepropic",produces = {"application/json;charset=UTF-8"})
-		public void editpic(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response) throws IOException{
+		public void editpic(@RequestParam(value="p_pic")List<MultipartFile> file,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
 			Properties p=PropertiesUtil.readProperties("file.properties");
 			String picRootName=p.getProperty("picRootName");
 			String p_pic="";
@@ -77,7 +80,6 @@ public class ProjectsController {
 			projects.setP_picUrl(file);
 			String id=request.getParameter("p_id");
 			projects.setP_id(Integer.parseInt(id));
-			
 						Map<String,UploadFile> map=UploadFileUtil.uploadFile(request, projects.getP_picUrl(), picRootName);
 			for(Entry<String,UploadFile> entry:map.entrySet()){
 				UploadFile uploadFile=entry.getValue();
@@ -88,9 +90,11 @@ public class ProjectsController {
 				this.projectsBiz.update(projects);
 				MDC.put("explain" , "修改了学员中编号为"+id+"的图片");
 				MDC.put("mchIp",new GetIp().getRemortIP(request) );
+				MDC.put("mchName",session.getAttribute("user"));
 				logger.info("Updateprojectpic called.....");
 
 			} catch (Exception e) {
+				e.printStackTrace();
 				response.getWriter().print(0);	
 			}
 			//response.getWriter().print("{\"success\": true}");	
@@ -121,10 +125,9 @@ public class ProjectsController {
 		projects.setP_pic(p_pic);
 		try {
 			projectsBiz.add(projects);
-			MDC.put("explain" , "添加学员项目"+projects.getP_name());
-			MDC.put("mchIp",new GetIp().getRemortIP(request) );
 			logger.info("addprojects called....");
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;		
 		}
 		return 1;
@@ -155,10 +158,13 @@ public class ProjectsController {
 		MDC.put("mchIp",new GetIp().getRemortIP(request));
 		return "redirect:/projects";
 		}
-	
+	//前台
 	@RequestMapping(value="/topreprojects",produces="text/html;charset=UTF-8")
 	public @ResponseBody void topreprojects(HttpServletResponse response,HttpServletRequest request) throws IOException{
 		Projects projects=new Projects();
+		projects.setP_status(1);
+		projects.setStart(0);
+		projects.setOffset(10);
 		List<Projects>project=this.projectsBiz.findall(projects);
 		Gson gson=new Gson();
 		response.setContentType("text/html; charset=utf-8");

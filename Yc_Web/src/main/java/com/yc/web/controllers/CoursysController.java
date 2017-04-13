@@ -7,11 +7,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.yc.bean.Coursys;
 import com.yc.biz.CoursysBiz;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 import com.yc.utils.UploadFileUtil;
@@ -35,21 +39,26 @@ public class CoursysController {
 	public void setCoursysBiz(CoursysBiz coursysBiz) {
 		this.coursysBiz = coursysBiz;
 	}
-	/*************************后台操作*****************************/
+	/*************************后台操作
+	 * @param request 
+	 * @param session *****************************/
 	//查询所有的课程体系信息
 	@RequestMapping(value="/coursys_selectAll",produces ="text/html;charset=UTF-8")
 	public @ResponseBody String selectAllCoursys(@ModelAttribute Coursys csys,
 			@RequestParam(value="page",required=false) Integer page,
 			@RequestParam(value="rows",required=false) Integer rows,
-			HttpServletResponse resp) throws IOException {
+			HttpServletResponse resp, HttpServletRequest request, HttpSession session) throws IOException {
 		resp.setContentType("application/text;charset=utf-8 ");
-		logger.info("select all coursys......");
 		//处理分页
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
 		csys.setStart(start);
 		csys.setOffset(offset);
 		List<Coursys> coursysList=this.coursysBiz.selectAllCoursys(csys);
+		MDC.put("explain" , "查找所有招聘");
+		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
+		logger.info("select all coursys......");
 		int total =this.coursysBiz.selectCountAll();//查询所有的记录总数，用于分页显示
 		JsonModel model=new JsonModel();
 		model.setRows(coursysList);

@@ -3,8 +3,10 @@ create table admin(
 	a_id integer primary key auto_increment,
 	a_name varchar(100),
 	a_pwd varchar(100)
+
 )
 insert into admin(a_name,a_pwd) values('admin','a');
+select * from admin
 --角色表
 create table roles(
 	r_id integer primary key auto_increment,
@@ -136,12 +138,14 @@ create table technology(
 	te_title varchar(300)        --标题
 )
 
---学生报名表
+--学生报名表  --姓名 --电话  --意向方向
 create table students(
 	s_id integer primary key auto_increment,
-	s_name varchar(300),       --姓名
-	s_tel varchar(20),			   --电话
-	s_direction varchar(500)   --意向方向
+	s_name varchar(300),      
+	s_tel integer,			   
+	s_direction varchar(500),  
+	s_status integer,
+	s_date datetime  --学员报名的时间
 )
 alter table students modify column s_tel varchar(20);
 alter table students add s_date datetime

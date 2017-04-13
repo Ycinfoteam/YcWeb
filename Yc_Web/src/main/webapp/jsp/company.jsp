@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>源辰信息科技官网</title>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="max-age=7200" />
+        <meta http-equiv="Cache-Control" content="max-age=7200" />
     <meta http-equiv="expires" Content="Fri, 01 Sep 2017 08:00:00 GMT">
     <meta name="Keywords" Content="源辰,源辰信息,源辰信息科技,源辰信息科技官网,源辰信息科技有限公司">
     <meta name="Description" Content="公司是由多名资深项目经理共同组建而成，主要技术骨干在国内外从事多年软件项目研发工作，有在大型软件公司担任多年项目经理的经验；紧跟国内外先进的主流技术，具有较强的软件开发管理和技术指导能力。公司的发展目标是成为领先的软件开发服务商和IT软件工程师的供应商，我们致力于融合先进管理理念和信息技术，为企业和学员创造价值。我们的宗旨是服务于学生，致力于企业。">
@@ -87,10 +87,10 @@
 
         .c_i_head{padding: 15px 15px 0px 15px;}
 
-        .c_i_head_title{height: 46px;line-height: 46px;font-size: 28px;padding: 0px 0px 10px 56px;position: relative;}
+        .c_i_head_title{height: 46px;line-height: 46px;font-size: 20px;padding: 0px 0px 10px 56px;position: relative;}
         .c_i_head_intro{
             margin-bottom: 10px;
-            font-size: 14px;
+            font-size: 24px;
             line-height: 22px;
             padding: 0 15px;
         }
@@ -101,7 +101,7 @@
             font-size: 27px;
             line-height: 23px;
         }
-        .c_i_media{padding-bottom: 10px;height: 50px;overflow: hidden; font-size: 28px;}
+        .c_i_media{padding-bottom: 10px;height: 50px;overflow: hidden; font-size: 22px;}
         .c_i_footer{padding: 10px 15px;margin: 0px 15px;border-top: 1px solid #d6d6d6;font-size: 12px;color: #b2b2b2;}
         
         .c_i_footer_info{}
@@ -151,7 +151,6 @@
     margin-top: 11px;
     background:white;
 }
-
 .kctx_title{
 
     width: 970px;
@@ -277,14 +276,12 @@
     <script type="text/javascript" src="js/GetLunarDay.js"></script>
 
     <script type="text/javascript" >
-
   var g = function(id){ return document.getElementById(id);}
 var getBodyW = function(){ return document.body.offsetWidth; };
 var getBodyH = function(){ return document.body.offsetHeight; };
 var getElTop = function(el){ return el.offsetTop+170; };
 
 //--------  模版内容输出
-
     //  分析归类数据
     var list = {};  //  { year: { month : [ item ,item ] } }
 

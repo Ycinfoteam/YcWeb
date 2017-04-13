@@ -111,7 +111,7 @@
             	<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
             	<input id="hh" name="a_name" type="text" /><br/>
             	<label>应聘职位:</label>
-            	<select id="findAllJobType">
+            	<select id="findAllJobType" name="a_orientation">
             	</select><br/>
             	<label>联系方式:</label>
             	<input  name="a_tel" type="text" />

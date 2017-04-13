@@ -98,7 +98,7 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.2.RELEASE</version>
 		</dependency>
-
+ 
 		<!-- 解析文件上传的Http协议，spring MVC利用fileupload组件解析完数据后， 将上传的文件存到一个Multipartfile对象中 -->
 		<!-- 百度富文本编辑器所需jar包 -->
 		<dependency>
@@ -134,7 +134,7 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
-		</dependency>
+		</dependency> 
 		
 		<!-- 使用responseBody需要引入依赖的jar解决浏览器406 -->
 		<dependency>
@@ -162,7 +162,27 @@
 			<artifactId>sdksource</artifactId>
 			<version>20160607</version>
 		</dependency> 
-    
+    	<!-- 导出成pdf文件包 -->
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>bcprov-ext-jdk15</artifactId>
+			<version>1.46</version>
+    	</dependency>
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>itext</artifactId>
+			<version>4.2.1</version>
+    	</dependency>
+    	<dependency>
+    	<groupId>pdf</groupId>
+			<artifactId>itext-rups</artifactId>
+			<version>2.1.7</version>
+    	</dependency>
+    	<dependency> 
+    	<groupId>pdf</groupId>
+			<artifactId>itext-rtf</artifactId>
+			<version>2.1.7</version>
+    	</dependency>
 	</dependencies>
 	<build>
 		<finalName>Yc_Web</finalName>

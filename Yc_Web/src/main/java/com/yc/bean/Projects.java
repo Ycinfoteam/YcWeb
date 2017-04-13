@@ -19,7 +19,15 @@ public class Projects implements Serializable {
 	private List<MultipartFile> p_picUrl;//对应界面上的<input type="file" name="pdfsUrl"/>
 	private Integer start; // 起始行
 	private Integer offset; // 偏移量
+	private Integer p_status;
 	
+	
+	public Integer getP_status() {
+		return p_status;
+	}
+	public void setP_status(Integer p_status) {
+		this.p_status = p_status;
+	}
 	public Integer getStart() {
 		return start;
 	}

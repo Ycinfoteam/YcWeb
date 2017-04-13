@@ -10,9 +10,11 @@ import java.util.Map.Entry;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.yc.bean.Activities;
 import com.yc.biz.ActivitiesBiz;
+import com.yc.utils.GetIp;
 import com.yc.utils.JsonModel;
 import com.yc.utils.PageUtil;
 
@@ -41,13 +44,16 @@ public class ActivitiesController {
 	}
 	//查看公司活动
 	@RequestMapping(value="/activities")
-	public void toactivities(@ModelAttribute Activities activities,HttpServletResponse response,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
-		logger.info("selectactivities called...");
+	public void toactivities(@ModelAttribute Activities activities,HttpServletResponse response,HttpServletRequest request,HttpSession session,@RequestParam(value="page",required=false)Integer page,@RequestParam(value="rows",required=false)Integer rows) throws IOException{
 		int start =PageUtil.judgeStart(page, rows);
 		int offset=PageUtil.judgeOffset(rows);
 		activities.setStart(start);
 		activities.setOffset(offset);
 		List<Activities>activitie=this.activitiesBiz.findall(activities);
+		MDC.put("explain" , "查看公司活动");
+		MDC.put("mchIp",new GetIp().getRemortIP(request) );
+		MDC.put("mchName",session.getAttribute("user"));
+		logger.info("selectactivities called...");
 		int total =this.activitiesBiz.findCount(activities);
 		JsonModel model=new JsonModel();
 		model.setRows(activitie);
@@ -81,9 +87,12 @@ public class ActivitiesController {
 		try {
 			activitiesBiz.add(activities);;
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
 		}
-		response.getWriter().print(1);
+		
+			response.getWriter().print(1);
+		
 	}
 
 	//修改学员项目
@@ -94,6 +103,7 @@ public class ActivitiesController {
 		try {
 			this.activitiesBiz.update(activities);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
 		}
 		response.getWriter().print(1);
@@ -122,10 +132,9 @@ public class ActivitiesController {
 		try {
 			this.activitiesBiz.update(activities);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(0);		
-
 		}
-
 		response.getWriter().print(1);		
 		}
 	
