@@ -26,150 +26,149 @@ import com.yc.utils.PropertiesUtil;
 @Controller
 public class IndexController {
 	// 去后台登录
-	@RequestMapping(value = "/tobacklogin")
+	@RequestMapping(value = "/admin/tobacklogin")
 	public String tobacklogin() {
 		return "backjsp/backlogin";
 	}
 	// 去后台主页
-	@RequestMapping(value = "/tobackmain")
+	@RequestMapping(value = "/admin/tobackmain")
 	public String tobackmain() {
 		return "backjsp/backmain";
 	}
 
 	// 去前台主页
-	@RequestMapping(value = "/toindex")
+	@RequestMapping(value = "/admin/toindex")
 	public String toindex() {
 		return "jsp/about";
 	}
 
 	// 去数据字典footer
-	@RequestMapping(value = "toDataDictionaryFooter")
+	@RequestMapping(value = "/admin/toDataDictionaryFooter")
 	public String toDataDictionaryFooter() {
 		return "backjsp/datadictionary/footer";
 	}
 
 	// 去数据字典description
-	@RequestMapping(value = "toDataDictionaryDescription")
+	@RequestMapping(value = "/admin/toDataDictionaryDescription")
 	public String toDataDictionaryDescription() {
 		return "backjsp/datadictionary/description";
 	}
 	//去数据字典company
-	@RequestMapping(value="toDataDictionaryCompany")
+	@RequestMapping(value="/admin/toDataDictionaryCompany")
 	public String toDataDictionaryCompany(){
 		return "backjsp/datadictionary/company";
 	}
 
 	// 去数据字典logo
-	@RequestMapping(value = "toDataDictionaryLogo")
+	@RequestMapping(value = "/admin/toDataDictionaryLogo")
 	public String toDataDictionaryLogo() {
 		return "backjsp/datadictionary/logo";
 	}
 
 	// 去行业新闻
-	@RequestMapping(value = "/toinews")
+	@RequestMapping(value = "/admin/toinews")
 	public String toinews() {
 		return "backjsp/news/inews";
 	}
 
 	// 去公司新闻
-	@RequestMapping(value = "/tocompanynews")
+	@RequestMapping(value = "/admin/tocompanynews")
 	public String tocompanynew() {
 		return "backjsp/news/companynews";
 	}
 
 	// 去管理员
-	@RequestMapping(value = "/toadmin")
+	@RequestMapping(value = "/admin/toadmin")
 	public String toadmin() {
 		return "backjsp/sys/admins/admin";
 	}
 
 	// 去人才招聘后台 应聘信息
-	@RequestMapping(value = "/tojob")
+	@RequestMapping(value = "/admin/tojob")
 	public String tojob() {
 		return "backjsp/applyseekjobs/job";
 	}
 
 	// 去人才招聘后台 招聘信息
-	@RequestMapping(value = "/toapply")
+	@RequestMapping(value = "/admin/toapply")
 	public String toapply() {
 		return "backjsp/applyseekjobs/apply";
 	}
 
 	// 去人才招聘后台 方向信息
-	@RequestMapping(value = "/tojobtype")
+	@RequestMapping(value = "/admin/tojobtype")
 	public String tojobtype() {
 		return "backjsp/applyseekjobs/jobtype";
 	}
 
 	// 去人才招聘后台 方向信息
-	@RequestMapping(value = "/toadministrator")
+	@RequestMapping(value = "/admin/toadministrator")
 	public String toadministrator() {
 		return "backjsp/applyseekjobs/administrator";
 	}
 
 	// 去学员项目
-	@RequestMapping(value = "/toprojects")
+	@RequestMapping(value = "/admin/toprojects")
 	public String toprojects() {
 		return "backjsp/projects/projects";
 	}
 
 	// 去学员就业
-	@RequestMapping(value = "/tojobdetails")
+	@RequestMapping(value = "/admin/tojobdetails")
 	public String toemploy() {
 		return "backjsp/projects/jobdetails";
 	}
 
 	// 去课程体系管理
-	@RequestMapping(value = "/tocoursys")
+	@RequestMapping(value = "/admin/tocoursys")
 	public String tocoursys() {
 		return "backjsp/coursys/coursys";
 
 	}
 	//去开班信息管理
-	@RequestMapping(value="/toopenclass")
+	@RequestMapping(value="/admin/toopenclass")
 	public String toopenclass(){
 		System.out.println("jinlainial");
 		return "backjsp/openclass/openclass";
 	}
 
 	// 去公司活动
-	@RequestMapping(value = "/toactivities")
+	@RequestMapping(value = "/admin/toactivities")
 	public String toactivities() {
 		return "backjsp/activities/activities";
 	}
-
 	
 	//去教师管理
-	@RequestMapping(value="/toteachers")
+	@RequestMapping(value="/admin/toteachers")
 	public String toteachers(){
 		return "backjsp/teachers/teachers";
 	}
 	//去学生报名信息管理
-	@RequestMapping(value="/tostudents")
+	@RequestMapping(value="/admin/tostudents")
 	public String tostudent(){
 		return "backjsp/students/students";
 	}
 	
 	//去公司介绍
-	@RequestMapping(value="/tocompany")
+	@RequestMapping(value="/admin/tocompany")
 	public String tocompany(){
 		return "backjsp/activities/company";
 	}
 
 	// 去公司历史
-	@RequestMapping(value = "/tohistory")
+	@RequestMapping(value = "/admin/tohistory")
 	public String tohistory() {
 		return "backjsp/activities/history";
 	}
 
 	// 去查看日志
-	@RequestMapping(value = "/tolog")
+	@RequestMapping(value = "/admin/tolog")
 	public String findlog() {
 		return "backjsp/sys/logs/log";
 	}
 
 	// 查看日志
-	@RequestMapping(value = "/tologs", produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/admin/tologs", produces = { "application/json;charset=UTF-8" })
 	public void tologs(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
 		response.setContentType("application/octet-stream");
@@ -219,13 +218,13 @@ public class IndexController {
 	}
 
 	// 去备份还原数据库
-	@RequestMapping(value = "/tobackupdatabase")
+	@RequestMapping(value = "/admin/tobackupdatabase")
 	public String todatabase() {
 		return "backjsp/backupandload/database/database";
 	}
 
 	// 备份数据库
-	@RequestMapping(value = "/backupdatabase")
+	@RequestMapping(value = "/admin/backupdatabase")
 	public void backupdatabase(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 数据库导出
 		String path = request.getParameter("path");
@@ -251,7 +250,7 @@ public class IndexController {
 
 	
 	//TODO: 未实验 不知道是否正确 还原MySql数据库
-	@RequestMapping(value = "/loaddatabase")
+	@RequestMapping(value = "/admin/loaddatabase")
 	public void loaddatabase(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		{
 			String filepath = request.getParameter("path");
@@ -284,14 +283,14 @@ public class IndexController {
 
 
 	// 去备份还原文件
-	@RequestMapping(value = "/tofile")
+	@RequestMapping(value = "/admin/tofile")
 	public String tofile() {
 		return "backjsp/backupandload/file/file";
 	}
 	 private static ArrayList<String> filedirlist = new ArrayList<String>();
 	 private static ArrayList<String> filelist=new ArrayList<String>();
 	// 去备份日志文件
-	@RequestMapping(value = "/backuplog")
+	@RequestMapping(value = "/admin/backuplog")
 	public void backfile(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
 		// templateFile 需要备份的函数
@@ -351,7 +350,7 @@ public class IndexController {
 		response.getOutputStream().print(1);
 	}
 	//去备份图片文件
-	@RequestMapping(value = "/backuppic")
+	@RequestMapping(value = "/admin/backuppic")
 	public void backpic(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
 		// templateFile 需要备份的函数
@@ -403,7 +402,7 @@ public class IndexController {
         response.getOutputStream().print(1);
         }
 	//TODO：还原日志图片文件 因为若是要还原某一个文件对于使用者太麻烦 所以根据日期还原 或全部还原  如果用于上线项目该方法无效  需要修改
-	@RequestMapping(value = "/loadlog")
+	@RequestMapping(value = "/admin/loadlog")
 	public void loadlog(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
 		// templateFile 需要备份的函数
@@ -483,7 +482,7 @@ public class IndexController {
 		response.getOutputStream().print(1);
 	}
 	}
-	@RequestMapping(value = "/loadpic")
+	@RequestMapping(value = "/admin/loadpic")
 	public void loadpic(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ClassNotFoundException {
 		// templateFile 需要备份的函数

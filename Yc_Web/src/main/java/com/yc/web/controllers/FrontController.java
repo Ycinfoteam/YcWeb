@@ -336,17 +336,16 @@ public class FrontController {
 	
 	//前端界面右下角新闻模块
 	public List<News> findNews(){	
-		List<News> newsList=findAllNews();
-		for(News news:newsList){
+		News n =new News();
+		n.setStart(0);
+		n.setOffset(8);
+		List<News> list=this.newBiz.selectAllNews(n);	//查询最新的
+		for(News news:list){
 			if(news.getN_title().length()>10){
 				String temp=news.getN_title().substring(0,8);
 				String title=temp+"...";
 				news.setN_title(title);
 			}
-		}
-		List<News> list=new ArrayList<News>();
-		for(int i=0;i<8;i++){		//只显示最新的八条新闻
-			list.add(newsList.get(i));
 		}
 		return list;
 	}

@@ -21,7 +21,7 @@ public class EmployTest extends TestCase {
 		Date date=new Date();
 		//employ.setE_validtime(date);
 		employ.setE_amount(20);
-		employ.setE_salary(8000);
+		employ.setE_salary("8000");
 		employ.setE_addr("衡阳市珠晖区");
 		e.addEmploy(employ);
 	}
@@ -41,7 +41,7 @@ public class EmployTest extends TestCase {
 		EmployBiz e=(EmployBiz) ac.getBean("employBizImpl");
 		Employ employ =new Employ();
 		employ.setE_position("java工程师");
-		employ.setE_salary(3000);
+		employ.setE_salary("3000");
 		List<Employ> list=e.findEmploy(employ);
 		for( Employ em:list){
 			System.out.println( em );
@@ -65,7 +65,7 @@ public class EmployTest extends TestCase {
 		Date date=new Date();
 		//employ.setE_validtime(date);
 		employ.setE_amount(20);
-		employ.setE_salary(8000);
+		employ.setE_salary("8000");
 		employ.setE_addr("长沙市");
 		employ.setE_detail("福利好"); 
 		e.updateEmploy(employ);

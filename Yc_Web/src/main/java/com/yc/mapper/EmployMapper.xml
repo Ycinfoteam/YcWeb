@@ -19,9 +19,6 @@
 			<if test="e_amount!=null">
 				e_amount>=#{e_amount } and
 			</if>
-			<if test="e_salary!=0 and e_salary!=null">
-				e_salary>=#{e_salary } and
-			</if>
 		</trim>
 	</select>
 	
@@ -39,10 +36,11 @@
 				e_amount>=#{e_amount } and
 			</if>
 		</trim>
+			order by e_id desc  
 			<if test="start!=null and offset!=null">
 				limit #{start},#{offset}
 			</if>
-			order by e_id desc
+			
 	</select>
 	
 	<!-- 插入招聘信息 -->
@@ -63,20 +61,8 @@
 			<if test="e_position!=null">
 				e_position=#{e_position },
 			</if>
-			<if test="e_validtime!=null">
-				e_validtime=#{e_validtime },
-			</if>
 			<if test="e_amount!=null">
 				e_amount=#{e_amount },
-			</if>
-			<if test="e_salary!=0">
-				e_salary=#{e_salary },
-			</if>
-			<if test="e_detail!=null">
-				e_detail=#{e_detail },
-			</if>
-			<if test="e_addr!=null">
-				e_addr=#{e_addr },
 			</if>
 		</trim>
 		<where>
@@ -85,7 +71,5 @@
 			</if>
 		</where>
 	</update>
-
-
 
 </mapper>
