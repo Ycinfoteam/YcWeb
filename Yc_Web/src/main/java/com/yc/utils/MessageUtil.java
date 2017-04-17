@@ -13,9 +13,9 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
  */
 public class MessageUtil {
 
-	private static String url="http://gw.api.taobao.com/router/rest";
-	private static String appkey="23705431";
-	private static String secret="e08df7bef7d24564ca24739f0969f344";
+	private static String url="";
+	private static String appkey="";
+	private static String secret="";
 	
 	/**
 	 * 短信工具

@@ -30,7 +30,6 @@ import com.yc.biz.ActivitiesBiz;
 import com.yc.biz.CoursysBiz;
 import com.yc.biz.DataDictionaryBiz;
 import com.yc.biz.EmployBiz;
-import com.yc.biz.JobdetailsBiz;
 import com.yc.biz.NewsBiz;
 import com.yc.biz.OpenClassBiz;
 import com.yc.biz.StudentsBiz;
@@ -42,7 +41,7 @@ import com.yc.utils.DateFormatUtil;
  * 鍓嶇椤甸潰鍒嗗彂鍣�
  * @author lee
  *
- */
+ */  
 @Controller
 public class FrontController {
 	
